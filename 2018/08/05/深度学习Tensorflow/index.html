@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>深度学习Tensorflow | Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="https:&#x2F;&#x2F;developers.google.cn&#x2F;machine-learning&#x2F;crash-course&#x2F; 看的这个教程 简介与概念梯度什么的不提了 Pandas： 用于数据分析和建模的库，用于TensorFlow编码。可以在https:&#x2F;&#x2F;colab.research.google.com&#x2F;notebooks&#x2F;mlcc&#x2F;intro_to_pandas.ipynb?hl&#x3D;zh-cn#s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习Tensorflow">
+<meta property="og:url" content="https://fengh16.github.io/2018/08/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0Tensorflow/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="https:&#x2F;&#x2F;developers.google.cn&#x2F;machine-learning&#x2F;crash-course&#x2F; 看的这个教程 简介与概念梯度什么的不提了 Pandas： 用于数据分析和建模的库，用于TensorFlow编码。可以在https:&#x2F;&#x2F;colab.research.google.com&#x2F;notebooks&#x2F;mlcc&#x2F;intro_to_pandas.ipynb?hl&#x3D;zh-cn#s">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-08-04T22:06:06.000Z">
+<meta property="article:modified_time" content="2021-05-28T13:04:47.724Z">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-深度学习Tensorflow" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/08/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0Tensorflow/" class="article-date">
+  <time class="dt-published" datetime="2018-08-04T22:06:06.000Z" itemprop="datePublished">2018-08-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      深度学习Tensorflow
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://developers.google.cn/machine-learning/crash-course/">https://developers.google.cn/machine-learning/crash-course/</a></p>
+<p>看的这个教程</p>
+<h1 id="简介与概念"><a href="#简介与概念" class="headerlink" title="简介与概念"></a>简介与概念</h1><p>梯度什么的不提了</p>
+<h2 id="Pandas："><a href="#Pandas：" class="headerlink" title="Pandas："></a>Pandas：</h2><ul>
+<li>用于数据分析和建模的库，用于TensorFlow编码。可以在<a target="_blank" rel="noopener" href="https://colab.research.google.com/notebooks/mlcc/intro_to_pandas.ipynb?hl=zh-cn#scrollTo=s3ND3bgOkB5k&amp;uniqifier=1%E5%AD%A6%E4%B9%A0">https://colab.research.google.com/notebooks/mlcc/intro_to_pandas.ipynb?hl=zh-cn#scrollTo=s3ND3bgOkB5k&amp;uniqifier=1学习</a></li>
+<li>数据结构：<ul>
+<li>DataFrame：关系型数据表格，包括行和列（列有命名）<ul>
+<li>读取文件示例代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">california_housing_dataframe &#x3D; pd.read_csv(&quot;https:&#x2F;&#x2F;storage.googleapis.com&#x2F;mledu- datasets&#x2F;california_housing_train.csv&quot;, sep&#x3D;&quot;,&quot;)</span><br><span class="line">california_housing_dataframe.describe()</span><br></pre></td></tr></table></figure></li>
+<li>可以从Series对象构建DataFrame（见下面）</li>
+<li>可以直接当作一个dict用，如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    cities[&#39;Area square miles&#39;] &#x3D; pd.Series([46.87, 176.53, 97.92])</span><br><span class="line">    cities[&#39;Population density&#39;] &#x3D; cities[&#39;Population&#39;] &#x2F; cities[&#39;Area square miles&#39;]</span><br><span class="line">    &#96;&#96;&#96;&#96;</span><br><span class="line">  * Series对象：直接把数组传进构造函数中就可以了，之后可以用&#96;pd.DataFrame(&#123; &#39;City name&#39;: city_names, &#39;Population&#39;: population &#125;)&#96;来构造DataFrame</span><br><span class="line">    * 访问可以使用dict的方式（对于DataFrame）和list的方式（对于Series）</span><br><span class="line">    * 可以对Series进行算术操作，相当于对每一个都进行这样的操作。但：注意：布尔值 Series 是使用“按位”而非传统布尔值“运算符”组合的。例如，执行逻辑与时，应使用 &amp;，而不是 and。</span><br><span class="line">    * Series可以用于NumPy的参数</span><br><span class="line">    * 可以使用匿名函数&#96;population.apply(lambda val: val &gt; 1000000)&#96;</span><br><span class="line">    * 每个元素有自己的index，如果修改顺序可以修改index排序的顺序，如&#96;cities.reindex([2, 0, 1])&#96;就可以使得元素按照第二个、第零个、第一个排列；&#96;cities.reindex(np.random.permutation(cities.index))&#96;可以直接随机排列</span><br><span class="line"></span><br><span class="line">## TensorFlow</span><br><span class="line"></span><br><span class="line">加载数据集：</span><br><span class="line">&#96;&#96;&#96; python</span><br><span class="line">california_housing_dataframe &#x3D; pd.read_csv(&quot;https:&#x2F;&#x2F;dl.google.com&#x2F;mlcc&#x2F;mledu-datasets&#x2F;california_housing_train.csv&quot;, sep&#x3D;&quot;,&quot;)</span><br><span class="line"># 随机化处理与单位转换（换为以千为单位）</span><br><span class="line">california_housing_dataframe &#x3D; california_housing_dataframe.reindex(</span><br><span class="line">    np.random.permutation(california_housing_dataframe.index))</span><br><span class="line">california_housing_dataframe[&quot;median_house_value&quot;] &#x2F;&#x3D; 1000.0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>使用total_rooms作为输入，预测median_house_value（标签）</p>
+<p>使用特征列表示特征的数据类型，仅储存对特征数据的描述而非数据本身。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义输入特征为total_rooms</span></span><br><span class="line">my_feature = california_housing_dataframe[[<span class="string">&quot;total_rooms&quot;</span>]]</span><br><span class="line"><span class="comment"># california_housing_dataframe[[&#x27;total_rooms&#x27;]]可以表示仅有这一列被保留下来，得到的是一个DataFrame，而如果只有一层中括号则剩下的是一个Series</span></span><br><span class="line">feature_columns = [tf.feature_column.numeric_column(<span class="string">&quot;total_rooms&quot;</span>)]</span><br><span class="line"><span class="comment"># 定义目标</span></span><br><span class="line">targets = california_housing_dataframe[<span class="string">&quot;median_house_value&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义线性回归模型，使用小批量随机梯度下降训练模型</span></span><br><span class="line">my_optimizer=tf.train.GradientDescentOptimizer(learning_rate=<span class="number">0.0000001</span>)</span><br><span class="line"><span class="comment"># 梯度裁剪可确保梯度大小在训练期间不会变得过大，梯度过大会导致梯度下降法失败。</span></span><br><span class="line">my_optimizer = tf.contrib.estimator.clip_gradients_by_norm(my_optimizer, <span class="number">5.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用特征列和优化器（梯度下降）定义线性回归模型，设置学习率</span></span><br><span class="line">linear_regressor = tf.estimator.LinearRegressor(</span><br><span class="line">    feature_columns=feature_columns,</span><br><span class="line">    optimizer=my_optimizer</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>定义输入函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_input_fn</span>(<span class="params">features, targets, batch_size=<span class="number">1</span>, shuffle=<span class="literal">True</span>, num_epochs=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;从一个特征训练线性回归模型</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">      features: pandas DataFrame of features</span></span><br><span class="line"><span class="string">      targets: pandas DataFrame of targets</span></span><br><span class="line"><span class="string">      batch_size: Size of batches to be passed to the model</span></span><br><span class="line"><span class="string">      shuffle: True or False. Whether to shuffle the data.</span></span><br><span class="line"><span class="string">      num_epochs: Number of epochs for which data should be repeated. None = repeat indefinitely</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">      Tuple of (features, labels) for next data batch</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">  </span><br><span class="line">    <span class="comment"># Convert pandas data into a dict of np arrays.</span></span><br><span class="line">    features = &#123;key:np.array(value) <span class="keyword">for</span> key,value <span class="keyword">in</span> <span class="built_in">dict</span>(features).items()&#125;                                           </span><br><span class="line"> </span><br><span class="line">    <span class="comment"># Construct a dataset, and configure batching/repeating</span></span><br><span class="line">    ds = Dataset.from_tensor_slices((features,targets)) <span class="comment"># warning: 2GB limit</span></span><br><span class="line">    ds = ds.batch(batch_size).repeat(num_epochs)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Shuffle the data, if specified</span></span><br><span class="line">    <span class="keyword">if</span> shuffle:</span><br><span class="line">      ds = ds.shuffle(buffer_size=<span class="number">10000</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Return the next batch of data</span></span><br><span class="line">    features, labels = ds.make_one_shot_iterator().get_next()</span><br><span class="line">    <span class="keyword">return</span> features, labels</span><br></pre></td></tr></table></figure>
+
+<p>训练模型：（linear_regressor里面放着整个模型，所以直接用它进行train）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_ &#x3D; linear_regressor.train(</span><br><span class="line">    input_fn &#x3D; lambda:my_input_fn(my_feature, targets),</span><br><span class="line">    steps&#x3D;100</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>评估模型：使用训练误差来进行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 建立一个预测的输入函数</span><br><span class="line"># 因为我们只对每个样本进行一个预测，所以我们不需要打乱顺序</span><br><span class="line">prediction_input_fn &#x3D;lambda: my_input_fn(my_feature, targets, num_epochs&#x3D;1, shuffle&#x3D;False)</span><br><span class="line"></span><br><span class="line"># 调用预测函数</span><br><span class="line">predictions &#x3D; linear_regressor.predict(input_fn&#x3D;prediction_input_fn)</span><br><span class="line"></span><br><span class="line"># 转换为NumPy类型以计算误差</span><br><span class="line">predictions &#x3D; np.array([item[&#39;predictions&#39;][0] for item in predictions])</span><br><span class="line"></span><br><span class="line"># 输出均方误差与均方根误差</span><br><span class="line">mean_squared_error &#x3D; metrics.mean_squared_error(predictions, targets)</span><br><span class="line">root_mean_squared_error &#x3D; math.sqrt(mean_squared_error)</span><br><span class="line">print(&quot;Mean Squared Error (on training data): %0.3f&quot; % mean_squared_error)</span><br><span class="line">print(&quot;Root Mean Squared Error (on training data): %0.3f&quot; % root_mean_squared_error)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>看到了<a target="_blank" rel="noopener" href="https://developers.google.cn/machine-learning/crash-course/feature-crosses/video-lecture">https://developers.google.cn/machine-learning/crash-course/feature-crosses/video-lecture</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/08/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0Tensorflow/" data-id="ckqkjgmct00lqx4c4bw2w5ztx" data-title="深度学习Tensorflow" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/05/Numpy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Numpy
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/28/js%E6%B7%B1%E5%A4%8D%E5%88%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js深复制</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

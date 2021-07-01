@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>C#图形界面学习 | Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="项目新建VS里面新建就行 禁止缩放Take a look at the FormBorderStyle property 1form1.FormBorderStyle &#x3D; FormBorderStyle.FixedSingle;  You may also want to remove the minimize and maximize buttons: 12form1.Maximize">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#图形界面学习">
+<meta property="og:url" content="https://fengh16.github.io/2018/03/08/C#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="项目新建VS里面新建就行 禁止缩放Take a look at the FormBorderStyle property 1form1.FormBorderStyle &#x3D; FormBorderStyle.FixedSingle;  You may also want to remove the minimize and maximize buttons: 12form1.Maximize">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5060560-d0e05f933e9f6c13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5060560-5987192a96318206.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5060560-1bd324bcae58f661.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-ac8a0f00b9f836b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2018-03-07T22:06:06.000Z">
+<meta property="article:modified_time" content="2021-05-28T13:04:47.674Z">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5060560-d0e05f933e9f6c13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-C#图形界面学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/08/C#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2018-03-07T22:06:06.000Z" itemprop="datePublished">2018-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      C#图形界面学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="项目新建"><a href="#项目新建" class="headerlink" title="项目新建"></a>项目新建</h1><p>VS里面新建就行</p>
+<h1 id="禁止缩放"><a href="#禁止缩放" class="headerlink" title="禁止缩放"></a>禁止缩放</h1><p>Take a look at the <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/system.windows.forms.form.formborderstyle.aspx">FormBorderStyle property</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">form1.FormBorderStyle &#x3D; FormBorderStyle.FixedSingle;</span><br></pre></td></tr></table></figure>
+
+<p>You may also want to remove the minimize and maximize buttons:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">form1.MaximizeBox &#x3D; false;</span><br><span class="line">form1.MinimizeBox &#x3D; false;</span><br></pre></td></tr></table></figure>
+<p>来自<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/7970262/disable-resizing-of-a-windows-form">https://stackoverflow.com/questions/7970262/disable-resizing-of-a-windows-form</a></p>
+<h1 id="窗口点击坐标获取"><a href="#窗口点击坐标获取" class="headerlink" title="窗口点击坐标获取"></a>窗口点击坐标获取</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Form1_MouseClick</span>(<span class="params"><span class="built_in">object</span> sender, MouseEventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point p = e.Location;</span><br><span class="line">    MessageBox.Show(p.ToString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="事件添加-amp-绑定"><a href="#事件添加-amp-绑定" class="headerlink" title="事件添加&amp;绑定"></a>事件添加&amp;绑定</h1><p>事件绑定直接在属性页面里面就行，直接把对应事件绑定到对应的函数上。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5060560-d0e05f933e9f6c13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="事件按键的位置"></p>
+<h1 id="列表、字典等数据结构与C-对比"><a href="#列表、字典等数据结构与C-对比" class="headerlink" title="列表、字典等数据结构与C++对比"></a>列表、字典等数据结构与C++对比</h1><p>来自<a target="_blank" rel="noopener" href="http://www.cnblogs.com/cocoaleaves/archive/2009/05/30/1492269.html">http://www.cnblogs.com/cocoaleaves/archive/2009/05/30/1492269.html</a></p>
+<h2 id="数组（列表）"><a href="#数组（列表）" class="headerlink" title="数组（列表）"></a>数组（列表）</h2><p><img src="http://upload-images.jianshu.io/upload_images/5060560-5987192a96318206.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数组方面对比"></p>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>C#使用LinkedList<T>，C++用的是std::list<T>，内部实现都是链表，插入、删除速度快，随机访问速度慢。链表的操作与数组十分相似，不同的地方大致有：</p>
+<ol>
+<li>任何通过下标访问的方式都是无效的，查看容量也是无效的，这是由链表的性质决定的。对链表的查询操作要通过迭代器进行。也就是说，上表中“查询”、“遍历”的第一种方法、“大小”中的容量都是非法操作。</li>
+<li>插入删除的时候也不能指定下标，C++中除了push_back()外，多了一个push_front()，C#中不能使用Add()、Insert()，要使用AddBefore()/AddAfter()/AddFirst()/AddLast()。</li>
+<li>排序在C++中直接用list.sort()。</li>
+<li>std::list<T>要加头文件：#include <list></li>
+</ol>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><p>C#中使用Dictionary&lt;TKey,TValue&gt;，C++使用std::map&lt;TK,TV&gt;。map的内部实现是红黑树，Dictionary的实现是哈希表。DotNet中也有用树实现的字典类结构，叫SortedDictionary，似乎用得不多，效率也没有哈希表高，不过可以保持插入的数据是有序的。下面的对比是通过字符串来检索整数，为了写起来方便，C++中字符串直接用了LPCTSTR，并且typedef std::map&lt;LPCTSTR,int&gt; map_type;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5060560-1bd324bcae58f661.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="字典方面比较"></p>
+<h1 id="define"><a href="#define" class="headerlink" title="define"></a>define</h1><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define">https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define</a></p>
+<p>C# 中的 <code>#define</code> 必须放在using 前面，并且<strong>不能向符号分配值</strong>。</p>
+<h1 id="String转int"><a href="#String转int" class="headerlink" title="String转int"></a>String转int</h1><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number">https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number</a></p>
+<p>使用<code>int.TryParse(textBox1.Text, out ans)</code>，如果转换成功就可以直接将结果存入ans中。</p>
+<h1 id="接受文本框enter事件"><a href="#接受文本框enter事件" class="headerlink" title="接受文本框enter事件"></a>接受文本框enter事件</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">textBox1_KeyPress</span>(<span class="params"><span class="built_in">object</span> sender, KeyPressEventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.KeyChar == (<span class="built_in">char</span>)Keys.Enter)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.button1_Click(sender, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="random"><a href="#random" class="headerlink" title="random"></a>random</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Random random = <span class="keyword">new</span> Random();</span><br><span class="line"><span class="comment">// random.Next()函数进行生成随机数。参数1个的时候返回（0  -  参数-1），两个参数则返回其范围的值。</span></span><br><span class="line">nowpoints.Add(<span class="keyword">new</span> Point(random.Next(pictureBox1.Width), random.Next(pictureBox1.Height)));</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line">            FileStream fs = <span class="keyword">new</span> FileStream(<span class="string">&quot;points.txt&quot;</span>, FileMode.Create, FileAccess.Write);</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; nowpoints.Count; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">byte</span>[] data = System.Text.Encoding.Default.GetBytes(nowpoints[i].ToString() + <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">                fs.Write(data, <span class="number">0</span>, data.Length);</span><br><span class="line">            &#125;</span><br><span class="line">            fs.Flush();</span><br><span class="line">            fs.Close();</span><br><span class="line">            MessageBox.Show(<span class="string">&quot;已经保存到&quot;</span> + fs.Name);</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/akwwl/p/3240813.html">http://www.cnblogs.com/akwwl/p/3240813.html</a></p>
+<h1 id="控件刷新"><a href="#控件刷新" class="headerlink" title="控件刷新"></a>控件刷新</h1><p>比较耗时的计算中，可以直接使用Refresh进行强制刷新，避免因为后续过程用时过长导致无法正常刷新显示之前的更改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">richTextBox1.Text &#x3D; (&quot;马上开始计算，可能会较慢，请等候……&quot;);</span><br><span class="line">richTextBox1.Refresh();</span><br><span class="line">richTextBox1.Text &#x3D; (Calculate_nSquare());</span><br></pre></td></tr></table></figure>
+
+<h1 id="ComboBox控件（下拉菜单，下拉框）"><a href="#ComboBox控件（下拉菜单，下拉框）" class="headerlink" title="ComboBox控件（下拉菜单，下拉框）"></a>ComboBox控件（下拉菜单，下拉框）</h1><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/friendan/article/details/8913183">http://blog.csdn.net/friendan/article/details/8913183</a></p>
+<ol>
+<li><p>让用户只能选择项。<br>很简单，设置ComboBox的属性DropDownStyle为DropDownList即可。</p>
+</li>
+<li><p>设置默认选择的项。<br>this.cmbTest.SelectedIndex = 3; //选择第四项,注意，编号从0开始</p>
+</li>
+</ol>
+<h1 id="确认框"><a href="#确认框" class="headerlink" title="确认框"></a>确认框</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> confirmResult =  MessageBox.Show(<span class="string">&quot;Are you sure to delete this item ??&quot;</span>,</span><br><span class="line">                                     <span class="string">&quot;Confirm Delete!!&quot;</span>,</span><br><span class="line">                                     MessageBoxButtons.YesNo);</span><br><span class="line"><span class="keyword">if</span> (confirmResult == DialogResult.Yes)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// If &#x27;Yes&#x27;, do something here.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// If &#x27;No&#x27;, do something here.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3845695/is-there-a-builtin-confirmation-dialog-in-windows-forms">https://stackoverflow.com/questions/3845695/is-there-a-builtin-confirmation-dialog-in-windows-forms</a></p>
+<h1 id="文本框中光标跳转到最后"><a href="#文本框中光标跳转到最后" class="headerlink" title="文本框中光标跳转到最后"></a>文本框中光标跳转到最后</h1><p>在改变内容之后，光标会回到开头，就很气。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">richTextBox1.Focus();</span><br><span class="line">richTextBox1.SelectionStart &#x3D; richTextBox1.Text.Length;</span><br></pre></td></tr></table></figure>
+
+<h1 id="画图（picture-box中）"><a href="#画图（picture-box中）" class="headerlink" title="画图（picture box中）"></a>画图（picture box中）</h1><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/zjq2010014137/article/details/18270143">http://blog.csdn.net/zjq2010014137/article/details/18270143</a></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Graphics g = pictureBox1.CreateGraphics();  </span><br><span class="line"><span class="keyword">if</span>(e.Button ==MouseButtons.Left)  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">if</span> (drawing)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="comment">//drawing = true;  </span></span><br><span class="line">        Point currentPoint = <span class="keyword">new</span> Point(e.X, e.Y);  </span><br><span class="line">        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;<span class="comment">//消除锯齿  </span></span><br><span class="line">        g.DrawLine(<span class="keyword">new</span> Pen(Color.Blue, <span class="number">2</span>),  p2,currentPoint);  </span><br><span class="line">        p2.X = currentPoint.X;  </span><br><span class="line">        p2.Y = currentPoint.Y;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<h1 id="画点"><a href="#画点" class="headerlink" title="画点"></a>画点</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Draw_Points</span>(<span class="params">Point p</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    g.DrawLine(blackPen, <span class="keyword">new</span> Point(p.X - <span class="number">1</span> &gt;= <span class="number">0</span> ? p.X - <span class="number">2</span> : p.X, p.Y), <span class="keyword">new</span> Point(p.X + <span class="number">1</span> &lt; pictureBox1.Width ? p.X + <span class="number">1</span> : p.X, p.Y));</span><br><span class="line">    g.DrawLine(blackPen, <span class="keyword">new</span> Point(p.X, p.Y - <span class="number">1</span> &gt;= <span class="number">0</span> ? p.Y - <span class="number">2</span> : p.Y), <span class="keyword">new</span> Point(p.X, p.Y + <span class="number">1</span> &lt; pictureBox1.Width ? p.Y + <span class="number">1</span> : p.Y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Clear_Points</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    g.Clear(Color.White);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="多线程编程"><a href="#多线程编程" class="headerlink" title="多线程编程"></a>多线程编程</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2269a912e41f">https://www.jianshu.com/p/2269a912e41f</a></p>
+<p>直接搞一个函数，然后在另一个线程里面调用就行。如果有参数，就直接在start函数里面把参数传递过去，并且使用<code>ParameterizedThreadStart</code>，参数类型搞成<code>object</code>。</p>
+<h1 id="多线程里面的UI修改问题"><a href="#多线程里面的UI修改问题" class="headerlink" title="多线程里面的UI修改问题"></a>多线程里面的UI修改问题</h1><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/marshal-m/p/3201051.html">http://www.cnblogs.com/marshal-m/p/3201051.html</a></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//共分三步</span></span><br><span class="line"><span class="comment">//第一步：获取UI线程同步上下文（在窗体构造函数或FormLoad事件中）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> UI线程的同步上下文</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">SynchronizationContext m_SyncContext = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Form1</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    InitializeComponent();</span><br><span class="line">    <span class="comment">//获取UI线程同步上下文</span></span><br><span class="line">    m_SyncContext = SynchronizationContext.Current;</span><br><span class="line">    <span class="comment">//Control.CheckForIllegalCrossThreadCalls = false;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第二步：定义线程的主体方法</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 线程的主体方法</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ThreadProcSafePost</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//...执行线程任务</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//在线程中更新UI（通过UI线程同步上下文m_SyncContext）</span></span><br><span class="line">    m_SyncContext.Post(SetTextSafePost, <span class="string">&quot;This text was set safely by SynchronizationContext-Post.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//...执行线程其他任务</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第三步：定义更新UI控件的方法</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 更新文本框内容的方法</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;text&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">SetTextSafePost</span>(<span class="params"><span class="built_in">object</span> text</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.textBox1.Text = text.ToString();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//之后,启动线程</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 启动线程按钮事件</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;sender&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;e&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setSafePostBtn_Click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.demoThread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> ThreadStart(<span class="keyword">this</span>.ThreadProcSafePost));</span><br><span class="line">    <span class="keyword">this</span>.demoThread.Start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="C-委托（把函数作为参数进行传递）"><a href="#C-委托（把函数作为参数进行传递）" class="headerlink" title="C#委托（把函数作为参数进行传递）"></a>C#委托（把函数作为参数进行传递）</h1><p><a target="_blank" rel="noopener" href="http://developer.51cto.com/art/200908/144536.htm">http://developer.51cto.com/art/200908/144536.htm</a></p>
+<p>委托是一个类，它定义了方法的类型，使得可以将方法当作另一个方法的参数来进行传递，这种将方法动态地赋给参数的做法，可以避免在程序中大量使用If-Else(Switch)语句，同时使得程序具有更好的可扩展性。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;  </span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;  </span><br><span class="line"><span class="keyword">using</span> System.Text;  </span><br><span class="line"> </span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Delegate</span> &#123;  </span><br><span class="line">     <span class="comment">//定义委托，它定义了可以代表的方法的类型  </span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">GreetingDelegate</span>(<span class="params"><span class="built_in">string</span> name</span>)</span>;  </span><br><span class="line">        <span class="keyword">class</span> <span class="title">Program</span> &#123;  </span><br><span class="line"> </span><br><span class="line">           <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">EnglishGreeting</span>(<span class="params"><span class="built_in">string</span> name</span>)</span> &#123;  </span><br><span class="line">               Console.WriteLine(<span class="string">&quot;Morning, &quot;</span> + name);  </span><br><span class="line">           &#125;  </span><br><span class="line"> </span><br><span class="line">           <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ChineseGreeting</span>(<span class="params"><span class="built_in">string</span> name</span>)</span> &#123;  </span><br><span class="line">               Console.WriteLine(<span class="string">&quot;早上好, &quot;</span> + name);  </span><br><span class="line">           &#125;  </span><br><span class="line"> </span><br><span class="line">           <span class="comment">//注意此方法，它接受一个GreetingDelegate类型的方法作为参数  </span></span><br><span class="line">           <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">GreetPeople</span>(<span class="params"><span class="built_in">string</span> name, GreetingDelegate MakeGreeting</span>)</span> &#123;  </span><br><span class="line">               MakeGreeting(name);  </span><br><span class="line">            &#125;  </span><br><span class="line"> </span><br><span class="line">           <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span> &#123;  </span><br><span class="line">               GreetPeople(<span class="string">&quot;Jimmy Zhang&quot;</span>, EnglishGreeting);  </span><br><span class="line">               GreetPeople(<span class="string">&quot;张子阳&quot;</span>, ChineseGreeting);  </span><br><span class="line">               Console.ReadKey();  </span><br><span class="line">           &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; </span><br></pre></td></tr></table></figure>
+
+
+<h1 id="公众号推荐"><a href="#公众号推荐" class="headerlink" title="公众号推荐"></a>公众号推荐</h1><p>推荐一波自己的公众号：五道口的程序狐</p>
+<p>里面有一个聊天机器人，抚慰你的心灵</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ac8a0f00b9f836b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="mp"></p>
+<p>如有需要，联系<code>contact@fhao.top</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/03/08/C#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AD%A6%E4%B9%A0/" data-id="ckqkjgm6n000wx4c4eoyw04lg" data-title="C#图形界面学习" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/12/VMware%E5%AE%89%E8%A3%85mac-os/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          VMware安装mac-os
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/08/electron%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">electron学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

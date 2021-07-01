@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>xv6-boot部分代码阅读 | Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="注：这部分代码是使用typora写的，里面嵌套的一些内容可能在简书里面显示不出来，所以如有格式问题，建议下载typora复制粘贴查看。 另：这些内容基本都是从网上各个网站找的资料，印象比较深刻的有以下几个： https:&#x2F;&#x2F;blog.csdn.net&#x2F;vally1989&#x2F;article&#x2F;details&#x2F;71796482http:&#x2F;&#x2F;leenjewel.github.io&#x2F;blog&#x2F;2015&#x2F;11&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xv6-boot部分代码阅读">
+<meta property="og:url" content="https://fengh16.github.io/2018/04/19/xv6-boot%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="注：这部分代码是使用typora写的，里面嵌套的一些内容可能在简书里面显示不出来，所以如有格式问题，建议下载typora复制粘贴查看。 另：这些内容基本都是从网上各个网站找的资料，印象比较深刻的有以下几个： https:&#x2F;&#x2F;blog.csdn.net&#x2F;vally1989&#x2F;article&#x2F;details&#x2F;71796482http:&#x2F;&#x2F;leenjewel.github.io&#x2F;blog&#x2F;2015&#x2F;11&#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-b313f504880fd9b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-559076ccc9c082ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-b141e1d747135768.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2018-04-18T22:06:06.000Z">
+<meta property="article:modified_time" content="2021-05-28T13:04:47.767Z">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5060560-b313f504880fd9b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-xv6-boot部分代码阅读" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/19/xv6-boot%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/" class="article-date">
+  <time class="dt-published" datetime="2018-04-18T22:06:06.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      xv6-boot部分代码阅读
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h1><p>这部分代码是使用typora写的，里面嵌套的一些内容可能在简书里面显示不出来，所以如有格式问题，建议下载typora复制粘贴查看。</p>
+<p>另：这些内容基本都是从网上各个网站找的资料，印象比较深刻的有以下几个：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/vally1989/article/details/71796482">https://blog.csdn.net/vally1989/article/details/71796482</a><br><a target="_blank" rel="noopener" href="http://leenjewel.github.io/blog/2015/11/11/%5B%28xue-xi-xv6%29%5D-nei-he-gai-lan/">http://leenjewel.github.io/blog/2015/11/11/%5B%28xue-xi-xv6%29%5D-nei-he-gai-lan/</a><br><a target="_blank" rel="noopener" href="http://leenjewel.github.io/blog/2015/05/26/%5B%28xue-xi-xv6%29%5D-jia-zai-bing-yun-xing-nei-he/">http://leenjewel.github.io/blog/2015/05/26/%5B%28xue-xi-xv6%29%5D-jia-zai-bing-yun-xing-nei-he/</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25426415/article/details/54583835">https://blog.csdn.net/qq_25426415/article/details/54583835</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25426415/article/details/54619488">https://blog.csdn.net/qq_25426415/article/details/54619488</a></p>
+<p>感谢上述各个文章。</p>
+<p>如有需要，联系<code>contact@fhao.top</code></p>
+<h2 id="引导"><a href="#引导" class="headerlink" title="引导"></a>引导</h2><p>BIOS需要执行系统的启动扇区上的东西，故首先需要将启动扇区复制到内存中，并且将其执行后进入操作系统的内核之中。</p>
+<p>BIOS必须通过实模式启动，但当需要我们引入xv6自己的内核时，需要从实模式转换到保护模式(因为保护模式地址总线为32位，可访问地址位更多，可以利用4G内存)。</p>
+<h4 id="打开A20"><a href="#打开A20" class="headerlink" title="打开A20"></a>打开A20</h4><p>A20简介：（来自<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/A20_line%EF%BC%89">https://en.wikipedia.org/wiki/A20_line）</a></p>
+<ul>
+<li><strong>A20总线</strong>，是x86体系的扩充电子线路之一。A20总线是专门用来转换地址总线的第二十一位。</li>
+<li>由于16位操作系统数据线宽与寄存器是16位，这样只能支持$2^{16}$即64K的内存，为了扩展，在8086CPU上将地址线宽度增加到20位，这样能寻址到$2^{20}$即1M（16位+4位的偏移）。一个 16 位的寄存器来表示“段基址”（CS、DS、SS、ES四个寄存器），具体的做法是先将 16 位的“段基址”左移 4 位，然后加上 16 位的“偏移量”最终得到 20 位的内存地址送入地址线。</li>
+<li>但是到了80286CPU时已经有了24根总线，为了能够访问1M之后的内容并且与之前的8086/8088兼容，故使用键盘控制器上剩余的一些输出线来管理A20，被称为A20 Gate，若A20 Gate被打开，则0x100000-0x10FFEF的内存就可以正常访问。否则，就将超过1M的内存取模再次回到了1M以内。</li>
+<li>保护模式有32位，肯定不能关闭A20，无法访问4G地址空间。只能访问1M，3M，5M等。</li>
+</ul>
+<p>BIOS设置CS寄存器为0x0，ip寄存器为0x7c00，开始执行boot loader程序。</p>
+<p>在<code>bootasm.S</code>中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.code16</span><br></pre></td></tr></table></figure>
+
+<p>一句说明现在是16位状态。之后一句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.globl start</span><br></pre></td></tr></table></figure>
+
+<p><code>.globl</code>指示告诉汇编器，<code>start</code>这个符号要被链接器用到，所以要在目标文件的符号表中标记它是一个全局符号。<code>start</code>就像C程序的<code>main</code>函数一样特殊，是整个程序的入口，链接器在链接时会查找目标文件中的<code>start</code>符号代表的地址，把它设置为整个程序的入口地址，所以每个汇编程序都要提供一个<code>start</code>符号并且用<code>.globl</code>声明。如果一个符号没有用<code>.globl</code>声明，就表示这个符号不会被链接器用到。  </p>
+<p>之后使用<code>cli</code>命令来禁用中断。</p>
+<p>接下来四句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xorw    %ax,%ax             # 使用异或操作，直接将%ax设0</span><br><span class="line">movw    %ax,%ds             # -&gt; Data Segment</span><br><span class="line">movw    %ax,%es             # -&gt; Extra Segment</span><br><span class="line">movw    %ax,%ss             # -&gt; Stack Segment</span><br></pre></td></tr></table></figure>
+
+<p>将寄存器DS, ES, SS全部设置为0。其中取值会用到 <code>%cs</code>，读写数据会用到<code> %ds</code>，读写栈会用到 <code>%ss</code>。</p>
+<p>但是实模式刚运行完，很多遗留下的一些寄存器的值需要我们整理下，所以我们需要“将 %ax 置零，然后把这个零值拷贝到三个段寄存器中”。</p>
+<p>接下来，打开A20开关：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">seta20.1:</span><br><span class="line">  inb     $0x64,%al               # 等待键盘控制器不忙碌</span><br><span class="line">  testb   $0x2,%al</span><br><span class="line">  jnz     seta20.1</span><br><span class="line"></span><br><span class="line">  movb    $0xd1,%al               # 把0xd1写入0x64</span><br><span class="line">  outb    %al,$0x64</span><br><span class="line"></span><br><span class="line">seta20.2:</span><br><span class="line">  inb     $0x64,%al               # 等待键盘控制器不忙碌</span><br><span class="line">  testb   $0x2,%al</span><br><span class="line">  jnz     seta20.2</span><br><span class="line"></span><br><span class="line">  movb    $0xdf,%al               # 把0xdf写入0x60</span><br><span class="line">  outb    %al,$0x60</span><br></pre></td></tr></table></figure>
+
+<p>xv6打开A20采用的方法是键盘控制器法，通过输出命令到键盘控制器的IO接口，控制A20的开启与关闭。</p>
+<p>与键盘控制器有关的IO接口是0x60和0x64。其中0x64起到一个状态控制的功能，0x60则是数据端口。首先需要检查键盘控制器是否忙碌，例如是否正有键盘输入等等。这个状态检查是通过读取0x64实现的。通过检查该状态数据的低第二个比特位是否为高，来判断是否忙碌。等到该比特位为低，就可以向0x64写命令了。</p>
+<p>上述代码中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inb     $0x64,%al</span><br></pre></td></tr></table></figure>
+
+<p>之中的<code>inb</code>代表读入数据，即将<code>0x64</code>地址上的数据放入<code>%al</code>。<code>$</code>代表常量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testb   $0x2,%al</span><br></pre></td></tr></table></figure>
+
+<p>之中的<code>testb</code>将两个操作数进行逻辑与运算，并根据运算结果设置相关的标志位。但两个操作数不会被改变。运算结果在设置过相关标记位后会被丢弃。这一句将<code>0x2</code>与<code>%al</code>中的内容求与，即得到了<code>%al</code>中内容的第二位，如果是高，则执行下一句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jnz     seta20.1</span><br></pre></td></tr></table></figure>
+
+<p>也就是再次执行<code>seta20.1</code>，重新检测。否则，进行下面的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">movb    $0xd1,%al               # 把0xd1写入0x64</span><br><span class="line">outb    %al,$0x64</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>%al</code>作为中介，将<code>0xd1</code>写入<code>0x64</code>。该命令用于指示即将向键盘控制器的输出端口写一个字节的数据。</p>
+<p>下面的一段含义类似，只是最后将<code>0xdf</code>写入<code>0x60</code>。该数据代表开启A20。</p>
+<h4 id="进入保护模式"><a href="#进入保护模式" class="headerlink" title="进入保护模式"></a>进入保护模式</h4><p>GDT介绍：</p>
+<ul>
+<li><p>内存地址是段地址+段内偏移。在实模式下，段地址就放在段寄存器中，而到了保护模式下，段寄存器中保存的不再是段地址，而是GDT(global descriptor table，全局描述符表)中的偏移量，所以进入保护模式时首先需要创建GDT。</p>
+</li>
+<li><p>GDT每个段对应一个表项，保存段基址、段大小、访问权限等，让CPU可以定位到具体的物理地址去，并且检查内存访问是否合法，因此被叫做保护模式。GDT整体储存很多段描述符，故类似一个数组。</p>
+</li>
+<li><p>每个“段描述符”占 8 字节，如图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-b313f504880fd9b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1"></p>
+</li>
+</ul>
+<ul>
+<li><p>三段基地址组合形成32位的基地址（8+8+16）</p>
+</li>
+<li><p>P:       0 本段不在内存中</p>
+</li>
+<li><p>DPL:     访问该段内存所需权限等级 00 — 11，0为最大权限级别</p>
+</li>
+<li><p>S:       1 代表数据段、代码段或堆栈段，0 代表系统段如中断门或调用门</p>
+</li>
+<li><p>E:       1 代表代码段，可执行标记，0 代表数据段</p>
+</li>
+<li><p>ED:      0 代表忽略特权级，1 代表遵守特权级</p>
+</li>
+<li><p>RW:      如果是数据段（E=0）则1 代表可写入，0 代表只读；<br>         如果是代码段（E=1）则1 代表可读取，0 代表不可读取</p>
+</li>
+<li><p>A:       1 表示该段内存访问过，0 表示没有被访问过</p>
+</li>
+<li><p>G:       1 表示 20 位段界限单位是 4KB，最大长度 4GB；<br>         0 表示 20 位段界限单位是 1 字节，最大长度 1MB</p>
+</li>
+<li><p>DB:      1 表示地址和操作数是 32 位，0 表示地址和操作数是 16 位</p>
+</li>
+<li><p>XX:      保留位永远是 0</p>
+</li>
+<li><p>AA:      给系统提供的保留位</p>
+</li>
+<li><p>规定GDT的第一个表项必须是空的。</p>
+</li>
+</ul>
+<p>CPU 单独为我们准备了一个寄存器叫做 <code>GDTR</code> 用来保存我们 GDT 在内存中的位置和我们 GDT 的长度。<code>GDTR</code> 寄存器一共 48 位，其中高 32 位用来存储我们的 GDT 在内存中的位置，其余的低 16 位用来存我们的 GDT 有多少个段描述符。 16 位最大可以表示 65536 个数，这里我们把单位换成字节，而一个段描述符是 8 字节，所以 GDT 最多可以有 8192 个段描述符。不仅 CPU 用了一个单独的寄存器 <code>GDTR</code> 来存储我们的 GDT，而且还专门提供了一个指令用来让我们把 GDT 的地址和长度传给 GDTR 寄存器。<code>lgdt</code>代表加载全局描述符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 将实模式转换为保护模式，使用一个引导GDT让虚拟地址直接映射到真实地址去，过渡期内这个GDT的内存映射不会改变。</span><br><span class="line">lgdt    gdtdesc</span><br><span class="line">movl    %cr0, %eax</span><br><span class="line">orl     $CR0_PE, %eax</span><br><span class="line">movl    %eax, %cr0</span><br></pre></td></tr></table></figure>
+
+<p>其中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lgdt    gdtdesc</span><br></pre></td></tr></table></figure>
+
+<p>之中用到的<code>gdtdesc</code>的定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gdtdesc:</span><br><span class="line">  .word   (gdtdesc - gdt - 1)             # sizeof(gdt) - 1, 16位</span><br><span class="line">  .long   gdt                             # address gdt，32位</span><br></pre></td></tr></table></figure>
+
+<p>加起来48位。</p>
+<p>其中<code>gdt</code>定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Bootstrap GDT</span><br><span class="line">.p2align 2                                # 强制进行4比特对齐</span><br><span class="line">gdt:</span><br><span class="line">  SEG_NULLASM                             # 空</span><br><span class="line">  SEG_ASM(STA_X|STA_R, 0x0, 0xffffffff)   # 代码段</span><br><span class="line">  SEG_ASM(STA_W, 0x0, 0xffffffff)         # 数据（堆栈）段</span><br></pre></td></tr></table></figure>
+
+<p>宏定义在<code>asm.h</code>中，将他们再替换回来，得到如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gdt:</span><br><span class="line">  .word 0, 0;</span><br><span class="line">  .byte 0, 0, 0, 0                             # 空</span><br><span class="line">  .word 0xffff, 0x0000;</span><br><span class="line">  .byte 0x00, 0x9a, 0xcf, 0x00                 # 代码段</span><br><span class="line">  .word 0xffff, 0x0000;</span><br><span class="line">  .byte 0x00, 0x92, 0xcf, 0x00                 # 数据段</span><br></pre></td></tr></table></figure>
+
+<p>代码段空间如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-559076ccc9c082ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2"></p>
+<p>数据段空间如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-b141e1d747135768.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3"></p>
+<p>首先说说这两个内存段的共同点，DB = 1，G = 1，基地址都是 0x00000000，内存分段长度都是 0xfffff，这说明他们都是用于 32 位寻址，所使用的内存是从 0 开始到 4GB 结束（全部内存）。这里是这么算出来的，段长度是 0xfffff = $2^{20}$，G = 1 表示段界限单位是 4k，所以 4k * $2^{20}$ = 4GB。</p>
+<p>再说说他们的不同点，代码段的 E = 1 而数据段的 E = 0 这表明了他们的身份，身份不同 RW 的值虽然相同，但代表的意义也就不相同了，代码段的 RW = 1 代表可读取，数据段的 RW = 1 表示可读可写。这也和我们上面解释的保护模式所能够达到的目的相吻合。</p>
+<p>代码段和数据段都启用了从 0 到 4GB 的全部内存寻址。其实这种内存规划方法叫做“平坦内存模型”，即便是 Linux 也是用的这样的方式规划内存的，并没有做到真正的“分段”。这是因为 x86 的分页机制是基于分段的，Linux 选用了更先进的分页机制来管理内存，所以在分段这里只是走一个必要的形式罢了。</p>
+<p>后面的几句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movl    %cr0, %eax</span><br><span class="line">orl     $CR0_PE, %eax</span><br><span class="line">movl    %eax, %cr0</span><br></pre></td></tr></table></figure>
+
+<p>因为我们无法直接操作 <code>cr0</code>，所以我们首先要用一个通用寄存器来保存当前 <code>cr0</code> 寄存器的值，这里第一行就是用通用寄存器 <code>eax</code> 来保存 cr0 寄存器的值；然后 CR0_PE 这个宏的定义在 <code>mmu.h</code> 文件中，是个数值 0x00000001，将这个数值与 <code>eax</code> 中的 <code>cr0</code> 寄存器的值做“或”运算后，就保证将 <code>cr0</code> 的第 0 位设置成了 1 即 <code>PE = 1</code> 保证打开了保护模式的开关。而 <code>cr0</code> 的第 31 位 PG = 0 表示我们只使用分段式，不使用分页，这时再将新的计算后的 <code>eax</code> 寄存器中的值写回到 <code>cr0</code> 寄存器中就完成了到保护模式的切换。</p>
+<p>之后进入32位：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ljmp    $(SEG_KCODE&lt;&lt;3), $start32</span><br></pre></td></tr></table></figure>
+
+<p><code>ljmp</code>的语法：<code>ljmp segment offset</code>，它会同时设置段寄存器和段内偏移(EIP寄存器)，而在32位模式下，段寄存器保存的是GDT里的偏移量，所以这里段寄存器的值是<code>SEG_KCODE&lt;&lt;3</code>，即数字8(<code>SEG_KCODE=1</code>)，因为GDT的第一个表项必须为空，所以代码段占据第二个表项。</p>
+<p>这个跳转语句的两个参数就是“基地址” + “偏移量”的方式告诉 CPU 要跳转到内存的什么位置去继续执行指令。</p>
+<p>进入32位模式之后，设置各个段寄存器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.code32  # 现在是32位</span><br><span class="line">start32:</span><br><span class="line">  # 设置保护模式下的一堆寄存器的值</span><br><span class="line">  # 这时候已经在保护模式下了</span><br><span class="line">  # 数据段在 GDT 中的下标是 2，所以这里数据段的段选择子是 2 &lt;&lt; 3 &#x3D; 0000 0000 0001 0000</span><br><span class="line">  # 这 16 位的段选择子中的前 13 位是 GDT 段表下标，这里前 13 位的值是 2 代表选择了数据段</span><br><span class="line">  # 这里将 3 个数据段寄存器都赋值成数据段段选择子的值</span><br><span class="line">  movw    $(SEG_KDATA&lt;&lt;3), %ax    # 先借助中介设置DS,ES,SS这些作为数据项的值为(SEG_KDATA&lt;&lt;3)</span><br><span class="line">  movw    %ax, %ds                # -&gt; DS: Data Segment</span><br><span class="line">  movw    %ax, %es                # -&gt; ES: Extra Segment</span><br><span class="line">  movw    %ax, %ss                # -&gt; SS: Stack Segment</span><br><span class="line">  movw    $0, %ax                 # 剩下的寄存器设置为0</span><br><span class="line">  movw    %ax, %fs                # -&gt; FS</span><br><span class="line">  movw    %ax, %gs                # -&gt; GS</span><br></pre></td></tr></table></figure>
+
+<p>上述代码中，数据段占用GDT第三个表项，ES, SS等同于数据段，其他不用的段置零。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Set up the stack pointer and call into C.</span><br><span class="line">movl    $start, %esp            # 栈顶被放置在 0x7C00 处，即 $start</span><br><span class="line">call    bootmain</span><br></pre></td></tr></table></figure>
+
+<p>现在准备执行<code>.c</code>代码，首先要设置stack，<code>movl $start, %esp</code>，即给<code>esp</code>寄存器设置，<code>start</code>为<code>bootasm.S</code>最开始的一个label，但是为何要将<code>esp</code>设置为<code>start</code>呢，这是因为<code>start</code>是代码的开始位置，代码是向高内存地址处放置的，而stack是向低内存地址增长的，所以这样设置之后，代码和栈向相反方向扩张，两者互不干涉。BIOS 会将引导扇区的引导程序加载到 <code>0x7C00</code> 处并引导 CPU 从此处开始运行，故栈顶即被设置在了和引导程序一致的内存位置上。我们知道栈是自栈顶开始向下增长的，所以这里栈会逐渐远离引导程序，所以这里这样安置栈顶的位置并无什么问题。另外，当<code>call bootmain</code>的时候，首先要做的就是<code>movl %esp %ebp</code>，即将<code>esp</code>的值设置给<code>ebp</code>，这样<code>ebp</code>保存的就是<code>start</code>的值，也就是函数栈中的第一个函数是<code>start</code>，这符合逻辑。</p>
+<p>现在不应该执行接下来的这些语句，但是如果异常的话，<code>bootmain</code>返回并且执行下面的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  # If bootmain returns (it shouldn&#39;t), trigger a Bochs</span><br><span class="line">  # breakpoint if running under Bochs, then loop.</span><br><span class="line">  movw    $0x8a00, %ax            # 0x8a00 -&gt; port 0x8a00</span><br><span class="line">  movw    %ax, %dx</span><br><span class="line">  outw    %ax, %dx</span><br><span class="line">  movw    $0x8ae0, %ax            # 0x8ae0 -&gt; port 0x8a00</span><br><span class="line">  outw    %ax, %dx</span><br><span class="line">spin:</span><br><span class="line">  jmp     spin</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="进入-c的内容"><a href="#进入-c的内容" class="headerlink" title="进入.c的内容"></a>进入<code>.c</code>的内容</h4><p>由于之前曾经使用了<code>call bootmain</code>，所以现在会执行<code>bootmain.c</code>里面的<code>bootmain()</code>函数，该函数如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SECTSIZE  512 <span class="comment">// 表示磁盘扇区大小（字节数）</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bootmain</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">elfhdr</span> *<span class="title">elf</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">proghdr</span> *<span class="title">ph</span>, *<span class="title">eph</span>;</span></span><br><span class="line">  <span class="keyword">void</span> (*entry)(<span class="keyword">void</span>);</span><br><span class="line">  uchar* pa;</span><br><span class="line"></span><br><span class="line">  elf = (struct elfhdr*)<span class="number">0x10000</span>;  <span class="comment">// 表示内核开始的地址空间位置</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 读取一个页的数据（4k）到内存中elf对应的位置</span></span><br><span class="line">  readseg((uchar*)elf, <span class="number">4096</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断是否是一个正确的elf格式可执行文件</span></span><br><span class="line">  <span class="keyword">if</span>(elf-&gt;magic != ELF_MAGIC)</span><br><span class="line">    <span class="keyword">return</span>;  <span class="comment">// 现在返回会回到上面所说的错误处理部分</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 加载每一个程序段（忽略ph标记）</span></span><br><span class="line">  <span class="comment">// 找到内核 ELF 文件的程序头表</span></span><br><span class="line">  ph = (struct proghdr*)((uchar*)elf + elf-&gt;phoff);</span><br><span class="line">  <span class="comment">// 内核 ELF 文件程序头表的结束位置</span></span><br><span class="line">  eph = ph + elf-&gt;phnum;</span><br><span class="line">  <span class="comment">// 开始将内核 ELF 文件程序头表载入内存</span></span><br><span class="line">  <span class="keyword">for</span>(; ph &lt; eph; ph++)&#123;</span><br><span class="line">    pa = (uchar*)ph-&gt;paddr;</span><br><span class="line">    readseg(pa, ph-&gt;filesz, ph-&gt;off);</span><br><span class="line">    <span class="comment">// 如果内存大小大于文件大小，用 0 补齐内存空位</span></span><br><span class="line">    <span class="keyword">if</span>(ph-&gt;memsz &gt; ph-&gt;filesz)</span><br><span class="line">      stosb(pa + ph-&gt;filesz, <span class="number">0</span>, ph-&gt;memsz - ph-&gt;filesz);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调用elf头所规定的起始位置</span></span><br><span class="line">  <span class="comment">// 不会返回</span></span><br><span class="line">  entry = (<span class="keyword">void</span>(*)(<span class="keyword">void</span>))(elf-&gt;entry);</span><br><span class="line">  entry();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述过程其实只是加载了内核（把内核从磁盘上搬到了内存中），然后执行内核中的程序。其中反复被用到的<code>readseg()</code>函数的定义如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将&#x27;count&#x27;字节的位于距离内核&#x27;offset&#x27;的代码写入内存地址&#x27;pa&#x27;中</span></span><br><span class="line"><span class="comment">// 可能会比要求的多拷贝一部分</span></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">readseg(uchar* pa, uint count, uint offset)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 表示最后的边界</span></span><br><span class="line">  uchar* epa;</span><br><span class="line">  <span class="comment">// 从开始写入，最后写入的位置要小于epa</span></span><br><span class="line">  epa = pa + count;</span><br><span class="line">  <span class="comment">// 多出来的忽略掉（因为磁盘扇区大小）</span></span><br><span class="line">  pa -= offset % SECTSIZE;</span><br><span class="line">  <span class="comment">// 将内容翻译到扇区（sector）中，内核从下标为1处开始（因为引导区已经占了第一个即下标为0的位置）</span></span><br><span class="line">  offset = (offset / SECTSIZE) + <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// 如果比较慢就每次多读一些扇区的东西</span></span><br><span class="line">  <span class="comment">// （因为每次都是读一个扇区）将多读一部分，但是没关系，因为我们按照升序加载</span></span><br><span class="line">  <span class="keyword">for</span>(; pa &lt; epa; pa += SECTSIZE, offset++)</span><br><span class="line">    readsect(pa, offset);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要知道内核二进制文件到底是如何链接的，首先需要了解：</p>
+<ul>
+<li><code>ld</code>表示GCC连接脚本，链接的过程实际上是为了解决多个文件之间符号引用的问题(symbol resolution)。编译时编译器只对单个文件进行处理，如果该文件里面需要引用到其他文件中的符号（例如全局变量或者函数），那么这时在这个文件中该符号的地址是没法确定的，只能等链接器把所有的目标文件连接到一起的时候才能确定最终的地址。</li>
+</ul>
+<p>打开<code>kernel.ld</code>文件，可以发现，内核入口地址为标号<code>_start</code>地址</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OUTPUT_FORMAT(<span class="string">&quot;elf32-i386&quot;</span>, <span class="string">&quot;elf32-i386&quot;</span>, <span class="string">&quot;elf32-i386&quot;</span>)</span><br><span class="line">OUTPUT_ARCH(i386)</span><br><span class="line">ENTRY(_start)</span><br></pre></td></tr></table></figure>
+
+<p>这个<code>_start</code>的地址其实是在内核代码文件<code>entry.S</code>是内核入口虚拟地址<code>entry</code>对应的物理地址，由于此时虚拟地址直接等于物理地址，<code>_start</code>将作为<code>ELF</code>文件头中的<code>elf-&gt;entry</code>的值。</p>
+<p>内核文件中加载地址和链接地址是不一样的，链接地址是程序中所有标号、各种符号的地址，一般也就是内存中的虚拟地址，但是加载地址是为了在生成<code>ELF</code>文件时，指定各个段应该为加载的物理地址，这个地址作为每个段的<code>p-&gt;paddr</code>的值。 </p>
+<p>上面<code>readseg</code>函数之中的<code>readsect</code>函数定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从offset位置读取单个扇区到dst</span></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">readsect(<span class="keyword">void</span> *dst, uint offset)</span><br><span class="line">&#123;</span><br><span class="line">  waitdisk();</span><br><span class="line">  outb(<span class="number">0x1F2</span>, <span class="number">1</span>);   <span class="comment">// count = 1</span></span><br><span class="line">  outb(<span class="number">0x1F3</span>, offset);</span><br><span class="line">  outb(<span class="number">0x1F4</span>, offset &gt;&gt; <span class="number">8</span>);</span><br><span class="line">  outb(<span class="number">0x1F5</span>, offset &gt;&gt; <span class="number">16</span>);</span><br><span class="line">  outb(<span class="number">0x1F6</span>, (offset &gt;&gt; <span class="number">24</span>) | <span class="number">0xE0</span>);</span><br><span class="line">  outb(<span class="number">0x1F7</span>, <span class="number">0x20</span>);  <span class="comment">// 命令0x20也就是读取扇区的命令</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 读取数据</span></span><br><span class="line">  waitdisk();</span><br><span class="line">  insl(<span class="number">0x1F0</span>, dst, SECTSIZE/<span class="number">4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>里面一堆神奇（莫名其妙）的<code>outb</code>函数就是一个写入一比特的数据（一个<code>uchar</code>）。这样设置的原因如下：</p>
+<ul>
+<li><p>IDE 标准定义了 8 个寄存器来操作硬盘。PC 体系结构将第一个硬盘控制器映射到端口 1F0-1F7 处，而第二个硬盘控制器则被映射到端口 170-177 处。这几个寄存器的描述如下（以第一个控制器为例）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1F0        - 数据寄存器。读写数据都必须通过这个寄存器</span><br><span class="line">1F1        - 错误寄存器，每一位代表一类错误。全零表示操作成功。</span><br><span class="line">1F2        - 扇区计数。这里面存放你要操作的扇区数量</span><br><span class="line">1F3        - 扇区LBA地址的0-7位</span><br><span class="line">1F4        - 扇区LBA地址的8-15位</span><br><span class="line">1F5        - 扇区LBA地址的16-23位</span><br><span class="line">1F6 (低4位) - 扇区LBA地址的24-27位</span><br><span class="line">1F6 (第4位) - 0表示选择主盘，1表示选择从盘</span><br><span class="line">1F6 (5-7位) - 必须为1</span><br><span class="line">1F7 (写)    - 命令寄存器</span><br><span class="line">1F7 (读)    - 状态寄存器</span><br><span class="line">              bit 7 &#x3D; 1  控制器忙</span><br><span class="line">              bit 6 &#x3D; 1  驱动器就绪</span><br><span class="line">              bit 5 &#x3D; 1  设备错误</span><br><span class="line">              bit 4        N&#x2F;A</span><br><span class="line">              bit 3 &#x3D; 1  扇区缓冲区错误</span><br><span class="line">              bit 2 &#x3D; 1  磁盘已被读校验</span><br><span class="line">              bit 1        N&#x2F;A</span><br><span class="line">              bit 0 &#x3D; 1  上一次命令执行失败</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中已经把这些内容翻译到注释里面去了。</p>
+</li>
+</ul>
+<p>xv6内核二进制文件是<code>elf</code>格式，在维基上有这个格式的具体说明。前两部分是ELF头部和程序头表，在<code>elf.h</code>文件里面有具体的声明，如下所示：</p>
+<figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ELF_MAGIC 0x464C457FU  <span class="comment">// &quot;\x7FELF&quot; in little endian</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ELF 文件格式的头部</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">elfhdr</span> &#123;</span></span><br><span class="line">  uint magic;       <span class="comment">// 4 字节，为 0x464C457FU（大端模式）或 0x7felf（小端模式）</span></span><br><span class="line">                      <span class="comment">// 表明该文件是个 ELF 格式文件</span></span><br><span class="line">  uchar elf[<span class="number">12</span>];    <span class="comment">// 12 字节，每字节对应意义如下：</span></span><br><span class="line">                    <span class="comment">//     0 : 1 = 32 位程序；2 = 64 位程序</span></span><br><span class="line">                    <span class="comment">//     1 : 数据编码方式，0 = 无效；1 = 小端模式；2 = 大端模式</span></span><br><span class="line">                    <span class="comment">//     2 : 只是版本，固定为 0x1</span></span><br><span class="line">                    <span class="comment">//     3 : 目标操作系统架构</span></span><br><span class="line">                    <span class="comment">//     4 : 目标操作系统版本</span></span><br><span class="line">                    <span class="comment">//     5 ~ 11 : 固定为 0</span></span><br><span class="line">  ushort type;      <span class="comment">// 2 字节，表明该文件类型，意义如下：</span></span><br><span class="line">                    <span class="comment">//     0x0 : 未知目标文件格式</span></span><br><span class="line">                    <span class="comment">//     0x1 : 可重定位文件</span></span><br><span class="line">                    <span class="comment">//     0x2 : 可执行文件</span></span><br><span class="line">                    <span class="comment">//     0x3 : 共享目标文件</span></span><br><span class="line">                    <span class="comment">//     0x4 : 转储文件</span></span><br><span class="line">                    <span class="comment">//     0xff00 : 特定处理器文件</span></span><br><span class="line">                    <span class="comment">//     0xffff : 特定处理器文件</span></span><br><span class="line">  ushort machine;   <span class="comment">// 2 字节，表明运行该程序需要的计算机体系架构，</span></span><br><span class="line">                    <span class="comment">// 这里我们只需要知道 0x0 为未指定；0x3 为 x86 架构</span></span><br><span class="line">  uint version;     <span class="comment">// 4 字节，表示该文件的版本号</span></span><br><span class="line">  uint entry;       <span class="comment">// 4 字节，该文件的入口地址，没有入口（非可执行文件）则为 0</span></span><br><span class="line">  uint phoff;       <span class="comment">// 4 字节，表示该文件的“程序头部表”相对于文件的位置，单位是字节</span></span><br><span class="line">  uint shoff;       <span class="comment">// 4 字节，表示该文件的“节区头部表”相对于文件的位置，单位是字节</span></span><br><span class="line">  uint flags;       <span class="comment">// 4 字节，特定处理器标志</span></span><br><span class="line">  ushort ehsize;    <span class="comment">// 2 字节，ELF文件头部的大小，单位是字节</span></span><br><span class="line">  ushort phentsize; <span class="comment">// 2 字节，表示程序头部表中一个入口的大小，单位是字节</span></span><br><span class="line">  ushort phnum;     <span class="comment">// 2 字节，表示程序头部表的入口个数，</span></span><br><span class="line">                    <span class="comment">// phnum * phentsize = 程序头部表大小（单位是字节）</span></span><br><span class="line">  ushort shentsize; <span class="comment">// 2 字节，节区头部表入口大小，单位是字节</span></span><br><span class="line">  ushort shnum;     <span class="comment">// 2 字节，节区头部表入口个数，</span></span><br><span class="line">                    <span class="comment">// shnum * shentsize = 节区头部表大小（单位是字节）</span></span><br><span class="line">  ushort shstrndx;  <span class="comment">// 2 字节，表示字符表相关入口的节区头部表索引</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序头表</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">proghdr</span> &#123;</span></span><br><span class="line">  uint type;        <span class="comment">// 4 字节， 段类型</span></span><br><span class="line">                    <span class="comment">//         1 PT_LOAD : 可载入的段</span></span><br><span class="line">                    <span class="comment">//         2 PT_DYNAMIC : 动态链接信息</span></span><br><span class="line">                    <span class="comment">//         3 PT_INTERP : 指定要作为解释程序调用的以空字符结尾的路径名的位置和大小</span></span><br><span class="line">                    <span class="comment">//         4 PT_NOTE : 指定辅助信息的位置和大小</span></span><br><span class="line">                    <span class="comment">//         5 PT_SHLIB : 保留类型，但具有未指定的语义</span></span><br><span class="line">                    <span class="comment">//         6 PT_PHDR : 指定程序头表在文件及程序内存映像中的位置和大小</span></span><br><span class="line">                    <span class="comment">//         7 PT_TLS : 指定线程局部存储模板</span></span><br><span class="line">  uint off;         <span class="comment">// 4 字节， 段的第一个字节在文件中的偏移</span></span><br><span class="line">  uint vaddr;       <span class="comment">// 4 字节， 段的第一个字节在内存中的虚拟地址</span></span><br><span class="line">  uint paddr;       <span class="comment">// 4 字节， 段的第一个字节在内存中的物理地址(适用于物理内存定位型的系统)</span></span><br><span class="line">  uint filesz;      <span class="comment">// 4 字节， 段在文件中的长度</span></span><br><span class="line">  uint memsz;       <span class="comment">// 4 字节， 段在内存中的长度</span></span><br><span class="line">  uint flags;       <span class="comment">// 4 字节， 段标志</span></span><br><span class="line">                    <span class="comment">//         1 : 可执行</span></span><br><span class="line">                    <span class="comment">//         2 : 可写入</span></span><br><span class="line">                    <span class="comment">//         4 : 可读取</span></span><br><span class="line">  uint align;       <span class="comment">// 4 字节， 段在文件及内存中如何对齐</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>现在打开<code>xv6.img</code>文件，读取第二个扇区位置（第一个扇区即第一个512字节是<code>bootblock</code>）的开头数据并且与上面内容相对应，得到如下结果：</p>
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>大小</th>
+<th>数值</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>magic</td>
+<td>4字节</td>
+<td>7F 45 4C 46</td>
+<td>ELF 格式文件</td>
+</tr>
+<tr>
+<td>elf</td>
+<td>12字节</td>
+<td>01 01 01 00 00 00 00 00 00 00 00 00</td>
+<td>32 位小端模式，目标操作系统为 System V</td>
+</tr>
+<tr>
+<td>type</td>
+<td>2字节</td>
+<td>02 00</td>
+<td>可执行文件</td>
+</tr>
+<tr>
+<td>machine</td>
+<td>2字节</td>
+<td>03 00</td>
+<td>指定计算机体系架构为 x86</td>
+</tr>
+<tr>
+<td>version</td>
+<td>4字节</td>
+<td>01 00 00 00</td>
+<td>版本号为 1</td>
+</tr>
+<tr>
+<td>entry</td>
+<td>4字节</td>
+<td>0C 00 10 00</td>
+<td>该可执行文件入口地址</td>
+</tr>
+<tr>
+<td>phoff</td>
+<td>4字节</td>
+<td>34 00 00 00</td>
+<td>程序头表相对于文件的起始位置是 52 字节</td>
+</tr>
+<tr>
+<td>shoff</td>
+<td>4字节</td>
+<td>00 F6 01 00</td>
+<td>节区头表相对于文件的起始位置是 128512 字节</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>4字节</td>
+<td>00 00 00 00</td>
+<td>无特定处理器标志</td>
+</tr>
+<tr>
+<td>ehsize</td>
+<td>2字节</td>
+<td>34 00</td>
+<td>ELF 头大小为 52 字节</td>
+</tr>
+<tr>
+<td>phentsize</td>
+<td>2字节</td>
+<td>20 00</td>
+<td>程序头表一个入口的大小是 32 字节</td>
+</tr>
+<tr>
+<td>phnum</td>
+<td>2字节</td>
+<td>02 00</td>
+<td>程序头表入口个数是 2 个</td>
+</tr>
+<tr>
+<td>shentsize</td>
+<td>2字节</td>
+<td>28 00</td>
+<td>节区头表入口大小是 40 字节</td>
+</tr>
+<tr>
+<td>shnum</td>
+<td>2字节</td>
+<td>12 00</td>
+<td>节区头表入口个数是 18 个</td>
+</tr>
+<tr>
+<td>shstrndx</td>
+<td>2字节</td>
+<td>0F 00</td>
+<td>字符表入口在节区头表的索引是 15</td>
+</tr>
+</tbody></table>
+<p>之后是程序头表，一共两个，每个32字节，如下：</p>
+<ul>
+<li>程序头表 1</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>大小</th>
+<th>数值</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type</td>
+<td>4字节</td>
+<td>01 00 00 00</td>
+<td>可载入的段</td>
+</tr>
+<tr>
+<td>off</td>
+<td>4字节</td>
+<td>00 10 00 00</td>
+<td>段在文件中的偏移是 4096 字节</td>
+</tr>
+<tr>
+<td>vaddr</td>
+<td>4字节</td>
+<td>00 00 10 80</td>
+<td>段在内存中的虚拟地址</td>
+</tr>
+<tr>
+<td>paddr</td>
+<td>4字节</td>
+<td>00 10 00 00</td>
+<td>同段在文件中的偏移量</td>
+</tr>
+<tr>
+<td>filesz</td>
+<td>4字节</td>
+<td>96 B5 00 00</td>
+<td>段在文件中的大小是 46486 字节</td>
+</tr>
+<tr>
+<td>memsz</td>
+<td>4字节</td>
+<td>FC 26 01 00</td>
+<td>段在内存中的大小是 75516 字节</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>4字节</td>
+<td>07 00 00 00</td>
+<td>段的权限是可写、可读、可执行</td>
+</tr>
+<tr>
+<td>align</td>
+<td>4字节</td>
+<td>00 10 00 00</td>
+<td>段的对齐方式是 4096 字节，即4kb</td>
+</tr>
+</tbody></table>
+<ul>
+<li>程序头表 2</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>大小</th>
+<th>数值</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type</td>
+<td>4字节</td>
+<td>51 E5 74 64</td>
+<td>PT_GNU_STACK 段</td>
+</tr>
+<tr>
+<td>off</td>
+<td>4字节</td>
+<td>00 00 00 00</td>
+<td>段在文件中的偏移是 0 字节</td>
+</tr>
+<tr>
+<td>vaddr</td>
+<td>4字节</td>
+<td>00 00 00 00</td>
+<td>段在内存中的虚拟地址</td>
+</tr>
+<tr>
+<td>paddr</td>
+<td>4字节</td>
+<td>00 00 00 00</td>
+<td>同段在文件中的偏移量</td>
+</tr>
+<tr>
+<td>filesz</td>
+<td>4字节</td>
+<td>00 00 00 00</td>
+<td>段在文件中的大小是 0 字节</td>
+</tr>
+<tr>
+<td>memsz</td>
+<td>4字节</td>
+<td>00 00 00 00</td>
+<td>段在内存中的大小是 0 字节</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>4字节</td>
+<td>07 00 00 00</td>
+<td>段的权限是可写、可读、可执行</td>
+</tr>
+<tr>
+<td>align</td>
+<td>4字节</td>
+<td>04 00 00 00</td>
+<td>段的对齐方式是 4 字节</td>
+</tr>
+</tbody></table>
+<p>因此只有第一个程序头表是需要加载的。这个程序头表指出的加载位置 <code>0x80100000</code> 和内核程序的代码段 <code>.text</code> 的位置是一样的。</p>
+<p>而要加载的段是 <code>.text .rodata .stab .stabstr .data .bss</code> ，这些段在内存中的大小总和是<code>0x008111 + 0x000672 + 0x000001 + 0x000001 + 0x002596 + 0x00715c = 73335 即 0x11e77</code> 按照对齐要求 <code>0x1000</code> 对齐后为 <code>75516</code> 即 <code>0x000126fc</code>（注意大小端转换，FC 26 01 00 是按照小端排列的，转换成正常的十六进制数为 0x000126fc）和 ELF 程序头表中的内存大小信息一致。</p>
+<p>我们再算算这些段在文件中的大小，由于这些段在文件中是顺序排列的，所以用 <code>.bss段</code> 的文件偏移量减去 <code>.text段</code> 的文件偏移量 <code>0x00c596 - 0x001000 = 46486</code> 这也是和 ELF 程序头表中段在文件中大小的信息一致。</p>
+<h4 id="进入内核"><a href="#进入内核" class="headerlink" title="进入内核"></a>进入内核</h4><p>在<code>kernel.ld</code>文件中，找到：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ENTRY(_start) 　      <span class="comment"># 内核的代码为段执行入口：_start</span></span><br><span class="line">. = <span class="number">0x80100000</span>        <span class="comment"># 内核的起始虚拟地址位置为：0x80100000</span></span><br><span class="line">.text : AT(<span class="number">0x100000</span>)  <span class="comment"># 内核代码段的内存装载地址为：0x100000</span></span><br><span class="line">. = ALIGN(<span class="number">0x1000</span>)     <span class="comment"># 内核代码段保证 4KB 对齐</span></span><br></pre></td></tr></table></figure>
+
+<p>因此就可以让系统正确加载内核。</p>
+<p>上面提到的<code>_start</code>在<code>entry.S</code>这个汇编文件里面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 多系统加载头。运行多系统加载程序的部分。</span><br><span class="line">.p2align 2</span><br><span class="line">.text</span><br><span class="line">.globl multiboot_header</span><br><span class="line">multiboot_header:</span><br><span class="line">  #define magic 0x1badb002</span><br><span class="line">  #define flags 0</span><br><span class="line">  .long magic</span><br><span class="line">  .long flags</span><br><span class="line">  .long (-magic-flags)</span><br><span class="line"></span><br><span class="line"># 按照约定，_start符号指出入口。因为我们还没有设置虚拟内存，因此我们的起始点是&#39;entry&#39;的物理地址</span><br><span class="line">.globl _start</span><br><span class="line">_start &#x3D; V2P_WO(entry)</span><br></pre></td></tr></table></figure>
+
+<p><code>multiboot_header</code> 这部分是为了方便通过GNU GRUB来引导 xv6 系统的。而<code>V2P_WO</code> 的定义在 <code>memlayout.h</code> 文件中：</p>
+<figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> V2P_WO(x) ((x) - KERNBASE)    <span class="comment">// V2P里面将x转换成了uint，这里没有转换。</span></span></span><br><span class="line"><span class="comment">// 这个名字其实就是 Virtual to Physical WITHOUT</span></span><br></pre></td></tr></table></figure>
+
+<p>它的作用是将内存虚拟地址转换成物理地址。里面<code>KERNBASE</code>定义为：</p>
+<figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> KERNBASE 0x80000000         <span class="comment">// First kernel virtual address</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>entry</code>部分如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 进入xv6的启动程序，这时候还没有开启分页</span><br><span class="line">.globl entry</span><br><span class="line">entry:</span><br><span class="line">  # 打开4M页面大小扩展</span><br><span class="line">  movl    %cr4, %eax           # 把cr4寄存器拿出来，与CR4_PSE取或来设置这一位为1以打开4M</span><br><span class="line">  orl     $(CR4_PSE), %eax</span><br><span class="line">  movl    %eax, %cr4</span><br><span class="line">  # 设置内存页表</span><br><span class="line">  movl    $(V2P_WO(entrypgdir)), %eax</span><br><span class="line">  movl    %eax, %cr3</span><br><span class="line">  # 打开分页</span><br><span class="line">  movl    %cr0, %eax</span><br><span class="line">  orl     $(CR0_PG|CR0_WP), %eax</span><br><span class="line">  movl    %eax, %cr0</span><br><span class="line"></span><br><span class="line">  # 设置栈指针</span><br><span class="line">  movl $(stack + KSTACKSIZE), %esp</span><br><span class="line"></span><br><span class="line">  # 跳转到main()函数，并且转移到高地址执行。</span><br><span class="line">  # 因为汇编程序产生了一个及其相关的直接跳转的指令，所以需要进行间接的调用。</span><br><span class="line">  mov $main, %eax</span><br><span class="line">  jmp *%eax</span><br><span class="line"></span><br><span class="line">.comm stack, KSTACKSIZE</span><br></pre></td></tr></table></figure>
+
+<h5 id="开启-4MB-内存分页支持"><a href="#开启-4MB-内存分页支持" class="headerlink" title="开启 4MB 内存分页支持"></a>开启 4MB 内存分页支持</h5><p>这是通过设置寄存器 <code>cr4</code> 的 <code>PSE</code> 位来完成的。<code>cr4</code> 寄存器是个 32 位的寄存器目前只用到低 21 位，每一位的至位都控制这一些功能的状态，所以 <code>cr4</code> 寄存器又叫做控制寄存器。</p>
+<p><code>PSE</code> 位是 <code>cr4</code> 控制寄存器的第 5 位，当该位置为 1 时表示内存页大小为 4MB，当置为 0 时表示内存页大小为 4KB。</p>
+<h5 id="建立内存页表"><a href="#建立内存页表" class="headerlink" title="建立内存页表"></a>建立内存页表</h5><p>和分段机制一样，分页机制同样是管理内存的一种方式，只不过这种方式相对于分段式来说更为先进，也是目前主流的现代操作系统所使用的内存管理方式。</p>
+<p>通过分页将虚拟地址转换为物理地址这项工作是由 <code>MMU</code>(内存管理单元)负责的，以 x86 32 位架构来说它支持两级分页（Pentium Pro下分页可以是三级），这也是由 <code>MMU</code> 决定的。同时 x86 架构支持 4KB、2MB 和 4MB 单位页面大小的分页。当然无论以多少级进行分页，分页机制的原理是相通的，我们就以两级分页来说。</p>
+<p>以 32 位系统为例，其内存虚拟地址是 32 位的，这里我们先假设页面大小是 4KB ，此时 32 位的虚拟地址被分为三个部分，从高位到低位分别是：10 位的一级页表索引，10 位的二级页表索引，12 位的页内偏移量。</p>
+<p>在 4KB 页面大小情况下 32 位的虚拟地址被分为三个部分，从高位到低位分别是：10 位的一级页表索引，10 位的二级页表索引，12 位的页内偏移量。</p>
+<p><code>cr3</code> 寄存器中保存着一级页表所在的内存物理地址，当给出一个虚拟地址后，根据 <code>cr3</code> 的地址首先找到一级页表在内存上的存放位置。上面我们说到虚拟地址的高 10 位为一级页表的索引，所以 <code>2^10 = 1024</code> 即一级页表一共有 1024 个元素，通过虚拟地址高 10 位的索引我们找到其中一个元素，而这个元素的值指向二级页表在内存中的物理地址。</p>
+<p>同理，虚拟地址中紧挨着高 10 位后面的 10 位是二级页表索引，因此二级页表也有 1024 个元素，通过虚拟地址的二级页表索引找到其中的一个元素，该元素指向内存分页中的一个页的地址。</p>
+<p>通过二级页表我们现在找到了内存上的一页物理页。根据现在的设定，一物理页的大小是 4KB，在虚拟地址上的低 12 位索引找到想要的数据（<code>2^12 = 4096 = 4KB</code>）。</p>
+<p>而根据二级页表和每页内存的大小我们也不难算出：1024个一级页表项 x 1024个二级页表项 x 4KB页面大小 = 4GB，正好是 32 位系统的最大内存寻址。</p>
+<p>这里我们再额外算一笔账，二级页表中每个表项占 32 位，所以一个一级页表的总体积是 <code>4byte x 1024 = 4KB</code>，而每个一级页表项都对应一个二级页表，所以全部二级页表的总体积是 <code>4KB x 1024 = 4MB</code>，即二级页表分页机制自身内存占用也要约 4MB 外加 4KB。</p>
+<p>我们还要额外提一下页表项。上面刚说过每个页表项占 32 位，它也是分两个部分：高 20 位是基地址，低 12 位是控制标记位。所以当我们通过一级页表索引在一级页表中查找时是这样的：一级页表项地址 = cr3寄存器高20位 + ( 10位一级页表索引 &lt;&lt; 2 )；通过二级页表索引在二级页表中查找时是这样的：二级页表项地址 = 一级页表项高20位 + ( 10位二级页表索引 &lt;&lt; 2 )。</p>
+<ul>
+<li>注：页表项地址 = 基地址 + ( 索引 x 页表项大小 ) = 基地址 + ( 索引 x 4字节 ) = 基地址 + ( 索引 &lt;&lt; 2 )</li>
+</ul>
+<p>最后我们再看看页表项低 12 位控制位都代表什么意义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">+ 11 + 10 + 9 + 8 +  7 + 6 + 5 +  4  +  3  + 2  + 1  + 0 +</span><br><span class="line">|    Avail    | G | PS | D | A | PCD | PWT | US | RW | P |</span><br><span class="line">+--------------------------------------------------------+</span><br><span class="line">|     000     | 0 |  1 | 0 | 0 |  0  |  0  |  0 |  1 | 1 |</span><br><span class="line">+--------------------------------------------------------+</span><br><span class="line"></span><br><span class="line">P     : 0 表示此页不在物理内存中，1 表示此页在物理内存中</span><br><span class="line">RW    : 0 表示只读，1 表示可读可写（要配合 US 位）</span><br><span class="line">US    : 0 表示特权级页面，1 表示普通权限页面</span><br><span class="line">PWT   : 1 表示写这个页面时直接写入内存，0 表示先写到缓存中</span><br><span class="line">PCD   : 1 表示该页禁用缓存机制，0 表示启用缓存</span><br><span class="line">A     : 当该页被初始化时为 0，一但进行过读&#x2F;写则置为 1</span><br><span class="line">D     : 脏页标记（这里就不做具体介绍了）</span><br><span class="line">PS    : 0 表示页面大小为 4KB，1 表示页面大小为 4MB</span><br><span class="line">G     : 1 表示页面为共享页面（这里就不做具体介绍了）</span><br><span class="line">Avail : 3 位保留位</span><br></pre></td></tr></table></figure>
+
+<p>然后我们再说回 xv6。</p>
+<p>到目前为止我们知道 xv6 开启了 4MB 内存页大小，在 x86 架构下当通过 <code>cr4</code> 控制寄存器的 <code>PSE</code> 位打开了 4MB 分页后 MMU 内存管理单元的分页机制就会从二级分页简化为一级分页。</p>
+<p>即虚拟地址的高 10 位仍然是一级页表项索引，但是后面的 22 位则全部变为页内偏移量（因为一页有 <code>2^22 = 4MB</code> 大小）。</p>
+<p>我们来看看这个一级页表的结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Set page directory</span><br><span class="line">  movl    $(V2P_WO(entrypgdir)), %eax</span><br><span class="line">  movl    %eax, %cr3</span><br></pre></td></tr></table></figure>
+
+<p>通过代码我们知道页表地址是存在一个叫做 <code>entrypgdir</code> 的变量中了，通过文本搜索可以在 <code>main.c</code> 文件的最后找到这个变量，我们看一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Boot page table used in entry.S and entryother.S.</span></span><br><span class="line"><span class="comment">// Page directories (and page tables), must start on a page boundary,</span></span><br><span class="line"><span class="comment">// hence the &quot;__aligned__&quot; attribute.  </span></span><br><span class="line"><span class="comment">// Use PTE_PS in page directory entry to enable 4Mbyte pages.</span></span><br><span class="line">__attribute__((__aligned__(PGSIZE)))</span><br><span class="line"><span class="keyword">pde_t</span> entrypgdir[NPDENTRIES] = &#123;</span><br><span class="line">  <span class="comment">// Map VA&#x27;s [0, 4MB) to PA&#x27;s [0, 4MB)</span></span><br><span class="line">  [<span class="number">0</span>] = (<span class="number">0</span>) | PTE_P | PTE_W | PTE_PS,</span><br><span class="line">  <span class="comment">// Map VA&#x27;s [KERNBASE, KERNBASE+4MB) to PA&#x27;s [0, 4MB)</span></span><br><span class="line">  [KERNBASE&gt;&gt;PDXSHIFT] = (<span class="number">0</span>) | PTE_P | PTE_W | PTE_PS,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//PAGEBREAK!</span></span><br><span class="line"><span class="comment">// Blank page.</span></span><br></pre></td></tr></table></figure>
+
+<p>将这些宏定义都转义过来我们看看这个页表的样子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> entrypgdir[<span class="number">1024</span>] = &#123;</span><br><span class="line">    [<span class="number">0</span>] = <span class="number">0</span> | <span class="number">0x001</span> | <span class="number">0x002</span> | <span class="number">0x080</span>,  <span class="comment">// 0x083 = 0000 1000 0011</span></span><br><span class="line">    [<span class="number">0x80000000</span> &gt;&gt; <span class="number">22</span>] = <span class="number">0</span> | <span class="number">0x001</span> | <span class="number">0x002</span> | <span class="number">0x080</span>  <span class="comment">// 0x083</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可见这个页表非常简单，只有两个页表项 <code>0x00000000</code> 和 <code>0x80000000</code>，而且两个页表项索引的内存物理地址都是 <code>0 ~ 4MB</code>，其他页表项全部未作设置。而且通过这两个页表项的值也可以清楚的看出这段基地址为 0 的 4MB 大小的内存页还是特级权限内存页（低 12 位的控制位对应关系已经附在上面解释控制位的示意图里了）。它仅仅只是一个临时页表，它只保证内核在即将打开内存分页支持后内核可以正常执行接下来的代码，而内核在紧接着执行 <code>main</code> 方法时会马上再次重新分配新的页表，而且最终的页表是 4KB 单位页面的精细页表。</p>
+<h5 id="开启内存分页机制"><a href="#开启内存分页机制" class="headerlink" title="开启内存分页机制"></a>开启内存分页机制</h5><p>将 <code>cr0</code>寄存器的第 31 位置为 1 就可以启动内存分页。</p>
+<p>这里还要在提一句，至此我们开启了内存分页机制，接下来内核的代码执行和数据读写都要经过 MMU 通过分页机制对内核指令地址和数据地址的转换，那么目前的页表是如何保证在转换后的物理地址是正确的，如何保证内核可以继续正常运行的呢？</p>
+<p>我们来分析一下。</p>
+<p>根据 <code>kernel.ld</code> 链接器脚本的设定，内核的虚拟地址起始于 <code>0x80100000</code> 即内核代码段的起始处，而内核的代码段被放置在内存物理地址 <code>0x100000</code> 处。我们刚刚看到目前的临时页表将虚拟地址 <code>0x80000000</code> 映射到物理内存的 <code>0x0</code> 处，所以我们来尝试用刚刚了解到的内存分页机制来解析一下 <code>0x80100000</code> 虚拟地址最后转换成物理地址是多少。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x80100000</span> = <span class="number">1000</span> <span class="number">0000</span> <span class="number">00</span>|<span class="number">01</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span></span><br><span class="line"></span><br><span class="line"><span class="number">0x80100000</span> 高 <span class="number">10</span> 位 = <span class="number">1000</span> <span class="number">0000</span> <span class="number">00</span> = <span class="number">512</span></span><br><span class="line"></span><br><span class="line"><span class="number">0x80100000</span> 后 <span class="number">22</span> 位 = <span class="number">01</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> = <span class="number">1048576</span></span><br><span class="line"></span><br><span class="line">索引 <span class="number">512</span> 对应  entrypgdir[ <span class="number">0x80000000</span> &gt;&gt; <span class="number">22</span> ] 即基地址为 <span class="number">0x0</span></span><br><span class="line"></span><br><span class="line">换算的物理地址 = <span class="number">0</span> + <span class="number">1048576</span> = <span class="number">1048576</span> = <span class="number">0x100000</span></span><br><span class="line"></span><br><span class="line">即内核代码段所在内存物理地址 <span class="number">0x100000</span></span><br></pre></td></tr></table></figure>
+
+<p>说白了就是通过页表将内核高端的虚拟地址直接映射到内核真实所在的低端物理内存位置。</p>
+<p>这样虽然保证了在分页机制开启的情况下内核也可以正常运行，但也限制了内核最多只能使用 4MB 的内存，不过对于现在的内核来说 4MB 足够了。</p>
+<h5 id="设置内核栈顶位置并跳转到-main-执行"><a href="#设置内核栈顶位置并跳转到-main-执行" class="headerlink" title="设置内核栈顶位置并跳转到 main 执行"></a>设置内核栈顶位置并跳转到 main 执行</h5><p>这里通过 <code>.comm</code> 在内核 bbs 段开辟了一段 <code>KSTACKSIZE = 4096 = 4KB</code> 大小的内核栈并将栈顶设置为这段数据区域的末尾处（栈是自上而下的嘛），最后通过 <code>jmp</code> 语句跳转到 <code>main</code> 方法处继续执行。</p>
+<h4 id="其他内核的运行"><a href="#其他内核的运行" class="headerlink" title="其他内核的运行"></a>其他内核的运行</h4><p>另外一个启动xv6内核的代码是<code>entryother.S</code>，将每一个非引导CPU从16位切换至32位，然后进入<code>mpenter()</code>函数中，最终开始CPU协同调度。其中很大一部分都与<code>bootloader.S</code>相同。</p>
+<p>具体工作在<code>main()</code>函数中被调用，因此在下一部分介绍。</p>
+<h4 id="进入main-函数"><a href="#进入main-函数" class="headerlink" title="进入main()函数"></a>进入main()函数</h4><p>现在还需要将CPU的第二个核启动，这是在<code>main()</code>函数中调用的<code>mpinit()</code>函数负责。</p>
+<p><code>mpinit()</code>函数在<code>mp.c</code>文件中。具体定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">mpinit(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">  uchar *p, *e;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">mp</span> *<span class="title">mp</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">mpconf</span> *<span class="title">conf</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">mpproc</span> *<span class="title">proc</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">mpioapic</span> *<span class="title">ioapic</span>;</span></span><br><span class="line"></span><br><span class="line">  bcpu = &amp;cpus[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">if</span>((conf = mpconfig(&amp;mp)) == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  ismp = <span class="number">1</span>;</span><br><span class="line">  lapic = (uint*)conf-&gt;lapicaddr;</span><br><span class="line">  <span class="keyword">for</span>(p=(uchar*)(conf+<span class="number">1</span>), e=(uchar*)conf+conf-&gt;length; p&lt;e; )&#123;</span><br><span class="line">    <span class="keyword">switch</span>(*p)&#123;</span><br><span class="line">    <span class="keyword">case</span> MPPROC:</span><br><span class="line">      proc = (struct mpproc*)p;</span><br><span class="line">      <span class="keyword">if</span>(ncpu != proc-&gt;apicid)&#123;</span><br><span class="line">        cprintf(<span class="string">&quot;mpinit: ncpu=%d apicid=%d\n&quot;</span>, ncpu, proc-&gt;apicid);</span><br><span class="line">        ismp = <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>(proc-&gt;flags &amp; MPBOOT)</span><br><span class="line">        bcpu = &amp;cpus[ncpu];</span><br><span class="line">      cpus[ncpu].id = ncpu;</span><br><span class="line">      ncpu++;</span><br><span class="line">      p += <span class="keyword">sizeof</span>(struct mpproc);</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">case</span> MPIOAPIC:</span><br><span class="line">      ioapic = (struct mpioapic*)p;</span><br><span class="line">      ioapicid = ioapic-&gt;apicno;</span><br><span class="line">      p += <span class="keyword">sizeof</span>(struct mpioapic);</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">case</span> MPBUS:</span><br><span class="line">    <span class="keyword">case</span> MPIOINTR:</span><br><span class="line">    <span class="keyword">case</span> MPLINTR:</span><br><span class="line">      p += <span class="number">8</span>;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      cprintf(<span class="string">&quot;mpinit: unknown config type %x\n&quot;</span>, *p);</span><br><span class="line">      ismp = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(!ismp)&#123;</span><br><span class="line">    <span class="comment">// Didn&#x27;t like what we found; fall back to no MP.</span></span><br><span class="line">    ncpu = <span class="number">1</span>;</span><br><span class="line">    lapic = <span class="number">0</span>;</span><br><span class="line">    ioapicid = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(mp-&gt;imcrp)&#123;</span><br><span class="line">    <span class="comment">// Bochs doesn&#x27;t support IMCR, so this doesn&#x27;t run on Bochs.</span></span><br><span class="line">    <span class="comment">// But it would on real hardware.</span></span><br><span class="line">    outb(<span class="number">0x22</span>, <span class="number">0x70</span>);   <span class="comment">// Select IMCR</span></span><br><span class="line">    outb(<span class="number">0x23</span>, inb(<span class="number">0x23</span>) | <span class="number">1</span>);  <span class="comment">// Mask external interrupts.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中结构体<code>cpu</code>的定义如下（在<code>proc.h</code>中）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 每个CPU的状态</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cpu</span> &#123;</span></span><br><span class="line">  uchar id;                    <span class="comment">// 本地 APIC（Advanced Programmable Interrupt Controller） ID， cpus[]数组的索引</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">context</span> *<span class="title">scheduler</span>;</span>   <span class="comment">// 通过这里进入调用计划表</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">taskstate</span> <span class="title">ts</span>;</span>         <span class="comment">// 寻找中断栈</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">segdesc</span> <span class="title">gdt</span>[<span class="title">NSEGS</span>];</span>   <span class="comment">// 全局描述表</span></span><br><span class="line">  <span class="keyword">volatile</span> uint started;       <span class="comment">// 记录启动与否</span></span><br><span class="line">  <span class="keyword">int</span> ncli;                    <span class="comment">// 终端层数</span></span><br><span class="line">  <span class="keyword">int</span> intena;                  <span class="comment">// 在pushcli之前有没有启用中断</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 本地的CPU存储变量</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">cpu</span> *<span class="title">cpu</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">proc</span> *<span class="title">proc</span>;</span>           <span class="comment">// 正在运行的进程</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>并且定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> <span class="title">cpu</span> <span class="title">cpus</span>[<span class="title">NCPU</span>];</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> ncpu;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> struct cpu *cpu <span class="title">asm</span><span class="params">(<span class="string">&quot;%gs:0&quot;</span>)</span></span>;       <span class="comment">// &amp;cpus[cpunum()]</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> struct proc *proc <span class="title">asm</span><span class="params">(<span class="string">&quot;%gs:4&quot;</span>)</span></span>;     <span class="comment">// cpus[cpunum()].proc</span></span><br></pre></td></tr></table></figure>
+
+<p>后面两句其实就是通过指针引用到当前的<code>cpu</code>，我觉得应该是相当于给这两个变量赋值？</p>
+<p>因为每个CPU都有独立的<code>gdt</code>，所以在设置<code>gdt</code>的时候可以这样设置（见<code>vm.c</code>中的<code>seginit()</code>函数）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CPU和进程的映射，对于每一个CPU都是私有的</span></span><br><span class="line">c-&gt;gdt[SEG_KCPU] = SEG(STA_W, &amp;c-&gt;cpu, <span class="number">8</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">lgdt(c-&gt;gdt, <span class="keyword">sizeof</span>(c-&gt;gdt));</span><br><span class="line">loadgs(SEG_KCPU &lt;&lt; <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通过提前设置<code>gs</code>寄存器和<code>gdt</code>的描述符，便能直接通过<code>cpu</code>和<code>proc</code>变量访问当前CPU的结构体和运行进程。</p>
+<p><code>main()</code>函数调用的<code>mpinit()</code>初始化了<code>cpus</code>结构体数组，并确定了<code>lapic</code>地址和<code>ioapicid</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uchar ioapicid;</span><br><span class="line"><span class="keyword">volatile</span> uint *lapic;  <span class="comment">// Initialized in mp.c</span></span><br><span class="line"><span class="keyword">volatile</span> <span class="class"><span class="keyword">struct</span> <span class="title">ioapic</span> *<span class="title">ioapic</span>;</span> <span class="comment">// ioapic在地址空间中有固定地址，这里写出来只是为了对比123</span></span><br></pre></td></tr></table></figure>
+
+<p>具体的初始过程如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">lapic = (uint*)conf-&gt;lapicaddr;</span><br><span class="line">  <span class="keyword">for</span>(p=(uchar*)(conf+<span class="number">1</span>), e=(uchar*)conf+conf-&gt;length; p&lt;e; )&#123;</span><br><span class="line">    <span class="keyword">switch</span>(*p)&#123;</span><br><span class="line">    <span class="keyword">case</span> MPPROC:</span><br><span class="line">      proc = (struct mpproc*)p;</span><br><span class="line">      <span class="keyword">if</span>(ncpu &lt; NCPU) &#123;</span><br><span class="line">        cpus[ncpu].apicid = proc-&gt;apicid;  <span class="comment">// apicid may differ from ncpu</span></span><br><span class="line">        ncpu++;</span><br><span class="line">      &#125;</span><br><span class="line">      p += <span class="keyword">sizeof</span>(struct mpproc);</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">case</span> MPIOAPIC:</span><br><span class="line">      ioapic = (struct mpioapic*)p;</span><br><span class="line">      ioapicid = ioapic-&gt;apicno;</span><br><span class="line">      p += <span class="keyword">sizeof</span>(struct mpioapic);</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">case</span> MPBUS:</span><br><span class="line">    <span class="keyword">case</span> MPIOINTR:</span><br><span class="line">    <span class="keyword">case</span> MPLINTR:</span><br><span class="line">      p += <span class="number">8</span>;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      ismp = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="number">1234567891011121314151617181920212223242526</span></span><br></pre></td></tr></table></figure>
+
+<p>通过在地址空间中找到<code>mp</code>的数据结构后，得到每个CPU的<code>apicid</code>和CPU数量。</p>
+<p>通过<code>mpinit()</code>函数，有关的<code>cpus</code>结构体也初始完成了，接下来在<code>main()</code>函数中调用<code>startothers</code>函数启动其他CPU。</p>
+<p><code>startothers</code>让其他CPU执行名为<code>entryother.S</code>对应的代码.</p>
+<p><code>entryother.S</code>是作为独立的二进制文件与内核二进制文件一起组成整体的ELF文件，通过在LD链接器中-b参数来整合一个独立的二进制文件，在内核中通过<code>_binary_entryother_start</code>和<code>_binary_entryother_size</code>来引用，具体的<code>makefile</code>如下：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(LD)</span> <span class="variable">$(LDFLAGS)</span> -T kernel.ld -o kernelmemfs entry.o  <span class="variable">$(MEMFSOBJS)</span> -b binary initcode entryother fs.img</span><br></pre></td></tr></table></figure>
+
+<p><code>entryothers</code>在生成二进制文件时指定入口点为start以及加载地址和链接地址都为0x7000</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">entryother: entryother.S</span></span><br><span class="line">    <span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -fno-pic -nostdinc -I. -c entryother.S</span><br><span class="line">    <span class="variable">$(LD)</span> <span class="variable">$(LDFLAGS)</span> -N -e start -Ttext 0x7000 -o bootblockother.o entryother.o</span><br><span class="line">    <span class="variable">$(OBJCOPY)</span> -S -O binary -j .text bootblockother.o entryother</span><br><span class="line">    <span class="variable">$(OBJDUMP)</span> -S bootblockother.o &gt; entryother.asm</span><br></pre></td></tr></table></figure>
+
+<p>在<code>startothers</code>中，首先将<code>entryothers</code>移动到物理地址<code>0x7000</code>处使其能正常运行，在这里需要注意的是此时<code>entryothers</code>相当于CPU刚上电的情形，因为这是其他CPU最初运行的内核代码，所以没有开启保护模式和分页机制，<code>entryothers</code>将页表设置为<code>entrypgdir</code>，在设置页表前，虚拟地址等于物理地址</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Write entry code to unused memory at 0x7000.</span></span><br><span class="line"><span class="comment">// The linker has placed the image of entryother.S in</span></span><br><span class="line"><span class="comment">// _binary_entryother_start.</span></span><br><span class="line">code = P2V(<span class="number">0x7000</span>);</span><br><span class="line">memmove(code, _binary_entryother_start, (uint)_binary_entryother_size);</span><br></pre></td></tr></table></figure>
+
+<p>然后循环逐个开启每个CPU让每个CPU从<code>entryothers</code>中<code>start</code>标号开始运行：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(c = cpus; c &lt; cpus+ncpu; c++)&#123;</span><br><span class="line">  <span class="keyword">if</span>(c == cpus+cpunum())  <span class="comment">// We&#x27;ve started already.</span></span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Tell entryother.S what stack to use, where to enter, and what</span></span><br><span class="line">  <span class="comment">// pgdir to use. We cannot use kpgdir yet, because the AP processor</span></span><br><span class="line">  <span class="comment">// is running in low  memory, so we use entrypgdir for the APs too.</span></span><br><span class="line">  <span class="built_in">stack</span> = kalloc();</span><br><span class="line">  *(<span class="keyword">void</span>**)(code<span class="number">-4</span>) = <span class="built_in">stack</span> + KSTACKSIZE;</span><br><span class="line">  *(<span class="keyword">void</span>**)(code<span class="number">-8</span>) = mpenter;</span><br><span class="line">  *(<span class="keyword">int</span>**)(code<span class="number">-12</span>) = (<span class="keyword">void</span> *) V2P(entrypgdir);</span><br><span class="line"></span><br><span class="line">  lapicstartap(c-&gt;apicid, V2P(code));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// wait for cpu to finish mpmain()</span></span><br><span class="line">  <span class="keyword">while</span>(c-&gt;started == <span class="number">0</span>)</span><br><span class="line">    ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里同时还设置了每个CPU特有的内核栈以及共有的页表，并设置<code>mpenter</code>为<code>entryothers</code>最后跳转回内核的地址，<code>entryothers</code>主要进行CPU必要的初始化：从实模式切换到保护模式，开启分页机制，最后跳转到<code>mpenter</code>处，跳回内核。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(c = cpus; c &lt; cpus+ncpu; c++)&#123;</span><br><span class="line">  <span class="keyword">if</span>(c == cpus+cpunum())  <span class="comment">// We&#x27;ve started already.</span></span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Tell entryother.S what stack to use, where to enter, and what</span></span><br><span class="line">  <span class="comment">// pgdir to use. We cannot use kpgdir yet, because the AP processor</span></span><br><span class="line">  <span class="comment">// is running in low  memory, so we use entrypgdir for the APs too.</span></span><br><span class="line">  <span class="built_in">stack</span> = kalloc();</span><br><span class="line">  *(<span class="keyword">void</span>**)(code<span class="number">-4</span>) = <span class="built_in">stack</span> + KSTACKSIZE;</span><br><span class="line">  *(<span class="keyword">void</span>**)(code<span class="number">-8</span>) = mpenter;</span><br><span class="line">  *(<span class="keyword">int</span>**)(code<span class="number">-12</span>) = (<span class="keyword">void</span> *) V2P(entrypgdir);</span><br><span class="line"></span><br><span class="line">  lapicstartap(c-&gt;apicid, V2P(code));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// wait for cpu to finish mpmain()</span></span><br><span class="line">  <span class="keyword">while</span>(c-&gt;started == <span class="number">0</span>)</span><br><span class="line">    ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>mpter</code>设置新的内核页表和进行段初始化，最后调用<code>mpmain</code>开始调度进程。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">switchkvm();</span><br><span class="line">seginit();</span><br><span class="line">lapicinit();</span><br><span class="line">mpmain();</span><br></pre></td></tr></table></figure>
+
+<p>至此，所有的CPU都已经正常工作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/04/19/xv6-boot%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/" data-id="ckqkjgmdt00p5x4c493b5gijz" data-title="xv6-boot部分代码阅读" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/19/xv6-boot%E9%83%A8%E5%88%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          xv6-boot部分
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/12/CSS%E6%A1%86%E6%9E%B6%E5%AE%89%E5%88%A9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CSS框架安利</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

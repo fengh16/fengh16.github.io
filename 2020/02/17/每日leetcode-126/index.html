@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>每日leetcode-126 | Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="给定两个单词（beginWord 和 endWord）和一个字典 wordList，找出所有从 beginWord 到 endWord 的最短转换序列。转换需遵循如下规则： 每次转换只能改变一个字母。转换过程中的中间单词必须是字典中的单词。说明: 如果不存在这样的转换序列，返回一个空列表。所有单词具有相同的长度。所有单词只由小写字母组成。字典中不存在重复的单词。你可以假设 beginWord 和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日leetcode-126">
+<meta property="og:url" content="https://fengh16.github.io/2020/02/17/%E6%AF%8F%E6%97%A5leetcode-126/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="给定两个单词（beginWord 和 endWord）和一个字典 wordList，找出所有从 beginWord 到 endWord 的最短转换序列。转换需遵循如下规则： 每次转换只能改变一个字母。转换过程中的中间单词必须是字典中的单词。说明: 如果不存在这样的转换序列，返回一个空列表。所有单词具有相同的长度。所有单词只由小写字母组成。字典中不存在重复的单词。你可以假设 beginWord 和">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-16T22:06:06.000Z">
+<meta property="article:modified_time" content="2021-05-28T13:04:47.738Z">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-每日leetcode-126" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/17/%E6%AF%8F%E6%97%A5leetcode-126/" class="article-date">
+  <time class="dt-published" datetime="2020-02-16T22:06:06.000Z" itemprop="datePublished">2020-02-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      每日leetcode-126
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>给定两个单词（beginWord 和 endWord）和一个字典 wordList，找出所有从 beginWord 到 endWord 的最短转换序列。转换需遵循如下规则：</p>
+<p>每次转换只能改变一个字母。<br>转换过程中的中间单词必须是字典中的单词。<br>说明:</p>
+<p>如果不存在这样的转换序列，返回一个空列表。<br>所有单词具有相同的长度。<br>所有单词只由小写字母组成。<br>字典中不存在重复的单词。<br>你可以假设 beginWord 和 endWord 是非空的，且二者不相同。<br>示例 1:</p>
+<p>输入:<br>beginWord = “hit”,<br>endWord = “cog”,<br>wordList = [“hot”,”dot”,”dog”,”lot”,”log”,”cog”]</p>
+<p>输出:<br>[<br>  [“hit”,”hot”,”dot”,”dog”,”cog”],<br>  [“hit”,”hot”,”lot”,”log”,”cog”]<br>]<br>示例 2:</p>
+<p>输入:<br>beginWord = “hit”<br>endWord = “cog”<br>wordList = [“hot”,”dot”,”dog”,”lot”,”log”]</p>
+<p>输出: []</p>
+<p>解释: endWord “cog” 不在字典中，所以不存在符合要求的转换序列。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/word-ladder-ii">https://leetcode-cn.com/problems/word-ladder-ii</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>一个简单的BFS。</p>
+<p>每一轮检查上一轮的时候加进去的单词的相邻单词，发现没有检查过的就加进去。</p>
+<p>直接用两个变量存储每一轮加进去的点和剩下的单词。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">is_change_one</span><span class="params">(<span class="keyword">const</span> string&amp; a, <span class="keyword">const</span> string&amp; b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lena = a.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> diff = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lena; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] != b[i]) &#123;</span><br><span class="line">                diff += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> diff == <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">findLadders</span>(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList) &#123;</span><br><span class="line">        <span class="keyword">int</span> all_size = wordList.<span class="built_in">size</span>();  <span class="comment">// wordList</span></span><br><span class="line">        map&lt;string, vector&lt;vector&lt;string&gt;&gt;&gt; shortest_record;</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; temp;</span><br><span class="line">        vector&lt;string&gt; t2;</span><br><span class="line">        t2.<span class="built_in">push_back</span>(beginWord);</span><br><span class="line">        temp.<span class="built_in">push_back</span>(t2);</span><br><span class="line">        shortest_record[beginWord] = temp;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// start node</span></span><br><span class="line">        set&lt;string&gt; available;  <span class="comment">// 没有处理的</span></span><br><span class="line">        set&lt;string&gt; lasttime; <span class="comment">// 上次的单词</span></span><br><span class="line">        lasttime.<span class="built_in">insert</span>(beginWord);</span><br><span class="line">        <span class="keyword">bool</span> end_in = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = wordList.<span class="built_in">begin</span>(); i != wordList.<span class="built_in">end</span>(); i++) &#123;</span><br><span class="line">            available.<span class="built_in">insert</span>(*i);</span><br><span class="line">            <span class="keyword">if</span> (*i == endWord) &#123;</span><br><span class="line">                end_in = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (!end_in) &#123;</span><br><span class="line">            <span class="keyword">return</span> vector&lt;vector&lt;string&gt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!lasttime.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">bool</span> got_ans = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">//            cout &lt;&lt; &quot;\nLasttime: &quot;;</span></span><br><span class="line"><span class="comment">//            for (auto tt = lasttime.begin(); tt != lasttime.end(); tt++) &#123;</span></span><br><span class="line"><span class="comment">//                cout &lt;&lt; &quot; &quot; &lt;&lt; *tt;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//            cout &lt;&lt; &quot;\nAva: &quot;;</span></span><br><span class="line"><span class="comment">//            for (auto tt = available.begin(); tt != available.end(); tt++) &#123;</span></span><br><span class="line"><span class="comment">//                cout &lt;&lt; &quot; &quot; &lt;&lt; *tt;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//            cout &lt;&lt; &quot;\n======&quot;;</span></span><br><span class="line">            vector&lt;vector&lt;string&gt;&gt; result;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> cand = lasttime.<span class="built_in">begin</span>(); cand != lasttime.<span class="built_in">end</span>(); cand++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">is_change_one</span>(*cand, endWord)) &#123;</span><br><span class="line">                    got_ans = <span class="literal">true</span>;</span><br><span class="line">                    vector&lt;vector&lt;string&gt;&gt; &amp;a = shortest_record[*cand];</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">auto</span> ttt = a.<span class="built_in">begin</span>(); ttt != a.<span class="built_in">end</span>(); ttt++) &#123;</span><br><span class="line">                        result.<span class="built_in">push_back</span>(vector&lt;string&gt;(*ttt));</span><br><span class="line">                        (*(result.<span class="built_in">end</span>() - <span class="number">1</span>)).<span class="built_in">push_back</span>(endWord);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (got_ans) &#123;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">            set&lt;string&gt; new_lasttime;</span><br><span class="line">            set&lt;string&gt; new_available;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> now = available.<span class="built_in">begin</span>(); now != available.<span class="built_in">end</span>(); now++) &#123;</span><br><span class="line">                <span class="keyword">bool</span> got_ans = <span class="literal">false</span>;</span><br><span class="line">                vector&lt;vector&lt;string&gt;&gt; result;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> cand = lasttime.<span class="built_in">begin</span>(); cand != lasttime.<span class="built_in">end</span>(); cand++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">is_change_one</span>(*cand, *now)) &#123;</span><br><span class="line">                        got_ans = <span class="literal">true</span>;</span><br><span class="line">                        vector&lt;vector&lt;string&gt;&gt; &amp;a = shortest_record[*cand];</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">auto</span> ttt = a.<span class="built_in">begin</span>(); ttt != a.<span class="built_in">end</span>(); ttt++) &#123;</span><br><span class="line">                            result.<span class="built_in">push_back</span>(vector&lt;string&gt;(*ttt));</span><br><span class="line">                            (*(result.<span class="built_in">end</span>() - <span class="number">1</span>)).<span class="built_in">push_back</span>(*now);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (got_ans) &#123;</span><br><span class="line">                    shortest_record[*now] = result;</span><br><span class="line">                    new_lasttime.<span class="built_in">insert</span>(*now);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    new_available.<span class="built_in">insert</span>(*now);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            available = <span class="built_in">move</span>(new_available);</span><br><span class="line">            lasttime = <span class="built_in">move</span>(new_lasttime);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> vector&lt;vector&lt;string&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>但是用了一秒多。</p>
+<h2 id="24ms的示例代码"><a href="#24ms的示例代码" class="headerlink" title="24ms的示例代码"></a>24ms的示例代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; res;</span><br><span class="line">    unordered_map&lt;string, vector&lt;string&gt;&gt; hash;</span><br><span class="line">    </span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">findLadders</span>(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList) &#123;</span><br><span class="line">        <span class="function">unordered_set&lt;string&gt; <span class="title">dirc</span><span class="params">(wordList.begin(), wordList.end())</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (dirc.<span class="built_in">find</span>(endWord) == dirc.<span class="built_in">end</span>()) <span class="keyword">return</span> res;</span><br><span class="line">        unordered_set&lt;string&gt; beginw&#123;beginWord&#125;;</span><br><span class="line">        unordered_set&lt;string&gt; endw&#123;endWord&#125;;</span><br><span class="line">        <span class="keyword">int</span> flag1 = <span class="number">0</span>, flag2 = <span class="number">0</span>;  <span class="comment">//第一个是否找到最短序列标志, 第二个是否反转标志。</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!beginw.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            unordered_set&lt;string&gt; tmp;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> str : beginw) dirc.<span class="built_in">erase</span>(str);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> str : beginw) &#123; <span class="comment">//每次都是对beginw进行操作，所以后面有判断让beginw比endw小</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">                    string s = str;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">char</span> j = <span class="string">&#x27;a&#x27;</span>; j &lt;= <span class="string">&#x27;z&#x27;</span>; ++j) &#123;</span><br><span class="line">                        s[i] = j;</span><br><span class="line">                        <span class="keyword">if</span> (dirc.<span class="built_in">find</span>(s) == dirc.<span class="built_in">end</span>()) <span class="keyword">continue</span>;  <span class="comment">// 在候选里面没有现在判断的这个可能的下一个</span></span><br><span class="line">                        <span class="keyword">if</span> (endw.<span class="built_in">find</span>(s) != endw.<span class="built_in">end</span>()) flag1 = <span class="number">1</span>;<span class="comment">// 已经到头了</span></span><br><span class="line">                        <span class="keyword">else</span> tmp.<span class="built_in">insert</span>(s);<span class="comment">// 接下来就是从这个开始进行搜索</span></span><br><span class="line">                        flag2 ? hash[s].<span class="built_in">push_back</span>(str) : hash[str].<span class="built_in">push_back</span>(s);<span class="comment">// 记录一下前后关系  // 刚开始flag2是0，所以刚开始的时候是把s记录在str的里面</span></span><br><span class="line">                    &#125; </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (flag1) <span class="keyword">break</span>;  <span class="comment">//已经找到最短序列退出循环。</span></span><br><span class="line">            <span class="keyword">if</span> (tmp.<span class="built_in">size</span>() &lt;= endw.<span class="built_in">size</span>()) <span class="comment">// 判断让beginw比endw小</span></span><br><span class="line">                beginw = tmp;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                beginw = endw; endw = tmp; </span><br><span class="line">                flag2 = !flag2;  <span class="comment">//这里需要使用！反转。</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;string&gt; ans = &#123;beginWord&#125;;</span><br><span class="line">        <span class="built_in">dfs</span>(ans, beginWord, endWord);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(vector&lt;string&gt;&amp; ans, string&amp; begin, string&amp; end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">            res.<span class="built_in">emplace_back</span>(ans);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (hash.<span class="built_in">find</span>(begin) == hash.<span class="built_in">end</span>()) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> str : hash[begin]) &#123;</span><br><span class="line">            ans.<span class="built_in">emplace_back</span>(str);</span><br><span class="line">            <span class="built_in">dfs</span>(ans, str, end);</span><br><span class="line">            ans.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>用了unordered_set而不是set，区别可以见<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1338333%EF%BC%8C%E6%80%A7%E8%83%BD%E4%B8%8A%E5%B7%AE%E7%9A%84%E8%BF%98%E6%98%AF%E6%8C%BA%E5%A4%9A%E7%9A%84">https://cloud.tencent.com/developer/article/1338333，性能上差的还是挺多的</a></li>
+<li>构造函数可以直接用unordered_set<string> dirc(wordList.begin(), wordList.end());，不必写个for循环来整；</li>
+<li>两个方向进行操作，让比较少的一头开始；</li>
+<li>unordered_set进行find操作是很快的</li>
+<li>记录的时候没有必要记录到这个节点的全部路径，只用记录下来从上一个节点的路径就可以了，最后用一个深搜就行（因为现在最多的能连上的层数就是最短的，不会有更长的能连起来的）</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/02/17/%E6%AF%8F%E6%97%A5leetcode-126/" data-id="ckqkjgmca00k2x4c4dzibdj2d" data-title="每日leetcode-126" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/02/18/django%E7%AE%80%E5%8D%95%E6%9C%8D%E5%8A%A1%E6%B5%81%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          django简单服务流程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/02/16/list%E5%92%8Cset%E8%BF%90%E8%A1%8C%E6%95%88%E7%8E%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">list和set运行效率</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

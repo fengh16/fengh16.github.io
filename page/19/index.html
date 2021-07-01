@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Henry Fox&#39;s personal blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Henry Fox">
+<meta property="og:url" content="https://fengh16.github.io/page/19/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="Henry Fox&#39;s personal blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-每日leetcode-面试题-08-11" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/19/%E6%AF%8F%E6%97%A5leetcode-%E9%9D%A2%E8%AF%95%E9%A2%98-08-11/" class="article-date">
+  <time class="dt-published" datetime="2020-03-18T22:06:06.000Z" itemprop="datePublished">2020-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/19/%E6%AF%8F%E6%97%A5leetcode-%E9%9D%A2%E8%AF%95%E9%A2%98-08-11/">每日leetcode-面试题-08-11</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="面试题-08-11-硬币"><a href="#面试题-08-11-硬币" class="headerlink" title="面试题 08.11. 硬币"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/coin-lcci/">面试题 08.11. 硬币</a></h4><p>硬币。给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)</p>
+<p><strong>示例1:</strong></p>
+<p> <strong>输入</strong>: n = 5<br> <strong>输出</strong>：2<br> <strong>解释</strong>: 有两种方式可以凑成总金额:<br>5=5<br>5=1+1+1+1+1</p>
+<p><strong>示例2:</strong></p>
+<p><strong>输入</strong>: n = 10<br> <strong>输出</strong>：4<br> <strong>解释</strong>: 有四种方式可以凑成总金额:<br>10=10<br>10=5+5<br>10=5+1+1+1+1+1<br>10=1+1+1+1+1+1+1+1+1+1</p>
+<p><strong>说明：</strong></p>
+<p>注意:</p>
+<p>你可以假设：</p>
+<ul>
+<li>  0 &lt;= n (总金额) &lt;= 1000000</li>
+</ul>
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><p>这个和官方题解里面的方法一类似，但是有一点差别。</p>
+<p>官方题解里面，最后得到的是：</p>
+<p>$$f(i,v)=f(i−1,v)+f(i,v−c_i)$$</p>
+<p>举例来说，如果我想要用4种硬币（分别是1、5、10、25）来凑成100分，那我可以先算出来用3种硬币（1、5、10）凑成100分的方法，再算出来用4种硬币（1、5、10、25）凑成75分的方法数，把他们加起来。</p>
+<p>这样的好处是，我们可以只用前面$i-1$的数据算出来$i$的数据，就不用存所有行了。</p>
+<p>我这里的解法稍微差一些，是记录了四个数组，分别表示：最大用了1分、最大用了5分、最大用了10分、最大用了25分的前提下的种类数。</p>
+<p>如果我想要用4种硬币（分别是1、5、10、25）来凑成100分，那我可以先算出来：</p>
+<ul>
+<li>用最大为25的硬币（也就是说，用了4种硬币（1、5、10、25）并且必须有25）凑成75分的方法；</li>
+<li>用最大为10的硬币（也就是说，用了3种硬币（1、5、10）并且必须有10）凑成75分的方法；</li>
+<li>用最大为5的硬币（也就是说，用了2种硬币（1、5）并且必须有5）凑成75分的方法；</li>
+<li>用最大为1的硬币（也就是说，用了1种硬币（1）并且必须有1）凑成75分的方法。</li>
+</ul>
+<p>最后加起来就是总的方法数。</p>
+<p>不如csx大佬的官方题解，但是也是正确的做法。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">waysToChange</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dp_max_1</span><span class="params">(n + <span class="number">1</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dp_max_5</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;  <span class="comment">// 必须有至少一个5</span></span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dp_max_10</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dp_max_25</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">5</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp_max_5[i] = (dp_max_1[i - <span class="number">5</span>] + dp_max_5[i - <span class="number">5</span>]) % <span class="number">1000000007</span>;  <span class="comment">// use one 5, will get dp_max_1[i - 5]; use two 5s, dp_max_5[i - 5]</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">10</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp_max_10[i] = (dp_max_1[i - <span class="number">10</span>] + dp_max_5[i - <span class="number">10</span>] + dp_max_10[i - <span class="number">10</span>]) % <span class="number">1000000007</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">25</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp_max_25[i] = (dp_max_1[i - <span class="number">25</span>] + dp_max_5[i - <span class="number">25</span>] + dp_max_10[i - <span class="number">25</span>] + dp_max_25[i - <span class="number">25</span>]) % <span class="number">1000000007</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (dp_max_1[n] + dp_max_5[n] + dp_max_10[n] + dp_max_25[n]) % <span class="number">1000000007</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/19/%E6%AF%8F%E6%97%A5leetcode-%E9%9D%A2%E8%AF%95%E9%A2%98-08-11/" data-id="ckqkjgmco00l8x4c424qh7cv0" data-title="每日leetcode-面试题-08-11" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-python-anywhere" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/18/python-anywhere/" class="article-date">
+  <time class="dt-published" datetime="2020-03-17T22:06:06.000Z" itemprop="datePublished">2020-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/18/python-anywhere/">python-anywhere</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9974701034ef">https://www.jianshu.com/p/9974701034ef</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/18/python-anywhere/" data-id="ckqkjgmat00enx4c4her74865" data-title="python-anywhere" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-免费图床" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/18/%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A/" class="article-date">
+  <time class="dt-published" datetime="2020-03-17T22:06:06.000Z" itemprop="datePublished">2020-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/18/%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A/">免费图床</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35270383?ivk_sa=1023345p">https://zhuanlan.zhihu.com/p/35270383?ivk_sa=1023345p</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/18/%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A/" data-id="ckqkjgmbf00h1x4c44c7b3mjk" data-title="免费图床" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-爬虫爬取公众号" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/18/%E7%88%AC%E8%99%AB%E7%88%AC%E5%8F%96%E5%85%AC%E4%BC%97%E5%8F%B7/" class="article-date">
+  <time class="dt-published" datetime="2020-03-17T22:06:06.000Z" itemprop="datePublished">2020-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/18/%E7%88%AC%E8%99%AB%E7%88%AC%E5%8F%96%E5%85%AC%E4%BC%97%E5%8F%B7/">爬虫爬取公众号</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b8bca0e9c7d8">https://www.jianshu.com/p/b8bca0e9c7d8</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/18/%E7%88%AC%E8%99%AB%E7%88%AC%E5%8F%96%E5%85%AC%E4%BC%97%E5%8F%B7/" data-id="ckqkjgmcv00lyx4c45pre6k4k" data-title="爬虫爬取公众号" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-每日leetcode-466" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/17/%E6%AF%8F%E6%97%A5leetcode-466/" class="article-date">
+  <time class="dt-published" datetime="2020-03-16T22:06:06.000Z" itemprop="datePublished">2020-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/17/%E6%AF%8F%E6%97%A5leetcode-466/">每日leetcode-466</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>已经发布在了leetcode中文版里面。</p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-the-repetitions/">466. 统计重复个数</a></p>
+<p>由 n 个连接的字符串 s 组成字符串 S，记作 <code>S = [s,n]</code>。例如，<code>[&quot;abc&quot;,3]</code>=“abcabcabc”。</p>
+<p>如果我们可以从 s2中删除某些字符使其变为 s1，则称字符串 s1可以从字符串 s2 获得。例如，根据定义，”abc” 可以从 “abdbec” 获得，但不能从 “acbbe” 获得。</p>
+<p>现在给你两个非空字符串 s1 和 s2（每个最多 100 个字符长）和两个整数 0 ≤ n1 ≤ 10<sup>6 </sup>和 1 ≤ n2 ≤ 10<sup>6</sup>。现在考虑字符串 S1 和 S2，其中 <code>S1=[s1,n1]</code> 、<code>S2=[s2,n2]</code> 。</p>
+<p>请你找出一个可以满足使<code>[S2,M]</code> 从 <code>S1</code> 获得的最大整数 M 。</p>
+<p><strong>示例：</strong></p>
+<p>输入：<br>s1 =”acb”,n1 = 4<br>s2 =”ab”,n2 = 2</p>
+<p>返回：<br>2</p>
+<h1 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h1><p>记录下来每个s1对应的位置，匹配的结果。每一次如果要求的匹配已经在数据中，就看可以匹配多少组。</p>
+<p>比如，【baab, 40】里面要匹配【baba, 2】，那我就先找到应该匹配哪几位：</p>
+<ul>
+<li>第一次匹配：【baabbaabbaabbaabbaab】</li>
+<li>找到对应的：【ba b a】，是从s1的下标为0的位置开始匹配的</li>
+<li>第二次匹配：【baabbaabbaabbaabbaab】</li>
+<li>找到对应的：【       b a b a】，是从s1的下标为2的位置开始匹配的</li>
+<li>再往后匹配：【baabbaabbaabbaabbaab】</li>
+<li>这一次找对应的，还是从s1的下标为2的位置开始匹配的。</li>
+</ul>
+<p>因此，我们就可以记录下来，每一次从s1的某一个位置进行匹配，会匹配到哪个地方。</p>
+<h1 id="匹配位置"><a href="#匹配位置" class="headerlink" title="匹配位置"></a>匹配位置</h1><p>匹配位置是说，使用一个数组/map，i对应的值为记录从s1的第i位开始，往后走到哪里可以匹配一个完整的s2。</p>
+<p>比如：s1=”baab”, s2=”baba”，我用来记忆的map叫做memo，这样的话memo[0] = 6，表示从s1的下标为0的地方，往右走到下标为6的地方可以匹配完一个s2</p>
+<ul>
+<li>注：下标为6代表的是，s1重复之后得到的”baabbaabbaab……”这个数组的下标，也就是说其中的【baabba】（下标为0 ～ 5）这些部分可以匹配一个完整的s2。</li>
+</ul>
+<p>如果是求memo[2]的话，那结果就等于10，代表下标为2～9的部分（ba【abbaabba】ab）可以匹配一个完整的s2。</p>
+<p>因此，我这里设计了一个函数可以实现上述的功能：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">checkWhere</span><span class="params">(<span class="keyword">int</span> n, string &amp;s1, <span class="keyword">int</span> len1, string &amp;s2, <span class="keyword">int</span> len2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len2; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> n_target = n + len1;</span><br><span class="line">        <span class="keyword">bool</span> found = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (; n &lt; n_target; n++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s1[n % len1] == s2[i]) &#123;</span><br><span class="line">                n++;</span><br><span class="line">                found = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!found) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="找到循环体"><a href="#找到循环体" class="headerlink" title="找到循环体"></a>找到循环体</h1><p>比如刚才的例子，【baab, 40】里面要匹配【baba, 2】</p>
+<p>到第二次寻找的时候，就是从下标为2开始，到下标为2结束。</p>
+<ul>
+<li>【baabbaabbaab】</li>
+<li>【   b a b a】</li>
+</ul>
+<p>再往后一次也是一样的，这样就构成了循环结构。</p>
+<p>我在这里使用了一个循环结构的检测，记录的时候不仅记录应该到哪个地方，而且记录了到这个地方的时候我匹配完了几个s2。</p>
+<p>也就是说，memo[0] = [6, 1]，memo[2] = [10, 2]。</p>
+<p>问题来了：</p>
+<ul>
+<li>那我一次匹配的之后，下一次应该匹配谁呢？<ul>
+<li>结果除以s1的长度取余。比如，memo[0] = [6, 1]，那我下一次就应该去找memo[6 % s1.size()]也就是memo[2]</li>
+</ul>
+</li>
+<li>什么时候发现有循环了？<ul>
+<li>结果除以s1的长度，发现这个值对应位置已经有结果了。</li>
+<li>比如，memo[2] = [10, 2]，s1的长度为4，10%4==2，memo[2]刚才已经算出来了，所以就开始循环了！</li>
+</ul>
+</li>
+<li>我们的循环需要计算什么？<ul>
+<li>我们需要知道这个循环里面，消耗了多少s1，找到了多少s2</li>
+<li>实际上的做法，就是对memo进行处理，不断计算直到发现memo开始循环，记录下这时候s1消耗了多少个与s2出现了多少个</li>
+</ul>
+</li>
+</ul>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">checkWhere</span><span class="params">(<span class="keyword">int</span> n, string &amp;s1, <span class="keyword">int</span> len1, string &amp;s2, <span class="keyword">int</span> len2, map&lt;<span class="keyword">int</span>, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&amp; memo)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len2; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> n_target = n + len1;</span><br><span class="line">            <span class="keyword">bool</span> found = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (; n &lt; n_target; n++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s1[n % len1] == s2[i]) &#123;</span><br><span class="line">                    n++;</span><br><span class="line">                    found = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!found) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMaxRepetitions</span><span class="params">(string s1, <span class="keyword">int</span> n1, string s2, <span class="keyword">int</span> n2)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="keyword">int</span>, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; memo;</span><br><span class="line">        <span class="keyword">int</span> now_n = <span class="number">0</span>;  <span class="comment">// from the nth letter of s1, to which will have one s2</span></span><br><span class="line">        <span class="keyword">int</span> len1 = s1.<span class="built_in">size</span>(), len2 = s2.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> max_n = len1 * n1;</span><br><span class="line">        <span class="keyword">int</span> now_num_s2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n, temp;</span><br><span class="line">        <span class="keyword">while</span> (now_n &lt; max_n) &#123;</span><br><span class="line">            n = now_n % len1;</span><br><span class="line">            <span class="keyword">if</span> (memo.<span class="built_in">find</span>(n) != memo.<span class="built_in">end</span>()) &#123;</span><br><span class="line">                <span class="comment">// now already found</span></span><br><span class="line">                <span class="comment">// 之前用了now_n这么多个，也就是用了now_n//len1这么多个s1，并且找到了now_num_s2这么多个s2</span></span><br><span class="line">                <span class="comment">// 现在需要做什么？现在需要跳回到data[n][0]这个位置，并且可以得到now_num_s2 - memo[n][1]这么多个s2</span></span><br><span class="line">                <span class="comment">// 需要用到多少s1呢？</span></span><br><span class="line">                <span class="keyword">int</span> need_n = n / len1 * len1 + memo[n].first;</span><br><span class="line">                <span class="keyword">while</span> (need_n % len1 != n) &#123;</span><br><span class="line">                    need_n = need_n / len1 * len1 + memo[need_n % len1].first;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 现在到了need_n这么多位的s1，也就是用了need_n/len1这么多个s1，就拿到了now_num_s2 - memo[n][1]这么多个s2</span></span><br><span class="line">                <span class="comment">// 还剩下max_n - now_n这么多个可以挥霍</span></span><br><span class="line">                <span class="keyword">int</span> add_whole = (max_n - now_n) / (need_n / len1 * len1);</span><br><span class="line">                now_num_s2 += add_whole * (now_num_s2 - memo[n].second + <span class="number">1</span>);</span><br><span class="line">                now_n += add_whole * (need_n / len1 * len1);</span><br><span class="line">                <span class="keyword">while</span> (now_n &lt; max_n) &#123;</span><br><span class="line">                    temp = memo[now_n % len1].first;</span><br><span class="line">                    now_n = now_n / len1 * len1 + temp;</span><br><span class="line">                    <span class="keyword">if</span> (now_n &gt; max_n) &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    now_num_s2 += <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> now_num_s2 / n2;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = <span class="built_in">checkWhere</span>(n, s1, len1, s2, len2, memo);</span><br><span class="line">            <span class="keyword">if</span> (temp == <span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            now_n = now_n / len1 * len1 + temp;</span><br><span class="line">            <span class="keyword">if</span> (now_n &gt; max_n) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            now_num_s2 += <span class="number">1</span>;</span><br><span class="line">            memo[n] = pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(temp, now_num_s2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> now_num_s2 / n2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/17/%E6%AF%8F%E6%97%A5leetcode-466/" data-id="ckqkjgmcl00l0x4c45zde1dfl" data-title="每日leetcode-466" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-每日leetcode-154" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/15/%E6%AF%8F%E6%97%A5leetcode-154/" class="article-date">
+  <time class="dt-published" datetime="2020-03-14T22:06:06.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/15/%E6%AF%8F%E6%97%A5leetcode-154/">每日leetcode-154</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol start="154">
+<li>寻找旋转排序数组中的最小值 II</li>
+</ol>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 <code>[0,1,2,4,5,6,7]</code> 可能变为 <code>[4,5,6,7,0,1,2]</code> )。</p>
+<p>请找出其中最小的元素。</p>
+<p>注意数组中可能存在重复的元素。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入:</strong> [1,3,5]<br><strong>输出:</strong> 1</p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入:</strong> [2,2,2,0,1]<br><strong>输出:</strong> 0</p>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>因为有可能左、右、中间都相等，所以需要两边分别二分看</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myMin</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left &gt;= right || nums[left] &lt; nums[right]) &#123;</span><br><span class="line">            <span class="keyword">return</span> nums[left];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[left] == nums[right]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; nums[left]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">myMin</span>(nums, left, mid);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[left]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">myMin</span>(nums, mid + <span class="number">1</span>, right);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">min</span>(<span class="built_in">myMin</span>(nums, left, mid - <span class="number">1</span>), <span class="built_in">myMin</span>(nums, mid + <span class="number">1</span>, right));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// left &gt; right</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; nums[right]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">myMin</span>(nums, left, mid);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[right]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">myMin</span>(nums, mid + <span class="number">1</span>, right);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// nums[mid] == nums[right]</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">min</span>(<span class="built_in">myMin</span>(nums, left, mid - <span class="number">1</span>), <span class="built_in">myMin</span>(nums, mid + <span class="number">1</span>, right));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">myMin</span>(nums, <span class="number">0</span>, nums.<span class="built_in">size</span>() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以优化一下合并中间的对left right大小的判断：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myMin</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left &gt;= right || nums[left] &lt; nums[right]) &#123;</span><br><span class="line">            <span class="keyword">return</span> nums[left];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt; nums[right]) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">myMin</span>(nums, left, mid);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &gt; nums[right]) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">myMin</span>(nums, mid + <span class="number">1</span>, right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// nums[mid] == nums[right]</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(<span class="built_in">myMin</span>(nums, left, mid - <span class="number">1</span>), <span class="built_in">myMin</span>(nums, mid + <span class="number">1</span>, right));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">myMin</span>(nums, <span class="number">0</span>, nums.<span class="built_in">size</span>() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="非递归的做法"><a href="#非递归的做法" class="headerlink" title="非递归的做法"></a>非递归的做法</h2><p>（题解里面提到的）在left、right、mid对应的都相等的时候，不是分别算求min，而是将r–</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (left &gt;= right || nums[left] &lt; nums[right]) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[left];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; nums[right]) &#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; nums[right]) &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/15/%E6%AF%8F%E6%97%A5leetcode-154/" data-id="ckqkjgmcf00kix4c41uy07feo" data-title="每日leetcode-154" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-每日leetcode-153" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/13/%E6%AF%8F%E6%97%A5leetcode-153/" class="article-date">
+  <time class="dt-published" datetime="2020-03-12T22:06:06.000Z" itemprop="datePublished">2020-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/13/%E6%AF%8F%E6%97%A5leetcode-153/">每日leetcode-153</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol start="153">
+<li>寻找旋转排序数组中的最小值</li>
+</ol>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 <code>[0,1,2,4,5,6,7]</code> 可能变为 <code>[4,5,6,7,0,1,2]</code> )。</p>
+<p>请找出其中最小的元素。</p>
+<p>你可以假设数组中不存在重复元素。</p>
+<p><strong>示例 1:</strong></p>
+<p><strong>输入:</strong> [3,4,5,1,2]<br><strong>输出:</strong> 1</p>
+<p><strong>示例 2:</strong></p>
+<p><strong>输入:</strong> [4,5,6,7,0,1,2]<br><strong>输出:</strong> 0</p>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>二分查找，里面涉及到两个判断</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[l] &lt;= nums[r]) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[l];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt;= nums[r]) &#123;</span><br><span class="line">                r = mid;  <span class="comment">// if mid == r, then l == r, so nums[l] == num[r]</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                l = mid + <span class="number">1</span>;  <span class="comment">// l won&#x27;t be bigger than r</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[r];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这里需要考虑：</p>
+<ul>
+<li>会不会越界（也就是会不会导致循环出去了但是没有返回的结果）</li>
+<li>会不会循环不停（就是更新完l和r之后，还是原来的范围）</li>
+</ul>
+<h2 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h2><p>直接在二分之后判断mid和右侧的关系，通过这个来更新</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[l] &lt;= nums[r]) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[l];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[mid + <span class="number">1</span>]) &#123; <span class="comment">// 在l和r不相等时，mid+1的下标是在范围内的</span></span><br><span class="line">                <span class="keyword">return</span> nums[mid + <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[l]) &#123;</span><br><span class="line">                l = mid + <span class="number">1</span>;  <span class="comment">// l won&#x27;t be bigger than r</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                r = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[r];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/13/%E6%AF%8F%E6%97%A5leetcode-153/" data-id="ckqkjgmce00kgx4c47i7c50h8" data-title="每日leetcode-153" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Gradle" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/12/Gradle/" class="article-date">
+  <time class="dt-published" datetime="2020-03-11T22:06:06.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/12/Gradle/">Gradle</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>官网：<a target="_blank" rel="noopener" href="https://gradle.org/">https://gradle.org</a></p>
+<h2 id="Gradle介绍"><a href="#Gradle介绍" class="headerlink" title="Gradle介绍"></a>Gradle介绍</h2><p>安装：直接看官网上面的说明 <a target="_blank" rel="noopener" href="https://gradle.org/install/">https://gradle.org/install/</a> 就好，Mac上面<code>brew install gradle</code></p>
+<p>环境变量配置：</p>
+<ul>
+<li>windows： <a target="_blank" rel="noopener" href="https://blog.csdn.net/xudaliang_/article/details/79213891">https://blog.csdn.net/xudaliang_/article/details/79213891</a></li>
+<li>Mac：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e9d035f30876">https://www.jianshu.com/p/e9d035f30876</a></li>
+</ul>
+<p>添加 Gradle 依赖 <a target="_blank" rel="noopener" href="https://blog.csdn.net/zxs9999/article/details/81484799">https://blog.csdn.net/zxs9999/article/details/81484799</a></p>
+<h2 id="Re-download-dependencies-and-sync-project-requires-network"><a href="#Re-download-dependencies-and-sync-project-requires-network" class="headerlink" title="Re-download dependencies and sync project (requires network)"></a>Re-download dependencies and sync project (requires network)</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8b76e3b52f5f">https://www.jianshu.com/p/8b76e3b52f5f</a></p>
+<blockquote>
+<p>找到“Build,Execution,Deployment”下的“gradle”，选中“Use default gradle wrapper(recommended)”</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/12/Gradle/" data-id="ckqkjgm7c003bx4c42568f86r" data-title="Gradle" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-linux-alias别名" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/12/linux-alias%E5%88%AB%E5%90%8D/" class="article-date">
+  <time class="dt-published" datetime="2020-03-11T22:06:06.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/12/linux-alias%E5%88%AB%E5%90%8D/">linux-alias别名</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>如：<code>alias python=&quot;python3&quot;</code></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/YMaster/p/9788938.html">https://www.cnblogs.com/YMaster/p/9788938.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/12/linux-alias%E5%88%AB%E5%90%8D/" data-id="ckqkjgmaa00d7x4c4d1kbb4e5" data-title="linux-alias别名" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java&amp;OOP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/12/Java&OOP/" class="article-date">
+  <time class="dt-published" datetime="2020-03-11T22:06:06.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/12/Java&OOP/">Java&amp;OOP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-OOP"><a href="#Java-OOP" class="headerlink" title="Java OOP"></a>Java OOP</h1><h2 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h2><p>类型</p>
+<p>接口：定义需要具有哪些属性</p>
+<p>类：比较复杂的结构、存储同一个类型的多个变量</p>
+<ul>
+<li>封装起来不同的属性，都扔到一个桶里面</li>
+<li>规定：记录下来的属性有啥&amp;能干啥</li>
+<li>实例化：变成一个东西<ul>
+<li>构造函数里面可以进行初始化</li>
+<li>没有初始化的：基本类型设置为默认值，类的设置为null</li>
+<li>从模具到东西</li>
+</ul>
+</li>
+<li>object：对象<ul>
+<li>内存一片区域</li>
+<li>分成几个部分，里面分别装着属性值（instance variables，实例变量，每个object都有自己的）<ul>
+<li>加上static之后就是类变量</li>
+</ul>
+</li>
+<li>通过.来得到他的实例变量引用，可以直接进行操作<ul>
+<li>解引用，de-reference</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>方法：<ul>
+<li>构造函数（上面实例化）</li>
+<li>accessor method：访问方法，只访问不修改 getter</li>
+<li>update method：更新方法，进行修改setter</li>
+</ul>
+</li>
+</ul>
+<h3 id="多态性"><a href="#多态性" class="headerlink" title="多态性"></a>多态性</h3><pre><code>- 重载：overloading，参数不同，方法名相同，一个类的多态性
+  - ![image-20200227093906231](Java OOP&amp;数据结构.assets/image-20200227093906231.png)
+- 重写：overriding，方法名参数都相同，父类子类
+- ![img](Java OOP&amp;数据结构.assets/overloading-vs-overriding.png)
+</code></pre>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><ul>
+<li><p>java通过引用操作自己的对象</p>
+</li>
+<li><p>new函数创建一个对象，把引用给了变量（引用变量），class是引用类型</p>
+<ul>
+<li><p>在heap堆上开一片地方放着</p>
+</li>
+<li><blockquote>
+<p><em>堆</em>Heap内存用于存放由new创建的对象和数组。在<em>堆</em>中分配的内存,由<em>java</em>虚拟机自动垃圾回收器来管理。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><blockquote>
+<p>Java默认new 对象则为强引用，如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;StringBuffer buffer = <span class="keyword">new</span> StringBuffer();</span><br></pre></td></tr></table></figure>
+
+<p>上面创建了一个StringBuffer对象，并将这个对象的强引用存到变量buffer中。如果一个对象通过一串强引用链接可到达，即使内存不足，也不会回收该对象。</p>
+<p>作者：挨踢小能手<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c54d1f00ca5f">https://www.jianshu.com/p/c54d1f00ca5f</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h3><ul>
+<li><p>不赋值默认为null，不同类型的null相等</p>
+</li>
+<li><p>不能转换为null，不能设置null类型</p>
+</li>
+<li><p>不能解引用</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="1定义"><a href="#1定义" class="headerlink" title="1定义"></a>1定义</h3><p>null 是所有引用类型的默认值。</p>
+<h3 id="2-转换"><a href="#2-转换" class="headerlink" title="2. 转换"></a>2. 转换</h3><p>null既不是对象也不是一种类型，它仅是一种特殊的值，你可以将其赋予任何引用类型，它还仅仅是一个特殊值,并不属于任何类型，用instanceof永远返回false。<br>不能将null赋给基本类型变量，例如int、double、float、boolean。如果将null赋值给包装类object，然后将object赋给各自的基本类型，编译器不会报，但是你将会在运行时期遇到空指针异常。<br>null可以被转化为任何引用类型,可以调用引用类型中的静态方法，但是不可以调用非静态方法，运行时会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class NullTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Object o &#x3D; (Object) null;</span><br><span class="line">        &#x2F;&#x2F;int i  &#x3D; null;</span><br><span class="line">        Integer i &#x3D; (Integer) null;</span><br><span class="line">        String s &#x3D; (String) null;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;o: &quot; + o + &quot;i: &quot; + i + &quot;s: &quot; + s);  &#x2F;&#x2F;o: nulli: nulls: null</span><br><span class="line">        System.out.println(o instanceof Object);  &#x2F;&#x2F;false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-运算"><a href="#3-运算" class="headerlink" title="3. 运算"></a>3. 运算</h3><p>null==null返回true,被转换为同种类型的null,都返回true,不同类型直接编译报错.<br>用String转换后的null可以进行字符串运算,这是因为字符串进行连接的时候,编译器对null进行了特别的优化,其实就是例化StringBuilder,在调用append()方法时对null的一个特别处理,当为null时,转化为“null”,最后调用toString()返回一个String对象.<br>用八大基本类型转换后的null,不可以进行基本类型的运算,否则会出现编译或者运行错误.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class NullTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Object o &#x3D; (Object) null;</span><br><span class="line">        Integer i &#x3D; (Integer) null;</span><br><span class="line">        Integer j &#x3D; (Integer) null;</span><br><span class="line">        String s &#x3D; (String) null;</span><br><span class="line">&#x2F;&#x2F;        System.out.println(Objects.equals(i, j));</span><br><span class="line">&#x2F;&#x2F;        System.out.println(i.equals(s));</span><br><span class="line"> &#x2F;&#x2F;       System.out.println(null &#x3D;&#x3D; null);</span><br><span class="line">&#x2F;&#x2F;        i &#x3D; i + 1;   &#x2F;&#x2F;运行时空指针</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;        System.out.println(2 &#x3D;&#x3D; null);</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;o: &quot; + o + &quot;i: &quot; + i + &quot;s: &quot; + s);</span><br><span class="line">        System.out.println(o instanceof Object);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-集合中的key"><a href="#4-集合中的key" class="headerlink" title="4. 集合中的key"></a>4. 集合中的key</h3><table>
+<thead>
+<tr>
+<th>集合类</th>
+<th>key</th>
+<th>value</th>
+<th>super</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HashTable</td>
+<td>不能为null</td>
+<td>不能为null</td>
+<td>Dictionary</td>
+<td>线程安全</td>
+</tr>
+<tr>
+<td>ConcurrentHashMap</td>
+<td>不能为null</td>
+<td>不能为null</td>
+<td>AbstractMap</td>
+<td>线程局部安全</td>
+</tr>
+<tr>
+<td>TreeMap</td>
+<td>不能为null</td>
+<td>可以为null</td>
+<td>AbstractMap</td>
+<td>线程不安全</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>可以为null</td>
+<td>可以为null</td>
+<td>AbstractMap</td>
+<td>线程不安全</td>
+</tr>
+</tbody></table>
+<p>hash表需要进行hash值运算，key不能为null好理解，如果map中value为null也好理解。<br>表中不好理解的是HashMap中key可以为null,看下面代码中对null有个特殊处理，索引位置为0。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6925065-619bd7c983cb75da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200" alt="img"></p>
+<p>image.png</p>
+<p>表中第二个不好理解的点是ConcurrentHashMap中value不能为null的问题。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6925065-f9cf245e2c44330c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200" alt="img"></p>
+<p>image.png</p>
+<p>作者：扎Zn了老Fe<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/83fc81baf115">https://www.jianshu.com/p/83fc81baf115</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<h3 id="OOP：Object-Oriented-Programming"><a href="#OOP：Object-Oriented-Programming" class="headerlink" title="OOP：Object Oriented Programming"></a>OOP：Object Oriented Programming</h3><ul>
+<li><p>基于object进行编程</p>
+</li>
+<li><p>数据&amp;行为</p>
+</li>
+</ul>
+<h4 id="四大特征"><a href="#四大特征" class="headerlink" title="四大特征"></a>四大特征</h4><ul>
+<li><p>抽象，封装（Encapsulation），继承（inheritance），多态（polymorphism）</p>
+<ul>
+<li>三大特性就是封装继承多态</li>
+</ul>
+</li>
+</ul>
+<h5 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h5><ul>
+<li><p>abstraction：抽象</p>
+<ul>
+<li><p>不用管内部怎么实现的，内部细节对于用户隐藏的</p>
+</li>
+<li><p>只暴露必要的/相关的操作&amp;数据</p>
+</li>
+<li><p>不同层次：函数层次和类层次</p>
+</li>
+<li><p>![image-20200227091723756](Java OOP&amp;数据结构.assets/image-20200227091723756.png)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h5><ul>
+<li><p>不要让别人单独看到，用private</p>
+<ul>
+<li><p>用setxxx和getxxx</p>
+</li>
+<li><blockquote>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>1.类内部可以自由修改<br>2.可以对成员变量更准确的控制<br>3.隐藏信息，保护数据<br>4.降低<em>耦合度</em></p>
+<p>耦合度：耦合性是编程中的一个判断代码模块构成质量的属性,不影响已有功能,但影响未来拓展,与之对应的是内聚性</p>
+<p>例如：卧室的窗户与墙壁，如果窗子是扣死在墙里的 ，那么修改窗子时，就必须修改墙，这就比较紧密了，但是如果你窗子是按照某种规格的 可以自由拆装的 那么修改的代价就小，耦合度也就低了<br>在程序中我们要求 高内聚，低耦合！<br>————————————————<br>版权声明：本文为CSDN博主「66Kevin」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44551646/article/details/93721343">https://blog.csdn.net/weixin_44551646/article/details/93721343</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h5><ul>
+<li>重载：overloading，参数不同，方法名相同，一个类的多态性</li>
+<li>重写：overriding，方法名参数都相同，父类子类<ul>
+<li>不想具有虚函数特性，就加上final</li>
+</ul>
+</li>
+</ul>
+<h5 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h5><ul>
+<li>继承：</li>
+</ul>
+<pre><code>- &gt;  继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。
+  &gt;
+  &gt;  ### 生活中的继承：
+  &gt;
+  &gt;  ![img](Java OOP&amp;数据结构.assets/14B0951E-FC75-47A3-B611-4E1883887339.jpg)
+  &gt;
+  &gt;  兔子和羊属于食草动物类，狮子和豹属于食肉动物类。
+  &gt;
+  &gt;  食草动物和食肉动物又是属于动物类。
+  &gt;
+  &gt;  所以继承需要符合的关系是：is-a，父类更通用，子类更具体。
+  &gt;
+  &gt;  虽然食草动物和食肉动物都是属于动物，但是两者的属性和行为上有差别，所以子类会具有父类的一般特性也会具有自身的特性。
+  &gt;
+  &gt;  ### 类的继承格式
+  &gt;
+  &gt;  在 Java 中通过 extends 关键字可以申明一个类是从另外一个类继承而来的，一般形式如下：
+  &gt;
+  &gt;  ## 类的继承格式
+  &gt;
+  &gt;  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 父类 </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> 子类 <span class="keyword">extends</span> 父类 </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  &gt;
+  &gt;  ### 为什么需要继承
+  &gt;
+  &gt;  接下来我们通过实例来说明这个需求。
+  &gt;
+  &gt;  开发动物类，其中动物分别为企鹅以及老鼠，要求如下：
+  &gt;
+  &gt;  - 企鹅：属性（姓名，id），方法（吃，睡，自我介绍）
+  &gt;  - 老鼠：属性（姓名，id），方法（吃，睡，自我介绍）
+
+  -   不支持多继承，但能支持多重继承：
+
+    - ![img](Java OOP&amp;数据结构.assets/types_of_inheritance-1.png)
+
+  - &gt; 子类拥有父类非 private 的属性、方法。
+    &gt;
+    &gt; 子类可以拥有自己的属性和方法，即子类可以对父类进行扩展。
+    &gt;
+    &gt; 子类可以用自己的方式实现父类的方法。
+</code></pre>
+<h6 id="Super、this"><a href="#Super、this" class="headerlink" title="Super、this"></a>Super、this</h6><blockquote>
+<h3 id="super-与-this-关键字"><a href="#super-与-this-关键字" class="headerlink" title="super 与 this 关键字"></a>super 与 this 关键字</h3><p>super关键字：我们可以通过super关键字来实现对父类成员的访问，用来引用当前对象的父类。</p>
+<p>this关键字：指向自己的引用。</p>
+</blockquote>
+<h6 id="Final"><a href="#Final" class="headerlink" title="Final"></a>Final</h6><blockquote>
+<h3 id="Final-1"><a href="#Final-1" class="headerlink" title="Final"></a>Final</h3><p>final 关键字声明类可以把类定义为不能继承的，即最终类；或者用于修饰方法，该方法不能被子类重写：</p>
+<ul>
+<li><p>声明类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> 类名 </span>&#123;<span class="comment">//类体&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>声明方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修饰符(<span class="keyword">public</span>/<span class="keyword">private</span>/<span class="keyword">default</span>/<span class="keyword">protected</span>) <span class="keyword">final</span> 返回值类型 方法名()&#123;<span class="comment">//方法体&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<ul>
+<li><blockquote>
+<p>子类也是父类，可以转换</p>
+<h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><p>子类是不继承父类的构造器（构造方法或者构造函数）的，它只是调用（隐式或显式）。如果父类的构造器带有参数，则必须在子类的构造器中显式地通过 <strong>super</strong> 关键字调用父类的构造器并配以适当的参数列表。</p>
+<p>如果父类构造器没有参数，则在子类的构造器中不需要使用 <strong>super</strong> 关键字调用父类构造器，系统会自动调用父类的无参构造器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SubClass 类继承</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">SubClass()&#123; <span class="comment">// 自动调用父类的无参数构造器</span></span><br><span class="line"> System.out.println(<span class="string">&quot;SubClass&quot;</span>);</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">SubClass</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123; </span><br><span class="line"> <span class="keyword">super</span>(<span class="number">300</span>);  <span class="comment">// 调用父类中带有参数的构造器</span></span><br><span class="line"> System.out.println(<span class="string">&quot;SubClass(int n):&quot;</span>+n);</span><br><span class="line"> <span class="keyword">this</span>.n = n;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+</li>
+</ul>
+<h6 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h6><ul>
+<li><blockquote>
+<p>Interface关键字用来声明一个接口。下面是接口声明的一个简单例子。</p>
+<h2 id="NameOfInterface-java-文件代码："><a href="#NameOfInterface-java-文件代码：" class="headerlink" title="NameOfInterface.java 文件代码："></a>NameOfInterface.java 文件代码：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 文件名 : NameOfInterface.java */</span></span><br><span class="line"><span class="keyword">import</span> java.lang.*;</span><br><span class="line"><span class="comment">//引入包</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">NameOfInterface</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="comment">//任何类型 final, static 字段</span></span><br><span class="line">   <span class="comment">//抽象方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接口有以下特性：</p>
+<ul>
+<li>接口是隐式抽象的，当声明一个接口的时候，不必使用<strong>abstract</strong>关键字。</li>
+<li>接口中每一个方法也是隐式抽象的，声明时同样不需要<strong>abstract</strong>关键字。</li>
+<li>接口中的方法都是公有的。</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>可以用<code>public class MammalInt implements Animal&#123;</code>来说明他要有这几个函数</p>
+</li>
+<li><blockquote>
+<h2 id="接口的继承"><a href="#接口的继承" class="headerlink" title="接口的继承"></a>接口的继承</h2><p>一个接口能继承另一个接口，和类之间的继承方式比较相似。接口的继承使用extends关键字，子接口继承父接口的方法。</p>
+<p>下面的Sports接口被Hockey和Football接口继承：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名: Sports.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHomeTeam</span><span class="params">(String name)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setVisitingTeam</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件名: Football.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Football</span> <span class="keyword">extends</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">homeTeamScored</span><span class="params">(<span class="keyword">int</span> points)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitingTeamScored</span><span class="params">(<span class="keyword">int</span> points)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endOfQuarter</span><span class="params">(<span class="keyword">int</span> quarter)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件名: Hockey.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Hockey</span> <span class="keyword">extends</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">homeGoalScored</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitingGoalScored</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endOfPeriod</span><span class="params">(<span class="keyword">int</span> period)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">overtimePeriod</span><span class="params">(<span class="keyword">int</span> ot)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口的多继承"><a href="#接口的多继承" class="headerlink" title="接口的多继承"></a>接口的多继承</h2><p>在Java中，类的多继承是不合法，但接口允许多继承。</p>
+<p>在接口的多继承中extends关键字只需要使用一次，在其后跟着继承接口。 如下所示：</p>
+<p>public interface Hockey extends Sports, Event</p>
+<p>以上的程序片段是合法定义的子接口，与类不同的是，接口允许多继承，而 Sports及 Event 可能定义或是继承相同的方法</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h6><ul>
+<li>使用abstract class来定义抽象类<ul>
+<li>不能被实例化，只能继承<ul>
+<li><blockquote>
+<h2 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h2><p>如果你想设计这样一个类，该类包含一个特别的成员方法，该方法的具体实现由它的子类确定，那么你可以在父类中声明该方法为抽象方法。</p>
+<p>Abstract 关键字同样可以用来声明抽象方法，抽象方法只包含一个方法名，而没有方法体。</p>
+<p>抽象方法没有定义，方法名后面直接跟一个分号，而不是花括号。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="keyword">private</span> String address;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> number;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">computePay</span><span class="params">()</span></span>;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//其余代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>声明抽象方法会造成以下两个结果：</p>
+<ul>
+<li>如果一个类包含抽象方法，那么该类必须是抽象类。</li>
+<li>任何子类必须重写父类的抽象方法，或者声明自身为抽象类。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ul>
+<li><p>值传递：</p>
+<ul>
+<li><p>对于基本类型 num ，赋值运算符会直接改变变量的值，原来的值被覆盖掉。<br>对于引用类型 str，赋值运算符会改变引用中所保存的地址，原来的地址被覆盖掉。<strong>但是原来的对象不会被改变（重要）。</strong></p>
+</li>
+<li><p>因为传递的是引用</p>
+</li>
+<li><p>作者：Intopass<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/31203609/answer/50992895">https://www.zhihu.com/question/31203609/answer/50992895</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</li>
+</ul>
+</li>
+<li><p>三：调用方法时发生了什么？<strong>参数传递基本上就是赋值操作</strong>。</p>
+  <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">第一个例子：基本类型</span><br><span class="line">void foo(int value) &#123;</span><br><span class="line">    value = 100;</span><br><span class="line">&#125;</span><br><span class="line">foo(num); // num 没有被改变</span><br><span class="line"></span><br><span class="line">第二个例子：没有提供改变自身方法的引用类型</span><br><span class="line">void foo(String text) &#123;</span><br><span class="line">    text = &quot;windows&quot;;</span><br><span class="line">&#125;</span><br><span class="line">foo(str); // str 也没有被改变</span><br><span class="line"></span><br><span class="line">第三个例子：提供了改变自身方法的引用类型</span><br><span class="line">StringBuilder sb = new StringBuilder(&quot;iphone&quot;);</span><br><span class="line">void foo(StringBuilder builder) &#123;</span><br><span class="line">    builder.append(&quot;4&quot;);</span><br><span class="line">&#125;</span><br><span class="line">foo(sb); // sb 被改变了，变成了&quot;iphone4&quot;。</span><br><span class="line"></span><br><span class="line">第四个例子：提供了改变自身方法的引用类型，但是不使用，而是使用赋值运算符。</span><br><span class="line">StringBuilder sb = new StringBuilder(&quot;iphone&quot;);</span><br><span class="line">void foo(StringBuilder builder) &#123;</span><br><span class="line">    builder = new StringBuilder(&quot;ipad&quot;);</span><br><span class="line">&#125;</span><br><span class="line">foo(sb); // sb 没有被改变，还是 &quot;iphone&quot;。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="final："><a href="#final：" class="headerlink" title="final："></a>final：</h3><ul>
+<li><blockquote>
+<p><strong>final关键字用法</strong></p>
+<p><strong>修饰类<strong><strong>当用</strong></strong>final去修饰一个类的时候，表示这个类不能被继承。<strong><strong>注意：</strong></strong>a. 被final修饰的类，final类中的成员变量可以根据自己的实际需要设计为fianl。<strong><strong>b. final类中的成员方法都会被隐式的指定为final方法。</strong></strong>说明：</strong>在自己设计一个类的时候，要想好这个类将来是否会被继承，如果可以被继承，则该类不能使用fianl修饰，在这里呢，一般来说工具类我们往往都会设计成为一个fianl类。在JDK中，被设计为final类的有String、System等。<strong>代码：</strong></p>
+<p>![img](Java OOP&amp;数据结构.assets/u=2411423419,2520809892&amp;fm=173&amp;app=25&amp;f=JPEG.jpeg)</p>
+<p>\2. <strong>修饰方法</strong></p>
+<p><strong>被final修饰的方法不能被重写。</strong></p>
+<p><strong>注意：</strong></p>
+<p><strong>a. 一个类的private方法会隐式的被指定为final方法。</strong></p>
+<p><strong>b. 如果父类中有final修饰的方法，那么子类不能去重写。</strong></p>
+<p><strong>代码：</strong></p>
+<p>![img](Java OOP&amp;数据结构.assets/u=876634331,3528497804&amp;fm=173&amp;app=25&amp;f=JPEG.jpeg)</p>
+<p><strong>3. 修饰成员变量</strong></p>
+<p><strong>注意：</strong></p>
+<p><strong>a. 必须要赋初始值，而且是只能初始化一次。</strong></p>
+<p><strong>代码：</strong></p>
+<p>![img](Java OOP&amp;数据结构.assets/u=433607551,3063868730&amp;fm=173&amp;app=25&amp;f=JPEG.jpeg)</p>
+<p>\4. <strong>修饰成员变量</strong></p>
+<p><strong>注意：</strong></p>
+<p><strong>a. 必须初始化值。</strong></p>
+<p><strong>b. 被fianl修饰的成员变量赋值，有两种方式：1、直接赋值 2、全部在构造方法中赋初值。</strong></p>
+<p><strong>c. 如果修饰的成员变量是基本类型，则表示这个变量的值不能改变。</strong></p>
+<p><strong>d. 如果修饰的成员变量是一个引用类型，则是说这个引用的地址的值不能修改，但是这个引用所指向的对象里面的内容还是可以改变的。</strong></p>
+<p><strong>代码：</strong></p>
+<p>![img](Java OOP&amp;数据结构.assets/u=682519727,1257936163&amp;fm=173&amp;app=25&amp;f=JPEG.jpeg)</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Static"><a href="#Static" class="headerlink" title="Static:"></a>Static:</h3><ul>
+<li><p>我们可以一句话来概括：方便在没有创建对象的情况下来进行调用。</p>
+</li>
+<li><blockquote>
+<p>2、static关键字修饰类</p>
+<p>java里面static一般用来修饰成员变量或函数。但有一种特殊用法是用static修饰内部类，普通类是不允许声明为静态的，只有内部类才可以。下面看看如何使用。</p>
+<p>![img](Java OOP&amp;数据结构.assets/8644ebf81a4c510f633a3493cb792028d52aa567.jpeg)</p>
+<p>如果没有用static修饰InterClass，则只能new 一个外部类实例。再通过外部实例创建内部类。</p>
+<p>3、static关键字修饰方法</p>
+<p>修饰方法的时候，其实跟类一样，可以直接通过类名来进行调用：</p>
+<p>![img](Java OOP&amp;数据结构.assets/4afbfbedab64034f7b86b4dc05e37c340b551d41.jpeg)</p>
+<p>4、static关键字修饰变量</p>
+<p>被static修饰的成员变量叫做静态变量，也叫做类变量，说明这个变量是属于这个类的，而不是属于是对象，没有被static修饰的成员变量叫做实例变量，说明这个变量是属于某个具体的对象的。</p>
+<p>我们同样可以使用上面的方式进行调用变量：</p>
+<p>![img](Java OOP&amp;数据结构.assets/d8f9d72a6059252d0a2aeb289fbb063e5bb5b987.jpeg)</p>
+<p>5、static关键字修饰代码块</p>
+<p>静态代码块在类第一次被载入时执行，在这里主要是想验证一下，类初始化的顺序。</p>
+<p>父类静态变量</p>
+<p>父类静态代码块</p>
+<p>子类静态变量</p>
+<p>子类静态代码块</p>
+<p>父类普通变量</p>
+<p>父类普通代码块</p>
+<p>父类构造函数</p>
+<p>子类普通变量</p>
+<p>子类普通代码块</p>
+<p>子类构造函数</p>
+<p>代码验证一下：</p>
+<p>首先我们定义一个父类</p>
+<p>![img](Java OOP&amp;数据结构.assets/faf2b2119313b07ed299fae9a6f7942696dd8cd4.jpeg)</p>
+<p>然后定义一个子类</p>
+<p>![img](Java OOP&amp;数据结构.assets/37d3d539b6003af36f87b1b99f0ac3591138b6cb.jpeg)</p>
+<p>看个结果</p>
+<p>![img](Java OOP&amp;数据结构.assets/d009b3de9c82d158c5bd9c3e2a2a1cddbc3e4223.jpeg)</p>
+<p>二、深入分析static关键字</p>
+<p>上面我们只是描述了一下static关键字的基本使用场景，下面主要解析一下static关键字的深层原理。要理解static为什么会有上面的特性，首先我们还需要从jvm内存说起。我们先给出一张java的内存结构图，然后通过案例描述一下static修饰的变量存放在哪？</p>
+<p>![img](Java OOP&amp;数据结构.assets/024f78f0f736afc33409f1471839eec1b74512b4.jpeg)</p>
+<p>从上图我们可以发现，静态变量存放在方法区中，并且是被所有线程所共享的。这里要说一下java堆，java堆存放的就是我们创建的一个个实例变量。</p>
+<p>堆区:</p>
+<p>1、存储的全部是对象，每个对象都包含一个与之对应的class的信息。(class的目的是得到操作指令)</p>
+<p>2、jvm只有一个堆区(heap)被所有线程共享，堆中不存放基本类型和对象引用，只存放对象本身</p>
+<p>栈区:</p>
+<p>1.每个线程包含一个栈区，栈中只保存基础数据类型的对象和自定义对象的引用(不是对象)，对象都存放在堆区中</p>
+<p>2、每个栈中的数据(原始类型和对象引用)都是私有的，其他栈不能访问。</p>
+<p>3、栈分为3个部分：基本类型变量区、执行环境上下文、操作指令区(存放操作指令)。、</p>
+<p>方法区:</p>
+<p>1、又叫静态区，跟堆一样，被所有的线程共享。方法区包含所有的class和static变量。</p>
+<p>2、方法区中包含的都是在整个程序中永远唯一的元素，如class，static变量。</p>
+<p>下面通过一个案例说明一下，从内存的角度来看，static关键字为什么会有这样的特性。</p>
+<p>首先我们定义一个类</p>
+<p>![img](Java OOP&amp;数据结构.assets/359b033b5bb5c9ea023ba6fe7e19b3053bf3b38c.jpeg)</p>
+<p>接下来我们从内存的角度出发，看看</p>
+<p>![img](Java OOP&amp;数据结构.assets/f3d3572c11dfa9ec028d9199c8f0f206908fc147.jpeg)</p>
+<p>从上面可以看到，我们的方法在调用的时候，是从方法区调用的，但是堆内存不一样，堆内存中的成员变量lastname是随着对象的产生而产生。随着对象的消失而消失。静态变量是所有线程共享的，所以不会消失。这也就能解释上面static关键字的真正原因。</p>
+<p>下面对static关键字进行一个小结：</p>
+<p>（1）特点：</p>
+<p>1、static是一个修饰符，用于修饰成员。（成员变量，成员函数）static修饰的成员变量 称之为静态变量或类变量。</p>
+<p>2、static修饰的成员被所有的对象共享。</p>
+<p>3、static优先于对象存在，因为static的成员随着类的加载就已经存在。</p>
+<p>4、static修饰的成员多了一种调用方式，可以直接被类名所调用，（类名.静态成员）。</p>
+<p>5、static修饰的数据是共享数据，对象中的存储的是特有的数据。</p>
+<p>（2）成员变量和静态变量的区别：</p>
+<p>1、生命周期的不同：</p>
+<p>成员变量随着对象的创建而存在随着对象的回收而释放。</p>
+<p>静态变量随着类的加载而存在随着类的消失而消失。</p>
+<p>2、调用方式不同：</p>
+<p>成员变量只能被对象调用。</p>
+<p>静态变量可以被对象调用，也可以用类名调用。（推荐用类名调用）</p>
+<p>3、别名不同：</p>
+<p>成员变量也称为实例变量。</p>
+<p>静态变量称为类变量。</p>
+<p>4、数据存储位置不同：</p>
+<p>成员变量数据存储在堆内存的对象中，所以也叫对象的特有数据。</p>
+<p>静态变量数据存储在方法区（共享数据区）的静态区，所以也叫对象的共享数据。</p>
+<p>（3）静态使用时需要注意的事项：</p>
+<p>1、静态方法只能访问静态成员。（非静态既可以访问静态，又可以访问非静态）</p>
+<p>2、静态方法中不可以使用this或者super关键字。</p>
+<p>3、主函数是静态的</p>
+<p>好了，static关键字就介绍道这里，谢谢您的支持，如有问题，还请批评指正</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>static代码块也叫静态代码块，是在类中独立于类成员的static语句块，可以有多个，位置可以随便放，它不在任何的方法体内，JVM加载类时会执行这些静态的代码块，如果static代码块有多个，JVM将按照它们在类中出现的先后顺序依次执行它们，每个代码块只会被执行一次。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test5</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> a;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> b;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    Test5.a=<span class="number">3</span>;</span><br><span class="line">    System.out.println(a);</span><br><span class="line">    Test5 t=<span class="keyword">new</span> Test5();</span><br><span class="line">    t.f();</span><br><span class="line">    t.b=<span class="number">1000</span>;</span><br><span class="line">    System.out.println(t.b);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    Test5.a=<span class="number">4</span>;</span><br><span class="line">    System.out.println(a);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// TODO 自动生成方法存根</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    Test5.a=<span class="number">5</span>;</span><br><span class="line">    System.out.println(a);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;</span><br><span class="line">  	System.out.println(<span class="string">&quot;hhahhahah&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>　　运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">hhahhahah</span><br><span class="line">1000</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+
+<p>　　利用静态代码块可以对一些static变量进行赋值，最后再看一眼这些例子，都一个static的main方法，这样JVM在运行main方法的时候可以直接调用而不用创建实例。　</p>
+<p>　　<strong>4、static和final一块用表示什么</strong><br>　　static final用来修饰成员变量和成员方法，可简单理解为“全局常量”！<br>　　对于变量，表示一旦给值就不可修改，并且通过类名可以访问。<br>　　对于方法，表示不可覆盖，并且可以通过类名直接访问。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="this"><a href="#this" class="headerlink" title="this:"></a>this:</h3><ul>
+<li>指代自己变量的，防止被覆盖</li>
+<li>可以调用对应的构造函数</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/12/Java&OOP/" data-id="ckqkjgmdo00onx4c44m1l093r" data-title="Java&amp;OOP" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/18/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/20/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Henry Fox&#39;s personal blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Henry Fox">
+<meta property="og:url" content="https://fengh16.github.io/page/23/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="Henry Fox&#39;s personal blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-每日leetcode-297" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/04/%E6%AF%8F%E6%97%A5leetcode-297/" class="article-date">
+  <time class="dt-published" datetime="2020-02-03T22:06:06.000Z" itemprop="datePublished">2020-02-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/02/04/%E6%AF%8F%E6%97%A5leetcode-297/">每日leetcode-297</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。</p>
+<p>请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
+<p>示例: </p>
+<p>你可以将以下二叉树：</p>
+<pre><code>1
+</code></pre>
+<p>   / <br>  2   3<br>     / <br>    4   5</p>
+<p>序列化为 “[1,2,3,null,null,4,5]”<br>提示: 这与 LeetCode 目前使用的方式一致，详情请参阅 LeetCode 序列化二叉树的格式。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。</p>
+<p>说明: 不要使用类的成员 / 全局 / 静态变量来存储状态，你的序列化和反序列化算法应该是无状态的。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree">https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h2 id="尝试"><a href="#尝试" class="headerlink" title="尝试"></a>尝试</h2><p>这道题最先想到的是直接把每一层每一个位置都编码，做成一个堆，这样就可以直接用下标/2得到父亲节点的位置：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Codec</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// Encodes a tree to a single string.</span></span><br><span class="line">    <span class="function">string <span class="title">serialize</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="keyword">int</span>, TreeNode*&gt; nodes;</span><br><span class="line">        nodes[<span class="number">0</span>] = root;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">bool</span> now_have_nodes = !!root;</span><br><span class="line">        string ans;</span><br><span class="line">        <span class="keyword">while</span> (now_have_nodes) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nodes[i]) &#123;</span><br><span class="line">                    stringstream ss;</span><br><span class="line">                    ss &lt;&lt; nodes[i]-&gt;val;</span><br><span class="line">                    string temp;</span><br><span class="line">                    ss &gt;&gt; temp;</span><br><span class="line">                    ans += temp + <span class="string">&quot;;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    ans += <span class="string">&quot;;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            now_have_nodes = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nodes[i]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (nodes[i]-&gt;left || nodes[i]-&gt;right) &#123;</span><br><span class="line">                        now_have_nodes = <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    nodes[<span class="number">2</span> * i + <span class="number">1</span>] = nodes[i]-&gt;right;</span><br><span class="line">                    nodes[<span class="number">2</span> * i] = nodes[i]-&gt;left;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    nodes[<span class="number">2</span> * i] = <span class="literal">NULL</span>;</span><br><span class="line">                    nodes[<span class="number">2</span> * i + <span class="number">1</span>] = <span class="literal">NULL</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            len *= <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">readNumber</span><span class="params">(<span class="keyword">const</span> string &amp; data, <span class="keyword">const</span> <span class="keyword">int</span> len, <span class="keyword">int</span> &amp; now_char_index, <span class="keyword">bool</span> &amp; now_have_number)</span> </span>&#123;</span><br><span class="line">        now_have_number = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> now_data = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> negative = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (data[now_char_index] == <span class="string">&#x27;-&#x27;</span>) &#123;</span><br><span class="line">            negative = <span class="literal">true</span>;</span><br><span class="line">            now_char_index ++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (now_char_index &lt; len) &#123;</span><br><span class="line">            <span class="keyword">if</span> (data[now_char_index] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; data[now_char_index] &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">                now_data = now_data * <span class="number">10</span> + data[now_char_index] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                now_have_number = <span class="literal">true</span>;</span><br><span class="line">                now_char_index++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (data[now_char_index] == <span class="string">&#x27;;&#x27;</span>) &#123;</span><br><span class="line">                now_char_index++;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                now_char_index++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> negative ? -now_data : now_data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Decodes your encoded data to tree.</span></span><br><span class="line">    <span class="function">TreeNode* <span class="title">deserialize</span><span class="params">(string data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = data.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> now_char_index = <span class="number">0</span>;  <span class="comment">// 当前的字符串字符的下标</span></span><br><span class="line">        <span class="keyword">int</span> now_level_size = <span class="number">1</span>;  <span class="comment">// 当前这一层的节点一共有多少个</span></span><br><span class="line">        <span class="keyword">int</span> now_data = <span class="number">0</span>;  <span class="comment">// 当前的读取的数字</span></span><br><span class="line">        <span class="keyword">bool</span> now_have_number = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        map&lt;<span class="keyword">int</span>, TreeNode*&gt; nodes;</span><br><span class="line">        map&lt;<span class="keyword">int</span>, TreeNode*&gt; nodes2;</span><br><span class="line">        now_data = <span class="built_in">readNumber</span>(data, len, now_char_index, now_have_number);</span><br><span class="line">        <span class="keyword">if</span> (!now_have_number) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode* ans = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(now_data);</span><br><span class="line">        nodes[<span class="number">0</span>] = ans;</span><br><span class="line">        <span class="comment">// 读入下面一层的</span></span><br><span class="line">        <span class="keyword">while</span> (now_char_index &lt; len) &#123;</span><br><span class="line">            now_level_size *= <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> now_node_index = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (now_node_index &lt; now_level_size) &#123;</span><br><span class="line">                now_data = <span class="built_in">readNumber</span>(data, len, now_char_index, now_have_number);</span><br><span class="line">                <span class="keyword">if</span> (now_have_number) &#123;</span><br><span class="line">                    nodes2[now_node_index] = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(now_data);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    nodes2[now_node_index] = <span class="literal">NULL</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nodes[now_node_index / <span class="number">2</span>]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (now_node_index % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                        nodes[now_node_index / <span class="number">2</span>]-&gt;left = nodes2[now_node_index];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        nodes[now_node_index / <span class="number">2</span>]-&gt;right = nodes2[now_node_index];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                now_node_index++;</span><br><span class="line">            &#125;</span><br><span class="line">            nodes = nodes2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>但是这样会超时，因为这样做的话比如</p>
+<pre><code>1
+</code></pre>
+<p>   / <br>      3<br>     / <br>    4   5</p>
+<p>就会被写成”1;;3;;;4;5;”，但是第三层前两个空的节点是没有必要存下来的。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>所以修改存储的方式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Codec</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// Encodes a tree to a single string.</span></span><br><span class="line">    <span class="function">string <span class="title">serialize</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        vector&lt;TreeNode*&gt; nodes;</span><br><span class="line">        nodes.<span class="built_in">push_back</span>(root);</span><br><span class="line">        <span class="keyword">int</span> len;</span><br><span class="line">        <span class="keyword">bool</span> now_have_nodes = !!root;</span><br><span class="line">        string ans;</span><br><span class="line">        <span class="keyword">while</span> (now_have_nodes) &#123;</span><br><span class="line">            len = nodes.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nodes[i]) &#123;</span><br><span class="line">                    stringstream ss;</span><br><span class="line">                    ss &lt;&lt; nodes[i]-&gt;val;</span><br><span class="line">                    string temp;</span><br><span class="line">                    ss &gt;&gt; temp;</span><br><span class="line">                    ans += temp + <span class="string">&quot;;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    ans += <span class="string">&quot;;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            now_have_nodes = <span class="literal">false</span>;</span><br><span class="line">            vector&lt;TreeNode*&gt; nodes2;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nodes[i]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (nodes[i]-&gt;left || nodes[i]-&gt;right) &#123;</span><br><span class="line">                        now_have_nodes = <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    nodes2.<span class="built_in">push_back</span>(nodes[i]-&gt;left);</span><br><span class="line">                    nodes2.<span class="built_in">push_back</span>(nodes[i]-&gt;right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            nodes = nodes2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">readNumber</span><span class="params">(<span class="keyword">const</span> string &amp; data, <span class="keyword">const</span> <span class="keyword">int</span> len, <span class="keyword">int</span> &amp; now_char_index, <span class="keyword">bool</span> &amp; now_have_number)</span> </span>&#123;</span><br><span class="line">        now_have_number = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">int</span> now_data = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> negative = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (data[now_char_index] == <span class="string">&#x27;-&#x27;</span>) &#123;</span><br><span class="line">            negative = <span class="literal">true</span>;</span><br><span class="line">            now_char_index ++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (now_char_index &lt; len) &#123;</span><br><span class="line">            <span class="keyword">if</span> (data[now_char_index] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; data[now_char_index] &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">                now_data = now_data * <span class="number">10</span> + data[now_char_index] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                now_have_number = <span class="literal">true</span>;</span><br><span class="line">                now_char_index++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (data[now_char_index] == <span class="string">&#x27;;&#x27;</span>) &#123;</span><br><span class="line">                now_char_index++;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                now_char_index++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> negative ? -now_data : now_data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Decodes your encoded data to tree.</span></span><br><span class="line">    <span class="function">TreeNode* <span class="title">deserialize</span><span class="params">(string data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = data.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> now_char_index = <span class="number">0</span>;  <span class="comment">// 当前的字符串字符的下标</span></span><br><span class="line">        <span class="keyword">int</span> now_data = <span class="number">0</span>;  <span class="comment">// 当前的读取的数字</span></span><br><span class="line">        <span class="keyword">bool</span> now_have_number = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;TreeNode*&gt; nodes;</span><br><span class="line">        now_data = <span class="built_in">readNumber</span>(data, len, now_char_index, now_have_number);</span><br><span class="line">        <span class="keyword">if</span> (!now_have_number) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode* ans = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(now_data);</span><br><span class="line">        nodes.<span class="built_in">push_back</span>(ans);</span><br><span class="line">        <span class="keyword">int</span> len_n = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 读入下面一层的</span></span><br><span class="line">        <span class="keyword">while</span> (now_char_index &lt; len) &#123;</span><br><span class="line">            vector&lt;TreeNode*&gt; nodes2;</span><br><span class="line">            <span class="keyword">int</span> parent_index = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (parent_index &lt; len_n) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!nodes[parent_index]) &#123;</span><br><span class="line">                    parent_index ++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; parent_index &lt; len_n; i++) &#123;</span><br><span class="line">                <span class="keyword">while</span> (parent_index &lt; len_n) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!nodes[parent_index]) &#123;</span><br><span class="line">                        parent_index ++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (parent_index &gt;= len_n) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                now_data = <span class="built_in">readNumber</span>(data, len, now_char_index, now_have_number);</span><br><span class="line">                TreeNode* now_node = <span class="literal">NULL</span>;</span><br><span class="line">                <span class="keyword">if</span> (now_have_number) &#123;</span><br><span class="line">                    now_node = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(now_data);</span><br><span class="line">                &#125;</span><br><span class="line">                nodes2.<span class="built_in">push_back</span>(now_node);</span><br><span class="line">                <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                    nodes[parent_index]-&gt;left = now_node;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    nodes[parent_index]-&gt;right = now_node;</span><br><span class="line">                    parent_index += <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            nodes = nodes2;</span><br><span class="line">            len_n = nodes.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">if</span> (len_n == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这样可以通过，但是时间不是最优。</p>
+<h2 id="最优"><a href="#最优" class="headerlink" title="最优"></a>最优</h2><p>看到的一个20ms的提交代码，使用queue，避免了我刚才用vector的复制操作；用换行作为分隔符，直接就可以用getline读取：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Codec</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Encodes a tree to a single string.</span></span><br><span class="line">    <span class="function">string <span class="title">serialize</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        queue&lt;TreeNode *&gt; q;</span><br><span class="line">        q.<span class="built_in">push</span>(root);</span><br><span class="line">        ostringstream oss;</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            TreeNode *cur = q.<span class="built_in">front</span>();</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span>(cur == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                oss &lt;&lt; <span class="string">&quot;null&quot;</span> &lt;&lt; endl;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                oss &lt;&lt; cur-&gt;val &lt;&lt; endl;</span><br><span class="line">                q.<span class="built_in">push</span>(cur-&gt;left);</span><br><span class="line">                q.<span class="built_in">push</span>(cur-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// cout &lt;&lt; oss.str();</span></span><br><span class="line">        <span class="keyword">return</span> oss.<span class="built_in">str</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode *<span class="title">decodeNode</span><span class="params">(<span class="keyword">const</span> string &amp;data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(data == <span class="string">&quot;null&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">TreeNode</span>(<span class="built_in">stoi</span>(data.<span class="built_in">c_str</span>()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Decodes your encoded data to tree.</span></span><br><span class="line">    <span class="function">TreeNode* <span class="title">deserialize</span><span class="params">(string data)</span> </span>&#123;</span><br><span class="line">        string buffer;</span><br><span class="line">        <span class="function">istringstream <span class="title">iss</span><span class="params">(data)</span></span>;</span><br><span class="line">        TreeNode *root;</span><br><span class="line">        <span class="built_in">getline</span>(iss, buffer);</span><br><span class="line">        root = <span class="built_in">decodeNode</span>(buffer);</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        queue&lt;TreeNode *&gt; q;</span><br><span class="line">        q.<span class="built_in">push</span>(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            TreeNode *cur = q.<span class="built_in">front</span>();</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="built_in">getline</span>(iss, buffer);</span><br><span class="line">            cur-&gt;left = <span class="built_in">decodeNode</span>(buffer);</span><br><span class="line">            <span class="built_in">getline</span>(iss, buffer);</span><br><span class="line">            cur-&gt;right = <span class="built_in">decodeNode</span>(buffer);</span><br><span class="line">            <span class="keyword">if</span>(cur-&gt;left) q.<span class="built_in">push</span>(cur-&gt;left);</span><br><span class="line">            <span class="keyword">if</span>(cur-&gt;right) q.<span class="built_in">push</span>(cur-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/02/04/%E6%AF%8F%E6%97%A5leetcode-297/" data-id="ckqkjgmck00kux4c40p9mhsnc" data-title="每日leetcode-297" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-R语言笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/01/21/R%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2020-01-20T22:06:06.000Z" itemprop="datePublished">2020-01-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/01/21/R%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/">R语言笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>来自<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2a1a2ca1a916">https://www.jianshu.com/p/2a1a2ca1a916</a> 和<a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/7c35989b534de518964bcf84b9d528ea80c72f38.html?from=search">https://wenku.baidu.com/view/7c35989b534de518964bcf84b9d528ea80c72f38.html?from=search</a></p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><img src="https://upload-images.jianshu.io/upload_images/5060560-e923acb6e4093ba6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="符号"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-75cf7b2bfbe9bcd1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运算"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-a6a8e69cfaaa92d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="比较"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-4baa2c50d9a900d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="逻辑1"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-74909bc3b3c9524a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="逻辑2"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6d2c515f8c0368b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="变量列表&amp;清除"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-7b3225505deb8822.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据类型4种"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e6cdf5bfde923cb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数值型"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-079708ea501f4187.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="字符型"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ce267b1b4c87da70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="逻辑型"></p>
+<h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建向量</span></span><br><span class="line">a &lt;-<span class="built_in">c</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">b&lt;-<span class="built_in">c</span>(<span class="string">&quot;one&quot;</span>, <span class="string">&quot;two&quot;</span>, <span class="string">&quot;three&quot;</span>)</span><br><span class="line"><span class="built_in">c</span>&lt;-<span class="built_in">c</span>(<span class="literal">TRUE</span>, <span class="literal">FALSE</span>, <span class="literal">TRUE</span>, <span class="literal">TRUE</span>, <span class="literal">FALSE</span>)</span><br><span class="line"><span class="comment">#向量索引</span></span><br><span class="line">a[<span class="number">2</span>] <span class="comment">#第二个元素</span></span><br><span class="line">a[-<span class="number">2</span>] <span class="comment">#删除第二个元素</span></span><br><span class="line">a[<span class="built_in">c</span>(<span class="number">2</span>:<span class="number">4</span>)] <span class="comment">#取出第二到第四个元素</span></span><br></pre></td></tr></table></figure>
+
+<p>下标从1开始！！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/01/21/R%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" data-id="ckqkjgm8q007xx4c438mk3yj8" data-title="R语言笔记" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-R语言在mac上的配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/01/20/R%E8%AF%AD%E8%A8%80%E5%9C%A8mac%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2020-01-19T22:06:06.000Z" itemprop="datePublished">2020-01-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/01/20/R%E8%AF%AD%E8%A8%80%E5%9C%A8mac%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE/">R语言在mac上的配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>可以参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1a0f25086e8b">https://www.jianshu.com/p/1a0f25086e8b</a></p>
+<p>R语言：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/">https://mirrors.tuna.tsinghua.edu.cn/CRAN/</a> 里面下载，<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/macosx/R-3.6.2.pkg">https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/macosx/R-3.6.2.pkg</a></p>
+<p>RStudio官方网站下载打不开（<a target="_blank" rel="noopener" href="https://download1.rstudio.org/desktop/macos/RStudio-1.2.5033.dmg%EF%BC%89%EF%BC%8C%E6%89%80%E4%BB%A5%E7%94%A8%E7%BD%91%E4%B8%8A%E7%9A%84%E4%B8%80%E4%B8%AARStudio%EF%BC%88http://www.pc6.com/mac/178976.html%EF%BC%89">https://download1.rstudio.org/desktop/macos/RStudio-1.2.5033.dmg），所以用网上的一个RStudio（http://www.pc6.com/mac/178976.html）</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/01/20/R%E8%AF%AD%E8%A8%80%E5%9C%A8mac%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE/" data-id="ckqkjgm8r007zx4c48bnu7j8q" data-title="R语言在mac上的配置" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Mac-QQ视频没有声音" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/01/19/Mac-QQ%E8%A7%86%E9%A2%91%E6%B2%A1%E6%9C%89%E5%A3%B0%E9%9F%B3/" class="article-date">
+  <time class="dt-published" datetime="2020-01-18T22:06:06.000Z" itemprop="datePublished">2020-01-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/01/19/Mac-QQ%E8%A7%86%E9%A2%91%E6%B2%A1%E6%9C%89%E5%A3%B0%E9%9F%B3/">Mac-QQ视频没有声音</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>因为Mac没有请求麦克风权限。</p>
+<p>先发送一次语音，它请求了权限就可以了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/01/19/Mac-QQ%E8%A7%86%E9%A2%91%E6%B2%A1%E6%9C%89%E5%A3%B0%E9%9F%B3/" data-id="ckqkjgm7r0050x4c429wn7spp" data-title="Mac-QQ视频没有声音" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-信息熵" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/01/16/%E4%BF%A1%E6%81%AF%E7%86%B5/" class="article-date">
+  <time class="dt-published" datetime="2020-01-15T22:06:06.000Z" itemprop="datePublished">2020-01-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/01/16/%E4%BF%A1%E6%81%AF%E7%86%B5/">信息熵</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>一句话里面包含的信息有大有小，提供的信息就可以用信息熵来衡量。</p>
+<p>比如抛硬币，结果提供的信息就比摇骰子得到的结果的信息量要少。</p>
+<p>比如一个数字可能是1～4，最少要用两个判断来说明到底是几。所以就是2bit</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/89958871">https://zhuanlan.zhihu.com/p/89958871</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38381682/article/details/79843060">https://blog.csdn.net/weixin_38381682/article/details/79843060</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/saltriver/article/details/53056816">https://blog.csdn.net/saltriver/article/details/53056816</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/01/16/%E4%BF%A1%E6%81%AF%E7%86%B5/" data-id="ckqkjgmbf00gzx4c45kbh8yid" data-title="信息熵" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Python-PIPE" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/12/29/Python-PIPE/" class="article-date">
+  <time class="dt-published" datetime="2019-12-28T22:06:06.000Z" itemprop="datePublished">2019-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/12/29/Python-PIPE/">Python-PIPE</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> Popen, PIPE</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    p = Popen(<span class="string">&#x27;cmd.exe&#x27;</span>, shell=<span class="literal">True</span>, stdin=PIPE, stdout=PIPE)</span><br><span class="line">    <span class="built_in">print</span>(p.stdout.readline())</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/12/29/Python-PIPE/" data-id="ckqkjgm8b006ux4c40i78gvqx" data-title="Python-PIPE" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-每日leetcode-488" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/12/29/%E6%AF%8F%E6%97%A5leetcode-488/" class="article-date">
+  <time class="dt-published" datetime="2019-12-28T22:06:06.000Z" itemprop="datePublished">2019-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/12/29/%E6%AF%8F%E6%97%A5leetcode-488/">每日leetcode-488</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>回忆一下祖玛游戏。现在桌上有一串球，颜色有红色(R)，黄色(Y)，蓝色(B)，绿色(G)，还有白色(W)。 现在你手里也有几个球。</p>
+<p>每一次，你可以从手里的球选一个，然后把这个球插入到一串球中的某个位置上（包括最左端，最右端）。接着，如果有出现三个或者三个以上颜色相同的球相连的话，就把它们移除掉。重复这一步骤直到桌上所有的球都被移除。</p>
+<p>找到插入并可以移除掉桌上所有球所需的最少的球数。如果不能移除桌上所有的球，输出 -1 。</p>
+<p>示例:<br>输入: “WRRBBW”, “RB”<br>输出: -1<br>解释: WRRBBW -&gt; WRR[R]BBW -&gt; WBBW -&gt; WBB[B]W -&gt; WW （翻译者标注：手上球已经用完，桌上还剩两个球无法消除，返回-1）</p>
+<p>输入: “WWRRBBWW”, “WRBRW”<br>输出: 2<br>解释: WWRRBBWW -&gt; WWRR[R]BBWW -&gt; WWBBWW -&gt; WWBB[B]WW -&gt; WWWW -&gt; empty</p>
+<p>输入:”G”, “GGGGG”<br>输出: 2<br>解释: G -&gt; G[G] -&gt; GG[G] -&gt; empty </p>
+<p>输入: “RBYYBBRRB”, “YRBGB”<br>输出: 3<br>解释: RBYYBBRRB -&gt; RBYY[Y]BBRRB -&gt; RBBBRRB -&gt; RRRB -&gt; B -&gt; B[B] -&gt; BB[B] -&gt; empty<br>标注:</p>
+<p>你可以假设桌上一开始的球中，不会有三个及三个以上颜色相同且连着的球。<br>桌上的球不会超过20个，输入的数据中代表这些球的字符串的名字是 “board” 。<br>你手中的球不会超过5个，输入的数据中代表这些球的字符串的名字是 “hand”。<br>输入的两个字符串均为非空字符串，且只包含字符 ‘R’,’Y’,’B’,’G’,’W’。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>简单的深搜：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">simplify</span><span class="params">(<span class="keyword">const</span> string &amp;s1, <span class="keyword">const</span> string &amp;s2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len1 = s1.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> len2 = s2.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (len1 == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> s2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (len2 == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> s1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (s1[len1 - <span class="number">1</span>] == s2[<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (len1 &gt; <span class="number">1</span> &amp;&amp; s1[len1 - <span class="number">2</span>] == s1[len1 - <span class="number">1</span>] &amp;&amp; len2 &gt; <span class="number">1</span> &amp;&amp; s2[<span class="number">0</span>] == s2[<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">simplify</span>(s1.<span class="built_in">substr</span>(<span class="number">0</span>, len1 - <span class="number">2</span>), s2.<span class="built_in">substr</span>(<span class="number">2</span>, len2 - <span class="number">2</span>));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (len1 &gt; <span class="number">1</span> &amp;&amp; s1[len1 - <span class="number">2</span>] == s1[len1 - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">simplify</span>(s1.<span class="built_in">substr</span>(<span class="number">0</span>, len1 - <span class="number">2</span>), s2.<span class="built_in">substr</span>(<span class="number">1</span>, len2 - <span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (len2 &gt; <span class="number">1</span> &amp;&amp; s2[<span class="number">0</span>] == s2[<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">simplify</span>(s1.<span class="built_in">substr</span>(<span class="number">0</span>, len1 - <span class="number">1</span>), s2.<span class="built_in">substr</span>(<span class="number">2</span>, len2 - <span class="number">2</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s1 + s2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myMin</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> ua = a, ub = b;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in"><span class="keyword">int</span></span>(ua &lt; ub ? ua : ub);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMinStep</span><span class="params">(string board, string hand)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = board.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> handlen = hand.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (handlen == <span class="number">9</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        set&lt;<span class="keyword">char</span>&gt; ans;</span><br><span class="line">        <span class="keyword">int</span> min_ans = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; handlen; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">char</span> c = hand[i];</span><br><span class="line">            <span class="keyword">if</span> (ans.<span class="built_in">count</span>(c) == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// check</span></span><br><span class="line">                ans.<span class="built_in">insert</span>(c);</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; len; index++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (board[index] == c)</span><br><span class="line">                    &#123;</span><br><span class="line">                        string temp_ans = <span class="built_in">simplify</span>(board.<span class="built_in">substr</span>(<span class="number">0</span>, index + <span class="number">1</span>), board.<span class="built_in">substr</span>(index, len - index));</span><br><span class="line">                        string temp_hand = hand.<span class="built_in">substr</span>(<span class="number">0</span>, i) + hand.<span class="built_in">substr</span>(i + <span class="number">1</span>, handlen - i - <span class="number">1</span>);</span><br><span class="line">                        <span class="keyword">int</span> now_min = <span class="built_in">findMinStep</span>(temp_ans, temp_hand) + <span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">if</span> (now_min &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                            min_ans = <span class="built_in">myMin</span>(now_min, min_ans);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="comment">// avoid extra checks</span></span><br><span class="line">                        <span class="keyword">if</span> (index &lt; len - <span class="number">1</span> &amp;&amp; board[index] == board[index + <span class="number">1</span>])</span><br><span class="line">                        &#123;</span><br><span class="line">                            index++;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// cout &lt;&lt; min_ans &lt;&lt; &quot;: &quot; &lt;&lt; board &lt;&lt; &quot;   &quot; &lt;&lt; hand &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">return</span> min_ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/12/29/%E6%AF%8F%E6%97%A5leetcode-488/" data-id="ckqkjgmcn00l4x4c41az1ffew" data-title="每日leetcode-488" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-commit之后撤销-修改" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/12/23/commit%E4%B9%8B%E5%90%8E%E6%92%A4%E9%94%80-%E4%BF%AE%E6%94%B9/" class="article-date">
+  <time class="dt-published" datetime="2019-12-22T22:06:06.000Z" itemprop="datePublished">2019-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/12/23/commit%E4%B9%8B%E5%90%8E%E6%92%A4%E9%94%80-%E4%BF%AE%E6%94%B9/">commit之后撤销-修改</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lfxiao/p/9378763.html">https://www.cnblogs.com/lfxiao/p/9378763.html</a></p>
+<p>git reset –soft HEAD~1</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/12/23/commit%E4%B9%8B%E5%90%8E%E6%92%A4%E9%94%80-%E4%BF%AE%E6%94%B9/" data-id="ckqkjgm9c009xx4c40wf25ysp" data-title="commit之后撤销-修改" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-社交网络可视化库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/12/22/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BA%93/" class="article-date">
+  <time class="dt-published" datetime="2019-12-21T22:06:06.000Z" itemprop="datePublished">2019-12-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/12/22/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BA%93/">社交网络可视化库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>python： <a target="_blank" rel="noopener" href="https://networkx.github.io/documentation/stable/tutorial.html">https://networkx.github.io/documentation/stable/tutorial.html</a></p>
+<p>gephi软件：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34440201/article/details/88871160">https://blog.csdn.net/qq_34440201/article/details/88871160</a></p>
+<p>R语言：<a target="_blank" rel="noopener" href="http://www.sohu.com/a/219456356_466874">http://www.sohu.com/a/219456356_466874</a></p>
+<p>Parallel Set：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/350503470">https://www.zhihu.com/question/350503470</a></p>
+<p>Excel：NodeXL<br><a target="_blank" rel="noopener" href="http://www.360doc.com/content/12/0821/17/1188133_231558607.shtml">http://www.360doc.com/content/12/0821/17/1188133_231558607.shtml</a></p>
+<p>JS：VIS Network<br><a target="_blank" rel="noopener" href="https://visjs.github.io/vis-network/examples/">https://visjs.github.io/vis-network/examples/</a></p>
+<p>可视化库总结：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f25f2f2d759b?utm_campaign=hugo&amp;utm_medium=reader_share&amp;utm_content=note">https://www.jianshu.com/p/f25f2f2d759b?utm_campaign=hugo&amp;utm_medium=reader_share&amp;utm_content=note</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/12/22/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BA%93/" data-id="ckqkjgmcy00m8x4c4d3wzd8u0" data-title="社交网络可视化库" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Antlr4的c++版本（visual-studio）使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/12/18/Antlr4%E7%9A%84c++%E7%89%88%E6%9C%AC%EF%BC%88visual-studio%EF%BC%89%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-12-17T22:06:06.000Z" itemprop="datePublished">2019-12-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/12/18/Antlr4%E7%9A%84c++%E7%89%88%E6%9C%AC%EF%BC%88visual-studio%EF%BC%89%E4%BD%BF%E7%94%A8/">Antlr4的c++版本（visual-studio）使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="官方demo"><a href="#官方demo" class="headerlink" title="官方demo"></a>官方demo</h1><p>按照官网首页配置好，测试能够使用antlr4和grun命令之后：</p>
+<ul>
+<li>下载<a target="_blank" rel="noopener" href="https://github.com/antlr/antlr4/tree/master/runtime/Cpp">https://github.com/antlr/antlr4/tree/master/runtime/Cpp</a>中的所有文件</li>
+<li>运行generate命令（在<a target="_blank" rel="noopener" href="https://github.com/antlr/antlr4/tree/master/runtime/Cpp/demo/">https://github.com/antlr/antlr4/tree/master/runtime/Cpp/demo/</a>目录下，执行<code>antlr4 -Dlanguage=Cpp -listener -visitor -o generated/ -package antlrcpptest TLexer.g4 TParser.g4</code></li>
+<li>用VS打开其中的sln项目（<a target="_blank" rel="noopener" href="https://github.com/antlr/antlr4/blob/master/runtime/Cpp/demo/Windows/antlr4cpp-vs2015.sln">https://github.com/antlr/antlr4/blob/master/runtime/Cpp/demo/Windows/antlr4cpp-vs2015.sln</a>，注意vs2013及以上的版本才行，因为这样的版本才有完整的C++11支持</li>
+<li>设置<code>antlr4cpp-demo</code>为启动项目，启动即可在【调试】输出中（不是控制台那个黑框）看到输出的示例<br><img src="https://upload-images.jianshu.io/upload_images/5060560-a0da147d83e7f75d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="example"></li>
+</ul>
+<h1 id="创建自己的项目"><a href="#创建自己的项目" class="headerlink" title="创建自己的项目"></a>创建自己的项目</h1><p>如果要自己创建antlr4的项目，在刚才几步能正常执行之后，在【这个刚刚打开的解决方案里面】创建自己的项目：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-03cce007d8c647a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建项目"></p>
+<p>注意选择【添加到解决方案】。</p>
+<p>修改以下属性：</p>
+<ul>
+<li>【新建的项目】里【引用】右键【添加引用】，选上antlr4cpp-vs2015</li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-5d1c52533fa676dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加引用"></li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-aa529d4e8c15c021.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="antlr4cpp-vs2015"></li>
+<li>【源文件】-右键【添加】-【现有项】，选中上面几级目录的demo\generated文件夹下所有h、cpp文件</li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-e424219def2c5ad6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加generate文件"></li>
+<li>新建一个main.cpp，里面复制过来<code>antlr4cpp-demo</code>的main.cpp</li>
+<li>在【新建的项目】上右键【属性】打开属性页面（这时，单击<code>antlr4cpp-demo</code>这个项目会切换到这个项目的对应属性，可以直接方便地复制粘贴），把<code>antlr4cpp-demo</code>的以下属性复制过来：<ul>
+<li>复制【输出目录】</li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-c9d982df781eb558.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="输出目录"></li>
+<li>修改【字符集】为Unicode</li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-54b0c2f774f6d3cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="字符集"></li>
+<li>复制【C/C++】-【常规】-【附加包含目录】</li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-5f03da6de34c3b5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="附加包含目录"></li>
+</ul>
+</li>
+<li>右上角【配置管理器】-找到这个项目后【编辑】，重命名为Debug DLL</li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-9e0b8665f24fa304.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="编辑"></li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-44d128041d7d7a35.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="重命名"></li>
+<li>运行&amp;改编码（选择是，因为之前把字符集改成了Unicode）</li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-e72a030680c4e803.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="改编码"></li>
+</ul>
+<p>之后就可以运行了！</p>
+<h1 id="LIB"><a href="#LIB" class="headerlink" title="LIB"></a>LIB</h1><h2 id="LIB介绍："><a href="#LIB介绍：" class="headerlink" title="LIB介绍："></a>LIB介绍：</h2><p>LIB生成&amp;使用：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/TenosDoIt/p/3203137.html">https://www.cnblogs.com/TenosDoIt/p/3203137.html</a></p>
+<h3 id="LIB创建"><a href="#LIB创建" class="headerlink" title="LIB创建"></a>LIB创建</h3><p>用桌面向导创建一个空的LIB</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-19fa7dcfd9253b41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="桌面向导"></p>
+<p>弹出的应用程序类型选择.lib</p>
+<p>新建<code>MyLIB.h</code></p>
+<figure class="highlight h"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> k;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">testclass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    testclass();</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><code>MyLIB.cpp</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;MyLIB.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; a &lt;&lt; <span class="string">&quot;lib gen\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> k = <span class="number">222</span>;</span><br><span class="line"></span><br><span class="line">testclass::<span class="built_in">testclass</span>()</span><br><span class="line">&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;123\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testclass::print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;this is testcalss\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后设置为启动项目，生成就可以得到lib文件：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-33084ff3248ad33c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="生成lib"></p>
+<p>【输出】-【生成】可以看到目录</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-55582a5f367d6fc5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="生成"></p>
+<h3 id="LIB使用-引用"><a href="#LIB使用-引用" class="headerlink" title="LIB使用-引用"></a>LIB使用-引用</h3><p>使用：新建空项目，添加引用，创建一个头文件把之前头文件的东西复制进来</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1328cd834bbe23cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="引用&amp;头文件"></p>
+<p>新建一个<code>main.cpp</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;MyLIB.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">fun</span>(<span class="number">4</span>);</span><br><span class="line">    std::cout &lt;&lt; k &lt;&lt; std::endl;</span><br><span class="line">    testclass tc;</span><br><span class="line">    tc.<span class="built_in">print</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="LIB使用-复制LIB文件"><a href="#LIB使用-复制LIB文件" class="headerlink" title="LIB使用-复制LIB文件"></a>LIB使用-复制LIB文件</h3><p>找到lib文件，复制到main.cpp目录下，复制头文件过来，复制<code>#pragma comment(lib, &quot;lib.lib&quot;)</code>到main.cpp文件中main函数上面即可。</p>
+<h2 id="ANTLR的lib生成"><a href="#ANTLR的lib生成" class="headerlink" title="ANTLR的lib生成"></a>ANTLR的lib生成</h2><p>antlr4cpp-antlr2015这个项目属性里面改成配置类型-静态库，生成后复制得到的lib文件到自己的项目目录下。</p>
+<p>复制<code>antlr4-runtime.h</code>等所有头文件到自己的项目目录下。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/12/18/Antlr4%E7%9A%84c++%E7%89%88%E6%9C%AC%EF%BC%88visual-studio%EF%BC%89%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm6i000hx4c4bldge1b4" data-title="Antlr4的c++版本（visual-studio）使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/22/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><a class="page-number" href="/page/25/">25</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/24/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

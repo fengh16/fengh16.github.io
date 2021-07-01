@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>阿里云windows服务器配置 | Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="购买首先到阿里云去购买服务器：  新用户74元&#x2F;年的云服务器：阿里云 学生机，10元&#x2F;月的云服务器：阿里云学生机  选择的时候选Windows Server 2019版即可：  之后到控制台，去设置密码（控制台——云服务器ECS——找到服务器实例点进去——密码密钥——重置实例密码）  修改之后就可以用用户名：administrator ；密码：刚才设置的密码 进行登陆了。 登陆点击远程连接，即可登">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里云windows服务器配置">
+<meta property="og:url" content="https://fengh16.github.io/2020/03/31/%E9%98%BF%E9%87%8C%E4%BA%91windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="购买首先到阿里云去购买服务器：  新用户74元&#x2F;年的云服务器：阿里云 学生机，10元&#x2F;月的云服务器：阿里云学生机  选择的时候选Windows Server 2019版即可：  之后到控制台，去设置密码（控制台——云服务器ECS——找到服务器实例点进去——密码密钥——重置实例密码）  修改之后就可以用用户名：administrator ；密码：刚才设置的密码 进行登陆了。 登陆点击远程连接，即可登">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-7ce51d289d0d8bb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-da5d35d85f455e8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-4312d1caeffdb9a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-0d2bfa824e90c065.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-8d8080c9676ab4cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-1981452d9e981619.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-329242731baf4178.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-e43e97b081bcd21d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-804cbaa53bfe5b04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-6ed486b081bcd217.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-6c9ece782d8013e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-dbbafddb093d0d11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-120fc5dbe0ec8a6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-059e32a8c5af8a07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-ce0a963c1605969c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-03cc5c9a60367a43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-c6651a56d16e8f87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-0175ba7424e952f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-475fa27498c287b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-30fdce2c37f907fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-22e1a067277d0c81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-c6858ed02278c8d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-ccf696c7b02d554e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-a5c43a57914e711f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-706dc9333eff27cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-e17806060dde9a2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-704320a4a404eae6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-706dc9333eff27cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-c7c2d09acef1aa85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-ad3f06102c824029.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-f2dc0a99773c86a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-2aa0798234eac2a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-8825e9ed1a5d7bd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-936a5250ab8c1dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2020-03-30T22:06:06.000Z">
+<meta property="article:modified_time" content="2021-05-28T13:04:47.691Z">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5060560-7ce51d289d0d8bb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-阿里云windows服务器配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/31/%E9%98%BF%E9%87%8C%E4%BA%91windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2020-03-30T22:06:06.000Z" itemprop="datePublished">2020-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      阿里云windows服务器配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="购买"><a href="#购买" class="headerlink" title="购买"></a>购买</h2><p>首先到阿里云去购买服务器：</p>
+<ul>
+<li>新用户74元/年的云服务器：<a target="_blank" rel="noopener" href="https://www.aliyun.com/minisite/goods?userCode=vp1ifil7&share_source=copy_link">阿里云</a></li>
+<li>学生机，10元/月的云服务器：<a target="_blank" rel="noopener" href="https://promotion.aliyun.com/ntms/act/campus2018.html?spm=5176.13727575.J_7116760870.3.f0c03b5aQY7iQj&aly_as=15uW4Mp6B&userCode=vp1ifil7&tag=share_component&share_source=copy_link">阿里云学生机</a></li>
+</ul>
+<p>选择的时候选Windows Server 2019版即可：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-7ce51d289d0d8bb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择配置界面"></p>
+<p>之后到控制台，去设置密码（控制台——云服务器ECS——找到服务器实例点进去——密码密钥——重置实例密码）</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-da5d35d85f455e8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="重制实例密码"></p>
+<p>修改之后就可以用用户名：administrator ；密码：刚才设置的密码 进行登陆了。</p>
+<h2 id="登陆"><a href="#登陆" class="headerlink" title="登陆"></a>登陆</h2><p>点击远程连接，即可登陆。</p>
+<p>Windows系统下，可以用自带的远程连接（<a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/67662997adb46a54d51b84bd.html">https://jingyan.baidu.com/article/67662997adb46a54d51b84bd.html</a> ）</p>
+<p>在Mac下面，可以下载一个Microsoft Remote Desktop来进行连接。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="打开80端口以进行网络访问"><a href="#打开80端口以进行网络访问" class="headerlink" title="打开80端口以进行网络访问"></a>打开80端口以进行网络访问</h3><p>回到阿里云，点击【右上角的控制台】-【左侧云服务器ECS】-找到自己的服务器实例进去。点左侧【安全组】-点【配置规则】，加上80端口的访问权限。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-4312d1caeffdb9a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="左侧云服务器ECS"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-0d2bfa824e90c065.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打开80端口"></p>
+<h3 id="增强安全配置"><a href="#增强安全配置" class="headerlink" title="增强安全配置"></a>增强安全配置</h3><p>用浏览器的时候，会提示：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8d8080c9676ab4cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="增强安全配置正在阻止"></p>
+<p>解决：打开【服务器管理器】，点左侧的【本地服务器】，找到右边的【IE增强的安全配置】，点击右边的【启用】，弹出的窗口选择两个【关闭】，确认即可。之后再打开的网页就不会有这样的提示了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1981452d9e981619.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="右侧中间就是"></p>
+<h3 id="Python安装"><a href="#Python安装" class="headerlink" title="Python安装"></a>Python安装</h3><p>到 <a target="_blank" rel="noopener" href="https://www.python.org/">https://www.python.org/</a> 下载Python即可。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-329242731baf4178.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击这里的Python X.X.X就可以跳转到下一个页面"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e43e97b081bcd21d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击这里的Windows x86-64 executable installer就可以下载了"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-804cbaa53bfe5b04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="直接点击【运行】"></p>
+<p>记得【一定】要选上【Add to path】！</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6ed486b081bcd217.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="【选上】！选上！选上！！！！！！！！！"></p>
+<p>然后直接点Install Now就行。后面一路next。</p>
+<h4 id="pip使用"><a href="#pip使用" class="headerlink" title="pip使用"></a>pip使用</h4><p>修改源：<a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/750265?spm=a2c4e.11155472.0.0.40116748F1Aw2k">https://yq.aliyun.com/articles/750265?spm=a2c4e.11155472.0.0.40116748F1Aw2k</a></p>
+<p>(1) <code>pip -v config list</code>找到配置文件的位置</p>
+<p>(2) 到这些路径（如果没有的话就要新建）下，创建<code>pip.ini</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;</span><br><span class="line">[install]</span><br><span class="line">trusted-host&#x3D;mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<p><em>注意：如果有venv环境，优先级最高的可能是venv目录下的<code>pip.ini</code>（默认没有，需要创建）</em></p>
+<h4 id="Python环境"><a href="#Python环境" class="headerlink" title="Python环境"></a>Python环境</h4><p>每一个单独的环境都用venv创建。<code>python -m venv .\venv</code>，之后<code>.\venv\Scripts\activate</code></p>
+<h3 id="MySQL安装"><a href="#MySQL安装" class="headerlink" title="MySQL安装"></a>MySQL安装</h3><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">https://dev.mysql.com/downloads/mysql/</a></p>
+<p>直接点Recommended Download下面的图就可以下载了。下载直接选比较大的那个离线安装包，中间提示注册登录的时候可以点下方隐藏的小字不注册直接下载。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6c9ece782d8013e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="直接下载"></p>
+<p>在这个界面，点击【Next】就可以安装默认的内容：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-dbbafddb093d0d11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击next"></p>
+<p>在Check Requirements页面，需要选择【execute】而不是【next】</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-120fc5dbe0ec8a6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="如果直接点next会出现这样的界面，需要点击No然后选择execute"></p>
+<p>execute点击后，会出现【Microsoft Visual C++ 2019 Redistribute】的安装和Visual Studio 2010 Tools for Office的安装，直接默认安装就行。</p>
+<p>接下来会剩下一些mannual的内容，包括excel的连接、VS的连接、Python的连接，之后如果要用python连mysql的话直接pip安装就行，所以不用管直接next。如果后面还要安装别的东西，可以再次打开下载的msi文件添加。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-059e32a8c5af8a07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这时直接点No就行"></p>
+<p>安装好之后，到配置的时候，保持默认一直到Authorization method的地方，选择传统方法的认证模式。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ce0a963c1605969c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="传统认证模式"></p>
+<p>接下来下一步是创建用户。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-03cc5c9a60367a43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建用户"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-c6651a56d16e8f87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Add User点击后的界面"></p>
+<p>sample和example安装的时候，需要输入刚才创建的root的密码</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-0175ba7424e952f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="输入root的密码"></p>
+<p>接下来点check和next，execute完就可以了。</p>
+<p>安装完成之后会自动打开：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-475fa27498c287b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MySQL Workbench"></p>
+<h3 id="VSCode安装"><a href="#VSCode安装" class="headerlink" title="VSCode安装"></a>VSCode安装</h3><p>如果需要在服务器上写代码，还是建议搞个VSCode。</p>
+<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a> 官网上直接点击下载就可以。</p>
+<p>接下来安装就很常规了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-30fdce2c37f907fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里选择确定"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-22e1a067277d0c81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="最好把这几个框都选上"></p>
+<h3 id="ssh登陆"><a href="#ssh登陆" class="headerlink" title="ssh登陆"></a>ssh登陆</h3><p>如果用的是Linux服务器的话，我们可以直接用ssh登陆。</p>
+<p>Windows服务器如果实现了ssh登陆的话，就可以用VSCode remote在本地修改服务器上的代码，比较方便。</p>
+<p>这篇文章里面有详细的介绍： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qishine/article/details/101061647">https://blog.csdn.net/qishine/article/details/101061647</a></p>
+<p>官方教程在：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview">https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview</a> 或者 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-server/administration/openssh/openssh_install_firstuse">https://docs.microsoft.com/zh-cn/windows-server/administration/openssh/openssh_install_firstuse</a></p>
+<p>根据测试（在服务器里面打开powershell，输入ssh），发现其实里面已经装了ssh的客户端（连接别的服务器），但是没有服务器端（不能用别的电脑来ssh连接自己）。</p>
+<p>我们也可以直接在powershell里面输入<code>Get-WindowsCapability -Online | ? Name -Like &#39;*SSH*&#39;</code>来搜索对应的服务。结果如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-c6858ed02278c8d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="搜索服务的结果"></p>
+<p>（这样就是说明服务端没有装，客户端装了</p>
+<p>根据上面的名字，可以安装，直接在powershell里面输入<code>Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0</code>回车就行：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ccf696c7b02d554e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="安装结束后的样子"></p>
+<p>之后打开服务（按下win键，输入service，就可以看到服务）：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-a5c43a57914e711f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打开【服务】"></p>
+<p>找到OpenSSH的两个服务：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-706dc9333eff27cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="就是他俩"></p>
+<p>右键——属性——启动类型选择【自动】，然后右键——【启动】，打开这两个服务。</p>
+<p>然后就可以连接了！</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e17806060dde9a2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="连接成功"></p>
+<h4 id="打开通过密钥登陆ssh"><a href="#打开通过密钥登陆ssh" class="headerlink" title="打开通过密钥登陆ssh"></a>打开通过密钥登陆ssh</h4><p>自己电脑上生成密钥的过程参见：</p>
+<ul>
+<li>Windows系统：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2790a860f151">https://www.jianshu.com/p/2790a860f151</a></li>
+<li>Mac系统：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/windyet/articles/8005067.html">https://www.cnblogs.com/windyet/articles/8005067.html</a></li>
+<li>Linux系统：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/powpoia/p/8953106.html">https://www.cnblogs.com/powpoia/p/8953106.html</a></li>
+</ul>
+<p>接下来，服务器上打开<code>C:\ProgramData\ssh</code>，编辑sshd_config，去掉PubkeyAuthentication yes（第34行）前面的注释。<strong>【并且注释掉最后两行】</strong>（那篇教程上没写，<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34007886/article/details/86364850">https://blog.csdn.net/weixin_34007886/article/details/86364850</a> 有提到，亲测必须得注释掉最后两行）</p>
+<p>然后在C:\Users\Administrator下建立文件夹.ssh（做法：在powershell里面输入<code>mkdir C:\Users\Administrator\.ssh</code>）：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-704320a4a404eae6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="建立文件夹.ssh"></p>
+<p>将公钥文件复制过去，重命名成<code>authorized_keys</code>（没有后缀！）。</p>
+<p>最后重新启动两个OpenSSH的服务。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-706dc9333eff27cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="就是他俩"></p>
+<h4 id="【在mac上尝试失败了】本地电脑上进行VSCode配置"><a href="#【在mac上尝试失败了】本地电脑上进行VSCode配置" class="headerlink" title="【在mac上尝试失败了】本地电脑上进行VSCode配置"></a>【在mac上尝试失败了】本地电脑上进行VSCode配置</h4><p>参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/tinywan/p/11107397.html">https://www.cnblogs.com/tinywan/p/11107397.html</a> ，但是因为连的是windows服务器，所以有坑。</p>
+<p>在【自己的】电脑上，打开VSCode，安装插件<code>Remote Development</code>，然后在左下角就会有一个连接服务器的图标，点它！</p>
+<ul>
+<li>因为我的是mac，有一些问题（具体看 <a target="_blank" rel="noopener" href="https://github.com/microsoft/vscode-remote-release/issues/25">https://github.com/microsoft/vscode-remote-release/issues/25</a><br>），连接windows的时候需要VSCode 【insider】（必须是insider才行，可以到 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/insiders/">https://code.visualstudio.com/insiders/</a> 下载），安装插件Remote - SSH (Nightly) 并且删除原来的Remote - SSH。</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-c7c2d09acef1aa85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="左下角的图标！"></p>
+<p>出来的窗口选择第一项，然后输入<code>administrator@你的服务器IP</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ad3f06102c824029.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择第一项"></p>
+<p>然后就会告诉你失败了！这时候点击【more actions】——【open settings】，往下拉最后有一个Windows remotes</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-f2dc0a99773c86a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="windows remotes"></p>
+<p>点击add item，把服务器的ip放进去。之后重新连接一次。</p>
+<h4 id="22端口打开"><a href="#22端口打开" class="headerlink" title="22端口打开"></a>22端口打开</h4><p>默认阿里云和这个服务器上已经打开了22端口，如果没有的话，可以到<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e0d9fb8ada93">https://www.jianshu.com/p/e0d9fb8ada93</a> 看一下。</p>
+<h3 id="压缩-amp-解压"><a href="#压缩-amp-解压" class="headerlink" title="压缩&amp;解压"></a>压缩&amp;解压</h3><p>直接用7zip：<a target="_blank" rel="noopener" href="https://www.7-zip.org/">https://www.7-zip.org/</a></p>
+<h3 id="Oracle安装"><a href="#Oracle安装" class="headerlink" title="Oracle安装"></a>Oracle安装</h3><p>oracle账号：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39917347/article/details/81707106">https://blog.csdn.net/weixin_39917347/article/details/81707106</a> ，<a href="mailto:&#50;&#x36;&#x39;&#54;&#x36;&#55;&#x31;&#x32;&#x38;&#x35;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;">&#50;&#x36;&#x39;&#54;&#x36;&#55;&#x31;&#x32;&#x38;&#x35;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;</a> ，密码：Oracle123</p>
+<p>可以到官网下载（但是可能连不上）。<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44841225/article/details/100782269">https://blog.csdn.net/weixin_44841225/article/details/100782269</a> 给了官网和百度网盘两个地址。并且里面也有安装的详细介绍。</p>
+<ul>
+<li>指定用户的时候，不能用现有Windows的administrator账户，需要新建一个：<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-2aa0798234eac2a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="密码可以与管理员的密码相同"></li>
+</ul>
+</li>
+<li>字符集保持unicode就挺好</li>
+</ul>
+<h3 id="keras数据集的位置"><a href="#keras数据集的位置" class="headerlink" title="keras数据集的位置"></a>keras数据集的位置</h3><p>实测是在：C:\Users\Administrator.keras\datasets</p>
+<p>直接把数据集放上去就行。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8825e9ed1a5d7bd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="keras数据集位置，注意npz文件直接放，多个文件的放到文件夹里面"></p>
+<p>数据集分享在这里：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1odWcfP4FABYFX8-YFdaqUg">https://pan.baidu.com/s/1odWcfP4FABYFX8-YFdaqUg</a>  密码:ci4i</p>
+<h3 id="django部署"><a href="#django部署" class="headerlink" title="django部署"></a>django部署</h3><p>见<a target="_blank" rel="noopener" href="https://www.bbsmax.com/A/ke5jRj3g5r/">https://www.bbsmax.com/A/ke5jRj3g5r/</a></p>
+<p>因为现在uwsgi不支持windows（直接pip install会报错，但是网上也有修改使得它可用的文章），所以使用mod_wsgi</p>
+<h4 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h4><p>如果想要一个服务器绑定多个域名，以及配置https的话，就可以用nginx</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011418717/article/details/52776090">https://blog.csdn.net/u011418717/article/details/52776090</a> 这里有教程</p>
+<ul>
+<li>用连接：<a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.16.1.zip">http://nginx.org/download/nginx-1.16.1.zip</a> 下载</li>
+<li>解压后运行里面的<code>nginx.exe</code>，就打开了，没有什么一直显示的窗口</li>
+<li>打开conf文件夹里面的<code>nginx.conf</code>，就可以配置了。</li>
+</ul>
+<h3 id="设置显示扩展名复选框隐藏"><a href="#设置显示扩展名复选框隐藏" class="headerlink" title="设置显示扩展名复选框隐藏"></a>设置显示扩展名复选框隐藏</h3><p><img src="https://upload-images.jianshu.io/upload_images/5060560-936a5250ab8c1dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打开一个文件夹，选择这里就行"></p>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><p><a target="_blank" rel="noopener" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a> 这里下载就行</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/31/%E9%98%BF%E9%87%8C%E4%BA%91windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" data-id="ckqkjgmdd00nsx4c41icrckge" data-title="阿里云windows服务器配置" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/31/%E9%98%BF%E9%87%8C%E4%BA%91Windows%E6%9C%8D%E5%8A%A1%E5%99%A822%E7%AB%AF%E5%8F%A3%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          阿里云Windows服务器22端口相关问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/30/django+oracle11%E7%9A%84%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">django+oracle11的问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

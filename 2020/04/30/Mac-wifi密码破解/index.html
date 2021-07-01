@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Mac-wifi密码破解 | Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="相关教程https:&#x2F;&#x2F;www.cnblogs.com&#x2F;diligenceday&#x2F;p&#x2F;6344487.html 另外还有一个文章：https:&#x2F;&#x2F;www.oschina.net&#x2F;question&#x2F;4873_16006 介绍WEP和WPA&#x2F;WPA2的破解方法 其实最简单的就是用Wi-Fi万能钥匙 安装安装：aircrack：http:&#x2F;&#x2F;www.aircrack-ng.org&#x2F;doku.php?id">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac-wifi密码破解">
+<meta property="og:url" content="https://fengh16.github.io/2020/04/30/Mac-wifi%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="相关教程https:&#x2F;&#x2F;www.cnblogs.com&#x2F;diligenceday&#x2F;p&#x2F;6344487.html 另外还有一个文章：https:&#x2F;&#x2F;www.oschina.net&#x2F;question&#x2F;4873_16006 介绍WEP和WPA&#x2F;WPA2的破解方法 其实最简单的就是用Wi-Fi万能钥匙 安装安装：aircrack：http:&#x2F;&#x2F;www.aircrack-ng.org&#x2F;doku.php?id">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-29T22:06:06.000Z">
+<meta property="article:modified_time" content="2021-05-28T13:04:47.678Z">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Mac-wifi密码破解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/30/Mac-wifi%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2020-04-29T22:06:06.000Z" itemprop="datePublished">2020-04-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Mac-wifi密码破解
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="相关教程"><a href="#相关教程" class="headerlink" title="相关教程"></a>相关教程</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/diligenceday/p/6344487.html">https://www.cnblogs.com/diligenceday/p/6344487.html</a></p>
+<p>另外还有一个文章：<a target="_blank" rel="noopener" href="https://www.oschina.net/question/4873_16006">https://www.oschina.net/question/4873_16006</a> 介绍WEP和WPA/WPA2的破解方法</p>
+<p>其实最简单的就是用Wi-Fi万能钥匙</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装：<code>aircrack</code>：<a target="_blank" rel="noopener" href="http://www.aircrack-ng.org/doku.php?id=install_aircrack#linux_bsd_osx">http://www.aircrack-ng.org/doku.php?id=install_aircrack#linux_bsd_osx</a></p>
+<ul>
+<li>  直接<code>brew install aircrack-ng</code> （得首先安装homebrew）</li>
+</ul>
+<h2 id="网卡名称获取"><a href="#网卡名称获取" class="headerlink" title="网卡名称获取"></a>网卡名称获取</h2><p><strong>通过ifconfig命令</strong>获取当前的网卡的名字， 我这边<strong>网卡名字为en0</strong></p>
+<h2 id="查找所有的WiFi"><a href="#查找所有的WiFi" class="headerlink" title="查找所有的WiFi"></a>查找所有的WiFi</h2><ul>
+<li><p><code>/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s</code></p>
+<p>  信号最好的是：ChinaNet-TRqX，所以来监听4号channel</p>
+<ul>
+<li><p>  RSSI：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhuwei0901-yanwu/p/9733100.html">https://www.cnblogs.com/zhuwei0901-yanwu/p/9733100.html</a></p>
+</li>
+<li><blockquote>
+<p>RSSI（接收信号强度）Received Signal Strength Indicator  为什么测量出来的dbm值都是负数？</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>  1mW就是0dBm，小于1mW就是负数的dBm数。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>  无线信号dbm都是负数，最大是0。因此测量出来的dbm值肯定都是负数。因为dbm值只在一种情况下为0，那就是在理想状态下经过实验测量的结果，一般我们认为dbm为0是其最大值，意味着接收方把发射方发射的所有无线信号都接收到了，即无线路由器发射多少功率，接收的无线网卡就获得多少功率。当然这是在理想状态下测量的，在实际中即使将无线网卡挨着无线路由器的发射天线也不会达到dbm为0的效果。所以说测量出来的dbm值都是负数，不要盲目的认为负数就是信号不好。</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>  信道：<a target="_blank" rel="noopener" href="https://blog.csdn.net/AcerFront/article/details/90749363">https://blog.csdn.net/AcerFront/article/details/90749363</a></p>
+</li>
+<li><blockquote>
+<p>都说我们在信息高速路上，那么这些信道（即channel）就是一条条高速公路，而channel被赋予的意义，就是”高速公路每条路的编号“。  正经点说，信道也称作通道(Channel)、频段，是以无线信号（电磁波）作为传输载体的数据信号传送通道。无线网络（路由器、AP热点、电脑无线网卡）可在多个信道上运行。在无线信号覆盖范围内的各种无线网络设备应该尽量使用不同的信道，以避免信号之间的干扰。  好了，疑问解决了，那么我们经常看到的WiFi上标注的2.4GWiFi和5GWiFi又是啥玩意，这其实指的是频段，频段我们不熟悉，那频率总知道了吧，那频段就是由频率组成的区间而已，2.4G WiFi是指2.4GHz-2.5GHz的无线频率，5G WIFI则指4.9GHz-5.9GHz的无线频率。  而信道（即channel）即是在这个区间上进行再一次划分，就像是现在修好了一条高速公路，然后为其划分车道是一个道理，划分车道的目的则是相对互不干扰。</p>
+</blockquote>
+<ul>
+<li><blockquote>
+<p>从2.4GHz-2.5GHz共划分出13个信道（其实有14个，国内可用1-13的），那其实，信道（channel）即是对每个信道的中心频率（就是一个子区间的中点）进行了编号。而既然是“车道”，那肯定需要宽度，一般来说，信道宽度定义为20MHz，我们很容易从下图中看出1、6、11是完全没有重叠部分的，那么就代表着完全互不干扰的，所以仅仅有3个车道。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>5GHz信道划分，国内室内AP可用36, 40, 44, 48, 52, 56, 60, 64, 149,153, 157, 161, 165等13个信道。我们知道5G WiFi的频段是 4.9GHz-5.9GHz，有整整1GHz可分呢（相对于2.4G只有0.1GHz),那即是每个信道的带宽是20MHz，13个信道在完全不重叠的情况下也才 20 * 13 = 260MHz = 0.26GHz ，所以有整整13个车道。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="监听（嗅探）"><a href="#监听（嗅探）" class="headerlink" title="监听（嗅探）"></a>监听（嗅探）</h2><ul>
+<li><p>  <code>sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport en0 sniff 4</code></p>
+</li>
+<li><p>  之后Ctrl-C会显示Session saved to，这就是后面用到的cap文件。</p>
+</li>
+<li><p>  之后输入exit()就可以退出</p>
+</li>
+<li><p>要在里面找：WPA(1 handshake)</p>
+<blockquote>
+<ul>
+<li>WPA-PSK攻击分为以下几个步骤：<ol>
+<li>根据passphrase，SSID生成PMK，即PMK = pdkdf2_SHA1(passphrase, SSID, SSID length, 4096)</li>
+<li>捕获EAPOL四次握手的数据包，得到ANonce，SNonce等信息，用于计算PTK，即  PTK = PRF-X(PMK, Len(PMK), “Pairwise key expansion”, Min(AA,SA) || Max(AA,SA) || Min(ANonce, SNonce) || Max(ANonce, SNonce))</li>
+<li>使用MIC Key计算EAPOL报文的MIC，即MIC = HMAC_MD5(MIC Key, 16, 802.1x data)</li>
+<li>将计算得到的MIC值与捕获到的MIC值对比，如果相同则破解成功。</li>
+</ol>
+</li>
+<li>WPA-PSK攻击的主要难点在于大量计算PMK所需要的计算量。一台普通的计算机通常的计算能力在500pmks/s，想要对8位的纯小写字母组合密码进行暴力破解所需要的时间为14年，所以想要破解WPA－PSK只有两种可能：1.用户使用了常见的弱密码；2.堆砌计算资源，获得超级计算机量级的计算能力。</li>
+<li>一些术语：<ul>
+<li>AP(Access Point): 网络接入点，是一种连接无线或有线网络的设备。就是俗称的路由器。</li>
+<li>MAC(Media Access Control Address): 相当于网卡的身份证，MAC 地址本身是不能修改，但是可以通过伪造MAC 地址欺骗AP。</li>
+<li>WEP(Wireless Encryption Protocol): 无线加密协议。很早的一种加密协议，容易破解。</li>
+<li>WPA/WPA2(Wi-FiProtected Access): 基于WEP更安全的加密系统。</li>
+<li>Handshake:握手。</li>
+<li>  IV(Initialization Vector)s:初始化向量。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="实际的例子"><a href="#实际的例子" class="headerlink" title="实际的例子"></a>实际的例子</h2><p>  必须得等到那边有一个连接的信息才行。</p>
+<p>  虽然也是跑字典，但是这里是把握手信息拿下来之后跑的字典，可以离线来整。</p>
+<p>  这里用的364812A是我的Wi-Fi，我自己操作让iPad在中间连接了一次。</p>
+<p>  上面写的是11，所以需要监听11信道。</p>
+<p>  通过aircrack-ng得到的结果，复制到一个文本编辑器里面，搜索1 handshake</p>
+<p>  看到前面的序号是804，对应的地址是：80:89:17:99:90:1E</p>
+<p>  所以就可以用<code>aircrack-ng -w /Users/henryfox/Desktop/Temp/dict.txt -b 80:89:17:99:90:1E /tmp/airportSniffJgFj6B.cap</code>进行破解了。-w后面是你的字典的路径。</p>
+<p>  我的字典里面就写了个123456和我的密码，所以就破解出来了……</p>
+<h2 id="密码字典到哪找"><a href="#密码字典到哪找" class="headerlink" title="密码字典到哪找"></a>密码字典到哪找</h2><p>  kali里面其实有……直接到kali系统里面，/usr/share/wordlists</p>
+<p>  需要先解压：sudo gzip -d /usr/share/wordlists/rockyou.txt.gz</p>
+<p>  这里各种字典，可以用head xxx -n xxx来看</p>
+<p>  具体描述：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42333641/article/details/88413390">https://blog.csdn.net/qq_42333641/article/details/88413390</a></p>
+<blockquote>
+<p>dirb</p>
+<p>big.txt #大的字典  small.txt #小的字典  catala.txt #项目配置字典  common.txt #公共字典  euskera.txt #数据目录字典  extensions_common.txt #常用文件扩展名字典  indexes.txt #首页字典  mutations_common.txt #备份扩展名  spanish.txt #方法名或库目录  others #扩展目录，默认用户名等  stress #压力测试  vulns #漏洞测试</p>
+<p>dirbuster</p>
+<p>apache-user-enum-** #apache用户枚举  directories.jbrofuzz #目录枚举  directory-list-1.0.txt #目录列表大，中，小 big，medium，small</p>
+<p>fern-wifi</p>
+<p>common.txt #公共wifi账户密码</p>
+</blockquote>
+<p>  怎么复制文件出来呢？直接复制粘贴就行，也可以拖动。在virtual box里面有设置，默认就支持了。</p>
+</li>
+</ul>
+<h2 id="hashcat"><a href="#hashcat" class="headerlink" title="hashcat"></a>hashcat</h2><p>我们可以用hashcat，在<a target="_blank" rel="noopener" href="https://blog.csdn.net/u010953692/article/details/83548524">https://blog.csdn.net/u010953692/article/details/83548524</a> 有说明。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/04/30/Mac-wifi%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" data-id="ckqkjgm7s0053x4c4213gbokl" data-title="Mac-wifi密码破解" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/01/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E7%88%AC%E8%99%AB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          公众号文章爬虫
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/30/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python多线程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

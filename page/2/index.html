@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Henry Fox&#39;s personal blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Henry Fox">
+<meta property="og:url" content="https://fengh16.github.io/page/2/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="Henry Fox&#39;s personal blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-强化学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/28/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2021-04-27T22:06:06.000Z" itemprop="datePublished">2021-04-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/28/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>一个模拟环境：<a target="_blank" rel="noopener" href="https://gym.openai.com/">https://gym.openai.com/</a></p>
+<p>一套教程：<a target="_blank" rel="noopener" href="https://mofanpy.com/tutorials/machine-learning/reinforcement-learning/intro-q-learning/">https://mofanpy.com/tutorials/machine-learning/reinforcement-learning/intro-q-learning/</a></p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=2xATEwcRpy8">https://www.youtube.com/watch?v=2xATEwcRpy8</a> 和 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=JgvyzIkgxF0">https://www.youtube.com/watch?v=JgvyzIkgxF0</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1762ec9eaff30ceb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="强化学习示意图"></p>
+<p>Agent会进行Environment的探索，agent可以感知environment的状态state（s），agent采取的行动action（a）会影响Environment，而这个行动会有一个reward（r）。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e4bc3874a19c653e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="另一个图"></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27860483">https://zhuanlan.zhihu.com/p/27860483</a></p>
+<p>主动对环境进行试探，并根据试探后，环境反馈回来的结果进行评价、总结，以改进和调整自身的行为，然后环境会根据新的行为作出新的反馈，持续调整的学习过程。</p>
+<p>环境（Environment）：环境会接收Agent执行的一系列的动作（Action），并且对这一系列的动作的好坏进行评价，并转换成一种可量化的（标量信号）Reward反馈给Agent，而不会告诉Agent应该如何去学习动作。Agent只能靠自己的历史（History）经历去学习。同时，环境还像Agent提供它所处的状态（State）信息。环境有完全可观测（Fully Observable）和部分可观测（Partial Observable）两种情况。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30315707">https://zhuanlan.zhihu.com/p/30315707</a></p>
+<p>reward：</p>
+<ul>
+<li>我们定义了“奖励”，这是一个标量，他代表了一个反馈的信号，代表时刻的的action的表现如何</li>
+<li>我们的目标是得到累计的reward的最大值</li>
+<li>reward hypothesis：reinforcement learning 在reward方面都是基于这个假设的，也就是说，我们认为我们的目标都能够被描述为reward的累计的最大值</li>
+<li>如果我们的任务是基于时间的目标问题，比如我们希望让任务在最小时间完成，这样，我们可以再每次执行完一个action之后，设定一个”-1”的反馈，这样的话，这样我们的优化目标就能够最小化任务执行的时间</li>
+</ul>
+<p>Goal</p>
+<ul>
+<li>对于任何的任务，我们的统一目标是：得到reward的累计的最大值</li>
+<li>有时候我们的agent需要提前做思考，不能只看到当前的reward，要在当前状态就考虑如何使得我的未来得到的reward最大化</li>
+<li>基于上面的特点，这就意味着，我们可能需要放弃眼前的利益以获得累计的更大的奖励。</li>
+<li>比如说，我们在直升机游戏中，会选择停下来补充燃料，然后继续飞行，短期看降低了飞行的距离，但是长期看，他能够在坠前飞的更久</li>
+</ul>
+<p>History 和 State 的关系</p>
+<ul>
+<li>history是一个action、observation、reward的序列：$H_{t}=A_{1}, O_{1}, R_{1}, \ldots, A_{t}, O_{t}, R_{t}$</li>
+<li>history能够决定action接下来采取什么行动；实际上，agent做的就是从history到action的映射</li>
+<li>对于环境而言，history和产生的action交给environment，从而得到对应的observation和reward</li>
+<li>state是history的一个总结，用来决定下一步的action是什么，实际上，他是一个关于history的函数，我们可以这样表示：$S_{t}=f\left(H_{t}\right), A_{t}=h\left(S_{t}\right)$</li>
+<li>State相对于hisory而言最大的好处在于他的信息量很少，实际上，我们也不需要得到所有的history来得到下一步的action（在之后的马尔科夫状态中会提到原因）。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/28/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" data-id="ckqkjgmbu00iox4c4g7p62407" data-title="强化学习" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-SVD的几何理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/27/SVD%E7%9A%84%E5%87%A0%E4%BD%95%E7%90%86%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2021-04-26T22:06:06.000Z" itemprop="datePublished">2021-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/27/SVD%E7%9A%84%E5%87%A0%E4%BD%95%E7%90%86%E8%A7%A3/">SVD的几何理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>来自 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=DG7YTlGnCEo">https://www.youtube.com/watch?v=DG7YTlGnCEo</a> ，Singular Value Decomposition (SVD) and Image Compression</p>
+<h2 id="几何变换"><a href="#几何变换" class="headerlink" title="几何变换"></a>几何变换</h2><p>我们有些时候需要做一个变换，比如：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-18d496511a38e1ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="变换示例"></p>
+<p>在这种情况下，我们需要进行旋转、水平和竖直方向的拉伸和压缩，并且再次进行旋转。</p>
+<p>而矩阵可以表示一个线性变换，比如：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-620061b450d1bc0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="矩阵表示线性变换的例子"></p>
+<p>有一些特殊的矩阵：</p>
+<ul>
+<li>旋转：<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-46b6046769ff16f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="旋转矩阵"></li>
+</ul>
+</li>
+<li>拉伸压缩：<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-ea56df34a1fb5dee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="拉伸压缩矩阵"></li>
+</ul>
+</li>
+</ul>
+<p>并且可以进行分解：</p>
+<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-b4e363256f70db9a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解"></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-b0accb666bb5e8d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="转换为SVD"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-c8ce7d35a2957f49.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="转换为矩阵形式的示意图"></p>
+<h2 id="降维"><a href="#降维" class="headerlink" title="降维"></a>降维</h2><p>0.44很小，所以可以考虑把它去掉（变为0）</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e933e42c82cc01eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="比较不重要的部分"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-dfc8d5dc92613d67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="变成0之后"></p>
+<p>因此可以降维：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1f0b48052b3edc97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="降维"></p>
+<p>而且可以将矩阵分解之后压缩存储：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-3627907b88ff7ad8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解后从16个数缩减到8个数"></p>
+<p>而其实矩阵可以用SVD的方式分解出来：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-a6d655f486bb962a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解的示意图"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-af57eb93c1caee3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解的示意图2"></p>
+<p>所以可以考虑把后面的比较小的去掉。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-52e5b9889544bb84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="前n项计算出来的结果"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8272b364c93a4bff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="四个不同的大小矩阵计算"></p>
+<p>如果不是一个方阵，其实也可以做：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e20329bd991311ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="非方阵的情况"></p>
+<h2 id="图像压缩"><a href="#图像压缩" class="headerlink" title="图像压缩"></a>图像压缩</h2><p>基于之前的SVD技术，可以进行图像压缩。</p>
+<p>先对原始图像进行分解，只保留一行一列的情况下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-3ec9c076a691edef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图像压缩保留一行一列"></p>
+<p>而之后已经基本上等于0了：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6f2b8026044423c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="到后面就基本上等于0了"></p>
+<p>如果保留前3项，就已经和原图很像了；如果保留前4项，就已经一样了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-9b18a3c591df5f3d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="压缩"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/27/SVD%E7%9A%84%E5%87%A0%E4%BD%95%E7%90%86%E8%A7%A3/" data-id="ckqkjgm8s0084x4c40iqn2ot4" data-title="SVD的几何理解" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-推荐系统矩阵分解的直观理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/27/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2021-04-26T22:06:06.000Z" itemprop="datePublished">2021-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/27/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/">推荐系统矩阵分解的直观理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>内容来自 How does Netflix recommend movies? Matrix Factorization （ <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ZspR5PZemcs">https://www.youtube.com/watch?v=ZspR5PZemcs</a> ），讲得非常清晰易懂</p>
+<p>代码在 <a target="_blank" rel="noopener" href="https://github.com/yanneta/pytorch-tutorials/blob/master/collaborative-filtering-nn.ipynb">https://github.com/yanneta/pytorch-tutorials/blob/master/collaborative-filtering-nn.ipynb</a></p>
+<p>我们可以假设每个人和每个电影有内在的一些feature，假如考虑两个feature，Comedy和Action：</p>
+<ul>
+<li>每个电影包含的两部分的量和每个人对两部分的喜爱与否是下表所示：<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-93299a95465e43b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解量的直观理解"></li>
+<li>这里√可以写成1，×可以写成0，所以预期评分就是两部分的内积</li>
+</ul>
+</li>
+<li>最后可以算出一个评分表，就代表每个人对于电影的喜爱程度：<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-d06b0f6cfdaa3d6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="算出的矩阵"></li>
+</ul>
+</li>
+</ul>
+<p>左边的两个矩阵相对较小，而右边的矩阵相对较大。这样做也可以起到节省存储空间的作用。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-f8a2ca7b05150890.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="矩阵表示"></p>
+<p>也可以用图的方式来观察，相当于是有中间的feature部分：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-2b8767db112560a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图形式"></p>
+<p>分解的时候可以用梯度下降的方式，先给一个随机值再更新，使用平方求和的方式算误差。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-04b12738baf24acc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Error function"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/27/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/" data-id="ckqkjgmc300jcx4c44p92dw2x" data-title="推荐系统矩阵分解的直观理解" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Colab使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/25/Colab%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2021-04-24T22:06:06.000Z" itemprop="datePublished">2021-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/25/Colab%E4%BD%BF%E7%94%A8/">Colab使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>挂载磁盘：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-d3ded3d6baf1e376.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="挂载"></p>
+<p>解压和压缩：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1758badcc87b4fc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="解压和压缩"></p>
+<p>如果有很多图片的数据集，应该直接将这些图片的压缩包用上面的方式解压到挂载的磁盘上，如果直接从drive读取所有图片是很慢的！</p>
+<p>也可以使用git clone或者wget命令</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/25/Colab%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm6u001nx4c4c3yugym8" data-title="Colab使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-删除desktop-ini" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/25/%E5%88%A0%E9%99%A4desktop-ini/" class="article-date">
+  <time class="dt-published" datetime="2021-04-24T22:06:06.000Z" itemprop="datePublished">2021-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/25/%E5%88%A0%E9%99%A4desktop-ini/">删除desktop-ini</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>使用powershell，用<code>Remove-Item -Path .\desktop.ini -Force</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/25/%E5%88%A0%E9%99%A4desktop-ini/" data-id="ckqkjgmbh00h7x4c480ko207v" data-title="删除desktop-ini" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-推荐系统与强化学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/25/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2021-04-24T22:06:06.000Z" itemprop="datePublished">2021-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/25/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">推荐系统与强化学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/25/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" data-id="ckqkjgmc200j8x4c47i4p2snz" data-title="推荐系统与强化学习" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-推荐系统数据集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/24/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E9%9B%86/" class="article-date">
+  <time class="dt-published" datetime="2021-04-23T22:06:06.000Z" itemprop="datePublished">2021-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/24/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E9%9B%86/">推荐系统数据集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>MovieLens：<a target="_blank" rel="noopener" href="https://grouplens.org/datasets/movielens/">https://grouplens.org/datasets/movielens/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/24/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E9%9B%86/" data-id="ckqkjgmc300jax4c49fqx4m9t" data-title="推荐系统数据集" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-SHELL脚本执行SQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/15/SHELL%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8CSQL/" class="article-date">
+  <time class="dt-published" datetime="2021-04-14T22:06:06.000Z" itemprop="datePublished">2021-04-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/15/SHELL%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8CSQL/">SHELL脚本执行SQL</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><code>mysql -u用户名 -p密码 -D数据库名 -e&quot;sql 语句&quot;</code></p>
+<p>注意大小写，注意字母这里没有空格</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/15/SHELL%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8CSQL/" data-id="ckqkjgm8r0082x4c4bbflh33v" data-title="SHELL脚本执行SQL" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-conda-jupyter-安装与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/11/conda-jupyter-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2021-04-10T22:06:06.000Z" itemprop="datePublished">2021-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/11/conda-jupyter-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">conda-jupyter-安装与使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>安装时直接用<code>conda install jupyter</code></p>
+<p>如果不能用，提示找不到<code>jupyter_core</code>，要记得重启！！！！</p>
+<h2 id="jupyter配置文件"><a href="#jupyter配置文件" class="headerlink" title="jupyter配置文件"></a>jupyter配置文件</h2><p>通过<code>jupyter notebook --generate-config</code>生成，在<code>~/.jupyter/jupyter_notebook_config.py</code></p>
+<p>见<a target="_blank" rel="noopener" href="https://jupyter-notebook.readthedocs.io/en/stable/public_server.html">https://jupyter-notebook.readthedocs.io/en/stable/public_server.html</a></p>
+<h2 id="配置服务器可以被外界访问"><a href="#配置服务器可以被外界访问" class="headerlink" title="配置服务器可以被外界访问"></a>配置服务器可以被外界访问</h2><p>在配置文件中，设置<code>c.NotebookApp.ip = &#39;*&#39;</code></p>
+<h2 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h2><p><code>jupyter notebook password</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/11/conda-jupyter-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm9d00a0x4c40xuk2ep5" data-title="conda-jupyter-安装与使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Pytorch-conda安装torch" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/10/Pytorch-conda%E5%AE%89%E8%A3%85torch/" class="article-date">
+  <time class="dt-published" datetime="2021-04-09T22:06:06.000Z" itemprop="datePublished">2021-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/10/Pytorch-conda%E5%AE%89%E8%A3%85torch/">Pytorch-conda安装torch</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>由于电脑中安装某些版本的cudatoolkit的时候会报错，所以在 <a target="_blank" rel="noopener" href="https://pytorch.org/get-started/previous-versions/">https://pytorch.org/get-started/previous-versions/</a> 找到对应的版本，比如：</p>
+<p><code>conda install pytorch==1.1.0 torchvision==0.3.0 cudatoolkit=9.0</code></p>
+<p>最后<strong>记得deactivate然后再activate！！！！！！</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/10/Pytorch-conda%E5%AE%89%E8%A3%85torch/" data-id="ckqkjgm8j007gx4c4fddgfc9n" data-title="Pytorch-conda安装torch" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

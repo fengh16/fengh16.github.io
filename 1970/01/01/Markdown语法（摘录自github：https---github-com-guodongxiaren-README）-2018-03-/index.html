@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Markdown语法（摘录自github：https---github-com-guodongxiaren-README）-2018-03- | Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="README该文件用来测试和展示书写README的各种markdown语法。GitHub的markdown语法在标准的markdown语法基础上做了扩充，称之为GitHub Flavored Markdown。简称GFM，GFM在GitHub上有广泛应用，除了README文件外，issues和wiki均支持markdown语法。附：这个文章是用来测试一下简书里面的Markdown支持，摘录自htt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown语法（摘录自github：https---github-com-guodongxiaren-README）-2018-03-">
+<meta property="og:url" content="https://fengh16.github.io/1970/01/01/Markdown%E8%AF%AD%E6%B3%95%EF%BC%88%E6%91%98%E5%BD%95%E8%87%AAgithub%EF%BC%9Ahttps---github-com-guodongxiaren-README%EF%BC%89-2018-03-/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="README该文件用来测试和展示书写README的各种markdown语法。GitHub的markdown语法在标准的markdown语法基础上做了扩充，称之为GitHub Flavored Markdown。简称GFM，GFM在GitHub上有广泛应用，除了README文件外，issues和wiki均支持markdown语法。附：这个文章是用来测试一下简书里面的Markdown支持，摘录自htt">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5060560-60b6500dfe9d897d..gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif">
+<meta property="og:image" content="https://fengh16.github.io/img/csdn.png">
+<meta property="og:image" content="http://www.baidu.com/img/bdlogo.gif">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-ac8a0f00b9f836b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="1969-12-31T22:06:06.000Z">
+<meta property="article:modified_time" content="2021-05-28T13:04:47.729Z">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5060560-60b6500dfe9d897d..gif?imageMogr2/auto-orient/strip">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Markdown语法（摘录自github：https---github-com-guodongxiaren-README）-2018-03-" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/Markdown%E8%AF%AD%E6%B3%95%EF%BC%88%E6%91%98%E5%BD%95%E8%87%AAgithub%EF%BC%9Ahttps---github-com-guodongxiaren-README%EF%BC%89-2018-03-/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Markdown语法（摘录自github：https---github-com-guodongxiaren-README）-2018-03-
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="README"><a href="#README" class="headerlink" title="README"></a>README</h1><p>该文件用来测试和展示书写README的各种markdown语法。GitHub的markdown语法在标准的markdown语法基础上做了扩充，称之为<code>GitHub Flavored Markdown</code>。简称<code>GFM</code>，GFM在GitHub上有广泛应用，除了README文件外，issues和wiki均支持markdown语法。<br>附：这个文章是用来测试一下简书里面的Markdown支持，摘录自<a target="_blank" rel="noopener" href="https://github.com/guodongxiaren/README%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%B0%86%E6%BA%90%E4%BB%A3%E7%A0%81%E5%A4%8D%E5%88%B6%E5%88%B0%E4%BA%86%E8%BF%99%E9%87%8C%EF%BC%8C%E9%87%8C%E9%9D%A2%E6%9C%89%E8%AE%B8%E5%A4%9A%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E7%9A%84%E9%83%A8%E5%88%86%E3%80%82">https://github.com/guodongxiaren/README，直接将源代码复制到了这里，里面有许多无法显示的部分。</a></p>
+<hr>
+<h3 id="Author-果冻虾仁-https-github-com-guodongxiaren-README"><a href="#Author-果冻虾仁-https-github-com-guodongxiaren-README" class="headerlink" title="Author:果冻虾仁  https://github.com/guodongxiaren/README"></a>Author:果冻虾仁  <a target="_blank" rel="noopener" href="https://github.com/guodongxiaren/README">https://github.com/guodongxiaren/README</a></h3><h3 id="E-mail-x4a-x65-108-x6c-x79-46-x4b-46-x57-x61-x6e-103-64-x71-113-46-x63-111-109"><a href="#E-mail-x4a-x65-108-x6c-x79-46-x4b-46-x57-x61-x6e-103-64-x71-113-46-x63-111-109" class="headerlink" title="E-mail:&#x4a;&#x65;&#108;&#x6c;&#x79;&#46;&#x4b;&#46;&#x57;&#x61;&#x6e;&#103;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;"></a>E-mail:<a href="mailto:&#x4a;&#x65;&#108;&#x6c;&#x79;&#46;&#x4b;&#46;&#x57;&#x61;&#x6e;&#103;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;">&#x4a;&#x65;&#108;&#x6c;&#x79;&#46;&#x4b;&#46;&#x57;&#x61;&#x6e;&#103;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;</a></h3><hr>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#%E6%A8%AA%E7%BA%BF">横线</a></li>
+<li><a href="#%E6%A0%87%E9%A2%98">标题</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC">文本</a><ul>
+<li>普通文本</li>
+<li>单行文本</li>
+<li>多行文本</li>
+<li>文字高亮</li>
+<li>换行</li>
+<li>斜体</li>
+<li>粗体</li>
+<li>删除线</li>
+</ul>
+</li>
+<li><a href="#%E5%9B%BE%E7%89%87">图片</a><ul>
+<li>来源于网络的图片</li>
+<li>GitHub仓库中的图片</li>
+</ul>
+</li>
+<li><a href="#%E9%93%BE%E6%8E%A5">链接</a> <ul>
+<li>文字超链接<ul>
+<li> 链接外部URL</li>
+<li> 链接本仓库里的URL</li>
+</ul>
+</li>
+<li> 锚点</li>
+<li><a href="#%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5">图片链接</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%97%E8%A1%A8">列表</a><ul>
+<li>无序列表</li>
+<li>有序列表</li>
+<li>复选框列表</li>
+</ul>
+</li>
+<li><a href="#%E5%9D%97%E5%BC%95%E7%94%A8">块引用</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE">代码高亮</a></li>
+<li><a href="#%E8%A1%A8%E6%A0%BC">表格</a> </li>
+<li><a href="#%E8%A1%A8%E6%83%85">表情</a></li>
+<li><a href="#diff%E8%AF%AD%E6%B3%95">diff语法</a></li>
+</ul>
+<h3 id="横线"><a href="#横线" class="headerlink" title="横线"></a>横线</h3><hr>
+<p>***、—、___可以显示横线效果</p>
+<hr>
+<hr>
+<hr>
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h2 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h2><h3 id="普通文本"><a href="#普通文本" class="headerlink" title="普通文本"></a>普通文本</h3><p>这是一段普通的文本</p>
+<h3 id="单行文本"><a href="#单行文本" class="headerlink" title="单行文本"></a>单行文本</h3><pre><code>Hello,大家好，我是果冻虾仁。
+</code></pre>
+<p>在一行开头加入1个Tab或者4个空格。</p>
+<h3 id="文本块"><a href="#文本块" class="headerlink" title="文本块"></a>文本块</h3><h4 id="语法1"><a href="#语法1" class="headerlink" title="语法1"></a>语法1</h4><p>在连续几行的文本开头加入1个Tab或者4个空格。</p>
+<pre><code>欢迎到访
+很高兴见到您
+祝您，早上好，中午好，下午好，晚安
+</code></pre>
+<h4 id="语法2"><a href="#语法2" class="headerlink" title="语法2"></a>语法2</h4><p>使用一对各三个的反引号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">欢迎到访</span><br><span class="line">我是C++码农</span><br><span class="line">你可以在知乎、CSDN、简书搜索【果冻虾仁】找到我</span><br></pre></td></tr></table></figure>
+<p>该语法也可以实现代码高亮，见<a href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE">代码高亮</a></p>
+<h3 id="文字高亮"><a href="#文字高亮" class="headerlink" title="文字高亮"></a>文字高亮</h3><p>文字高亮功能能使行内部分文字高亮，使用一对反引号。<br>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#96;linux&#96; &#96;网络编程&#96; &#96;socket&#96; &#96;epoll&#96; </span><br></pre></td></tr></table></figure>
+<p>效果：<code>linux</code> <code>网络编程</code> <code>socket</code> <code>epoll</code></p>
+<p>也适合做一篇文章的tag</p>
+<h4 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h4><p>直接回车不能换行，<br>可以在上一行文本后面补两个空格，<br>这样下一行的文本就换行了。</p>
+<p>或者就是在两行文本直接加一个空行。</p>
+<p>也能实现换行效果，不过这个行间距有点大。</p>
+<h4 id="斜体、粗体、删除线"><a href="#斜体、粗体、删除线" class="headerlink" title="斜体、粗体、删除线"></a>斜体、粗体、删除线</h4><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>*斜体1*</code></td>
+<td><em>斜体1</em></td>
+</tr>
+<tr>
+<td><code>_斜体2_</code></td>
+<td><em>斜体2</em></td>
+</tr>
+<tr>
+<td><code>**粗体1**</code></td>
+<td><strong>粗体1</strong></td>
+</tr>
+<tr>
+<td><code>__粗体2__</code></td>
+<td><strong>粗体2</strong></td>
+</tr>
+<tr>
+<td><code>这是一个 ~~删除线~~</code></td>
+<td>这是一个 <del>删除线</del></td>
+</tr>
+<tr>
+<td><code>***斜粗体1***</code></td>
+<td><em><strong>斜粗体1</strong></em></td>
+</tr>
+<tr>
+<td><code>___斜粗体2___</code></td>
+<td><em><strong>斜粗体2</strong></em></td>
+</tr>
+<tr>
+<td><code>***~~斜粗体删除线1~~***</code></td>
+<td><em><strong><del>斜粗体删除线1</del></strong></em></td>
+</tr>
+<tr>
+<td><code>~~***斜粗体删除线2***~~</code></td>
+<td><del><em><strong>斜粗体删除线2</strong></em></del></td>
+</tr>
+</tbody></table>
+<pre><code>斜体、粗体、删除线可混合使用
+</code></pre>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>基本格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![alt](URL title)</span><br></pre></td></tr></table></figure>
+<p>alt和title即对应HTML中的alt和title属性（都可省略）：</p>
+<ul>
+<li>alt表示图片显示失败时的替换文本</li>
+<li>title表示鼠标悬停在图片时的显示文本（注意这里要加引号）</li>
+</ul>
+<p>URL即图片的url地址，如果引用本仓库中的图片，直接使用<strong>相对路径</strong>就可了，如果引用其他github仓库中的图片要注意格式，即：<code>仓库地址/raw/分支名/图片路径</code>，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;guodongxiaren&#x2F;ImageCache&#x2F;raw&#x2F;master&#x2F;Logo&#x2F;foryou.gif</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>语法</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>![baidu](http://upload-images.jianshu.io/upload_images/5060560-3f5641e76b1a7134..gif?imageMogr2/auto-orient/strip &quot;百度logo&quot;)</code></td>
+<td><img src="http://upload-images.jianshu.io/upload_images/5060560-60b6500dfe9d897d..gif?imageMogr2/auto-orient/strip" alt="baidu" title="百度logo"></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>![][foryou]</code></td>
+<td><img src="https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif"></td>
+</tr>
+</tbody></table>
+<p>注意例2的写法使用了<strong>URL标识符</strong>的形式，在<a href="#%E9%93%BE%E6%8E%A5">链接</a>一节有介绍。</p>
+<blockquote>
+<p>在文末有foryou的定义：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[foryou]:https:&#x2F;&#x2F;github.com&#x2F;guodongxiaren&#x2F;ImageCache&#x2F;raw&#x2F;master&#x2F;Logo&#x2F;foryou.gif</span><br></pre></td></tr></table></figure>
+
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><h3 id="链接外部URL"><a href="#链接外部URL" class="headerlink" title="链接外部URL"></a>链接外部URL</h3><table>
+<thead>
+<tr>
+<th>#</th>
+<th>语法</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>[我的博客](http://blog.csdn.net/guodongxiaren &quot;悬停显示&quot;)</code></td>
+<td><a target="_blank" rel="noopener" href="http://blog.csdn.net/guodongxiaren" title="悬停显示">我的博客</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>[我的知乎][zhihu] </code></td>
+<td><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/jellywong" title="我的知乎，欢迎关注">我的知乎</a></td>
+</tr>
+</tbody></table>
+<p>语法2由两部分组成：</p>
+<ul>
+<li>第一部分使用两个中括号，[ ]里的标识符（本例中zhihu），可以是数字，字母等的组合，标识符上下对应就行了（<strong>姑且称之为URL标识符</strong>）</li>
+<li>第二部分标记实际URL。</li>
+</ul>
+<blockquote>
+<p>使用URL标识符能达到复用的目的，一般把全文所有的URL标识符统一放在文章末尾，这样看起来比较干净。</p>
+<blockquote>
+<p>URL标识符是我起的名字，不知道是否准确。囧。。</p>
+</blockquote>
+</blockquote>
+<h3 id="链接本仓库里的URL"><a href="#链接本仓库里的URL" class="headerlink" title="链接本仓库里的URL"></a>链接本仓库里的URL</h3><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[我的简介](/example/profile.md)</code></td>
+<td><a href="/example/profile.md">我的简介</a></td>
+</tr>
+<tr>
+<td><code>[Book](./Book)</code></td>
+<td><a href="/Book">Book</a></td>
+</tr>
+</tbody></table>
+<h3 id="图片链接"><a href="#图片链接" class="headerlink" title="图片链接"></a>图片链接</h3><p>给图片加链接的本质是混合图片显示语法和普通的链接语法。普通的链接中[ ]内部是链接要显示的文本，而图片链接[ ]里面则是要显示的图片。<br>直接混合两种语法当然可以，但是十分啰嗦，为此我们可以使用URL标识符的形式。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>语法</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>[[图片上传失败...(image-fb8ed9-1520143277659)]</code></td>
+<td align="center">[[图片上传失败…(image-78d056-1520143277659)]</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>[[图片上传失败...(image-597209-1520143277659)]][zhihu]</code></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/jellywong" title="我的知乎，欢迎关注">[图片上传失败…(image-864ed0-1520143277659)]</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>[![csdn-logo]][csdn]</code></td>
+<td align="center"><a target="_blank" rel="noopener" href="http://blog.csdn.net/guodongxiaren" title="我的博客"><img src="/img/csdn.png" alt="csdn-logo" title="我的CSDN博客"></a></td>
+</tr>
+</tbody></table>
+<p>因为图片本身和链接本身都支持URL标识符的形式，所以图片链接也可以很简洁（见例3）。<br>注意，此时鼠标悬停时显示的文字是图片的title，而非链接本身的title了。</p>
+<blockquote>
+<p>本文URL标识符都放置于文末</p>
+</blockquote>
+<h3 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h3><p>其实呢，每一个标题都是一个锚点，和HTML的锚点（<code>#</code>）类似，比如我们 </p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[回到顶部](#readme)</code></td>
+<td><a href="#readme">回到顶部</a></td>
+</tr>
+</tbody></table>
+<p>不过要注意，标题中的英文字母都被转化为<strong>小写字母</strong>了。</p>
+<blockquote>
+<p>以前GitHub对中文支持的不好，所以中文标题不能正确识别为锚点，但是现在已经没问题啦！</p>
+</blockquote>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><ul>
+<li>昵称：果冻虾仁</li>
+</ul>
+<ul>
+<li>别名：隔壁老王</li>
+</ul>
+<ul>
+<li>英文名：Jelly</li>
+</ul>
+<h3 id="多级无序列表"><a href="#多级无序列表" class="headerlink" title="多级无序列表"></a>多级无序列表</h3><ul>
+<li>编程语言<ul>
+<li>脚本语言<ul>
+<li>Python</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><h4 id="一般效果"><a href="#一般效果" class="headerlink" title="一般效果"></a>一般效果</h4><p>就是在数字后面加一个点，再加一个空格。不过看起来起来可能不够明显。<br>面向对象的三个基本特征：</p>
+<ol>
+<li>封装</li>
+<li>继承</li>
+<li>多态</li>
+</ol>
+<h4 id="有序列表自动排序"><a href="#有序列表自动排序" class="headerlink" title="有序列表自动排序"></a>有序列表自动排序</h4><p>也可以在第一行指定<code>1. </code>，而接下来的几行用星号<code>*</code>（或者继续用数字1. ）就可以了，它会自动显示成2、3、4……。<br>面向对象的七大原则：</p>
+<ol>
+<li>开闭原则</li>
+</ol>
+<ul>
+<li>里氏转换原则</li>
+<li>依赖倒转原则</li>
+<li>接口隔离原则</li>
+<li>组合/聚合复用原则</li>
+<li>“迪米特”法则</li>
+<li>单一职责原则</li>
+</ul>
+<h4 id="多级有序列表"><a href="#多级有序列表" class="headerlink" title="多级有序列表"></a>多级有序列表</h4><p>和无序列表一样，有序列表也有多级结构：  </p>
+<ol>
+<li>这是一级的有序列表，数字1还是1<ol>
+<li>这是二级的有序列表，阿拉伯数字在显示的时候变成了罗马数字<ol>
+<li>这是三级的有序列表，数字在显示的时候变成了英文字母</li>
+<li>四级的有序列表显示效果，就不再变化了，依旧是英文字母</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="复选框列表"><a href="#复选框列表" class="headerlink" title="复选框列表"></a>复选框列表</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> 需求分析</li>
+<li><input checked="" disabled="" type="checkbox"> 系统设计</li>
+<li><input checked="" disabled="" type="checkbox"> 详细设计</li>
+<li><input disabled="" type="checkbox"> 编码</li>
+<li><input disabled="" type="checkbox"> 测试</li>
+<li><input disabled="" type="checkbox"> 交付</li>
+</ul>
+<p>您可以使用这个功能来标注某个项目各项任务的完成情况。</p>
+<blockquote>
+<p>Tip:</p>
+<blockquote>
+<p>在GitHub的<strong>issue</strong>中使用该语法是可以实时点击复选框来勾选或解除勾选的，而无需修改issue原文。</p>
+</blockquote>
+</blockquote>
+<h2 id="块引用"><a href="#块引用" class="headerlink" title="块引用"></a>块引用</h2><h3 id="常用于引用文本"><a href="#常用于引用文本" class="headerlink" title="常用于引用文本"></a>常用于引用文本</h3><h4 id="文本摘自《深入理解计算机系统》P27"><a href="#文本摘自《深入理解计算机系统》P27" class="headerlink" title="文本摘自《深入理解计算机系统》P27"></a>文本摘自《深入理解计算机系统》P27</h4><p>　令人吃惊的是，在哪种字节顺序是合适的这个问题上，人们表现得非常情绪化。实际上术语“little endian”（小端）和“big endian”（大端）出自Jonathan Swift的《格利佛游记》一书，其中交战的两个派别无法就应该从哪一端打开一个半熟的鸡蛋达成一致。因此，争论沦为关于社会政治的争论。只要选择了一种规则并且始终如一的坚持，其实对于哪种字节排序的选择都是任意的。</p>
+<blockquote>
+<p><strong>“端”（endian）的起源</strong><br>以下是Jonathan Swift在1726年关于大小端之争历史的描述：<br>“……下面我要告诉你的是，Lilliput和Blefuscu这两大强国在过去36个月里一直在苦战。战争开始是由于以下的原因：我们大家都认为，吃鸡蛋前，原始的方法是打破鸡蛋较大的一端，可是当今的皇帝的祖父小时候吃鸡蛋，一次按古法打鸡蛋时碰巧将一个手指弄破了，因此他的父亲，当时的皇帝，就下了一道敕令，命令全体臣民吃鸡蛋时打破较小的一端，违令者重罚。”</p>
+</blockquote>
+<h3 id="块引用有多级结构"><a href="#块引用有多级结构" class="headerlink" title="块引用有多级结构"></a>块引用有多级结构</h3><blockquote>
+<p>数据结构</p>
+<blockquote>
+<p>树</p>
+<blockquote>
+<p>二叉树</p>
+<blockquote>
+<p>平衡二叉树</p>
+<blockquote>
+<p>满二叉树</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>在三个反引号后面加上编程语言的名字，另起一行开始写代码，最后一行再加上三个反引号。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;&#125; <span class="comment">//Java</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> <span class="comment">//C</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello GitHub&quot;</span> <span class="comment">#Bash</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;myH1&quot;</span>).innerHTML=<span class="string">&quot;Welcome to my Homepage&quot;</span>; <span class="comment">//javascipt</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string &amp;<span class="keyword">operator</span>+(<span class="keyword">const</span> string&amp; A,<span class="keyword">const</span> string&amp; B) <span class="comment">//cpp</span></span><br></pre></td></tr></table></figure>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><table>
+<thead>
+<tr>
+<th>表头1</th>
+<th>表头2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表格单元</td>
+<td>表格单元</td>
+</tr>
+<tr>
+<td>表格单元</td>
+<td>表格单元</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>表头1</th>
+<th>表头2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表格单元</td>
+<td>表格单元</td>
+</tr>
+<tr>
+<td>表格单元</td>
+<td>表格单元</td>
+</tr>
+</tbody></table>
+<h3 id="对齐"><a href="#对齐" class="headerlink" title="对齐"></a>对齐</h3><p>表格可以指定对齐方式</p>
+<table>
+<thead>
+<tr>
+<th align="left">左对齐</th>
+<th align="center">居中</th>
+<th align="right">右对齐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">col 3 is</td>
+<td align="center">some wordy text</td>
+<td align="right">$1600</td>
+</tr>
+<tr>
+<td align="left">col 2 is</td>
+<td align="center">centered</td>
+<td align="right">$12</td>
+</tr>
+<tr>
+<td align="left">zebra stripes</td>
+<td align="center">are neat</td>
+<td align="right">$1</td>
+</tr>
+</tbody></table>
+<h3 id="混合其他语法"><a href="#混合其他语法" class="headerlink" title="混合其他语法"></a>混合其他语法</h3><p>表格单元中的内容可以和其他大多数GFM语法配合使用，如：  </p>
+<h4 id="使用普通文本的删除线，斜体等效果"><a href="#使用普通文本的删除线，斜体等效果" class="headerlink" title="使用普通文本的删除线，斜体等效果"></a>使用普通文本的删除线，斜体等效果</h4><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Help</td>
+<td><del>Display the</del> help window.</td>
+</tr>
+<tr>
+<td>Close</td>
+<td><em>Closes</em> a window</td>
+</tr>
+</tbody></table>
+<h4 id="表格中嵌入图片（链接）"><a href="#表格中嵌入图片（链接）" class="headerlink" title="表格中嵌入图片（链接）"></a>表格中嵌入图片（链接）</h4><p>其实前面介绍图片显示、图片链接的时候为了清晰就是放在在表格中显示的。</p>
+<table>
+<thead>
+<tr>
+<th>图片</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://www.baidu.com/img/bdlogo.gif" alt="baidu" title="百度logo"></td>
+<td>百度</td>
+</tr>
+</tbody></table>
+<h2 id="表情"><a href="#表情" class="headerlink" title="表情"></a>表情</h2><p>Github的Markdown语法支持添加emoji表情，输入不同的符号码（两个冒号包围的字符）可以显示出不同的表情。</p>
+<p>比如<code>:blush:</code>，可以显示:blush:。</p>
+<p>具体每一个表情的符号码，可以查询GitHub的官方网页<a target="_blank" rel="noopener" href="http://www.emoji-cheat-sheet.com/">http://www.emoji-cheat-sheet.com</a>。</p>
+<p>但是这个网页每次都打开<strong>奇慢</strong>。。所以我整理到了本repo中，大家可以直接在此查看<a href="./emoji.md">emoji</a>。</p>
+<h2 id="diff语法"><a href="#diff语法" class="headerlink" title="diff语法"></a>diff语法</h2><p>版本控制的系统中都少不了diff的功能，即展示一个文件内容的增加与删除。<br>GFM中可以显示的展示diff效果。使用绿色表示新增，红色表示删除。</p>
+<p>其语法与代码高亮类似，只是在三个反引号后面写diff，<br>并且其内容中，以 <code>+ </code>开头表示新增，<code>- </code>开头表示删除。</p>
+<p>效果如下：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+ 鸟宿池边树，僧敲月下门</span></span><br><span class="line"><span class="deletion">- 鸟宿池边树，僧推月下门</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h1 id="公众号推荐"><a href="#公众号推荐" class="headerlink" title="公众号推荐"></a>公众号推荐</h1><p>推荐一波自己的公众号：五道口的程序狐</p>
+<p>里面有一个聊天机器人，抚慰你的心灵</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ac8a0f00b9f836b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="mp"></p>
+<p>如有需要，联系<code>contact@fhao.top</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/Markdown%E8%AF%AD%E6%B3%95%EF%BC%88%E6%91%98%E5%BD%95%E8%87%AAgithub%EF%BC%9Ahttps---github-com-guodongxiaren-README%EF%BC%89-2018-03-/" data-id="ckqkjgm7z005tx4c45yfx4x5b" data-title="Markdown语法（摘录自github：https---github-com-guodongxiaren-README）-2018-03-" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/1970/01/01/MVC%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MVC模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/1970/01/01/Python%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95&%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python单元测试&amp;文档测试</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

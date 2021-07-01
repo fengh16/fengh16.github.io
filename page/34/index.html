@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Henry Fox&#39;s personal blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Henry Fox">
+<meta property="og:url" content="https://fengh16.github.io/page/34/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="Henry Fox&#39;s personal blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-MySQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/07/MySQL/" class="article-date">
+  <time class="dt-published" datetime="2018-04-06T22:06:06.000Z" itemprop="datePublished">2018-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/07/MySQL/">MySQL</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>下列内容摘录自 <a target="_blank" rel="noopener" href="http://www.runoob.com/mysql/">http://www.runoob.com/mysql/</a> （菜鸟教程）<br>其实就是把里面讲的东西搬过来了，非常感谢菜鸟教程的整理<br>现在就是在php里面使用，把所有可能用到的代码（放在注释里面）放在了github上面：<a target="_blank" rel="noopener" href="https://github.com/fengh16/Web-Learning/tree/master/sqlLearing">https://github.com/fengh16/Web-Learning/tree/master/sqlLearing</a></p>
+<h1 id="可视化工具"><a href="#可视化工具" class="headerlink" title="可视化工具"></a>可视化工具</h1><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/file/?id=474210">https://dev.mysql.com/downloads/file/?id=474210</a></p>
+<h1 id="数据库的连接"><a href="#数据库的连接" class="headerlink" title="数据库的连接"></a>数据库的连接</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$dbhost</span> = <span class="variable">$_ENV</span>[<span class="string">&#x27;MYSQL_HOST&#x27;</span>] . <span class="string">&quot;:&quot;</span> . <span class="variable">$_ENV</span>[<span class="string">&#x27;MYSQL_PORT&#x27;</span>];  <span class="comment">// mysql服务器主机地址</span></span><br><span class="line"><span class="variable">$dbuser</span> = <span class="variable">$_ENV</span>[<span class="string">&#x27;MYSQL_USERNAME&#x27;</span>];            <span class="comment">// mysql用户名</span></span><br><span class="line"><span class="variable">$dbpass</span> = <span class="variable">$_ENV</span>[<span class="string">&#x27;MYSQL_PASSWORD&#x27;</span>];          <span class="comment">// mysql用户名密码</span></span><br><span class="line"><span class="variable">$conn</span> = mysqli_connect(<span class="variable">$dbhost</span>, <span class="variable">$dbuser</span>, <span class="variable">$dbpass</span>);</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$conn</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Could not connect: &#x27;</span> . mysqli_error());</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;数据库连接成功！&#x27;</span>;</span><br><span class="line">mysqli_close(<span class="variable">$conn</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以下添加的内容均放在<code>mysqli_close($conn);</code>之前</p>
+<h1 id="数据库创建"><a href="#数据库创建" class="headerlink" title="数据库创建"></a>数据库创建</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;CREATE DATABASE ARTICLES&#x27;</span>;</span><br><span class="line"><span class="variable">$retval</span> = mysqli_query(<span class="variable">$conn</span>,<span class="variable">$sql</span>);</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$retval</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;创建数据库失败: &#x27;</span> . mysqli_error(<span class="variable">$conn</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;数据库 ARTICLES 创建成功\n&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="数据库删除"><a href="#数据库删除" class="headerlink" title="数据库删除"></a>数据库删除</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;DROP DATABASE ARTICLES&#x27;</span>;</span><br><span class="line"><span class="variable">$retval</span> = mysqli_query( <span class="variable">$conn</span>, <span class="variable">$sql</span> );</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$retval</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;删除数据库失败: &#x27;</span> . mysqli_error(<span class="variable">$conn</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;数据库 ARTICLES 删除成功&lt;br /&gt;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="选择数据库-amp-设置编码"><a href="#选择数据库-amp-设置编码" class="headerlink" title="选择数据库&amp;设置编码"></a>选择数据库&amp;设置编码</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择数据库进行操作，下面的$_ENV[&#x27;MYSQL_DBNAME&#x27;]是数据库名</span></span><br><span class="line">mysqli_select_db(<span class="variable">$conn</span>, <span class="variable">$_ENV</span>[<span class="string">&#x27;MYSQL_DBNAME&#x27;</span>]);</span><br><span class="line"><span class="comment">// 设置编码，防止中文乱码</span></span><br><span class="line">mysqli_query(<span class="variable">$conn</span> , <span class="string">&quot;set names utf8&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;CREATE TABLE testtable_tbl( &quot;</span>.</span><br><span class="line">        <span class="string">&quot;testtable_id INT NOT NULL AUTO_INCREMENT, &quot;</span>.</span><br><span class="line">        <span class="string">&quot;testtable_title VARCHAR(100) NOT NULL, &quot;</span>.</span><br><span class="line">        <span class="string">&quot;testtable_author VARCHAR(40) NOT NULL, &quot;</span>.</span><br><span class="line">        <span class="string">&quot;submission_date DATE, &quot;</span>.</span><br><span class="line">        <span class="string">&quot;PRIMARY KEY ( testtable_id ))ENGINE=InnoDB DEFAULT CHARSET=utf8; &quot;</span>;</span><br><span class="line"><span class="variable">$retval</span> = mysqli_query( <span class="variable">$conn</span>, <span class="variable">$sql</span> );</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$retval</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;数据表创建失败: &#x27;</span> . mysqli_error(<span class="variable">$conn</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;数据表创建成功&lt;br /&gt;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;DROP TABLE testtable_tbl&quot;</span>;</span><br><span class="line"><span class="variable">$retval</span> = mysqli_query( <span class="variable">$conn</span>, <span class="variable">$sql</span> );</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$retval</span> )</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">die</span>(<span class="string">&#x27;数据表删除失败: &#x27;</span> . mysqli_error(<span class="variable">$conn</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;数据表删除成功&lt;br /&gt;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$testtable_title</span> = <span class="string">&#x27;学习&#x27;</span>;</span><br><span class="line"><span class="variable">$testtable_author</span> = <span class="string">&#x27;FH&#x27;</span>;</span><br><span class="line"><span class="variable">$submission_date</span> = <span class="string">&#x27;2016-03-06&#x27;</span>;</span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;INSERT INTO testtable_tbl &quot;</span>.</span><br><span class="line">        <span class="string">&quot;(testtable_title, testtable_author, submission_date) &quot;</span>.</span><br><span class="line">        <span class="string">&quot;VALUES &quot;</span>.</span><br><span class="line">        <span class="string">&quot;(&#x27;<span class="subst">$testtable_title</span>&#x27;,&#x27;<span class="subst">$testtable_author</span>&#x27;,&#x27;<span class="subst">$submission_date</span>&#x27;)&quot;</span>;</span><br><span class="line"><span class="variable">$retval</span> = mysqli_query( <span class="variable">$conn</span>, <span class="variable">$sql</span> );</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$retval</span> )</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">die</span>(<span class="string">&#x27;无法插入数据: &#x27;</span> . mysqli_error(<span class="variable">$conn</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;数据插入成功&lt;br /&gt;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;SELECT testtable_id, testtable_title, </span></span><br><span class="line"><span class="string">        testtable_author, submission_date</span></span><br><span class="line"><span class="string">        FROM testtable_tbl&#x27;</span>;</span><br><span class="line"><span class="variable">$retval</span> = mysqli_query( <span class="variable">$conn</span>, <span class="variable">$sql</span> );</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$retval</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;无法读取数据: &#x27;</span> . mysqli_error(<span class="variable">$conn</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;h2&gt;mysqli_fetch_array 测试&lt;h2&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;table border=&quot;1&quot;&gt;&lt;tr&gt;&lt;td&gt;ID&lt;/td&gt;&lt;td&gt;标题&lt;/td&gt;&lt;td&gt;作者&lt;/td&gt;&lt;td&gt;提交日期&lt;/td&gt;&lt;/tr&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span> = mysqli_fetch_array(<span class="variable">$retval</span>, MYSQLI_ASSOC))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;tr&gt;&lt;td&gt; <span class="subst">&#123;$row[&#x27;testtable_id&#x27;]&#125;</span>&lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;td&gt;<span class="subst">&#123;$row[&#x27;testtable_title&#x27;]&#125;</span> &lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;td&gt;<span class="subst">&#123;$row[&#x27;testtable_author&#x27;]&#125;</span> &lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;td&gt;<span class="subst">&#123;$row[&#x27;submission_date&#x27;]&#125;</span> &lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;/tr&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;/table&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;SELECT testtable_id, testtable_title, </span></span><br><span class="line"><span class="string">        testtable_author, submission_date</span></span><br><span class="line"><span class="string">        FROM testtable_tbl&#x27;</span>;</span><br><span class="line"><span class="variable">$retval</span> = mysqli_query( <span class="variable">$conn</span>, <span class="variable">$sql</span> );</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$retval</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;无法读取数据: &#x27;</span> . mysqli_error(<span class="variable">$conn</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;h2&gt;mysqli_fetch_assoc 测试&lt;h2&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;table border=&quot;1&quot;&gt;&lt;tr&gt;&lt;td&gt;ID&lt;/td&gt;&lt;td&gt;标题&lt;/td&gt;&lt;td&gt;作者&lt;/td&gt;&lt;td&gt;提交日期&lt;/td&gt;&lt;/tr&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span> = mysqli_fetch_assoc(<span class="variable">$retval</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;tr&gt;&lt;td&gt; <span class="subst">&#123;$row[&#x27;testtable_id&#x27;]&#125;</span>&lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;td&gt;<span class="subst">&#123;$row[&#x27;testtable_title&#x27;]&#125;</span> &lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;td&gt;<span class="subst">&#123;$row[&#x27;testtable_author&#x27;]&#125;</span> &lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;td&gt;<span class="subst">&#123;$row[&#x27;submission_date&#x27;]&#125;</span> &lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;/tr&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;/table&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用常量 MYSQLI_NUM 作为 PHP mysqli_fetch_array() 函数的第二个参数，返回数字数组</span></span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;SELECT testtable_id, testtable_title, </span></span><br><span class="line"><span class="string">        testtable_author, submission_date</span></span><br><span class="line"><span class="string">        FROM testtable_tbl&#x27;</span>;</span><br><span class="line"><span class="variable">$retval</span> = mysqli_query( <span class="variable">$conn</span>, <span class="variable">$sql</span> );</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$retval</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;无法读取数据: &#x27;</span> . mysqli_error(<span class="variable">$conn</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;h2&gt;mysqli_fetch_array 测试&lt;h2&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;table border=&quot;1&quot;&gt;&lt;tr&gt;&lt;td&gt;ID&lt;/td&gt;&lt;td&gt;标题&lt;/td&gt;&lt;td&gt;作者&lt;/td&gt;&lt;td&gt;提交日期&lt;/td&gt;&lt;/tr&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span> = mysqli_fetch_array(<span class="variable">$retval</span>, MYSQLI_NUM))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;tr&gt;&lt;td&gt; <span class="subst">&#123;$row[0]&#125;</span>&lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;td&gt;<span class="subst">&#123;$row[1]&#125;</span> &lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;td&gt;<span class="subst">&#123;$row[2]&#125;</span> &lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;td&gt;<span class="subst">&#123;$row[3]&#125;</span> &lt;/td&gt; &quot;</span>.</span><br><span class="line">         <span class="string">&quot;&lt;/tr&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;/table&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放内存</span></span><br><span class="line">mysqli_free_result(<span class="variable">$retval</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// SELECT field1, field2,...fieldN FROM table_name1, table_name2...</span></span><br><span class="line"><span class="comment">// [WHERE condition1 [AND [OR]] condition2.....</span></span><br><span class="line"><span class="comment">// 条件可以使用=、&lt;&gt; !=、&lt;、&gt;、&lt;=、&gt;=</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;UPDATE testtable_tbl</span></span><br><span class="line"><span class="string">        SET testtable_title=&quot;学习吗&quot;</span></span><br><span class="line"><span class="string">        WHERE testtable_id=2&#x27;</span>;</span><br><span class="line"><span class="variable">$retval</span> = mysqli_query( <span class="variable">$conn</span>, <span class="variable">$sql</span> );</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$retval</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;无法更新数据: &#x27;</span> . mysqli_error(<span class="variable">$conn</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;数据更新成功！&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="数据删除"><a href="#数据删除" class="headerlink" title="数据删除"></a>数据删除</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">&#x27;DELETE FROM testtable_tbl</span></span><br><span class="line"><span class="string">        WHERE testtable_id=1&#x27;</span>;</span><br><span class="line"><span class="variable">$retval</span> = mysqli_query( <span class="variable">$conn</span>, <span class="variable">$sql</span> );</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$retval</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;无法删除数据: &#x27;</span> . mysqli_error(<span class="variable">$conn</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;数据删除成功！&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="like语句"><a href="#like语句" class="headerlink" title="like语句"></a>like语句</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WHERE testtable_author LIKE &quot;%COM&quot;</span></span><br><span class="line"><span class="comment">// 里面的%是任意字符串</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="UNION指令"><a href="#UNION指令" class="headerlink" title="UNION指令"></a>UNION指令</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SELECT country FROM Websites</span></span><br><span class="line"><span class="comment">// UNION</span></span><br><span class="line"><span class="comment">// SELECT country FROM apps</span></span><br><span class="line"><span class="comment">// ORDER BY country;</span></span><br><span class="line"><span class="comment">// UNION ALL不会去重</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ORDER BY field1, [field2...] [ASC [DESC]]</span></span><br><span class="line"><span class="comment">// 排序，分别是升序或者倒序</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// GROUP BY column_name</span></span><br><span class="line"><span class="comment">// 按照column_name分组</span></span><br><span class="line"><span class="comment">// WITH ROLLUP 可以实现在分组统计数据基础上再进行相同的统计（SUM,AVG,COUNT…）</span></span><br><span class="line"><span class="comment">// 示例：SELECT name, COUNT(*) FROM   employee_tbl GROUP BY name</span></span><br><span class="line"><span class="comment">// 示例：SELECT coalesce(name, &#x27;总数&#x27;), SUM(singin) as singin_count FROM  employee_tbl GROUP BY name WITH ROLLUP</span></span><br><span class="line"><span class="comment">// 上面那个示例会显示总数信息</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="JOIN"><a href="#JOIN" class="headerlink" title="JOIN"></a>JOIN</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// INNER JOIN（内连接,或等值连接）：获取两个表中字段匹配关系的记录。INNER可以省略</span></span><br><span class="line"><span class="comment">// LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。</span></span><br><span class="line"><span class="comment">// RIGHT JOIN（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。</span></span><br><span class="line"><span class="comment">// 用MySQL的INNER JOIN(也可以省略 INNER 使用 JOIN，效果一样)来连接以上两张表来读取testtable_tbl表中所有testtable_author字段在tcount_tbl表对应的testtable_count字段值</span></span><br><span class="line"><span class="comment">// SELECT a.testtable_id, a.testtable_author, b.testtable_count FROM testtable_tbl a INNER JOIN tcount_tbl b ON a.testtable_author = b.testtable_author;</span></span><br><span class="line"><span class="comment">// 相当于：</span></span><br><span class="line"><span class="comment">// SELECT a.testtable_id, a.testtable_author, b.testtable_count FROM testtable_tbl a, tcount_tbl b WHERE a.testtable_author = b.testtable_author;</span></span><br><span class="line"><span class="comment">// LEFT JOIN 会将所有a表中有的东西都列出来，b.testtable_count可能出现NULL</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// NULL值：如果NULL和别的比较都会出现false，包括NULL=NULL为false</span></span><br><span class="line"><span class="comment">// 所以提供了运算符：</span></span><br><span class="line"><span class="comment">// IS NULL: 当列的值是 NULL,此运算符返回 true。</span></span><br><span class="line"><span class="comment">// IS NOT NULL: 当列的值不为 NULL, 运算符返回 true。</span></span><br><span class="line"><span class="comment">// &lt;=&gt;: 比较操作符（不同于=运算符），当比较的的两个值为 NULL 时返回 true。</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SELECT name FROM person_tbl WHERE name REGEXP &#x27;mar&#x27;;</span></span><br><span class="line"><span class="comment">// 也就是条件判断里面可以写</span></span><br><span class="line"><span class="comment">// 正则说明：</span></span><br><span class="line"><span class="comment">// ^	匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 &#x27;\n&#x27; 或 &#x27;\r&#x27; 之后的位置。</span></span><br><span class="line"><span class="comment">// $	匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 &#x27;\n&#x27; 或 &#x27;\r&#x27; 之前的位置。</span></span><br><span class="line"><span class="comment">// .	匹配除 &quot;\n&quot; 之外的任何单个字符。要匹配包括 &#x27;\n&#x27; 在内的任何字符，请使用象 &#x27;[.\n]&#x27; 的模式。</span></span><br><span class="line"><span class="comment">// [...]	字符集合。匹配所包含的任意一个字符。例如， &#x27;[abc]&#x27; 可以匹配 &quot;plain&quot; 中的 &#x27;a&#x27;。</span></span><br><span class="line"><span class="comment">// [^...]	负值字符集合。匹配未包含的任意字符。例如， &#x27;[^abc]&#x27; 可以匹配 &quot;plain&quot; 中的&#x27;p&#x27;。</span></span><br><span class="line"><span class="comment">// p1|p2|p3	匹配 p1 或 p2 或 p3。例如，&#x27;z|food&#x27; 能匹配 &quot;z&quot; 或 &quot;food&quot;。&#x27;(z|f)ood&#x27; 则匹配 &quot;zood&quot; 或 &quot;food&quot;。</span></span><br><span class="line"><span class="comment">// *	匹配前面的子表达式零次或多次。例如，zo* 能匹配 &quot;z&quot; 以及 &quot;zoo&quot;。* 等价于&#123;0,&#125;。</span></span><br><span class="line"><span class="comment">// +	匹配前面的子表达式一次或多次。例如，&#x27;zo+&#x27; 能匹配 &quot;zo&quot; 以及 &quot;zoo&quot;，但不能匹配 &quot;z&quot;。+ 等价于 &#123;1,&#125;。</span></span><br><span class="line"><span class="comment">// &#123;n&#125;	n 是一个非负整数。匹配确定的 n 次。例如，&#x27;o&#123;2&#125;&#x27; 不能匹配 &quot;Bob&quot; 中的 &#x27;o&#x27;，但是能匹配 &quot;food&quot; 中的两个 o。</span></span><br><span class="line"><span class="comment">// &#123;n,m&#125;	m 和 n 均为非负整数，其中n &lt;= m。最少匹配 n 次且最多匹配 m 次。</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 事务：满足4个条件（ACID）：原子性（Atomicity，或称不可分割性）、一致性（Consistency）、隔离性（Isolation，又称独立性）、持久性（Durability）。</span></span><br><span class="line"><span class="comment">// 事务代码示例：</span></span><br><span class="line">mysqli_query(<span class="variable">$conn</span>, <span class="string">&quot;SET AUTOCOMMIT=0&quot;</span>); <span class="comment">// 设置为不自动提交，因为MYSQL默认立即执行</span></span><br><span class="line">mysqli_begin_transaction(<span class="variable">$conn</span>);            <span class="comment">// 开始事务定义</span></span><br><span class="line"><span class="keyword">if</span>(!mysqli_query(<span class="variable">$conn</span>, <span class="string">&quot;insert into testtable_transaction_test (id) values(8)&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    mysqli_query(<span class="variable">$conn</span>, <span class="string">&quot;ROLLBACK&quot;</span>);     <span class="comment">// 判断当执行失败时回滚</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(!mysqli_query(<span class="variable">$conn</span>, <span class="string">&quot;insert into testtable_transaction_test (id) values(9)&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    mysqli_query(<span class="variable">$conn</span>, <span class="string">&quot;ROLLBACK&quot;</span>);      <span class="comment">// 判断执行失败时回滚</span></span><br><span class="line">&#125;</span><br><span class="line">mysqli_commit(<span class="variable">$conn</span>);            <span class="comment">//执行事务</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="ALTER"><a href="#ALTER" class="headerlink" title="ALTER"></a>ALTER</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ALTER：修改表的名称或者字段</span></span><br><span class="line"><span class="comment">// SHOW COLUMNS FROM testalter_tbl 可以显示所有字段</span></span><br><span class="line"><span class="comment">// ALTER TABLE testalter_tbl  DROP i 可以直接删除表testalter_tbl中的i字段</span></span><br><span class="line"><span class="comment">// ALTER TABLE testalter_tbl ADD i INT 可以添加i字段（int）</span></span><br><span class="line"><span class="comment">// 上面的东西的最后可以添加FIRST或者AFTER c代表新加字段的位置</span></span><br><span class="line"><span class="comment">// ALTER TABLE testalter_tbl MODIFY c CHAR(10) 可以直接修改字段</span></span><br><span class="line"><span class="comment">// 如果使用CHANGE则如下：</span></span><br><span class="line"><span class="comment">// ALTER TABLE testalter_tbl CHANGE i j INT 就是把i换为j（INT）</span></span><br><span class="line"><span class="comment">// ALTER TABLE testalter_tbl MODIFY j BIGINT NOT NULL DEFAULT 100 也就是设置默认值不是NULL，是100</span></span><br><span class="line"><span class="comment">// ALTER TABLE testalter_tbl ALTER i SET DEFAULT 1000 设置默认值</span></span><br><span class="line"><span class="comment">// ALTER TABLE testalter_tbl ALTER i DROP DEFAULT 删除默认值</span></span><br><span class="line"><span class="comment">// 重命名：ALTER TABLE testalter_tbl RENAME TO alter_tbl</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="其余部分还没看，看到了http-www-runoob-com-mysql-mysql-index-html"><a href="#其余部分还没看，看到了http-www-runoob-com-mysql-mysql-index-html" class="headerlink" title="其余部分还没看，看到了http://www.runoob.com/mysql/mysql-index.html"></a>其余部分还没看，看到了<a target="_blank" rel="noopener" href="http://www.runoob.com/mysql/mysql-index.html">http://www.runoob.com/mysql/mysql-index.html</a></h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/04/07/MySQL/" data-id="ckqkjgm80005vx4c4h3an8v3x" data-title="MySQL" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-php&amp;一些闲谈" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/07/php&%E4%B8%80%E4%BA%9B%E9%97%B2%E8%B0%88/" class="article-date">
+  <time class="dt-published" datetime="2018-04-06T22:06:06.000Z" itemprop="datePublished">2018-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/07/php&%E4%B8%80%E4%BA%9B%E9%97%B2%E8%B0%88/">php&amp;一些闲谈</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>因为有一个php托管网站coding.net，所以……现在入坑（曾经？）世界上最好的语言php。</p>
+<p>曾经也因为某个网站提供的免费服务而学了asp&amp;access……贫穷使我博学</p>
+<p>毕竟还是大网页比较靠谱，省的自己搞什么高防啊买流量什么的啊。相比较服务器的价格，这样一个可以自定义域名而且可以直接免备案（这个是重点，而且小程序可以访问）的服务很棒啊，而且黄金/钻石会员也不是……特别贵（和某些云服务器比）</p>
+<p>因为之前了解js……了解asp……实在不行直接用vue或者react也可以用呗……所以也并没什么特别多需要学的……所以这就是我的一个吐槽&amp;记录一下注意点的地方</p>
+<p>所以对于我来说……这个php动态网页最重要的也就是它可以免备案了呗……小程序要求网页必须备案也是醉醉的……</p>
+<p>php和MySQL配合的部分见<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/19e175398a5c">https://www.jianshu.com/p/19e175398a5c</a> ，可能它会对别人有点用？（但是可以直接去看菜鸟教程，写的挺好的）</p>
+<p>这里的php也是从菜鸟教程那里学的，感谢这个网站<a target="_blank" rel="noopener" href="http://www.runoob.com/php">http://www.runoob.com/php</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><ol>
+<li>字符串连接使用 . （一个英文句号）</li>
+<li>变量前面带$</li>
+<li>写在<?php XXX ?>里面（废话</li>
+<li>echo可以加括号也可以不加，可以直接带一堆参数，逗号隔开</li>
+<li>elseif连着写</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/04/07/php&%E4%B8%80%E4%BA%9B%E9%97%B2%E8%B0%88/" data-id="ckqkjgmao00ebx4c4d89v0mx2" data-title="php&amp;一些闲谈" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-IE条件注释" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/06/IE%E6%9D%A1%E4%BB%B6%E6%B3%A8%E9%87%8A/" class="article-date">
+  <time class="dt-published" datetime="2018-04-05T22:06:06.000Z" itemprop="datePublished">2018-04-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/06/IE%E6%9D%A1%E4%BB%B6%E6%B3%A8%E9%87%8A/">IE条件注释</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>来自<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/11d94c446fa3">https://www.jianshu.com/p/11d94c446fa3</a></p>
+<p>可使用如下代码检测当前IE浏览器的版本（注意：在非IE浏览器中是看不到效果的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!––[if IE]&gt;</span><br><span class="line">&lt;h1&gt;您正在使用IE浏览器&lt;&#x2F;h1&gt; &lt;!––[if IE 5]&gt;</span><br><span class="line">&lt;h2&gt;版本 5&lt;&#x2F;h2&gt; &lt;![endif]––&gt;</span><br><span class="line">&lt;!––[if IE 5.0]&gt;</span><br><span class="line">&lt;h2&gt;版本 5.0&lt;&#x2F;h2&gt; &lt;![endif]––&gt;</span><br><span class="line">&lt;!––[if IE 5.5]&gt;</span><br><span class="line">&lt;h2&gt;版本 5.5&lt;&#x2F;h2&gt; &lt;![endif]––&gt;</span><br><span class="line">&lt;!––[if IE 6]&gt;</span><br><span class="line">&lt;h2&gt;版本 6&lt;&#x2F;h2&gt; &lt;![endif]––&gt;</span><br><span class="line">&lt;!––[if IE 7]&gt;</span><br><span class="line">&lt;h2&gt;版本 7&lt;&#x2F;h2&gt; &lt;![endif]––&gt;</span><br><span class="line">&lt;![endif]––&gt;</span><br></pre></td></tr></table></figure>
+
+<p>lte：就是Less than or equal to的简写，也就是小于或等于的意思。 lt ：就是Less than的简写，也就是小于的意思。 gte：就是Greater than or equal to的简写，也就是大于或等于的意思。 gt ：就是Greater than的简写，也就是大于的意思。 ! ： 就是不等于的意思，跟javascript里的不等于判断符相同。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/04/06/IE%E6%9D%A1%E4%BB%B6%E6%B3%A8%E9%87%8A/" data-id="ckqkjgm7e003ox4c4hxmj65r3" data-title="IE条件注释" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-网页代码与编辑器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/06/%E7%BD%91%E9%A1%B5%E4%BB%A3%E7%A0%81%E4%B8%8E%E7%BC%96%E8%BE%91%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2018-04-05T22:06:06.000Z" itemprop="datePublished">2018-04-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/06/%E7%BD%91%E9%A1%B5%E4%BB%A3%E7%A0%81%E4%B8%8E%E7%BC%96%E8%BE%91%E5%99%A8/">网页代码与编辑器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>来自<a target="_blank" rel="noopener" href="https://weiya.me/item/65.html">https://weiya.me/item/65.html</a></p>
+<p>使用插件<code>Prism.js</code>，到以下地址下载：<a target="_blank" rel="noopener" href="http://prismjs.com/index.html">http://prismjs.com/index.html</a></p>
+<p>做了一些示例，并且下载了我感觉自己可能用到的语言，放在了<a target="_blank" rel="noopener" href="https://github.com/fengh16/Web-Learning/tree/master/HTMLEditor">https://github.com/fengh16/Web-Learning/tree/master/HTMLEditor</a></p>
+<p>先很简单说明一下怎么使用（见<code>index.html</code>，可以直接访问<a target="_blank" rel="noopener" href="http://www.fhao.top/coding/%EF%BC%89%EF%BC%9A">http://www.fhao.top/coding/）：</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Test for an web editor.<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;prism.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;prism.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">&quot;language-css&quot;</span>&gt;</span>p &#123; color: red &#125;<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">&quot;language-c++ line-numbers&quot;</span>&gt;</span>int main()</span><br><span class="line">        &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>也就是说，东西要放在<code>&lt;pre&gt;&lt;code class=&quot;language-XXX&quot;&gt;XXX&lt;/code&gt;&lt;/pre&gt;</code>里面显示，如果需要加上行号就在<code>code</code>的<code>class</code>里面加上<code>line-numbers</code></p>
+<h2 id="CKEditor-5"><a href="#CKEditor-5" class="headerlink" title="CKEditor 5"></a>CKEditor 5</h2><p>引用方法：<code>&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/1.0.0-beta.1/classic/ckeditor.js&quot;&gt;&lt;/script&gt;</code></p>
+<p>官方教程见<a target="_blank" rel="noopener" href="https://docs.ckeditor.com/ckeditor5/latest/builds/guides/quick-start.html#inline-editor">https://docs.ckeditor.com/ckeditor5/latest/builds/guides/quick-start.html#inline-editor</a></p>
+<p>自己尝试了一下，如下的<code>CKEditor.html</code>（可以访问<a target="_blank" rel="noopener" href="http://www.fhao.top/coding/CKEditor.html%EF%BC%89%EF%BC%9A">http://www.fhao.top/coding/CKEditor.html）：</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Test for an web editor.<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.ckeditor.com/ckeditor5/1.0.0-beta.1/inline/ckeditor.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Inline editor<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;editor&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is some sample content.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">        InlineEditor</span><br><span class="line"><span class="javascript">            .create( <span class="built_in">document</span>.querySelector( <span class="string">&#x27;#editor&#x27;</span> ) )</span></span><br><span class="line"><span class="javascript">            .catch( <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.error( error );</span></span><br><span class="line">            &#125; );</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.ckeditor.com/ckeditor5/1.0.0-beta.1/classic/ckeditor.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Classic editor<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;claeditor&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is some sample content.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">        ClassicEditor</span><br><span class="line"><span class="javascript">            .create( <span class="built_in">document</span>.querySelector( <span class="string">&#x27;#claeditor&#x27;</span> ) )</span></span><br><span class="line"><span class="javascript">            .catch( <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.error( error );</span></span><br><span class="line">            &#125; );</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>也就是要调用对应Editor的create方法，将对应的selector作为参数，如：<br><code>ClassicEditor.create( document.querySelector( &#39;#claeditor&#39; ) )</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/04/06/%E7%BD%91%E9%A1%B5%E4%BB%A3%E7%A0%81%E4%B8%8E%E7%BC%96%E8%BE%91%E5%99%A8/" data-id="ckqkjgmd500myx4c4e8qp4idd" data-title="网页代码与编辑器" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-打字机效果的实现" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/05/%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="article-date">
+  <time class="dt-published" datetime="2018-04-04T22:06:06.000Z" itemprop="datePublished">2018-04-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/05/%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C%E7%9A%84%E5%AE%9E%E7%8E%B0/">打字机效果的实现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在许多网站上看到过打字机效果，比如typora官网（<a target="_blank" rel="noopener" href="https://typora.io/%EF%BC%89%E5%92%8C%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A4%A7%E8%B5%9B%E5%AE%98%E7%BD%91%EF%BC%88https://developers.weixin.qq.com/competition/index%EF%BC%89%EF%BC%8C%E6%84%9F%E8%A7%89%E8%BF%98%E4%B8%8D%E9%94%99%E3%80%82%E6%84%9F%E8%A7%89%E5%AE%9E%E7%8E%B0%E8%BF%98%E6%AF%94%E8%BE%83%E7%AE%80%E5%8D%95%EF%BC%8C%E4%BD%86%E8%87%AA%E5%B7%B1%E5%A4%AA%E6%87%92%E4%BA%86%E2%80%A6%E2%80%A6%E5%B0%B1%E7%9B%B4%E6%8E%A5%E5%9C%A8%E7%BD%91%E4%B8%8A%E6%89%BE%E4%BA%86%E5%87%A0%E4%B8%AA%E7%8E%B0%E6%88%90%E7%9A%842333">https://typora.io/）和微信小程序大赛官网（https://developers.weixin.qq.com/competition/index），感觉还不错。感觉实现还比较简单，但自己太懒了……就直接在网上找了几个现成的2333</a></p>
+<p>现在找了几个网上的打字机效果。简单来说，就是直接使用js来把文字逐个显示出来，同时加一个光标（指示的竖线）。</p>
+<p>找到的几个放在了<code>https://github.com/fengh16/Web-Learning/tree/master/typeMechine</code>。分别来自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_33312523/article/details/72628958">https://blog.csdn.net/sinat_33312523/article/details/72628958</a> 和 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32623363/article/details/77429463">https://blog.csdn.net/qq_32623363/article/details/77429463</a> 。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/04/05/%E6%89%93%E5%AD%97%E6%9C%BA%E6%95%88%E6%9E%9C%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-id="ckqkjgmc000j1x4c4c2n35i9m" data-title="打字机效果的实现" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Google-Drive-设置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/03/Google-Drive-%E8%AE%BE%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2018-04-02T22:06:06.000Z" itemprop="datePublished">2018-04-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/03/Google-Drive-%E8%AE%BE%E7%BD%AE/">Google-Drive-设置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="http://zapp-prefect.blogspot.com/2013/02/google-drive.html">http://zapp-prefect.blogspot.com/2013/02/google-drive.html</a><br>使用的是IE设置里面的代理，所以局域网(LAN)设置里面设置本地127.0.0.1并且端口号。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/04/03/Google-Drive-%E8%AE%BE%E7%BD%AE/" data-id="ckqkjgm7a0034x4c43xty9mfc" data-title="Google-Drive-设置" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-缓存的最远将来算法-贪心" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/25/%E7%BC%93%E5%AD%98%E7%9A%84%E6%9C%80%E8%BF%9C%E5%B0%86%E6%9D%A5%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83/" class="article-date">
+  <time class="dt-published" datetime="2018-03-24T22:06:06.000Z" itemprop="datePublished">2018-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/03/25/%E7%BC%93%E5%AD%98%E7%9A%84%E6%9C%80%E8%BF%9C%E5%B0%86%E6%9D%A5%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83/">缓存的最远将来算法-贪心</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>// 来自算法设计一书94页开始。</p>
+<h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p>已知缓存的大小以及访问元素的顺序，每次需要放入新的并且缓存已经满的情况（即缺失）下从缓存中去除<code>下一个相同元素在最远的将来被访问到</code>的元素。</p>
+<h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><p>要证明算法的最优，需要说明不存在以下情况：其他方法回收在某一步的元素比上述算法在相同步骤回收的元素更远。但是可以证明，如果这种情况发生，会有别的位置的元素比这个算法更近，总的效果不会更好。</p>
+<p>定义简化的调度为：只有在需要某个元素的时候才把这个元素放入缓存中。可以说明每一个非简化的调度都有对应的简化的调度（把放入元素的时机推后到该元素被使用即可）并且不会使得总的缺失次数变多。并且简化调度放入的项数就是缺失次数（不包含刚开始缓存没有满的时候放入的）</p>
+<ul>
+<li>证明最远将来规则的最优性（即对于任意序列，由最远将来规则产生的调度 $S_{FF}$ 可以由 最小缺失次数的调度 $S’$ 转化过来并且不增加缺失次数。<ol>
+<li>首先证明：对于$j$，如果$S$和$S_{FF}$前$j$次回收相同，则存在另一个简化调度$S’$使得$S’$和$S_{FF}$在$j+1$次回收相同并且不比$S$产生更多的缺失：<ul>
+<li>在第$j+1$次回收的时候回收了不同的元素，假设$S$回收了$f$而$S_{FF}$和$S‘$回收了$e$，故必须让$S’$试图尽快回到和$S$相同的状态同时不产生不必要的缺失。</li>
+<li>从第$j+2$次开始，就让$S’$和$S$的回收策略相同，直到：<ol>
+<li>如果某个位置，$S$回收了$e$，则直接让$S’$回收$f$即可。之后就和$S$一样了。</li>
+<li>如果某个位置有$f$的需求（只会首先有$f$的需求而不会有$e$的需求，因为$e$是最远的），则$S$会扔掉某个元素并且放入$f$。在这种情况下，只需要将$S’$中对应的元素也扔掉，放入$e$即可。（之后可以改变放入$e$的位置以简化）之后就和$S$一样了。如果对应的元素就是$e$，就说明$S’$更好……（这种情况应该不会发生的），所以$S’$不会比$S$差。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p>既然已经说明，上述算法产生的序列有对应的缺失相同的最优序列，所以他就是最优的……证毕。</p>
+<h2 id="实际情况"><a href="#实际情况" class="headerlink" title="实际情况"></a>实际情况</h2><p>实际上不可能直接这样直到要访问的，所以就考察已经访问过的，扔掉上一次访问最早的元素。（相当于把上述过程的序列倒过来）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/03/25/%E7%BC%93%E5%AD%98%E7%9A%84%E6%9C%80%E8%BF%9C%E5%B0%86%E6%9D%A5%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83/" data-id="ckqkjgmd500mvx4c44xkveb2f" data-title="缓存的最远将来算法-贪心" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-xv6" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/19/xv6/" class="article-date">
+  <time class="dt-published" datetime="2018-03-18T22:06:06.000Z" itemprop="datePublished">2018-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/03/19/xv6/">xv6</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在ubuntu中使用。</p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>VirtualBox，Ubuntu16.04LTS（<strong>切记32位！</strong>）</p>
+<h1 id="关于虚拟机"><a href="#关于虚拟机" class="headerlink" title="关于虚拟机"></a>关于虚拟机</h1><p>安装增强功能。开启共享粘贴板的主机到虚拟机。</p>
+<h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>换阿里云或tuna就行，阿里云换源教程见<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1dffba8c89e4">https://www.jianshu.com/p/1dffba8c89e4</a></p>
+<h2 id="共享文件夹权限问题"><a href="#共享文件夹权限问题" class="headerlink" title="共享文件夹权限问题"></a>共享文件夹权限问题</h2><p><code>sudo usermod -a -G vboxsf 你的用户名</code> 即可（来自<a target="_blank" rel="noopener" href="http://www.jb51.net/os/Ubuntu/343237.html%EF%BC%89">http://www.jb51.net/os/Ubuntu/343237.html）</a></p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>git clone <a target="_blank" rel="noopener" href="https://github.com/mit-pdos/xv6-public">https://github.com/mit-pdos/xv6-public</a></p>
+<h1 id="qemu"><a href="#qemu" class="headerlink" title="qemu"></a>qemu</h1><h2 id="直接安装："><a href="#直接安装：" class="headerlink" title="直接安装："></a>直接安装：</h2><p>sudo apt-get install qemu</p>
+<h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><p>（如果你想作死，就作吧<br>安装过程见<a target="_blank" rel="noopener" href="https://en.wikibooks.org/wiki/QEMU/Linux">https://en.wikibooks.org/wiki/QEMU/Linux</a></p>
+<p>之前下载好所需工具（直接apt-get install+对应名称安装）</p>
+<ul>
+<li><code>git</code></li>
+<li><code>zlib1g-dev</code>（没有安装会在<code>./configure</code>的时候提示：<code>zlib check failed</code>）</li>
+<li><code>libglib2.0-dev</code>（没有的话会提示<code>glib-2.22 gthread-2.0 is required to compile QEMU</code>）</li>
+<li><code>libpixman-1-dev</code>（没有的话提示<code>ERROR: pixman &gt;= 0.21.8 not present.</code>）</li>
+</ul>
+<p>主要操作（直接在termimal里面输入即可）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir qemu</span><br><span class="line">git clone git:&#x2F;&#x2F;git.qemu-project.org&#x2F;qemu.git</span><br><span class="line">cd qemu</span><br><span class="line">.&#x2F;configure</span><br><span class="line">.&#x2F;configure --disable-git-update</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>不保证上述过程成功，不成功的话……还是劝你直接apt-get install</p>
+<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p><code>sudo make</code> 之后 <code>make qemu</code></p>
+<h1 id="运行不了？"><a href="#运行不了？" class="headerlink" title="运行不了？"></a>运行不了？</h1><ul>
+<li>如果有<code>&quot;static_assert&quot; redefined</code>就直接在<code>mkfs.c</code>里面定义的前面加上<code>#undef static_assert</code></li>
+<li>重启一下电脑（我的在设置完后就可以用了）</li>
+<li>看看<a target="_blank" rel="noopener" href="https://github.com/THSS13/XV6/issues/7%E9%87%8C%E9%9D%A2%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E6%B2%A1%E5%87%86%E6%9C%89%E7%94%A8%E2%80%A6%E2%80%A6">https://github.com/THSS13/XV6/issues/7里面的方法，没准有用……</a></li>
+</ul>
+<h1 id="公众号推荐"><a href="#公众号推荐" class="headerlink" title="公众号推荐"></a>公众号推荐</h1><p>推荐一波自己的公众号：五道口的程序狐</p>
+<p>里面有一个聊天机器人，抚慰你的心灵</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ac8a0f00b9f836b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="mp"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/03/19/xv6/" data-id="ckqkjgmb800gbx4c4cu58cst3" data-title="xv6" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-VMware安装mac-os" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/12/VMware%E5%AE%89%E8%A3%85mac-os/" class="article-date">
+  <time class="dt-published" datetime="2018-03-11T22:06:06.000Z" itemprop="datePublished">2018-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/03/12/VMware%E5%AE%89%E8%A3%85mac-os/">VMware安装mac-os</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>使用一个已经进行过第一步安装的磁盘镜像文件，然后在VMware里面unlock掉（下载<a target="_blank" rel="noopener" href="https://github.com/DrDonk/unlocker%E4%B9%8B%E5%90%8E%E8%A7%A3%E5%8E%8B%EF%BC%8C%E5%85%B3%E9%97%AD%E6%89%80%E6%9C%89vmware%E8%BF%9B%E7%A8%8B%E5%90%8E%E7%AE%A1%E7%90%86%E5%91%98%E8%BF%90%E8%A1%8C%60win-install.cmd%60%EF%BC%89">https://github.com/DrDonk/unlocker之后解压，关闭所有vmware进程后管理员运行`win-install.cmd`）</a></p>
+<p>重启之后打开vmware创建虚拟机，选择mac os，正常设置，设置完之后进入配置页面，删除磁盘并且添加之前下载的磁盘镜像，在<code>.vmx</code>文件之中第19行位置写入<code>smc.version = &quot;0&quot;</code>后，直接开机设置语言什么的就行了。两次重启虚拟机后会提示安装VMware Tools，安装即可。</p>
+<p>无法直接在系统里面注册apple id账号，就在apple官网上注册，选择国家为中国，设置支付方式为NONE就行。之后打开app store，登录后进行配置，就可以直接下载免费应用而不用绑定银行卡什么的。</p>
+<p>打开<code>系统设置-安全性与隐私</code>，允许vmware的程序。</p>
+<h1 id="公众号推荐"><a href="#公众号推荐" class="headerlink" title="公众号推荐"></a>公众号推荐</h1><p>推荐一波自己的公众号：五道口的程序狐</p>
+<p>里面有一个聊天机器人，抚慰你的心灵</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ac8a0f00b9f836b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="mp"></p>
+<p>如有需要，联系<code>contact@fhao.top</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/03/12/VMware%E5%AE%89%E8%A3%85mac-os/" data-id="ckqkjgm8x008jx4c41apj7cyy" data-title="VMware安装mac-os" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C#图形界面学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/08/C#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2018-03-07T22:06:06.000Z" itemprop="datePublished">2018-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/03/08/C#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AD%A6%E4%B9%A0/">C#图形界面学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="项目新建"><a href="#项目新建" class="headerlink" title="项目新建"></a>项目新建</h1><p>VS里面新建就行</p>
+<h1 id="禁止缩放"><a href="#禁止缩放" class="headerlink" title="禁止缩放"></a>禁止缩放</h1><p>Take a look at the <a target="_blank" rel="noopener" href="http://msdn.microsoft.com/en-us/library/system.windows.forms.form.formborderstyle.aspx">FormBorderStyle property</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">form1.FormBorderStyle &#x3D; FormBorderStyle.FixedSingle;</span><br></pre></td></tr></table></figure>
+
+<p>You may also want to remove the minimize and maximize buttons:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">form1.MaximizeBox &#x3D; false;</span><br><span class="line">form1.MinimizeBox &#x3D; false;</span><br></pre></td></tr></table></figure>
+<p>来自<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/7970262/disable-resizing-of-a-windows-form">https://stackoverflow.com/questions/7970262/disable-resizing-of-a-windows-form</a></p>
+<h1 id="窗口点击坐标获取"><a href="#窗口点击坐标获取" class="headerlink" title="窗口点击坐标获取"></a>窗口点击坐标获取</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Form1_MouseClick</span>(<span class="params"><span class="built_in">object</span> sender, MouseEventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point p = e.Location;</span><br><span class="line">    MessageBox.Show(p.ToString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="事件添加-amp-绑定"><a href="#事件添加-amp-绑定" class="headerlink" title="事件添加&amp;绑定"></a>事件添加&amp;绑定</h1><p>事件绑定直接在属性页面里面就行，直接把对应事件绑定到对应的函数上。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5060560-d0e05f933e9f6c13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="事件按键的位置"></p>
+<h1 id="列表、字典等数据结构与C-对比"><a href="#列表、字典等数据结构与C-对比" class="headerlink" title="列表、字典等数据结构与C++对比"></a>列表、字典等数据结构与C++对比</h1><p>来自<a target="_blank" rel="noopener" href="http://www.cnblogs.com/cocoaleaves/archive/2009/05/30/1492269.html">http://www.cnblogs.com/cocoaleaves/archive/2009/05/30/1492269.html</a></p>
+<h2 id="数组（列表）"><a href="#数组（列表）" class="headerlink" title="数组（列表）"></a>数组（列表）</h2><p><img src="http://upload-images.jianshu.io/upload_images/5060560-5987192a96318206.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数组方面对比"></p>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>C#使用LinkedList<T>，C++用的是std::list<T>，内部实现都是链表，插入、删除速度快，随机访问速度慢。链表的操作与数组十分相似，不同的地方大致有：</p>
+<ol>
+<li>任何通过下标访问的方式都是无效的，查看容量也是无效的，这是由链表的性质决定的。对链表的查询操作要通过迭代器进行。也就是说，上表中“查询”、“遍历”的第一种方法、“大小”中的容量都是非法操作。</li>
+<li>插入删除的时候也不能指定下标，C++中除了push_back()外，多了一个push_front()，C#中不能使用Add()、Insert()，要使用AddBefore()/AddAfter()/AddFirst()/AddLast()。</li>
+<li>排序在C++中直接用list.sort()。</li>
+<li>std::list<T>要加头文件：#include <list></li>
+</ol>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><p>C#中使用Dictionary&lt;TKey,TValue&gt;，C++使用std::map&lt;TK,TV&gt;。map的内部实现是红黑树，Dictionary的实现是哈希表。DotNet中也有用树实现的字典类结构，叫SortedDictionary，似乎用得不多，效率也没有哈希表高，不过可以保持插入的数据是有序的。下面的对比是通过字符串来检索整数，为了写起来方便，C++中字符串直接用了LPCTSTR，并且typedef std::map&lt;LPCTSTR,int&gt; map_type;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5060560-1bd324bcae58f661.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="字典方面比较"></p>
+<h1 id="define"><a href="#define" class="headerlink" title="define"></a>define</h1><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define">https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-define</a></p>
+<p>C# 中的 <code>#define</code> 必须放在using 前面，并且<strong>不能向符号分配值</strong>。</p>
+<h1 id="String转int"><a href="#String转int" class="headerlink" title="String转int"></a>String转int</h1><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number">https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number</a></p>
+<p>使用<code>int.TryParse(textBox1.Text, out ans)</code>，如果转换成功就可以直接将结果存入ans中。</p>
+<h1 id="接受文本框enter事件"><a href="#接受文本框enter事件" class="headerlink" title="接受文本框enter事件"></a>接受文本框enter事件</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">textBox1_KeyPress</span>(<span class="params"><span class="built_in">object</span> sender, KeyPressEventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.KeyChar == (<span class="built_in">char</span>)Keys.Enter)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.button1_Click(sender, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="random"><a href="#random" class="headerlink" title="random"></a>random</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Random random = <span class="keyword">new</span> Random();</span><br><span class="line"><span class="comment">// random.Next()函数进行生成随机数。参数1个的时候返回（0  -  参数-1），两个参数则返回其范围的值。</span></span><br><span class="line">nowpoints.Add(<span class="keyword">new</span> Point(random.Next(pictureBox1.Width), random.Next(pictureBox1.Height)));</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.IO;</span><br><span class="line">            FileStream fs = <span class="keyword">new</span> FileStream(<span class="string">&quot;points.txt&quot;</span>, FileMode.Create, FileAccess.Write);</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; nowpoints.Count; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">byte</span>[] data = System.Text.Encoding.Default.GetBytes(nowpoints[i].ToString() + <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">                fs.Write(data, <span class="number">0</span>, data.Length);</span><br><span class="line">            &#125;</span><br><span class="line">            fs.Flush();</span><br><span class="line">            fs.Close();</span><br><span class="line">            MessageBox.Show(<span class="string">&quot;已经保存到&quot;</span> + fs.Name);</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/akwwl/p/3240813.html">http://www.cnblogs.com/akwwl/p/3240813.html</a></p>
+<h1 id="控件刷新"><a href="#控件刷新" class="headerlink" title="控件刷新"></a>控件刷新</h1><p>比较耗时的计算中，可以直接使用Refresh进行强制刷新，避免因为后续过程用时过长导致无法正常刷新显示之前的更改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">richTextBox1.Text &#x3D; (&quot;马上开始计算，可能会较慢，请等候……&quot;);</span><br><span class="line">richTextBox1.Refresh();</span><br><span class="line">richTextBox1.Text &#x3D; (Calculate_nSquare());</span><br></pre></td></tr></table></figure>
+
+<h1 id="ComboBox控件（下拉菜单，下拉框）"><a href="#ComboBox控件（下拉菜单，下拉框）" class="headerlink" title="ComboBox控件（下拉菜单，下拉框）"></a>ComboBox控件（下拉菜单，下拉框）</h1><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/friendan/article/details/8913183">http://blog.csdn.net/friendan/article/details/8913183</a></p>
+<ol>
+<li><p>让用户只能选择项。<br>很简单，设置ComboBox的属性DropDownStyle为DropDownList即可。</p>
+</li>
+<li><p>设置默认选择的项。<br>this.cmbTest.SelectedIndex = 3; //选择第四项,注意，编号从0开始</p>
+</li>
+</ol>
+<h1 id="确认框"><a href="#确认框" class="headerlink" title="确认框"></a>确认框</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> confirmResult =  MessageBox.Show(<span class="string">&quot;Are you sure to delete this item ??&quot;</span>,</span><br><span class="line">                                     <span class="string">&quot;Confirm Delete!!&quot;</span>,</span><br><span class="line">                                     MessageBoxButtons.YesNo);</span><br><span class="line"><span class="keyword">if</span> (confirmResult == DialogResult.Yes)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// If &#x27;Yes&#x27;, do something here.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// If &#x27;No&#x27;, do something here.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3845695/is-there-a-builtin-confirmation-dialog-in-windows-forms">https://stackoverflow.com/questions/3845695/is-there-a-builtin-confirmation-dialog-in-windows-forms</a></p>
+<h1 id="文本框中光标跳转到最后"><a href="#文本框中光标跳转到最后" class="headerlink" title="文本框中光标跳转到最后"></a>文本框中光标跳转到最后</h1><p>在改变内容之后，光标会回到开头，就很气。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">richTextBox1.Focus();</span><br><span class="line">richTextBox1.SelectionStart &#x3D; richTextBox1.Text.Length;</span><br></pre></td></tr></table></figure>
+
+<h1 id="画图（picture-box中）"><a href="#画图（picture-box中）" class="headerlink" title="画图（picture box中）"></a>画图（picture box中）</h1><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/zjq2010014137/article/details/18270143">http://blog.csdn.net/zjq2010014137/article/details/18270143</a></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Graphics g = pictureBox1.CreateGraphics();  </span><br><span class="line"><span class="keyword">if</span>(e.Button ==MouseButtons.Left)  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">if</span> (drawing)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="comment">//drawing = true;  </span></span><br><span class="line">        Point currentPoint = <span class="keyword">new</span> Point(e.X, e.Y);  </span><br><span class="line">        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;<span class="comment">//消除锯齿  </span></span><br><span class="line">        g.DrawLine(<span class="keyword">new</span> Pen(Color.Blue, <span class="number">2</span>),  p2,currentPoint);  </span><br><span class="line">        p2.X = currentPoint.X;  </span><br><span class="line">        p2.Y = currentPoint.Y;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<h1 id="画点"><a href="#画点" class="headerlink" title="画点"></a>画点</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Draw_Points</span>(<span class="params">Point p</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    g.DrawLine(blackPen, <span class="keyword">new</span> Point(p.X - <span class="number">1</span> &gt;= <span class="number">0</span> ? p.X - <span class="number">2</span> : p.X, p.Y), <span class="keyword">new</span> Point(p.X + <span class="number">1</span> &lt; pictureBox1.Width ? p.X + <span class="number">1</span> : p.X, p.Y));</span><br><span class="line">    g.DrawLine(blackPen, <span class="keyword">new</span> Point(p.X, p.Y - <span class="number">1</span> &gt;= <span class="number">0</span> ? p.Y - <span class="number">2</span> : p.Y), <span class="keyword">new</span> Point(p.X, p.Y + <span class="number">1</span> &lt; pictureBox1.Width ? p.Y + <span class="number">1</span> : p.Y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Clear_Points</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    g.Clear(Color.White);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="多线程编程"><a href="#多线程编程" class="headerlink" title="多线程编程"></a>多线程编程</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2269a912e41f">https://www.jianshu.com/p/2269a912e41f</a></p>
+<p>直接搞一个函数，然后在另一个线程里面调用就行。如果有参数，就直接在start函数里面把参数传递过去，并且使用<code>ParameterizedThreadStart</code>，参数类型搞成<code>object</code>。</p>
+<h1 id="多线程里面的UI修改问题"><a href="#多线程里面的UI修改问题" class="headerlink" title="多线程里面的UI修改问题"></a>多线程里面的UI修改问题</h1><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/marshal-m/p/3201051.html">http://www.cnblogs.com/marshal-m/p/3201051.html</a></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//共分三步</span></span><br><span class="line"><span class="comment">//第一步：获取UI线程同步上下文（在窗体构造函数或FormLoad事件中）</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> UI线程的同步上下文</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">SynchronizationContext m_SyncContext = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Form1</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    InitializeComponent();</span><br><span class="line">    <span class="comment">//获取UI线程同步上下文</span></span><br><span class="line">    m_SyncContext = SynchronizationContext.Current;</span><br><span class="line">    <span class="comment">//Control.CheckForIllegalCrossThreadCalls = false;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第二步：定义线程的主体方法</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 线程的主体方法</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ThreadProcSafePost</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//...执行线程任务</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//在线程中更新UI（通过UI线程同步上下文m_SyncContext）</span></span><br><span class="line">    m_SyncContext.Post(SetTextSafePost, <span class="string">&quot;This text was set safely by SynchronizationContext-Post.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//...执行线程其他任务</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第三步：定义更新UI控件的方法</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 更新文本框内容的方法</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;text&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">SetTextSafePost</span>(<span class="params"><span class="built_in">object</span> text</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.textBox1.Text = text.ToString();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//之后,启动线程</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 启动线程按钮事件</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;sender&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;e&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setSafePostBtn_Click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.demoThread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> ThreadStart(<span class="keyword">this</span>.ThreadProcSafePost));</span><br><span class="line">    <span class="keyword">this</span>.demoThread.Start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="C-委托（把函数作为参数进行传递）"><a href="#C-委托（把函数作为参数进行传递）" class="headerlink" title="C#委托（把函数作为参数进行传递）"></a>C#委托（把函数作为参数进行传递）</h1><p><a target="_blank" rel="noopener" href="http://developer.51cto.com/art/200908/144536.htm">http://developer.51cto.com/art/200908/144536.htm</a></p>
+<p>委托是一个类，它定义了方法的类型，使得可以将方法当作另一个方法的参数来进行传递，这种将方法动态地赋给参数的做法，可以避免在程序中大量使用If-Else(Switch)语句，同时使得程序具有更好的可扩展性。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;  </span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;  </span><br><span class="line"><span class="keyword">using</span> System.Text;  </span><br><span class="line"> </span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Delegate</span> &#123;  </span><br><span class="line">     <span class="comment">//定义委托，它定义了可以代表的方法的类型  </span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">GreetingDelegate</span>(<span class="params"><span class="built_in">string</span> name</span>)</span>;  </span><br><span class="line">        <span class="keyword">class</span> <span class="title">Program</span> &#123;  </span><br><span class="line"> </span><br><span class="line">           <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">EnglishGreeting</span>(<span class="params"><span class="built_in">string</span> name</span>)</span> &#123;  </span><br><span class="line">               Console.WriteLine(<span class="string">&quot;Morning, &quot;</span> + name);  </span><br><span class="line">           &#125;  </span><br><span class="line"> </span><br><span class="line">           <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ChineseGreeting</span>(<span class="params"><span class="built_in">string</span> name</span>)</span> &#123;  </span><br><span class="line">               Console.WriteLine(<span class="string">&quot;早上好, &quot;</span> + name);  </span><br><span class="line">           &#125;  </span><br><span class="line"> </span><br><span class="line">           <span class="comment">//注意此方法，它接受一个GreetingDelegate类型的方法作为参数  </span></span><br><span class="line">           <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">GreetPeople</span>(<span class="params"><span class="built_in">string</span> name, GreetingDelegate MakeGreeting</span>)</span> &#123;  </span><br><span class="line">               MakeGreeting(name);  </span><br><span class="line">            &#125;  </span><br><span class="line"> </span><br><span class="line">           <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span> &#123;  </span><br><span class="line">               GreetPeople(<span class="string">&quot;Jimmy Zhang&quot;</span>, EnglishGreeting);  </span><br><span class="line">               GreetPeople(<span class="string">&quot;张子阳&quot;</span>, ChineseGreeting);  </span><br><span class="line">               Console.ReadKey();  </span><br><span class="line">           &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; </span><br></pre></td></tr></table></figure>
+
+
+<h1 id="公众号推荐"><a href="#公众号推荐" class="headerlink" title="公众号推荐"></a>公众号推荐</h1><p>推荐一波自己的公众号：五道口的程序狐</p>
+<p>里面有一个聊天机器人，抚慰你的心灵</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ac8a0f00b9f836b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="mp"></p>
+<p>如有需要，联系<code>contact@fhao.top</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/03/08/C#%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%AD%A6%E4%B9%A0/" data-id="ckqkjgm6n000wx4c4eoyw04lg" data-title="C#图形界面学习" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/33/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/35/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

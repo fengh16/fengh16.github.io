@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>深度学习（花书）笔记 | Henry Fox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="深度学习（书）第一章 前言$log$表示自然对数$ln$ 数据的表示：对算法性能产生影响 特征集&#x3D;&gt;不知道提取哪些&#x3D;&gt;表示学习（representation learning，机器学习发掘表示本身，最少的人工干预）  自编码器（autoencoder）：编码器（encoder）+解码器（decoder），训练目标：希望编码解码后尽可能多保留信息。 变差因素（factors of var">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习（花书）笔记">
+<meta property="og:url" content="https://fengh16.github.io/2018/05/12/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E8%8A%B1%E4%B9%A6%EF%BC%89%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Henry Fox">
+<meta property="og:description" content="深度学习（书）第一章 前言$log$表示自然对数$ln$ 数据的表示：对算法性能产生影响 特征集&#x3D;&gt;不知道提取哪些&#x3D;&gt;表示学习（representation learning，机器学习发掘表示本身，最少的人工干预）  自编码器（autoencoder）：编码器（encoder）+解码器（decoder），训练目标：希望编码解码后尽可能多保留信息。 变差因素（factors of var">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-05-11T22:06:06.000Z">
+<meta property="article:modified_time" content="2021-05-28T13:04:47.682Z">
+<meta property="article:author" content="Henry Fox">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Henry Fox" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry Fox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fengh16.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-深度学习（花书）笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/05/12/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E8%8A%B1%E4%B9%A6%EF%BC%89%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2018-05-11T22:06:06.000Z" itemprop="datePublished">2018-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      深度学习（花书）笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="深度学习（书）"><a href="#深度学习（书）" class="headerlink" title="深度学习（书）"></a>深度学习（书）</h1><h2 id="第一章-前言"><a href="#第一章-前言" class="headerlink" title="第一章 前言"></a>第一章 前言</h2><p>$log$表示自然对数$ln$</p>
+<p>数据的表示：对算法性能产生影响</p>
+<p>特征集=&gt;不知道提取哪些=&gt;<strong>表示学习</strong>（representation learning，机器学习发掘表示本身，最少的人工干预）</p>
+<ul>
+<li>自编码器（autoencoder）：编码器（encoder）+解码器（decoder），训练目标：希望编码解码后尽可能多保留信息。</li>
+<li>变差因素（factors of variation）：解释观察数据，通常不能直接观察。需要理清变差因素并且忽略不重要的。</li>
+<li>抽象特征提取困难，<strong>深度学习</strong>（deep learning）用较简单的方法表达复杂表示。<ul>
+<li>将复杂映射分解成一系列嵌套简单映射（模型的不同层）</li>
+<li>输入展示在可见层（visible layer），之后隐藏层（hidden layer） </li>
+<li>组合简单的概念表示图像中：多层感知机（multilayer perceptron，MLP）：将输入值映射到输出值的函数，简单函数复合而成。每一次应用为输入提供新的表示。</li>
+<li>某层激活函数里面，还保留着状态信息，用于帮助程序理解输入。</li>
+<li>评估（深度的两种定义）：<ul>
+<li>流程图最长路径：深度</li>
+<li>描述概念彼此如何关联的图：深度 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>$Deep\ Learning\sub Representation\ Learning\sub Machine\ Learning\sub AI$</li>
+<li>Classic machine learning 相比较于Rule-based systems多了从特征的映射，Representation learning将手动的feature改成了自动的feature，Deep learning将feature拆分成simple features和additional layers of more abstract features</li>
+</ul>
+<p>人工神经网络：artificial neural network, ANN</p>
+<p>控制论：学习一组参数，直接做内积进行输出</p>
+<p>McCulloch-Pitts神经元：脑功能早期模型，操作人员设定权重。控制论输出的正负判断输入类别。</p>
+<p>感知机：根据每个类别输出样本学习权重。</p>
+<p>自适应先行单元：adaptive linear element，ADALINE：返回f(x)来预测实数，并且可以学习从数据中预测</p>
+<ul>
+<li>随机梯度下降：某种方法可以用于调节ADALINE权重</li>
+</ul>
+<p>线性模型：无法学习XOR</p>
+<p>现在：</p>
+<ul>
+<li><p>基于整流线性单元（rectified linear unit）的神经单元模型</p>
+</li>
+<li><p>计算神经科学：了解大脑在算法层面上的工作</p>
+</li>
+<li><p>联结主义：connectionism，也称并行分布处理（parallel distributed processing），认知科学背景。认为：当网络将大量简单计算单元连接在一起可以实现智能行为（适用于神经元）</p>
+<p>其中涉及到：</p>
+<ul>
+<li>分布式表示distributed representation：每一个输入都应该由多个特征表示，每一个特征都应该参与到多个可能输入的表示。（多对多。如一共有3种颜色3种物体，颜色可以从所有种类的物体中学习）</li>
+<li>反向传播</li>
+<li>长短期记忆long short-tem memory, LSTM网络：序列建模任务中。（带有循环的神经网络，信息保留一段时间）</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二章-线代"><a href="#第二章-线代" class="headerlink" title="第二章 线代"></a>第二章 线代</h2><p>张量tensor：超过二维的数组（即超过二维的矩阵）</p>
+<p>广播broadcasting：隐式复制一个到很多方式，如矩阵和向量相加，即向量作为一个行向量，和矩阵中的每一行相加。</p>
+<p>矩阵相乘：</p>
+<ol>
+<li>元素对应乘积（element-wise product，相同位置相乘，Hadamard product，记为$A\odot B$</li>
+<li>点积，正常相乘</li>
+</ol>
+<p>矩阵相乘服从分配律结合律</p>
+<p>逆矩阵精度有限，因此不会实际使用。</p>
+<p>生成子空间span：生成的空间（原始向量线性组合之后能抵达的所有点。）</p>
+<p>列空间：$Ax=b$的所有$b$</p>
+<p>奇异的singular：方块矩阵列线性相关（非满秩），不可逆。</p>
+<p>$L_p$范数：$||x||<em>p=\left(\sum\limits</em>{i}|x_i|^p\right)^{\frac 1p}$</p>
+<p>范数：只有0对应的是0，三角不等式，线性。</p>
+<p>最大范数max norm：$||x||<em>{\infty}=\max\limits</em>{i}|x_i|$</p>
+<p>衡量矩阵大小：Frobenius范数：$||A||<em>F=\sqrt{\sum\limits</em>{i,j}A^2_{i,j}}$</p>
+<p>正交矩阵：行向量、列向量为标准正交，转置为逆</p>
+<p>特征分解：分解成（右）特征向量$\upsilon$和特征值$\lambda$，$A\upsilon=\lambda\upsilon$。$V=[\upsilon^{(1)},…,\upsilon^{(n)}], \mathbf{\lambda}=[\lambda_1,…\lambda_n]^T$，因此$A=V diag(\lambda)V^{-1}$</p>
+<p>实对称矩阵都可以分解。$A=A\Lambda Q^T$，$\Lambda$为对角矩阵。分解不唯一，一般降序排列$\Lambda$中的元素。</p>
+<p>$f(x)=x^TAx$，其中$||x||_2=1$，则$x$为$A$的某个特征向量的时候，返回对应的特征值。最大值为最大特征值，最小值为最小特征值。</p>
+<p>正定：所有特征值都是正数；半正定：所有特征值都非负数。</p>
+<p>奇异值分解singular value decomposition，SVD：奇异向量singular vector，奇异值singular value。每个实数矩阵都有奇异值分解。</p>
+<ul>
+<li>$A=UDV^T$，其中$U,V$正交矩阵，$D$为对角矩阵（但不一定是方阵）。</li>
+<li>$U$的列向量：左奇异向量；$V$的列向量：右奇异向量；$D$对角线上元素：奇异值。</li>
+<li>左奇异向量：$AA^T$的特征向量。</li>
+</ul>
+<p>Moore-Penrose伪逆：</p>
+<ul>
+<li>非方阵无逆矩阵，$A^+=VD^+U^T$，其中$D^+$是非零元素取倒数后转置</li>
+<li>$x=A^+y$是可行解中欧几里得范数最小的一个，若无解则是$||Ax-y||_2$最小。</li>
+</ul>
+<p>迹运算：$Tr(A)$，对角元素的和。</p>
+<ul>
+<li>$||A||_F=\sqrt{Tr(AA^T)}$</li>
+<li>$Tr(ABC)=Tr(CAB)=Tr(BCA)$（循环将最后一个拿到前面）</li>
+</ul>
+<p>主成分分析Principal components analysis，PCA：</p>
+<ul>
+<li><p>有损压缩。要找到编码函数。</p>
+</li>
+<li><p>用矩阵乘法定义解码器。$g(c)=Dc$，其中$D\in \R^{n×l}$是定义解码的矩阵。从$l$维变到$n$维，$l&lt;n$</p>
+</li>
+<li><p>限制$D$的列向量彼此正交。则$D^TD=I_l$.</p>
+</li>
+<li><p>定义loss：输入向量$x$和$g(c^*)$之间的距离。即$(x-g(c))^T(x-g(c))$</p>
+</li>
+<li><p>因此最小化$g(c)^Tg(c)-2x^Tg(c)$</p>
+</li>
+<li><p>即最小化$c^Tc-2x^TDc$</p>
+</li>
+<li><p>向量微积分：将$c$认为是变量，求梯度$grad()=\nabla=\mathbf{0}$</p>
+<p>若$c=(c_1, c_2,…,c_l)^T$，则$2c-2D^Tx=\mathbf 0$（$2x^TD$是一个行向量，需要变为列向量，因此再次转置）</p>
+</li>
+<li><p>现在选择$D$，则最小化所有点。求所有误差的几何平均。</p>
+</li>
+<li><p>矩阵$D$由前$l$个最大特征值对应的特征向量组成。</p>
+</li>
+</ul>
+<h2 id="第三章-概率论-信息论"><a href="#第三章-概率论-信息论" class="headerlink" title="第三章 概率论 信息论"></a>第三章 概率论 信息论</h2><p>概率分类：</p>
+<ul>
+<li>频率派概率frequentist probability</li>
+<li>贝叶斯概率：确定性水平，表示信任度degree of belief</li>
+</ul>
+<p>Multinoulli分布：范畴分布（categorical distribution）：在$k$个不同状态（有限个）的单个离散型随机变量上的分布。概率有$k-1$个分量，每一个分量表示为第$i$个状态的概率。</p>
+<p>一些分布的概率密度函数：</p>
+<ul>
+<li>指数分布：$\lambda \mathbf 1_{x\ge 0}e^{-\lambda x}$</li>
+<li>Laplace分布：$\frac 1{2\gamma}e^{-\frac{|x-\mu|}{\gamma}}$</li>
+<li>Dirac delta函数：$\delta(x)=0, x\ne 0$，$\int_{-\infty}^\infty \delta(x)dx = 1$, 概率密度函数为$\delta(x-\mu)$，则为Dirac 分布</li>
+<li>经验分布：$\frac 1m \sum\limits_{i=1}^m\delta(x-x^{(i)})$</li>
+</ul>
+<p>混合分布mixture distribution ：Multinoulli分布：$P(x)=\sum\limits_{i}P(c=i)P(x|c=i)$</p>
+<p>潜变量：latent variable：不能直接观测到，如上面的组件标志变量$c$。</p>
+<p>高斯混合模型：$P(x|c=i)$是一个高斯分布。</p>
+<p>先验概率：$P(c=i)$(观测到$x$之前传递进去的概率)。</p>
+<p>常用函数：</p>
+<ul>
+<li>logistic sigmoid函数：<ul>
+<li>$\sigma(x)=\frac 1{1+e^{-x}}$</li>
+<li>用来产生Bernoulli分布中的参数$\phi$</li>
+<li>绝对值很大时，饱和saturate现象，对输入的微小改变不敏感</li>
+</ul>
+</li>
+<li>softplus函数：<ul>
+<li>$\zeta(x)=log(1+e^x)$</li>
+<li>产生正态分布的$\beta$和$\sigma$参数</li>
+<li>是正部函数$x^+=max(0,x)$的平滑形式</li>
+</ul>
+</li>
+</ul>
+<p>贝叶斯公式：略</p>
+<p>测度论：涉及到零测度measure zero、几乎处处almost everywhere, a.e.、$p_x(x)=p_y(g(x))\left|det\left(\frac{\part g(x)}{\part x}\right)\right|$</p>
+<p>信息论：</p>
+<ul>
+<li>一个信号包含多少信息进行量化</li>
+<li>不太可能的事件发生，比非常可能的事情发生提供更多信息</li>
+<li>独立事件有增量的信息（越多则信息量越大）</li>
+<li>事件的自信息self-information：$I(x)=-logP(X)$<ul>
+<li>单位为nats，即以$\frac 1e$的概率观测到一个事件时获得的信息量。若以$2$为底，则单位为比特bit或者香农shannons，这两个单位正比关系。</li>
+</ul>
+</li>
+<li>香农熵Shannon entropy：整个概率分布中不确定性总量的量化：$H(x)=\mathbb E_{x\sim P}[I(x)]=-\mathbb E_{x\sim P}[log P(x)]$<ul>
+<li>遵循分布P的时候的期望信息总量。</li>
+<li>给出依据概率分布P生成的符号进行编码所需的比特数在平均意义上的下界。</li>
+<li>确定性分布的熵较小，接近均匀分布的有较高的熵。 </li>
+</ul>
+</li>
+<li>KL散度Kullback-Leibler divergence：衡量概率分布$P(x),Q(x)$的差异：$D_{KL}(P||Q)=\mathbb E_{x\sim P}\left[log\frac{P(x)}{Q(x)}\right]=\mathbb E_{x\sim P}\left[log{P(x)}-logQ(x)\right]$但<strong>不是</strong>两个分布的香农熵之差。<ul>
+<li>使得$Q$的产生消息的长度最小的编码，若改成以$P$产生的消息的编码的时候，需要的额外信息量</li>
+<li>非负，为0时当且仅当是相同分布（离散型）</li>
+<li>非对称$D_{KL}(P||Q)\ne D_{KL}(Q||P)$</li>
+</ul>
+</li>
+<li>交叉熵cross-entropy：$H(P,Q)=H(P)+D_{KL}(P||Q)=-\mathbb E_{x\sim P}logQ(X)$<ul>
+<li>针对$Q$最小化交叉熵等于最小化KL散度。</li>
+</ul>
+</li>
+<li>认为$0log0=\lim\limits_{x\rightarrow 0}xlogx=0$</li>
+</ul>
+<p>结构化概率模型：</p>
+<ul>
+<li>分解成多因子乘积形式：$p(a,b,c)=p(a)p(b|a)p(c|b)$，也就是说，用更少变量的分解方法，可以使用图的方法描述。</li>
+<li>有向无向，每个节点对应一个随机变量，边表示概率分布可以表示成他们的直接作用。</li>
+<li>有向图对应的，用条件概率表示。每一个节点的随机变量，都有一个影响因子，组成它的条件概率的影响因子叫做其父节点。</li>
+<li>无向图：团（完全子图）都有一个因子，非负。随机变量的联合概率与他们的乘积成比例。 </li>
+</ul>
+<h2 id="第四章-数值计算"><a href="#第四章-数值计算" class="headerlink" title="第四章 数值计算"></a>第四章 数值计算</h2><p>下溢underflow：做除数/取log</p>
+<p>上溢overflow：变为$\infty$变为非数字</p>
+<p>softmax function:$\frac{e^{x_i}}{\sum\limits_{j=1}^n e^{x_j}}$</p>
+<ul>
+<li>通过每一个都减去最大值，避免上溢</li>
+<li>如果要对结果取log，实现单独函数来避免分子下溢</li>
+</ul>
+<p>病态条件：条件数表征函数相对于输入的微小变化而变化的快慢程度。输入被轻微扰动而迅速改变的函数对于科学计算来说可能是有问题的，因为输入中的舍入误差可能导致输出的巨大变化。 </p>
+<ul>
+<li>条件数：$f(x)=A^{-1}x, A\in \mathbb R^{n×n}$具有特征值分解时，条件数为最大和最小特征值的模之比 </li>
+</ul>
+<p>梯度下降/最速下降法：</p>
+<ul>
+<li>思路：如果更大，则$x-\epsilon sign(f’(x))$</li>
+<li>多维：基于梯度，找下降最快的方向。（负梯度向量，最速下降法）：$\mathbf x’ = \mathbf x - \epsilon\nabla_{\mathbf x}f(\mathbf x)$</li>
+<li>$\epsilon$为学习率</li>
+<li>梯度为0时收敛</li>
+<li>离散参数：称为爬山hill climbing算法</li>
+<li>每一个很接近0的时候收敛</li>
+</ul>
+<p>Jacobian矩阵：</p>
+<ul>
+<li>$J_{i,j}=\frac{\part}{\part x_j}f(x)_i$ ($J_i$表示一个行向量，是第$i$个分量的分别导数的向量)</li>
+<li>二阶导决定函数的曲率curvature：没有曲率的时候是直线，曲率为正的时候比梯度预测下降更快</li>
+</ul>
+<p>Hessian矩阵：</p>
+<ul>
+<li>梯度的Jacobian矩阵</li>
+<li>$H(f)(x)_{i,j}=\frac{\part^2}{\part x_i\part x_j}f(x)$</li>
+<li>深度学习背景下，几乎处处都是对称的。可以分解成特征值和特征向量的正交基$V\Lambda V^{-1}$。特定方向$d$上的二阶导数可以写作$d^THd$，如果$d$是特征向量，则对应这个方向的特征值。其他方向的为所有特征值加权平均，权重在0和1之间，夹角越小的特征向量权重越大。</li>
+<li>二阶Taylor级数下，考虑学习率：<ul>
+<li>$f(x)\approx f(x^{(0)})+(x-x^{(0)})^T\nabla f(x^{(0)})+\frac 12 (x-x^{(0)})^TH(x-x^{(0)})$</li>
+<li>$H$是$x^{(0)}$点的Hessian. 记$g=\nabla f(x^{(0)})$</li>
+<li>学习率$\epsilon$下，新的点$x=x^{(0)}-\epsilon \nabla f(x^{(0)})$</li>
+<li>则$f(x^{(0)}-\epsilon g)\approx f(x^{(0)})-\epsilon g^Tg + \frac 12 \epsilon^2 g^THg$</li>
+<li>最优步长$\epsilon^* = \frac{g^Tg}{g^THg}$</li>
+</ul>
+</li>
+<li>一阶导为0二阶导大于0时，为极小</li>
+<li>多维下，Hessian正定代表是局部极小点。</li>
+<li>牛顿法：$x^*=x^{(0)}-H^{-1}g$<ul>
+<li>比梯度下降更快，但鞍点附近有害</li>
+<li>梯度下降不会被吸引到鞍点（除非梯度指向这里）</li>
+</ul>
+</li>
+</ul>
+<p>梯度下降称为一阶优化算法，牛顿法等称为二阶优化算法。</p>
+<p>Lipschitz连续或者导数Lipschitz连续：</p>
+<ul>
+<li>Lipschitz连续函数变化速度以Lipschitz常数$L$为界，即$|f(x)-f(y)|\le L||x-y||_2$</li>
+</ul>
+<p>凸优化：只适用于凸函数（Hessian处处半正定）</p>
+<p>约束优化：在集合$\mathbb S$中的点（可行feasible点）中找到最大/最小。</p>
+<ul>
+<li>Karush-Kuhn-Tucker （KKT）方法：针对约束优化通用。拉格朗日乘数法的推广。<ul>
+<li>广义Lagrangian：<ul>
+<li>描述$\mathbb S$：$\mathbb S={x|\forall i, g^{(i)}(x)=0\ and\  \forall j, h^{(j)}(x)\le 0}$</li>
+<li>$L(x,\lambda, \alpha)=f(x)+\sum\limits_i \lambda_ig^{(i)}(x) + \sum\limits_j\alpha_j h^{(j)}(x)$</li>
+<li>$\min\limits_x \max\limits_\lambda \max\limits_{\alpha, \alpha \ge 0}L(x,\lambda, \alpha)$</li>
+<li>约束最大化问题：构造$-f(x)$的广义Lagrange函数</li>
+</ul>
+</li>
+<li>KKT条件：<ul>
+<li>必要条件</li>
+<li><ol>
+<li>广义Lagrangian梯度为0</li>
+<li>约束满足</li>
+<li>不等式约束的互补松弛性：$\alpha\odot h(x)=0$ （对应位置的乘积都是0）</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>线性最小二乘：</p>
+<ul>
+<li>最小化$f(x)=\frac 12 ||Ax-b||^2_2$</li>
+<li>通过梯度优化解决</li>
+<li>梯度：$\nabla_xf(x)=A^T(Ax-b)$</li>
+<li>算法：<ul>
+<li>梯度大于容差$\delta$时，$x=x-\epsilon(A^TAx-A^Tb)$</li>
+<li>也可以直接使用牛顿法</li>
+</ul>
+</li>
+<li>如果有约束$x^Tx\le 1$<ul>
+<li>$L(x,\alpha)=f(x)+\alpha(x^Tx-1)$</li>
+<li>关于$x$求微分：$A^TAx-A^Tb+2\alpha x$ （注意$x^Tx$的$\nabla$是$2x$）</li>
+<li>$\alpha$要使得约束满足，$\frac{\part L}{\part \alpha}$应该为非正。应该增加$\alpha$直到约束满足并且关于$\alpha$的导数为0.</li>
+</ul>
+</li>
+</ul>
+<h2 id="第五章-机器学习基础"><a href="#第五章-机器学习基础" class="headerlink" title="第五章 机器学习基础"></a>第五章 机器学习基础</h2><p>深度学习是机器学习的特定分支</p>
+<h2 id="学习算法"><a href="#学习算法" class="headerlink" title="学习算法"></a>学习算法</h2><p>定义：</p>
+<ul>
+<li>通过经验$E$改进后，在任务$T$上由性能度量$P$衡量的性能有所提升。</li>
+</ul>
+<p>任务$T$：</p>
+<ul>
+<li>学习过程本身不是任务</li>
+<li>定义：机器学习系统应该如何处理样本example<ul>
+<li>样本：特征的集合，通常表示成向量$x\in \R^n$，向量中每一个元素是一个特征。</li>
+</ul>
+</li>
+<li>举例：<ul>
+<li>分类</li>
+<li>输入缺失分类：在不知道某些变量的情况下的分类（求关于缺失变量的边缘分布）</li>
+<li>回归：针对输入预测数值</li>
+<li>转录：OCR、语音识别</li>
+<li>机器翻译</li>
+<li>结构化输出：包括转录、翻译、语法分析、图像分割标注。输出值之间内部紧密相关</li>
+<li>异常检测：如检测信用卡欺诈</li>
+<li>合成、采样：生成和训练数据相似的新样本。是结构化输出任务。</li>
+<li>缺失值填补</li>
+<li>去噪</li>
+<li>密度估计、概率质量函数估计</li>
+</ul>
+</li>
+</ul>
+<p>性能度量$P$：</p>
+<ul>
+<li>针对于特定任务</li>
+<li>准确率、错误率</li>
+<li>测试集数据</li>
+</ul>
+<p>经验$E$：</p>
+<ul>
+<li>分为无监督算法、监督算法</li>
+<li>数据集dataset上获取经验。样本也称为数据点data point</li>
+<li>无监督学习算法unsupervised learning algorithm：学习出数据集上有用的结构性质；涉及到概率分布</li>
+<li>监督学习算法supervised learning algorithm：样本有标签label或者母表target；涉及到条件概率</li>
+<li>但是概率和条件概率可以互相转化$P(x)=\prod\limits_{i=1}^nP(x_i|x_{1}x_{2}…x_{i-1})$，$P(x|y)=\frac{P(x,y)}{\sum_{x’} P(x’, y)}$因此界限不明显。</li>
+<li>传统地，人们将回归、分类或者结构化输出问题称为监督学习。支持其他任务的密度估计通常被称为无监督学习。 </li>
+<li>半监督学习：一些样本有监督目标，其他没有。</li>
+<li>强化学习：与环境进行交互，学习系统和训练过程有反馈回路。</li>
+<li>设计矩阵design matrix：表示数据集，每行是不同样本，每列是不同特征。<ul>
+<li>如果不是矩阵：使用m个样本向量，每个样本向量可以有不同大小</li>
+</ul>
+</li>
+<li>标签向量：第i个分量是样本i的标签</li>
+</ul>
+<p>示例：线性回归</p>
+<ul>
+<li>输入向量，预测输出的标量</li>
+<li>$\breve y = w^Tx$</li>
+<li>$w$为参数parameter向量，每个分量可以看作权重；$x$的每个分量是一个特征，权重调整特征的预测。</li>
+<li>误差：使用均方误差（每个测试样例的误差平方的平均）</li>
+<li>最小化均方误差：直接求导数为0（梯度），得$\nabla_w \mathbf{MSE_{train}}=\nabla_w(w^TX^TXw-2w^TX^Ty+y^Ty)=0$<ul>
+<li>因此$2X^TXw-2X^Ty=0$</li>
+<li>$w=\left(X^TX\right)^{-1}X^Ty$</li>
+</ul>
+</li>
+<li>实际上，预测得应该是$\breve y = w^Tx+b$，b为偏置bias参数</li>
+</ul>
+<h3 id="容量、过拟合、欠拟合"><a href="#容量、过拟合、欠拟合" class="headerlink" title="容量、过拟合、欠拟合"></a>容量、过拟合、欠拟合</h3><ul>
+<li>泛化generalization：在之前未观测到的输入上表现良好的能力</li>
+<li>训练误差training error</li>
+<li>泛化误差generalization error（测试误差test error）：新输入的误差期望</li>
+<li>统计学习理论statistical learning theory：<ul>
+<li>数据生成过程data generating process：训练集和测试数据集生成的过程</li>
+<li>独立同分布假设i.i.d. assumption</li>
+<li>数据生成分布$p_{data}$：测试、训练数据共享的潜在分布</li>
+<li>随机模型训练误差的期望和测试误差期望相同</li>
+</ul>
+</li>
+<li>欠拟合underfitting：模型不能在训练集上获得足够低的误差</li>
+<li>过拟合overfitting：训练误差与测试误差差距太大</li>
+<li>通过调整模型容量capacity，可以控制模型是否偏向于过拟合或者欠拟合。容量指拟合各种函数的能力。<ul>
+<li>控制算法容量的一种方法是选择假设空间hypothesis space，即学习算法可以选择为解决方案的函数集</li>
+</ul>
+</li>
+<li>表示容量representational capacity：可以从哪些函数族中选择函数</li>
+<li>有效容量effective capacity：由于优化算法不完美等原因，实际上可以表示的函数</li>
+<li>奥卡姆剃刀Occam’s razor：同样能解释已知现象的假设中，选择最简单的一个</li>
+<li>VC维度度量二元分类器的容量：分类器能够分类的训练样本的最大数目。</li>
+<li>训练误差和泛化误差之间差异的上界随着模型容量增长而增长，但随着训练样本增多而下降</li>
+<li>虽然更简单的函数更可能泛化，但是仍要选择充分复杂的假设达到较低的训练误差。通常泛化误差是关于模型容量的U形曲线函数</li>
+<li>非参数non-parametric模型：<ul>
+<li>容量任意高</li>
+<li>参数模型学习的函数在观测到新数据前参数向量分量个数有限且固定。非参数模型没有这些限制。</li>
+<li>例子:<ul>
+<li>最近邻回归nearest neighbor regression<ul>
+<li>储存训练集中所有的X和y</li>
+<li>需要为x分类时，先查找最近的点，并返回其对应的目标</li>
+<li>如果最近距离的有多个，就将其对应的目标取平均</li>
+</ul>
+</li>
+<li>可以通过调整参数个数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>监督学习中，x到y的映射可能内在随机，从预先知道的真实分布预测出现的误差是贝叶斯误差Bayes error</li>
+<li>没有免费午餐定理no free lunch theorem：所有可能数据生成分布上平均之后，每一个分类算法在未事先观测到的点上都有相同的错误率。</li>
+</ul>
+<p>正则化：</p>
+<ul>
+<li>修改学习算法，使其降低泛化误差而非训练误差</li>
+<li>如加入权重衰减weight decay来修改线性回归的训练标准：<ul>
+<li>偏好于平方范数$L^2$较小的范数</li>
+<li>$J(w)=\mathbf{MSE_{train}}+\lambda  w^Tw$</li>
+<li>$w^Tw$项称为正则化项，$\lambda$提前挑选出来的偏好小范数权重的程度</li>
+</ul>
+</li>
+</ul>
+<p>超参数和验证集：</p>
+<ul>
+<li>超参数控制算法行为，不是学习算法学习出来的</li>
+<li>多项式回归示例中的超参数是容量超参数：多项式的次数，控制权重衰减程度的$\lambda$也是超参数</li>
+<li>有时设计为超参数是因为难以优化，更多时候因为不适合学习（如控制模型容量的参数，总是趋向于最大可能）</li>
+<li>验证集validation set样本：<ul>
+<li>测试样本不能参与到模型的选择中，包括设置超参数</li>
+<li>验证集估计训练中或者训练后的泛化误差，更新超参数</li>
+</ul>
+</li>
+</ul>
+<p>交叉验证：</p>
+<ul>
+<li>固定的训练集和测试集，若测试集误差很小，则有问题，说明平均测试误差的统计不确定性</li>
+<li>数据集太小时，$k-$折交叉验证过程。分割为$k$份（互斥），每次用其中一份测试，剩下的训练。<ul>
+<li>带来的问题：不存在平均误差方差的无偏估计</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/05/12/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E8%8A%B1%E4%B9%A6%EF%BC%89%E7%AC%94%E8%AE%B0/" data-id="ckqkjgmdq00oxx4c4bydf4g2m" data-title="深度学习（花书）笔记" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/26/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC%E6%8C%87%E9%92%88%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          构造函数返回值指针问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/08/git%E5%91%BD%E4%BB%A4%E8%A1%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">git命令行</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Git/">使用—软件—Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E9%9B%86/">数据集</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%91%E7%A0%94/">科研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/">系统使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Haskell/">语言—Haskell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94R%E8%AF%AD%E8%A8%80/">语言—R语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/">软件使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%93%8D%E7%BB%9F%E2%80%94xv6/">领域—操统—xv6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/01/Machine%20Learning%20in%20Action/">Machine Learning in Action总结</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Henry Fox<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
