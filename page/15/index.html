@@ -73,14 +73,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-NLP工具gensim" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-vuejs中添加页面的component（Webstorm）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/04/19/NLP%E5%B7%A5%E5%85%B7gensim/" class="article-date">
-  <time class="dt-published" datetime="2020-04-18T22:06:06.000Z" itemprop="datePublished">2020-04-19</time>
+    <a href="/2020/04/28/vuejs%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%A1%B5%E9%9D%A2%E7%9A%84component%EF%BC%88Webstorm%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2020-04-27T22:06:06.000Z" itemprop="datePublished">2020-04-28</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a>
   </div>
 
   </div>
@@ -91,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/19/NLP%E5%B7%A5%E5%85%B7gensim/">NLP工具gensim</a>
+      <a class="p-name article-title" href="/2020/04/28/vuejs%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%A1%B5%E9%9D%A2%E7%9A%84component%EF%BC%88Webstorm%EF%BC%89/">vuejs中添加页面的component（Webstorm）</a>
     </h1>
   
 
@@ -99,17 +99,25 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>在这里有一个介绍：<a target="_blank" rel="noopener" href="https://blog.csdn.net/l7h9ja4/article/details/80220939">https://blog.csdn.net/l7h9ja4/article/details/80220939</a></p>
-<p>摘录里面的一些内容：</p>
-<ul>
-<li>用于从原始的非结构化的文本中，无监督地学习到文本隐层的主题向量表达</li>
-<li>它支持包括TF-IDF，LSA，LDA，和word2vec在内的多种主题模型算法，支持流式训练，并提供了诸如相似度计算，信息检索等一些常用任务的API接口</li>
-</ul>
+        <p>直接在components目录下，点击File-New-Vue Component就可以创建。</p>
+<p>之后需要修改router/index.js里面的内容，将刚才那个新建的component引入进去，并且加上对应的router</p>
+<p>一个vue的例子（需要先安装elementUI）（名字叫做Index.vue）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;el-button @click=<span class="string">&quot;visible = true&quot;</span>&gt;Button&lt;/el-button&gt;</span><br><span class="line">    &lt;el-dialog :visible.sync=<span class="string">&quot;visible&quot;</span> title=<span class="string">&quot;Hello world&quot;</span>&gt;</span><br><span class="line">      &lt;p&gt;Try Element&lt;/p&gt;</span><br><span class="line">    &lt;/el-dialog&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">&#x27;Index&#x27;</span>,</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">visible</span>: <span class="literal">false</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后router里面加上，比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Index <span class="keyword">from</span> <span class="string">&#x27;@/components/Index&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Classes <span class="keyword">from</span> <span class="string">&#x27;@/components/Classes&#x27;</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(Router);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">      name: <span class="string">&#x27;Index&#x27;</span>,</span><br><span class="line">      component: Index</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/classes&#x27;</span>,</span><br><span class="line">      name: <span class="string">&#x27;Classes&#x27;</span>,</span><br><span class="line">      component: Classes</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>然后默认访问<a target="_blank" rel="noopener" href="http://127.0.0.1:8080/#/classes">http://127.0.0.1:8080/#/classes</a> 就可以了，要记得有个#！</p>
+<p>如果改成：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  mode: <span class="string">&#x27;history&#x27;</span>,</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">      name: <span class="string">&#x27;Index&#x27;</span>,</span><br><span class="line">      component: Index</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&#x27;/classes&#x27;</span>,</span><br><span class="line">      name: <span class="string">&#x27;Classes&#x27;</span>,</span><br><span class="line">      component: Classes</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>就不用加#了</p>
+<p>router相关可以看<a target="_blank" rel="noopener" href="https://my.oschina.net/u/3912828/blog/2963179">https://my.oschina.net/u/3912828/blog/2963179</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/19/NLP%E5%B7%A5%E5%85%B7gensim/" data-id="ckqkjgm820063x4c473u15fhu" data-title="NLP工具gensim" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/28/vuejs%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%A1%B5%E9%9D%A2%E7%9A%84component%EF%BC%88Webstorm%EF%BC%89/" data-id="ckqkkaz2r00gkbcc448f41yy4" data-title="vuejs中添加页面的component（Webstorm）" class="article-share-link">Share</a>
       
       
       
@@ -121,192 +129,10 @@
 
 
   
-    <article id="post-PyGraphviz" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Mac把iPhone备份到移动硬盘" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/04/08/PyGraphviz/" class="article-date">
-  <time class="dt-published" datetime="2020-04-07T22:06:06.000Z" itemprop="datePublished">2020-04-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/08/PyGraphviz/">PyGraphviz</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>GraphVIZ安装：直接用brew install graphviz就行（<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6d9bbbbf38b1">https://www.jianshu.com/p/6d9bbbbf38b1</a></p>
-<p>安装好了之后，输入dot -help回车就能看到反应</p>
-<p>接下来安装pygraphviz：pip install –install-option=”–include-path=/usr/local/include/“ –install-option=”–library-path=/usr/local/lib/“ pygraphviz</p>
-<p>（见<a target="_blank" rel="noopener" href="https://github.com/pygraphviz/pygraphviz/issues/100">https://github.com/pygraphviz/pygraphviz/issues/100</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/08/PyGraphviz/" data-id="ckqkjgm89006nx4c4hj97ajfy" data-title="PyGraphviz" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-线段树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/04/08/%E7%BA%BF%E6%AE%B5%E6%A0%91/" class="article-date">
-  <time class="dt-published" datetime="2020-04-07T22:06:06.000Z" itemprop="datePublished">2020-04-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/08/%E7%BA%BF%E6%AE%B5%E6%A0%91/">线段树</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xenny/p/9801703.html">https://www.cnblogs.com/xenny/p/9801703.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/08/%E7%BA%BF%E6%AE%B5%E6%A0%91/" data-id="ckqkjgmd300mpx4c42m9k2vom" data-title="线段树" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Java重载、访问控制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/04/06/Java%E9%87%8D%E8%BD%BD%E3%80%81%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/" class="article-date">
-  <time class="dt-published" datetime="2020-04-05T22:06:06.000Z" itemprop="datePublished">2020-04-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/06/Java%E9%87%8D%E8%BD%BD%E3%80%81%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/">Java重载、访问控制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><code>Employee.java</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> String color;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> String firm;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String info;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> String info2;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String n)</span> </span>&#123;</span><br><span class="line">        name = n;</span><br><span class="line">        firm = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">        info = <span class="string">&quot;3&quot;</span>;</span><br><span class="line">        info2 = <span class="string">&quot;233&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        name = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">        firm = <span class="string">&quot;2&quot;</span>;</span><br><span class="line">        info = <span class="string">&quot;4&quot;</span>;</span><br><span class="line">        info2 = <span class="string">&quot;2334&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">describeShape</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>SalariedEmployee.java</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SalariedEmployee</span> <span class="keyword">extends</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> weeklySalary;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String color;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> info2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">double</span> hour;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getWeeklySalary</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> weeklySalary;  <span class="comment">// 内部类访问外部的变量，</span></span><br><span class="line">            <span class="comment">// 也就是：Nested class has access to the members (including private</span></span><br><span class="line">            <span class="comment">// members) of the enclosing class</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Inner inner = <span class="keyword">new</span> Inner();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">do_something_inner_class</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// hour = 3;  // 这样不行，就是说外部类不能直接访问内部类的东西，得要先new一个对象再访问</span></span><br><span class="line">        <span class="comment">// Enclosing class does not have access</span></span><br><span class="line">        <span class="comment">//to the members of the nested class</span></span><br><span class="line">        <span class="comment">// 或者说外部类没有直接的内部类的东西，但是内部类有外部类的东西</span></span><br><span class="line">        inner.hour = <span class="number">3</span>;  <span class="comment">// 但是直接用一个内部类的对象是可以访问内部类的private的变量的</span></span><br><span class="line">        <span class="keyword">return</span> inner.getWeeklySalary();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">do_something_supre_class</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        firm = <span class="string">&quot;3&quot;</span>;  <span class="comment">// 父类的protected可以访问</span></span><br><span class="line">        info = <span class="string">&quot;$&quot;</span>; <span class="comment">// 父类的public的可以访问</span></span><br><span class="line">        <span class="comment">// name = &quot;2&quot;;  // 父类的private的不能访问</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">describeShape</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hhh&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SalariedEmployee e = <span class="keyword">new</span> SalariedEmployee();</span><br><span class="line">        e.describeShape();</span><br><span class="line">        System.out.println(e.info2);</span><br><span class="line">        System.out.println(((Employee)e).info2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/06/Java%E9%87%8D%E8%BD%BD%E3%80%81%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/" data-id="ckqkjgm7f003rx4c4f5rwdloi" data-title="Java重载、访问控制" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Pycocotools-windows安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/04/04/Pycocotools-windows%E5%AE%89%E8%A3%85/" class="article-date">
-  <time class="dt-published" datetime="2020-04-03T22:06:06.000Z" itemprop="datePublished">2020-04-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/04/Pycocotools-windows%E5%AE%89%E8%A3%85/">Pycocotools-windows安装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8658cda3d553">https://www.jianshu.com/p/8658cda3d553</a></p>
-<p>pip install git+<a target="_blank" rel="noopener" href="https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI">https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI</a></p>
-<p>如果git clone不下来的话，<del>直接下载安装包解压后用<code>pip install PythonAPI</code>就可以了</del></p>
-<p>到目录PythonAPI之后，用<code>python setup.py build_ext install</code>（见<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8658cda3d553">https://www.jianshu.com/p/8658cda3d553</a> ）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/04/Pycocotools-windows%E5%AE%89%E8%A3%85/" data-id="ckqkjgm8d006yx4c40xop2d2x" data-title="Pycocotools-windows安装" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Visual-C++-Build--Tools-2015" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/04/04/Visual-C++-Build--Tools-2015/" class="article-date">
-  <time class="dt-published" datetime="2020-04-03T22:06:06.000Z" itemprop="datePublished">2020-04-04</time>
+    <a href="/2020/04/27/Mac%E6%8A%8AiPhone%E5%A4%87%E4%BB%BD%E5%88%B0%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98/" class="article-date">
+  <time class="dt-published" datetime="2020-04-26T22:06:06.000Z" itemprop="datePublished">2020-04-27</time>
 </a>
     
   <div class="article-category">
@@ -321,7 +147,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/04/Visual-C++-Build--Tools-2015/">Visual-C++-Build--Tools-2015</a>
+      <a class="p-name article-title" href="/2020/04/27/Mac%E6%8A%8AiPhone%E5%A4%87%E4%BB%BD%E5%88%B0%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98/">Mac把iPhone备份到移动硬盘</a>
     </h1>
   
 
@@ -329,12 +155,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Visual C++ Build  Tools 2015 <a target="_blank" rel="noopener" href="http://go.microsoft.com/fwlink/?LinkId=691126">http://go.microsoft.com/fwlink/?LinkId=691126</a></p>
+        <ol>
+<li>首先需要到系统偏好设置——安全性与隐私——隐私——完全磁盘访问，选上终端，否则是没有创建软连接的权限的；</li>
+<li>把~/Library/Application Support/MobileSync/Backup目录复制到移动硬盘里面；</li>
+<li>删除掉原来的~/Library/Application Support/MobileSync/Backup目录，用ln -s 移动硬盘外的备份目录 ~/Library/Application Support/MobileSync/Backup创建软连接</li>
+</ol>
+<p>参考了<a target="_blank" rel="noopener" href="https://setapp.com/how-to/backup-iphone-to-external-drive">https://setapp.com/how-to/backup-iphone-to-external-drive</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/04/Visual-C++-Build--Tools-2015/" data-id="ckqkjgm8z008px4c41dn09e48" data-title="Visual-C++-Build--Tools-2015" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/27/Mac%E6%8A%8AiPhone%E5%A4%87%E4%BB%BD%E5%88%B0%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98/" data-id="ckqkkayzh005lbcc4echoavk7" data-title="Mac把iPhone备份到移动硬盘" class="article-share-link">Share</a>
       
       
       
@@ -346,14 +177,14 @@
 
 
   
-    <article id="post-Frobenius范数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-vue-element-admin" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/04/02/Frobenius%E8%8C%83%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2020-04-01T22:06:06.000Z" itemprop="datePublished">2020-04-02</time>
+    <a href="/2020/04/27/vue-element-admin/" class="article-date">
+  <time class="dt-published" datetime="2020-04-26T22:06:06.000Z" itemprop="datePublished">2020-04-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a>
   </div>
 
   </div>
@@ -364,7 +195,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/02/Frobenius%E8%8C%83%E6%95%B0/">Frobenius范数</a>
+      <a class="p-name article-title" href="/2020/04/27/vue-element-admin/">vue-element-admin</a>
     </h1>
   
 
@@ -372,13 +203,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>矩阵A的Frobenius范数定义为矩阵A各项元素的绝对值平方的总和，</p>
-<p>$|X|<em>{F} \stackrel{\text { def }}{=} \sqrt{\sum</em>{i} \sum_{j} X_{i, j}^{2}}$</p>
+        <p>官方说明：<a target="_blank" rel="noopener" href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/#%E5%8A%9F%E8%83%BD">https://panjiachen.github.io/vue-element-admin-site/zh/guide/#功能</a></p>
+<p>首先安装好node（&amp;npm）</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37143673/article/details/88654823">https://blog.csdn.net/qq_37143673/article/details/88654823</a></p>
+<p>直接<code>git clone https://github.com/PanJiaChen/vue-element-admin.git</code>就可以，之后要npm install</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/02/Frobenius%E8%8C%83%E6%95%B0/" data-id="ckqkjgm75002jx4c4928o8uim" data-title="Frobenius范数" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/27/vue-element-admin/" data-id="ckqkkaz2p00gcbcc42v88dz46" data-title="vue-element-admin" class="article-share-link">Share</a>
       
       
       
@@ -390,14 +223,14 @@
 
 
   
-    <article id="post-GCN中过度平滑问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-vuejs-项目创建（用WebStorm）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/04/02/GCN%E4%B8%AD%E8%BF%87%E5%BA%A6%E5%B9%B3%E6%BB%91%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2020-04-01T22:06:06.000Z" itemprop="datePublished">2020-04-02</time>
+    <a href="/2020/04/27/vuejs-%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%EF%BC%88%E7%94%A8WebStorm%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2020-04-26T22:06:06.000Z" itemprop="datePublished">2020-04-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a>
   </div>
 
   </div>
@@ -408,7 +241,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/02/GCN%E4%B8%AD%E8%BF%87%E5%BA%A6%E5%B9%B3%E6%BB%91%E9%97%AE%E9%A2%98/">GCN中过度平滑问题</a>
+      <a class="p-name article-title" href="/2020/04/27/vuejs-%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%EF%BC%88%E7%94%A8WebStorm%EF%BC%89/">vuejs-项目创建（用WebStorm）</a>
     </h1>
   
 
@@ -416,13 +249,26 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/346942899/answer/848298494">https://www.zhihu.com/question/346942899/answer/848298494</a></p>
-<p>因为某种拉普拉斯矩阵的形式，计算多次卷积之后就差不多了。</p>
+        <p>直接在WebStorm里面就可以创建vue项目，但是需要先安装好：</p>
+<ul>
+<li>node（&amp;npm）</li>
+<li>用<code>npm install -g</code>安装：<ul>
+<li>vue</li>
+<li>vue-cli</li>
+</ul>
+</li>
+</ul>
+<p>就可以在WebStorm创建项目的时候来选择vue来创建了。</p>
+<p>等待一会，它会自动安装一些需要的东西。</p>
+<p>接下来，我们可以在右上角选择运行：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-71efd4050bfdba82.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择运行"></p>
+<p>稍等片刻，就可以运行了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-2cbbd8c7a6293cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行成功的显示内容"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/02/GCN%E4%B8%AD%E8%BF%87%E5%BA%A6%E5%B9%B3%E6%BB%91%E9%97%AE%E9%A2%98/" data-id="ckqkjgm78002yx4c48rblbn8d" data-title="GCN中过度平滑问题" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/27/vuejs-%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%EF%BC%88%E7%94%A8WebStorm%EF%BC%89/" data-id="ckqkkaz2q00ggbcc4bqua8l19" data-title="vuejs-项目创建（用WebStorm）" class="article-share-link">Share</a>
       
       
       
@@ -434,14 +280,14 @@
 
 
   
-    <article id="post-Gumbel-Softmax" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-vuejs中添加ElementUI" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/04/02/Gumbel-Softmax/" class="article-date">
-  <time class="dt-published" datetime="2020-04-01T22:06:06.000Z" itemprop="datePublished">2020-04-02</time>
+    <a href="/2020/04/27/vuejs%E4%B8%AD%E6%B7%BB%E5%8A%A0ElementUI/" class="article-date">
+  <time class="dt-published" datetime="2020-04-26T22:06:06.000Z" itemprop="datePublished">2020-04-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a>
   </div>
 
   </div>
@@ -452,7 +298,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/02/Gumbel-Softmax/">Gumbel-Softmax</a>
+      <a class="p-name article-title" href="/2020/04/27/vuejs%E4%B8%AD%E6%B7%BB%E5%8A%A0ElementUI/">vuejs中添加ElementUI</a>
     </h1>
   
 
@@ -460,15 +306,24 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/initial-h/p/9468974.html">Gumbel-Softmax</a></p>
-<p>比如你每天都会喝很多次水(比如100次)，每次喝水的量也不一样。假设每次喝水的量服从正态分布𝑁(𝜇,𝜎2)(其实也有点不合理，毕竟喝水的多少不能取为负值，不过无伤大雅能理解就好，假设均值为5)，那么每天100次喝水里总会有一个最大值，这个最大值服从的分布就是Gumbel分布。</p>
-<p>其实就是softmax的一个改进，从原分布采样Gumbel噪声的采样效果是最好的</p>
-<p>对于强化学习来说，在选择动作之前加一个扰动，相当于增加探索度，感觉上是合理的。对于深度学习的任务来说，添加随机性去模拟分布的样本生成，也是合情合理的。</p>
+        <p>elementUI官网：<a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN">https://element.eleme.cn/#/zh-CN</a></p>
+<p>添加的教程：<a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN/component/quickstart">https://element.eleme.cn/#/zh-CN/component/quickstart</a></p>
+<hr>
+<p>创建完一个项目后，直接安装element-ui：</p>
+<blockquote>
+<p>npm install element-ui</p>
+</blockquote>
+<p>之后需要在main.js里面引入：</p>
+<blockquote>
+<p>import ElementUI from ‘element-ui’;</p>
+<p>import ‘element-ui/lib/theme-chalk/index.css’;</p>
+<p>Vue.use(ElementUI);</p>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/02/Gumbel-Softmax/" data-id="ckqkjgm7c003dx4c41s78dt73" data-title="Gumbel-Softmax" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/27/vuejs%E4%B8%AD%E6%B7%BB%E5%8A%A0ElementUI/" data-id="ckqkkaz2r00gibcc49qrkepmd" data-title="vuejs中添加ElementUI" class="article-share-link">Share</a>
       
       
       
@@ -480,14 +335,14 @@
 
 
   
-    <article id="post-Mac-Android-sdk-位置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-在线图片编辑设计网页" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/04/02/Mac-Android-sdk-%E4%BD%8D%E7%BD%AE/" class="article-date">
-  <time class="dt-published" datetime="2020-04-01T22:06:06.000Z" itemprop="datePublished">2020-04-02</time>
+    <a href="/2020/04/27/%E5%9C%A8%E7%BA%BF%E5%9B%BE%E7%89%87%E7%BC%96%E8%BE%91%E8%AE%BE%E8%AE%A1%E7%BD%91%E9%A1%B5/" class="article-date">
+  <time class="dt-published" datetime="2020-04-26T22:06:06.000Z" itemprop="datePublished">2020-04-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+    <a class="article-category-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a>
   </div>
 
   </div>
@@ -498,7 +353,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/04/02/Mac-Android-sdk-%E4%BD%8D%E7%BD%AE/">Mac-Android-sdk-位置</a>
+      <a class="p-name article-title" href="/2020/04/27/%E5%9C%A8%E7%BA%BF%E5%9B%BE%E7%89%87%E7%BC%96%E8%BE%91%E8%AE%BE%E8%AE%A1%E7%BD%91%E9%A1%B5/">在线图片编辑设计网页</a>
     </h1>
   
 
@@ -506,14 +361,243 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>一般是在~/Library/Android/sdk/</p>
-<p>在这里<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5b0a2a6cac7b">https://www.jianshu.com/p/5b0a2a6cac7b</a> 有命令行启动AVD的说明</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-aaf0cf1a43459e18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打开Android studio，就可以看到configuration下面有AVD和SDK manager"></p>
+        <p><a target="_blank" rel="noopener" href="https://www.canva.cn/">https://www.canva.cn</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/02/Mac-Android-sdk-%E4%BD%8D%E7%BD%AE/" data-id="ckqkjgm7m004jx4c44u8n54ob" data-title="Mac-Android-sdk-位置" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/27/%E5%9C%A8%E7%BA%BF%E5%9B%BE%E7%89%87%E7%BC%96%E8%BE%91%E8%AE%BE%E8%AE%A1%E7%BD%91%E9%A1%B5/" data-id="ckqkkaz3e00iubcc45rii3jn9" data-title="在线图片编辑设计网页" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-微信公众号开发" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/26/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91/" class="article-date">
+  <time class="dt-published" datetime="2020-04-25T22:06:06.000Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/26/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91/">微信公众号开发</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="测试号"><a href="#测试号" class="headerlink" title="测试号"></a>测试号</h2><p>微信公众号平台的说明：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html">https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html</a></p>
+<p>去注册一个测试号：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login">测试号注册的网页</a></p>
+<h2 id="服务器上"><a href="#服务器上" class="headerlink" title="服务器上"></a>服务器上</h2><p>前面的准备工作可以看：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f41fd6212f37">阿里云windows服务器配置</a></p>
+<p>服务器可以到这里买：</p>
+<ul>
+<li>新用户74元/年的云服务器：<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://www.aliyun.com/minisite/goods?userCode=vp1ifil7&share_source=copy_link">阿里云</a></li>
+<li>学生机，10元/月的云服务器：<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://promotion.aliyun.com/ntms/act/campus2018.html?spm=5176.13727575.J_7116760870.3.f0c03b5aQY7iQj&aly_as=15uW4Mp6B&userCode=vp1ifil7&tag=share_component&share_source=copy_link">阿里云学生机</a></li>
+</ul>
+<p>参考了<a target="_blank" rel="noopener" href="https://blog.csdn.net/u013205877/article/details/77602853">https://blog.csdn.net/u013205877/article/details/77602853</a> ，但是原文基于python2，这里已经修改了所有必要的东西。</p>
+<ul>
+<li>另外有一个专门的框架：<a target="_blank" rel="noopener" href="https://github.com/offu/WeRoBot">https://github.com/offu/WeRoBot</a></li>
+<li>一个课上的抢票代码：<a target="_blank" rel="noopener" href="https://github.com/THUCampus/WeChatTicket/tree/master/wechat">https://github.com/THUCampus/WeChatTicket/tree/master/wechat</a></li>
+</ul>
+<p>前提：已经打开80端口，已经装好Python，最好还要准备一个域名绑定到这个服务器的公网IP上。</p>
+<p>到Windows服务器中，创建一个你想要放你自己的项目的文件夹（这里我的文件夹路径是C:\Users\Administrator\Documents\mp），打开这个文件夹，地址栏输入powershell回车进入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Documents\mp&gt; python -m venv .&#x2F;venv</span><br><span class="line">PS C:\Users\Administrator\Documents\mp&gt; .\venv\Scripts\activate</span><br><span class="line">(venv) PS C:\Users\Administrator\Documents\mp&gt; pip install Django&#x3D;&#x3D;3.0.5</span><br><span class="line">(venv) PS C:\Users\Administrator\Documents\mp&gt; django-admin startproject mprobot</span><br><span class="line">(venv) PS C:\Users\Administrator\Documents\mp&gt; cd mprobot</span><br><span class="line">(venv) PS C:\Users\Administrator\Documents\mp\mprobot&gt; django-admin startapp wechat</span><br></pre></td></tr></table></figure>
+
+<p>之后用VSCode打开这个创建出来的mprobot文件夹。</p>
+<p>修改mprobot\settings.py，在INSTALLED_APPS里面加入<code> &#39;wechat&#39;,</code>，修改<code>ALLOWED_HOSTS = [&#39;*&#39;]</code></p>
+<p>修改mprobot\urls.py，内容是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> wechat.views <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;admin/&#x27;</span>, admin.site.urls),</span><br><span class="line">    path(<span class="string">&#x27;wechat/&#x27;</span>, weixin_main)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>打开wechat目录下views.py文件，输入如下内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> django.utils.encoding <span class="keyword">import</span> smart_str</span><br><span class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="comment">#微信服务器推送消息是xml的，根据利用ElementTree来解析出的不同xml内容返回不同的回复信息，就实现了基本的自动回复功能了，也可以按照需求用其他的XML解析方法</span></span><br><span class="line"><span class="keyword">import</span> xml.etree.ElementTree <span class="keyword">as</span> ET</span><br><span class="line"></span><br><span class="line"><span class="comment">#django默认开启csrf防护，这里使用@csrf_exempt去掉防护</span></span><br><span class="line"><span class="meta">@csrf_exempt</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">weixin_main</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&quot;GET&quot;</span>:</span><br><span class="line">        <span class="comment">#接收微信服务器get请求发过来的参数</span></span><br><span class="line">        signature = request.GET.get(<span class="string">&#x27;signature&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">        timestamp = request.GET.get(<span class="string">&#x27;timestamp&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">        nonce = request.GET.get(<span class="string">&#x27;nonce&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">        echostr = request.GET.get(<span class="string">&#x27;echostr&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">        <span class="comment">#服务器配置中的token</span></span><br><span class="line">        token = <span class="string">&#x27;C0GtrfPTCfY7cBCn94rj&#x27;</span></span><br><span class="line">        <span class="comment">#把参数放到list中排序后合成一个字符串，再用sha1加密得到新的字符串与微信发来的signature对比，如果相同就返回echostr给服务器，校验通过</span></span><br><span class="line">        hashlist = [token, timestamp, nonce]</span><br><span class="line">        hashlist.sort()</span><br><span class="line">        hashstr = <span class="string">&#x27;&#x27;</span>.join([s <span class="keyword">for</span> s <span class="keyword">in</span> hashlist])</span><br><span class="line">        hashstr = hashlib.sha1(<span class="built_in">bytes</span>(hashstr, encoding=<span class="string">&#x27;utf-8&#x27;</span>)).hexdigest()</span><br><span class="line">        <span class="keyword">if</span> hashstr == signature:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;OK&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(echostr)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;HHH&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(<span class="string">&quot;field&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        othercontent = autoreply(request)</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(othercontent)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">autoreply</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        webData = request.body</span><br><span class="line">        xmlData = ET.fromstring(webData)</span><br><span class="line"></span><br><span class="line">        msg_type = xmlData.find(<span class="string">&#x27;MsgType&#x27;</span>).text</span><br><span class="line">        ToUserName = xmlData.find(<span class="string">&#x27;ToUserName&#x27;</span>).text</span><br><span class="line">        FromUserName = xmlData.find(<span class="string">&#x27;FromUserName&#x27;</span>).text</span><br><span class="line">        CreateTime = xmlData.find(<span class="string">&#x27;CreateTime&#x27;</span>).text</span><br><span class="line">        MsgType = xmlData.find(<span class="string">&#x27;MsgType&#x27;</span>).text</span><br><span class="line">        MsgId = xmlData.find(<span class="string">&#x27;MsgId&#x27;</span>).text</span><br><span class="line"></span><br><span class="line">        toUser = FromUserName</span><br><span class="line">        fromUser = ToUserName</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> msg_type == <span class="string">&#x27;text&#x27;</span>:</span><br><span class="line">            content = <span class="string">&quot;文件已收到&quot;</span></span><br><span class="line">            replyMsg = TextMsg(toUser, fromUser, content)</span><br><span class="line">            <span class="keyword">return</span> replyMsg.send()</span><br><span class="line">        <span class="keyword">elif</span> msg_type == <span class="string">&#x27;image&#x27;</span>:</span><br><span class="line">            content = <span class="string">&quot;图片已收到,谢谢&quot;</span></span><br><span class="line">            replyMsg = TextMsg(toUser, fromUser, content)</span><br><span class="line">            <span class="keyword">return</span> replyMsg.send()</span><br><span class="line">        <span class="keyword">elif</span> msg_type == <span class="string">&#x27;voice&#x27;</span>:</span><br><span class="line">            content = <span class="string">&quot;语音已收到,谢谢&quot;</span></span><br><span class="line">            replyMsg = TextMsg(toUser, fromUser, content)</span><br><span class="line">            <span class="keyword">return</span> replyMsg.send()</span><br><span class="line">        <span class="keyword">elif</span> msg_type == <span class="string">&#x27;video&#x27;</span>:</span><br><span class="line">            content = <span class="string">&quot;视频已收到,谢谢&quot;</span></span><br><span class="line">            replyMsg = TextMsg(toUser, fromUser, content)</span><br><span class="line">            <span class="keyword">return</span> replyMsg.send()</span><br><span class="line">        <span class="keyword">elif</span> msg_type == <span class="string">&#x27;shortvideo&#x27;</span>:</span><br><span class="line">            content = <span class="string">&quot;小视频已收到,谢谢&quot;</span></span><br><span class="line">            replyMsg = TextMsg(toUser, fromUser, content)</span><br><span class="line">            <span class="keyword">return</span> replyMsg.send()</span><br><span class="line">        <span class="keyword">elif</span> msg_type == <span class="string">&#x27;location&#x27;</span>:</span><br><span class="line">            content = <span class="string">&quot;位置已收到,谢谢&quot;</span></span><br><span class="line">            replyMsg = TextMsg(toUser, fromUser, content)</span><br><span class="line">            <span class="keyword">return</span> replyMsg.send()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            msg_type == <span class="string">&#x27;link&#x27;</span></span><br><span class="line">            content = <span class="string">&quot;链接已收到,谢谢&quot;</span></span><br><span class="line">            replyMsg = TextMsg(toUser, fromUser, content)</span><br><span class="line">            <span class="keyword">return</span> replyMsg.send()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> e</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Msg</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, xmlData</span>):</span></span><br><span class="line">        self.ToUserName = xmlData.find(<span class="string">&#x27;ToUserName&#x27;</span>).text</span><br><span class="line">        self.FromUserName = xmlData.find(<span class="string">&#x27;FromUserName&#x27;</span>).text</span><br><span class="line">        self.CreateTime = xmlData.find(<span class="string">&#x27;CreateTime&#x27;</span>).text</span><br><span class="line">        self.MsgType = xmlData.find(<span class="string">&#x27;MsgType&#x27;</span>).text</span><br><span class="line">        self.MsgId = xmlData.find(<span class="string">&#x27;MsgId&#x27;</span>).text</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TextMsg</span>(<span class="params">Msg</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, toUserName, fromUserName, content</span>):</span></span><br><span class="line">        self.__<span class="built_in">dict</span> = <span class="built_in">dict</span>()</span><br><span class="line">        self.__<span class="built_in">dict</span>[<span class="string">&#x27;ToUserName&#x27;</span>] = toUserName</span><br><span class="line">        self.__<span class="built_in">dict</span>[<span class="string">&#x27;FromUserName&#x27;</span>] = fromUserName</span><br><span class="line">        self.__<span class="built_in">dict</span>[<span class="string">&#x27;CreateTime&#x27;</span>] = <span class="built_in">int</span>(time.time())</span><br><span class="line">        self.__<span class="built_in">dict</span>[<span class="string">&#x27;Content&#x27;</span>] = content</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">send</span>(<span class="params">self</span>):</span></span><br><span class="line">        XmlForm = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        &lt;xml&gt;</span></span><br><span class="line"><span class="string">        &lt;ToUserName&gt;&lt;![CDATA[&#123;ToUserName&#125;]]&gt;&lt;/ToUserName&gt;</span></span><br><span class="line"><span class="string">        &lt;FromUserName&gt;&lt;![CDATA[&#123;FromUserName&#125;]]&gt;&lt;/FromUserName&gt;</span></span><br><span class="line"><span class="string">        &lt;CreateTime&gt;&#123;CreateTime&#125;&lt;/CreateTime&gt;</span></span><br><span class="line"><span class="string">        &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;</span></span><br><span class="line"><span class="string">        &lt;Content&gt;&lt;![CDATA[&#123;Content&#125;]]&gt;&lt;/Content&gt;</span></span><br><span class="line"><span class="string">        &lt;/xml&gt;</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>再回到powershell里面，python manage.py rumserver 0.0.0.0:80</p>
+<p>之后在测试号平台修改接口配置信息：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-facf96422bbb2742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="接口配置信息"></p>
+<p>下面的JS接口安全域名也顺便改一下，只写域名，不用加wechat</p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>加上了语义理解（<a target="_blank" rel="noopener" href="https://open.weixin.qq.com/zh_CN/htmledition/res/assets/smart_lang_protocol.pdf%EF%BC%89%EF%BC%8C%E5%8A%A0%E4%BA%86%E5%9B%BE%E7%89%87%E5%9B%9E%E5%A4%8D%EF%BC%8C%E5%B9%B6%E4%B8%94%E9%9C%80%E8%A6%81%E8%A3%85%E4%B8%80%E4%B8%8Brequests%E5%BA%93">https://open.weixin.qq.com/zh_CN/htmledition/res/assets/smart_lang_protocol.pdf），加了图片回复，并且需要装一下requests库</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> django.utils.encoding <span class="keyword">import</span> smart_str</span><br><span class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="comment">#微信服务器推送消息是xml的，根据利用ElementTree来解析出的不同xml内容返回不同的回复信息，就实现了基本的自动回复功能了，也可以按照需求用其他的XML解析方法</span></span><br><span class="line"><span class="keyword">import</span> xml.etree.ElementTree <span class="keyword">as</span> ET</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">access_token = <span class="string">&quot;&quot;</span></span><br><span class="line">expire_time = <span class="number">0</span></span><br><span class="line">app_id = <span class="string">&#x27;wxb523466a6324ff01&#x27;</span></span><br><span class="line">secret = <span class="string">&#x27;90b355162a8bd1e25dff55eec8cd47c4&#x27;</span></span><br><span class="line"><span class="comment">#服务器配置中的token</span></span><br><span class="line">token = <span class="string">&#x27;C0GtrfPTCfY7cBCn94rj&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_access_token</span>():</span></span><br><span class="line">    <span class="keyword">global</span> access_token, expire_time</span><br><span class="line">    now = time.time()</span><br><span class="line">    <span class="keyword">if</span> expire_time &lt;= now:</span><br><span class="line">        ans = requests.get(<span class="string">&quot;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=&#123;&#125;&amp;secret=&#123;&#125;&quot;</span>.<span class="built_in">format</span>(</span><br><span class="line">            app_id, secret)).text</span><br><span class="line">        ans = json.loads(ans)</span><br><span class="line">        access_token = ans[<span class="string">&quot;access_token&quot;</span>]</span><br><span class="line">        expire_time = ans[<span class="string">&quot;expires_in&quot;</span>] + now</span><br><span class="line">    <span class="keyword">return</span> access_token</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_NLP</span>(<span class="params">text, user</span>):</span></span><br><span class="line">    url = <span class="string">&#x27;https://api.weixin.qq.com/semantic/semproxy/search?access_token=&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(get_access_token())</span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&quot;query&quot;</span>: text,</span><br><span class="line">        <span class="string">&quot;city&quot;</span>: <span class="string">&quot;北京&quot;</span>,</span><br><span class="line">        <span class="string">&quot;category&quot;</span>: <span class="string">&quot;flight,hotel&quot;</span>,</span><br><span class="line">        <span class="string">&quot;appid&quot;</span>: app_id,</span><br><span class="line">        <span class="string">&quot;uid&quot;</span>: <span class="string">&#x27;&#x27;</span>  <span class="comment"># 2020.04.26晚上尝试填写user会出错</span></span><br><span class="line">    &#125;</span><br><span class="line">    ans = requests.post(url, json.dumps(data, ensure_ascii=<span class="literal">False</span>).encode())</span><br><span class="line">    <span class="built_in">print</span>(user, <span class="built_in">type</span>(user))</span><br><span class="line">    <span class="keyword">return</span> ans.text</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_text</span>(<span class="params">toUserName, fromUserName, content</span>):</span></span><br><span class="line">    XmlForm = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    &lt;xml&gt;</span></span><br><span class="line"><span class="string">    &lt;ToUserName&gt;&lt;![CDATA[&#123;ToUserName&#125;]]&gt;&lt;/ToUserName&gt;</span></span><br><span class="line"><span class="string">    &lt;FromUserName&gt;&lt;![CDATA[&#123;FromUserName&#125;]]&gt;&lt;/FromUserName&gt;</span></span><br><span class="line"><span class="string">    &lt;CreateTime&gt;&#123;CreateTime&#125;&lt;/CreateTime&gt;</span></span><br><span class="line"><span class="string">    &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;</span></span><br><span class="line"><span class="string">    &lt;Content&gt;&lt;![CDATA[&#123;Content&#125;]]&gt;&lt;/Content&gt;</span></span><br><span class="line"><span class="string">    &lt;/xml&gt;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span>.<span class="built_in">format</span>(ToUserName=toUserName, FromUserName=fromUserName, CreateTime=<span class="built_in">int</span>(time.time()), Content=content)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(XmlForm)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_img</span>(<span class="params">toUserName, fromUserName, imageID</span>):</span></span><br><span class="line">    XmlForm = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    &lt;xml&gt;</span></span><br><span class="line"><span class="string">    &lt;ToUserName&gt;&lt;![CDATA[&#123;ToUserName&#125;]]&gt;&lt;/ToUserName&gt;</span></span><br><span class="line"><span class="string">    &lt;FromUserName&gt;&lt;![CDATA[&#123;FromUserName&#125;]]&gt;&lt;/FromUserName&gt;</span></span><br><span class="line"><span class="string">    &lt;CreateTime&gt;&#123;CreateTime&#125;&lt;/CreateTime&gt;</span></span><br><span class="line"><span class="string">    &lt;MsgType&gt;&lt;![CDATA[image]]&gt;&lt;/MsgType&gt;</span></span><br><span class="line"><span class="string">    &lt;Image&gt;</span></span><br><span class="line"><span class="string">        &lt;MediaId&gt;&lt;![CDATA[&#123;Content&#125;]]&gt;&lt;/MediaId&gt;</span></span><br><span class="line"><span class="string">    &lt;/Image&gt;</span></span><br><span class="line"><span class="string">    &lt;/xml&gt;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span>.<span class="built_in">format</span>(ToUserName=toUserName, FromUserName=fromUserName, CreateTime=<span class="built_in">int</span>(time.time()), Content=imageID)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(XmlForm)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#django默认开启csrf防护，这里使用@csrf_exempt去掉防护</span></span><br><span class="line"><span class="meta">@csrf_exempt</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">weixin_main</span>(<span class="params">request</span>):</span></span><br><span class="line">    get_access_token()</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&quot;GET&quot;</span>:</span><br><span class="line">        <span class="comment">#接收微信服务器get请求发过来的参数</span></span><br><span class="line">        signature = request.GET.get(<span class="string">&#x27;signature&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">        timestamp = request.GET.get(<span class="string">&#x27;timestamp&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">        nonce = request.GET.get(<span class="string">&#x27;nonce&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">        echostr = request.GET.get(<span class="string">&#x27;echostr&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">        <span class="comment">#把参数放到list中排序后合成一个字符串，再用sha1加密得到新的字符串与微信发来的signature对比，如果相同就返回echostr给服务器，校验通过</span></span><br><span class="line">        hashlist = [token, timestamp, nonce]</span><br><span class="line">        hashlist.sort()</span><br><span class="line">        hashstr = <span class="string">&#x27;&#x27;</span>.join([s <span class="keyword">for</span> s <span class="keyword">in</span> hashlist])</span><br><span class="line">        hashstr = hashlib.sha1(<span class="built_in">bytes</span>(hashstr, encoding=<span class="string">&#x27;utf-8&#x27;</span>)).hexdigest()</span><br><span class="line">        <span class="keyword">if</span> hashstr == signature:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;OK&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(echostr)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;HHH&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(<span class="string">&quot;field&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        othercontent = autoreply(request)</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(othercontent)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">autoreply</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="comment"># try:</span></span><br><span class="line">        webData = request.body</span><br><span class="line">        xmlData = ET.fromstring(webData)</span><br><span class="line"></span><br><span class="line">        msg_type = xmlData.find(<span class="string">&#x27;MsgType&#x27;</span>).text</span><br><span class="line">        ToUserName = xmlData.find(<span class="string">&#x27;ToUserName&#x27;</span>).text</span><br><span class="line">        FromUserName = xmlData.find(<span class="string">&#x27;FromUserName&#x27;</span>).text</span><br><span class="line">        CreateTime = xmlData.find(<span class="string">&#x27;CreateTime&#x27;</span>).text</span><br><span class="line">        MsgType = xmlData.find(<span class="string">&#x27;MsgType&#x27;</span>).text</span><br><span class="line">        MsgId = xmlData.find(<span class="string">&#x27;MsgId&#x27;</span>).text</span><br><span class="line"></span><br><span class="line">        toUser = FromUserName</span><br><span class="line">        fromUser = ToUserName</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> msg_type == <span class="string">&#x27;text&#x27;</span>:</span><br><span class="line">            <span class="comment"># 价值1个亿的人工智能代码</span></span><br><span class="line">            received_content = xmlData.find(<span class="string">&#x27;Content&#x27;</span>).text</span><br><span class="line">            content = received_content</span><br><span class="line">            <span class="keyword">if</span> content.startswith(<span class="string">&quot;查一下&quot;</span>):</span><br><span class="line">                <span class="keyword">return</span> send_text(toUser, fromUser, send_NLP(content, toUser))</span><br><span class="line">            content = content.replace(<span class="string">&quot;?&quot;</span>, <span class="string">&quot;!&quot;</span>)</span><br><span class="line">            content = content.replace(<span class="string">&quot;？&quot;</span>, <span class="string">&quot;！&quot;</span>)</span><br><span class="line">            content = content.replace(<span class="string">&quot;吗&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> send_text(toUser, fromUser, content)</span><br><span class="line">        <span class="keyword">elif</span> msg_type == <span class="string">&#x27;image&#x27;</span>:</span><br><span class="line">            <span class="comment"># 返回对应的</span></span><br><span class="line">            mediaId = xmlData.find(<span class="string">&#x27;MediaId&#x27;</span>).text</span><br><span class="line">            <span class="keyword">return</span> send_img(toUser, fromUser, mediaId)</span><br><span class="line">        <span class="keyword">elif</span> msg_type == <span class="string">&#x27;voice&#x27;</span>:</span><br><span class="line">            content = <span class="string">&quot;语音已收到,谢谢&quot;</span></span><br><span class="line">            <span class="keyword">return</span> send_text(toUser, fromUser, content)</span><br><span class="line">        <span class="keyword">elif</span> msg_type == <span class="string">&#x27;video&#x27;</span>:</span><br><span class="line">            content = <span class="string">&quot;视频已收到,谢谢&quot;</span></span><br><span class="line">            <span class="keyword">return</span> send_text(toUser, fromUser, content)</span><br><span class="line">        <span class="keyword">elif</span> msg_type == <span class="string">&#x27;shortvideo&#x27;</span>:</span><br><span class="line">            content = <span class="string">&quot;小视频已收到,谢谢&quot;</span></span><br><span class="line">            <span class="keyword">return</span> send_text(toUser, fromUser, content)</span><br><span class="line">        <span class="keyword">elif</span> msg_type == <span class="string">&#x27;location&#x27;</span>:</span><br><span class="line">            content = <span class="string">&quot;位置已收到,谢谢&quot;</span></span><br><span class="line">            <span class="keyword">return</span> send_text(toUser, fromUser, content)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            msg_type == <span class="string">&#x27;link&#x27;</span></span><br><span class="line">            content = <span class="string">&quot;链接已收到,谢谢&quot;</span></span><br><span class="line">            <span class="keyword">return</span> send_text(toUser, fromUser, content)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># except Exception as e:</span></span><br><span class="line">    <span class="comment">#     print(&quot;ERROR&quot;)</span></span><br><span class="line">    <span class="comment">#     return e</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/04/26/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%BC%80%E5%8F%91/" data-id="ckqkkaz3n00jjbcc434ev7pqu" data-title="微信公众号开发" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-每日leetcode-46" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/23/%E6%AF%8F%E6%97%A5leetcode-46/" class="article-date">
+  <time class="dt-published" datetime="2020-04-22T22:06:06.000Z" itemprop="datePublished">2020-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/23/%E6%AF%8F%E6%97%A5leetcode-46/">每日leetcode-46</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations/">46. 全排列</a></p>
+<p>给定一个<strong>没有重复</strong> 数字的序列，返回其所有可能的全排列。</p>
+<p><strong>示例:</strong></p>
+<p><strong>输入:</strong> [1,2,3]<br><strong>输出:</strong><br>[<br>  [1,2,3],<br>  [1,3,2],<br>  [2,1,3],<br>  [2,3,1],<br>  [3,1,2],<br>  [3,2,1]<br>]</p>
+<p>用一个vector来表示当前选择了哪些，用一个vector表示谁被选中了（避免检查某一个数是不是合理的时候用太长的时间搜索）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">do_permute</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, vector&lt;<span class="keyword">int</span>&gt;&amp; now, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; ans, <span class="keyword">int</span> i, vector&lt;<span class="keyword">bool</span>&gt;&amp; used)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i == len) &#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(vector&lt;<span class="keyword">int</span>&gt;(now));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; len; k++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!used[k]) &#123;</span><br><span class="line">                    used[k] = <span class="literal">true</span>;</span><br><span class="line">                    now[i] = nums[k];</span><br><span class="line">                    <span class="built_in">do_permute</span>(nums, now, ans, i + <span class="number">1</span>, used);</span><br><span class="line">                    used[k] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">permute</span>(vector&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        len = nums.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">now</span><span class="params">(len, <span class="number">-1</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">bool</span>&gt; <span class="title">used</span><span class="params">(len, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="built_in">do_permute</span>(nums, now, ans, <span class="number">0</span>, used);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/04/23/%E6%AF%8F%E6%97%A5leetcode-46/" data-id="ckqkkaz4b00lpbcc46eyqeauc" data-title="每日leetcode-46" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-场内场外基金-转托管" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/21/%E5%9C%BA%E5%86%85%E5%9C%BA%E5%A4%96%E5%9F%BA%E9%87%91-%E8%BD%AC%E6%89%98%E7%AE%A1/" class="article-date">
+  <time class="dt-published" datetime="2020-04-20T22:06:06.000Z" itemprop="datePublished">2020-04-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%87%91%E8%9E%8D/">金融</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/21/%E5%9C%BA%E5%86%85%E5%9C%BA%E5%A4%96%E5%9F%BA%E9%87%91-%E8%BD%AC%E6%89%98%E7%AE%A1/">场内场外基金-转托管</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="场内和场外的概念"><a href="#场内和场外的概念" class="headerlink" title="场内和场外的概念"></a>场内和场外的概念</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38004638/article/details/102789298">https://blog.csdn.net/weixin_38004638/article/details/102789298</a> 中提到：</p>
+<blockquote>
+<p>我们买基金一共有4种渠道：<br>1、    证券公司<br>2、    银行<br>3、    基金公司<br>4、    第三方代销平台。<br>1是场内渠道，2~4是场外渠道。</p>
+</blockquote>
+<p>场内表示交易所交易，其他的都是场外。</p>
+<h1 id="场内交易的费用"><a href="#场内交易的费用" class="headerlink" title="场内交易的费用"></a>场内交易的费用</h1><p>场内交易需要有手续费，5元起！</p>
+<h1 id="转托管"><a href="#转托管" class="headerlink" title="转托管"></a>转托管</h1><p>为什么要转托管呢？因为有溢价或者折价！</p>
+<p>折价：</p>
+<ul>
+<li>在【分析几个主要的场内折价封闭基金（<a target="_blank" rel="noopener" href="https://xueqiu.com/9290769077/123410048">https://xueqiu.com/9290769077/123410048</a> ）】这篇文章中也有说到一些场内折价封闭基金。</li>
+<li>场内基金折价率可以来看：<a target="_blank" rel="noopener" href="http://fund.eastmoney.com/cnjy_zjl.html">http://fund.eastmoney.com/cnjy_zjl.html</a></li>
+</ul>
+<p>溢价最明显的就是石油基金，因为外汇额度问题场外申购不行了，所以场内溢价特别高。</p>
+<ul>
+<li>【各原油基金，场内场外价格偏差大的原因，高溢价值不值得购买（<a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1664406928905420993">https://baijiahao.baidu.com/s?id=1664406928905420993</a> ）】这篇文章又说道。</li>
+<li>QDII溢价率：<a target="_blank" rel="noopener" href="https://www.jisilu.cn/data/qdii/#qdiie">https://www.jisilu.cn/data/qdii/#qdiie</a></li>
+</ul>
+<h1 id="转托管-1"><a href="#转托管-1" class="headerlink" title="转托管"></a>转托管</h1><p>因为场内溢价的存在，因此可以进行套利，比如<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/386147391">https://www.zhihu.com/question/386147391</a> 就有回答介绍了如何将支付宝里的南方原油LOF基金转到场内</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.360doc.com/content/20/0326/17/35528094_901841503.shtml">http://www.360doc.com/content/20/0326/17/35528094_901841503.shtml</a> 这里就介绍了如何转托管进行套利。</li>
+<li>基金场外转场内指南： <a target="_blank" rel="noopener" href="https://xueqiu.com/3586445630/143970093">https://xueqiu.com/3586445630/143970093</a></li>
+</ul>
+<p>转托管需要基金开户，买一个同时在场内场外交易的基金就行，【不能】在招商证券app里面可以点【理财】——【我的理财】里面开户</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/04/21/%E5%9C%BA%E5%86%85%E5%9C%BA%E5%A4%96%E5%9F%BA%E9%87%91-%E8%BD%AC%E6%89%98%E7%AE%A1/" data-id="ckqkkaz3f00iwbcc4bsfqffrd" data-title="场内场外基金-转托管" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-二手MacBook验机" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/20/%E4%BA%8C%E6%89%8BMacBook%E9%AA%8C%E6%9C%BA/" class="article-date">
+  <time class="dt-published" datetime="2020-04-19T22:06:06.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/20/%E4%BA%8C%E6%89%8BMacBook%E9%AA%8C%E6%9C%BA/">二手MacBook验机</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>可能改序列号，改型号，要注意CPU、内存、显卡信息是不是和官方给的一致。</p>
+<p>还有型号标识符（在关于本机——系统报告</p>
+<p>官网上： <a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT201300">https://support.apple.com/zh-cn/HT201300</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/04/20/%E4%BA%8C%E6%89%8BMacBook%E9%AA%8C%E6%9C%BA/" data-id="ckqkkaz2z00hcbcc4f7e9hq4u" data-title="二手MacBook验机" class="article-share-link">Share</a>
       
       
       
@@ -529,7 +613,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/14/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/16/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/14/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/16/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -550,7 +634,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -560,7 +644,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -569,7 +653,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -586,19 +670,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

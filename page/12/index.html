@@ -73,14 +73,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-统计检验" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Kali中文乱码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/07/%E7%BB%9F%E8%AE%A1%E6%A3%80%E9%AA%8C/" class="article-date">
-  <time class="dt-published" datetime="2020-05-06T22:06:06.000Z" itemprop="datePublished">2020-05-07</time>
+    <a href="/2020/05/13/Kali%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/" class="article-date">
+  <time class="dt-published" datetime="2020-05-12T22:06:06.000Z" itemprop="datePublished">2020-05-13</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a>
   </div>
 
   </div>
@@ -91,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/07/%E7%BB%9F%E8%AE%A1%E6%A3%80%E9%AA%8C/">统计检验</a>
+      <a class="p-name article-title" href="/2020/05/13/Kali%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">Kali中文乱码</a>
     </h1>
   
 
@@ -99,49 +99,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="假设检验"><a href="#假设检验" class="headerlink" title="假设检验"></a>假设检验</h2><p>碰巧有机会回顾了一下统计学的东西，就把一些统计检验相关的放在这了～</p>
-<p><a target="_blank" rel="noopener" href="https://bookdown.org/hezhijian/book/test.html#section-63">第 3 章 假设检验 | 数理统计讲义</a>远离 这里有一些假设检验的基本内容。</p>
-<p>我们要做假设检验，是通过一系列样本来分析总体的分布。我们需要做的是提出原假设和备择假设，H0称为原假设/零假设(Null Hypothesis)，H1称为备选假设/对立假设/备择假设(Alternative Hypothesis)。</p>
-<h2 id="两类错误"><a href="#两类错误" class="headerlink" title="两类错误"></a>两类错误</h2><p><img src="https://upload-images.jianshu.io/upload_images/5060560-8f63022b62e164b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="两类错误"></p>
-<p>第一类错误的概率是$\alpha$，原假设是真的但是我们拒绝了他。所以就用原假设作为条件，推出来拒绝的概率等于$\alpha$。</p>
-<ul>
-<li>比如如果是正态分布的mu的检验，就看实际上得到的结果在两端的概率；如果是一个均匀分布，就看最大值是不是在范围内</li>
-</ul>
-<h2 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h2><p>最大似然估计：概率最大，求导</p>
-<p>矩估计：一阶（平均）、二阶（中心矩、原点矩）</p>
-<h2 id="卡方分布检验是否符合给定分布"><a href="#卡方分布检验是否符合给定分布" class="headerlink" title="卡方分布检验是否符合给定分布"></a>卡方分布检验是否符合给定分布</h2><p>拟合优度，用(O-E)^2/E的和来判断，自由度是种类数目-1-估算的参数个数，每一类最好不小于5</p>
-<p>孟德尔豌豆的例子在<a target="_blank" rel="noopener" href="https://bookdown.org/hezhijian/book/test.html#mendel">https://bookdown.org/hezhijian/book/test.html#mendel</a></p>
-<h2 id="OLS最小二乘参数公式"><a href="#OLS最小二乘参数公式" class="headerlink" title="OLS最小二乘参数公式"></a>OLS最小二乘参数公式</h2><p>$\hat\beta_1=\frac{\Sigma x y-\frac{1}{N} \Sigma x \Sigma y}{\Sigma x^{2}-\frac{1}{N}(\Sigma x)^{2}}$</p>
-<p>$\hat\beta_0 = \bar y - \hat\beta_1 \bar x$</p>
-<p>beta1标准差：$\sqrt{\frac{1}{\sum\left(x_{t}-\bar{x}\right)^{2}}}\times \sqrt{\frac{\sum \hat{u}_{t}^{2}}{T-2}}$</p>
-<h2 id="ANOVA"><a href="#ANOVA" class="headerlink" title="ANOVA"></a>ANOVA</h2><p>Oneway ANalysis Of VAriance</p>
-<p>方差分析(Analysis of Variance，简称ANOVA)，又称“变异数分析”，是R.A.Fisher发明的，用于两个及两个以上样本均数差别的显著性检验。 </p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57896471">https://zhuanlan.zhihu.com/p/57896471</a> 这里的介绍很清楚，摘录一下：</p>
-<blockquote>
-<p>虽然ANOVA叫做方差分析，但是他的目的是检验每个组的平均数是否相同</p>
-<p>最后我们需要做的，就是对比组间均方（MSB）和组内均方（MSE）。最简单的对比方法就是把他们相除，也就是我们常说的F-statistics</p>
-</blockquote>
-<h3 id="ANOVA计算"><a href="#ANOVA计算" class="headerlink" title="ANOVA计算"></a>ANOVA计算</h3><p>这里有一个完整的计算过程的介绍：<a target="_blank" rel="noopener" href="https://www.rose-hulman.edu/class/ma/inlow/Math223/anova1_1.pdf">ANOVA算法介绍PDF</a></p>
-<p>把里面的计算过程拿出来：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e010a6cf2eefd422.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ANOVA表"></p>
-<p>里面：</p>
-<ul>
-<li>k: 种类数；n：数据个数；</li>
-<li>$\mathrm{SSTr}=\sum_{i=1}^{k} n_{i}\left(\bar{x}_{i}-\overline{\bar{x}}\right)^{2}$</li>
-<li>$\begin{aligned} \mathrm{SSE} &amp;=\sum_{j=1}^{n_{1}}\left(x_{1 j}-\bar{x}<em>{1}\right)^{2}+\sum</em>{j=1}^{n_{2}}\left(x_{2 j}-\bar{x}<em>{2}\right)^{2}+\cdots+\sum</em>{j=1}^{n_{k}}\left(x_{k j}-\bar{x}<em>{k}\right)^{2} \ &amp;=\left(n</em>{1}-1\right) S_{1}^{2}+\left(n_{2}-1\right) S_{2}^{2}+\cdots\left(n_{k}-1\right) S_{k}^{2} \ &amp;=\sum_{i=1}^{k}\left(n_{i}-1\right) S_{i}^{2} \end{aligned}$</li>
-<li>SST=SSTr+SSE, $\begin{aligned} \mathrm{SST} &amp;=\sum_{\text {all obs. }}\left(x_{l}-\overline{\bar{x}}\right)^{2} \ &amp;=\sum_{i=1}^{k} \sum_{j=1}^{n_{i}}\left(x_{i j}-\overline{\bar{x}}\right)^{2} \end{aligned}$</li>
-<li>$\mathrm{MSTr}=\frac{\mathrm{SSTr}}{k-1}$</li>
-<li>$\mathrm{MSE}=\frac{\mathrm{SSE}}{n-k}$</li>
-<li>$\begin{aligned} F &amp;=\frac{\mathrm{MSTr}}{\mathrm{MSE}} \ &amp;=\frac{\text { between }-\text { samples variation }}{\text { within }-\text { samples variation }} \end{aligned}$</li>
-<li>p-value用到的自由度是k-1和n-k</li>
-</ul>
-<p>有一个计算器：<a target="_blank" rel="noopener" href="https://www.socscistatistics.com/tests/anova/default2.aspx">计算器</a>，里面F值算p值的在这里有一个专门计算器：<a target="_blank" rel="noopener" href="https://www.socscistatistics.com/pvalues/fdistribution.aspx">F值到p值</a></p>
-<p>Excel计算方法：<a target="_blank" rel="noopener" href="https://www.excel-easy.com/examples/anova.html">excel中的anova</a></p>
+        <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8c4cff005d2a">https://www.jianshu.com/p/8c4cff005d2a</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/07/%E7%BB%9F%E8%AE%A1%E6%A3%80%E9%AA%8C/" data-id="ckqkjgmd300msx4c428s1fgsr" data-title="统计检验" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/13/Kali%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/" data-id="ckqkkayz30047bcc4elz17i4b" data-title="Kali中文乱码" class="article-share-link">Share</a>
       
       
       
@@ -153,10 +116,57 @@
 
 
   
-    <article id="post-跨域解决（在后端-前端请求头）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Live-Tex-THUthesis-Mac" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/07/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%EF%BC%88%E5%9C%A8%E5%90%8E%E7%AB%AF-%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82%E5%A4%B4%EF%BC%89/" class="article-date">
-  <time class="dt-published" datetime="2020-05-06T22:06:06.000Z" itemprop="datePublished">2020-05-07</time>
+    <a href="/2020/05/13/Live-Tex-THUthesis-Mac/" class="article-date">
+  <time class="dt-published" datetime="2020-05-12T22:06:06.000Z" itemprop="datePublished">2020-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/13/Live-Tex-THUthesis-Mac/">Live-Tex-THUthesis-Mac</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>安装Live Tex（之前我已经装了2019版的）</li>
+<li>用<code>xetex thuthesis.ins</code>命令手动更新</li>
+<li><code>make all</code>进行生成</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/05/13/Live-Tex-THUthesis-Mac/" data-id="ckqkkayz5004fbcc4376ufm7j" data-title="Live-Tex-THUthesis-Mac" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-echarts-官方例子" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/10/echarts-%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90/" class="article-date">
+  <time class="dt-published" datetime="2020-05-09T22:06:06.000Z" itemprop="datePublished">2020-05-10</time>
 </a>
     
   <div class="article-category">
@@ -171,7 +181,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/07/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%EF%BC%88%E5%9C%A8%E5%90%8E%E7%AB%AF-%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82%E5%A4%B4%EF%BC%89/">跨域解决（在后端-前端请求头）</a>
+      <a class="p-name article-title" href="/2020/05/10/echarts-%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90/">echarts-官方例子</a>
     </h1>
   
 
@@ -179,13 +189,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="django中配置允许跨域请求"><a href="#django中配置允许跨域请求" class="headerlink" title="django中配置允许跨域请求"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/randomlee/p/9752705.html">django中配置允许跨域请求</a></h1><hr>
-<p>前端请求头的一个：<a target="_blank" rel="noopener" href="https://blog.csdn.net/spfLinux/article/details/79280105?utm_source=blogxgwz8">https://blog.csdn.net/spfLinux/article/details/79280105?utm_source=blogxgwz8</a></p>
+        <p><a target="_blank" rel="noopener" href="https://echarts.apache.org/examples/zh/index.html">https://echarts.apache.org/examples/zh/index.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/07/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%EF%BC%88%E5%9C%A8%E5%90%8E%E7%AB%AF-%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82%E5%A4%B4%EF%BC%89/" data-id="ckqkjgmda00ngx4c4e88vbydr" data-title="跨域解决（在后端-前端请求头）" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/10/echarts-%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90/" data-id="ckqkkaz1c00bmbcc46bll25k2" data-title="echarts-官方例子" class="article-share-link">Share</a>
       
       
       
@@ -197,14 +206,14 @@
 
 
   
-    <article id="post-Python中的三角分布和梯形分布" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-echarts在vue中的安装使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/06/Python%E4%B8%AD%E7%9A%84%E4%B8%89%E8%A7%92%E5%88%86%E5%B8%83%E5%92%8C%E6%A2%AF%E5%BD%A2%E5%88%86%E5%B8%83/" class="article-date">
-  <time class="dt-published" datetime="2020-05-05T22:06:06.000Z" itemprop="datePublished">2020-05-06</time>
+    <a href="/2020/05/10/echarts%E5%9C%A8vue%E4%B8%AD%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2020-05-09T22:06:06.000Z" itemprop="datePublished">2020-05-10</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a>
   </div>
 
   </div>
@@ -215,7 +224,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/06/Python%E4%B8%AD%E7%9A%84%E4%B8%89%E8%A7%92%E5%88%86%E5%B8%83%E5%92%8C%E6%A2%AF%E5%BD%A2%E5%88%86%E5%B8%83/">Python中的三角分布和梯形分布</a>
+      <a class="p-name article-title" href="/2020/05/10/echarts%E5%9C%A8vue%E4%B8%AD%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">echarts在vue中的安装使用</a>
     </h1>
   
 
@@ -223,18 +232,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>三角分布是分布函数呈现三角形的分布。参数有最小值、最大值、众数。</p>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Triangular_distribution">三角分布wiki英文网页</a></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8d0d10945eab6eaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="三角分布"></p>
-<p>下面是一个例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> random</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>data = []</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">99999</span>):</span><br><span class="line"><span class="meta">... </span>  data.append(random.triangular(<span class="number">20</span>, <span class="number">60</span>, <span class="number">30</span>))</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>plt.hist(data)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>plt.show()</span><br></pre></td></tr></table></figure>
+        <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cf0a54374419">https://www.jianshu.com/p/cf0a54374419</a></p>
+<p><code>npm install --save echarts</code></p>
+<p>在main.js中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> echarts <span class="keyword">from</span> <span class="string">&#x27;echarts&#x27;</span></span><br><span class="line">Vue.prototype.$echarts = echarts</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-0b650b0c221b983e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="上面例子中三角分布的直方图"></p>
+<p>之后就可以用了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/06/Python%E4%B8%AD%E7%9A%84%E4%B8%89%E8%A7%92%E5%88%86%E5%B8%83%E5%92%8C%E6%A2%AF%E5%BD%A2%E5%88%86%E5%B8%83/" data-id="ckqkjgm8e0071x4c41lih9tfv" data-title="Python中的三角分布和梯形分布" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/10/echarts%E5%9C%A8vue%E4%B8%AD%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" data-id="ckqkkaz1d00bobcc47qrr3ukk" data-title="echarts在vue中的安装使用" class="article-share-link">Share</a>
       
       
       
@@ -246,14 +254,14 @@
 
 
   
-    <article id="post-numpy-isin-筛选所有在范围内的" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-hashcat" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/06/numpy-isin-%E7%AD%9B%E9%80%89%E6%89%80%E6%9C%89%E5%9C%A8%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84/" class="article-date">
-  <time class="dt-published" datetime="2020-05-05T22:06:06.000Z" itemprop="datePublished">2020-05-06</time>
+    <a href="/2020/05/10/hashcat/" class="article-date">
+  <time class="dt-published" datetime="2020-05-09T22:06:06.000Z" itemprop="datePublished">2020-05-10</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a>
   </div>
 
   </div>
@@ -264,7 +272,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/06/numpy-isin-%E7%AD%9B%E9%80%89%E6%89%80%E6%9C%89%E5%9C%A8%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84/">numpy-isin-筛选所有在范围内的</a>
+      <a class="p-name article-title" href="/2020/05/10/hashcat/">hashcat</a>
     </h1>
   
 
@@ -272,13 +280,21 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>可以进行逐个元素的判断，判断这些东西有没有在给定的数组中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.isin(np.array([1,2,3]), [1,2])</span><br><span class="line">array([ True,  True, False])</span><br><span class="line">&gt;&gt;&gt; np.array([1,2,3]) in [1,2]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()</span><br></pre></td></tr></table></figure>
+        <h2 id="教学"><a href="#教学" class="headerlink" title="教学"></a>教学</h2><p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/4008">一个例子</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>kali里面自带<br>mac上面直接：<code>brew install hashcat</code></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="https://upload-images.jianshu.io/upload_images/5060560-a50e2aba96713812.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="密文"></p>
+<p><a target="_blank" rel="noopener" href="https://www.cmd5.com/hash.aspx?s=5612325">https://www.cmd5.com/hash.aspx?s=5612325</a></p>
+<p>密文：25c3e88f81b4853f2a8faacad4c871b6</p>
+<p>原文：5612325</p>
+<h2 id="破解"><a href="#破解" class="headerlink" title="破解"></a>破解</h2><p>kali里面使用了这一条：</p>
+<p><code>hashcat -a 3 -m 0 --force 25c3e88f81b4853f2a8faacad4c871b6 ?d?d?d?d?d?d?d</code></p>
+<p>表示是七位数字。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-63e2238d5f408f61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="成功破解"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/06/numpy-isin-%E7%AD%9B%E9%80%89%E6%89%80%E6%9C%89%E5%9C%A8%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84/" data-id="ckqkjgmaj00dux4c44rqy5tn9" data-title="numpy-isin-筛选所有在范围内的" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/10/hashcat/" data-id="ckqkkaz1l00chbcc4hmfw1ata" data-title="hashcat" class="article-share-link">Share</a>
       
       
       
@@ -290,14 +306,14 @@
 
 
   
-    <article id="post-百度网盘挂载" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Django-models结果排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/06/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E6%8C%82%E8%BD%BD/" class="article-date">
-  <time class="dt-published" datetime="2020-05-05T22:06:06.000Z" itemprop="datePublished">2020-05-06</time>
+    <a href="/2020/05/09/Django-models%E7%BB%93%E6%9E%9C%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2020-05-08T22:06:06.000Z" itemprop="datePublished">2020-05-09</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a>
   </div>
 
   </div>
@@ -308,7 +324,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/06/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E6%8C%82%E8%BD%BD/">百度网盘挂载</a>
+      <a class="p-name article-title" href="/2020/05/09/Django-models%E7%BB%93%E6%9E%9C%E6%8E%92%E5%BA%8F/">Django-models结果排序</a>
     </h1>
   
 
@@ -316,12 +332,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://github.com/choury/baidudisk">https://github.com/choury/baidudisk</a></p>
+        <p>用order_by(‘-id’)表示按照id倒序</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangyingblock/p/11136691.html">https://www.cnblogs.com/wangyingblock/p/11136691.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/06/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E6%8C%82%E8%BD%BD/" data-id="ckqkjgmcv00m0x4c4e4zccms4" data-title="百度网盘挂载" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/09/Django-models%E7%BB%93%E6%9E%9C%E6%8E%92%E5%BA%8F/" data-id="ckqkkayye0022bcc4dde1dqom" data-title="Django-models结果排序" class="article-share-link">Share</a>
       
       
       
@@ -333,14 +350,14 @@
 
 
   
-    <article id="post-numpy的power和float_power的区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Mac-Neo4j安装与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/05/numpy%E7%9A%84power%E5%92%8Cfloat_power%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
-  <time class="dt-published" datetime="2020-05-04T22:06:06.000Z" itemprop="datePublished">2020-05-05</time>
+    <a href="/2020/05/09/Mac-Neo4j%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2020-05-08T22:06:06.000Z" itemprop="datePublished">2020-05-09</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
   </div>
 
   </div>
@@ -351,7 +368,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/05/numpy%E7%9A%84power%E5%92%8Cfloat_power%E7%9A%84%E5%8C%BA%E5%88%AB/">numpy的power和float_power的区别</a>
+      <a class="p-name article-title" href="/2020/05/09/Mac-Neo4j%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">Mac-Neo4j安装与使用</a>
     </h1>
   
 
@@ -359,18 +376,61 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>float_power会强行转成float，但是原来如果是int64的话可能精度有损失</p>
+        <h1 id="关于图数据库的一些介绍"><a href="#关于图数据库的一些介绍" class="headerlink" title="关于图数据库的一些介绍"></a>关于图数据库的一些介绍</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mantoudev/p/10414495.html">https://www.cnblogs.com/mantoudev/p/10414495.html</a></p>
+<p>摘录一下：</p>
 <blockquote>
-<p>NumPy float_power（）函数与幂函数的区别在于这些整数，float16和float32被提升为float64的最小精度的float，因此结果始终是不精确的。对于负幂，float_power（）函数将返回良好的结果，而对于+ ve幂，很少会溢出。</p>
+<p>图数据很多，图数据库比普通的要更快</p>
 </blockquote>
-<ul>
-<li>来自<a target="_blank" rel="noopener" href="https://0xzx.com/202004071450584382.html">https://0xzx.com/202004071450584382.html</a></li>
-</ul>
+<p>neo4j的教程在：<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/neo4j/">https://www.w3cschool.cn/neo4j/</a></p>
+<h1 id="Neo4j安装"><a href="#Neo4j安装" class="headerlink" title="Neo4j安装"></a>Neo4j安装</h1><p>到<a target="_blank" rel="noopener" href="https://neo4j.com/%EF%BC%8C%E7%82%B9%E5%8F%B3%E4%B8%8A%E8%A7%92%E7%9A%84">https://neo4j.com/，点右上角的</a> DOWNLOAD NEO4J就行。之后填一个表（表单加载挺慢的，得等会），就能下载了。会给一个激活密钥。</p>
+<p>我用的Mac，下载链接：<a target="_blank" rel="noopener" href="https://neo4j.com/artifact.php?name=neo4j-desktop-offline-1.2.4.dmg">https://neo4j.com/artifact.php?name=neo4j-desktop-offline-1.2.4.dmg</a></p>
+<p>Activation Key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCJ9.eyIgSG9sZGluZyBDby4sIEx0ZC4iOiIiLCJjYWxsYmFjayI6IiIsImVtYWlsIjoiaUBodWF3ZWkuY29tIiwiZm9ybWF0IjoianNvbiIsIm9yZyI6Ikh1YXdlaSBJbnZlc3RtZW50ICIsInB1YiI6Im5lbzRqLmNvbSIsInJlZyI6Ikh1YSBXZWkiLCJzdWIiOiJuZW80ai1kZXNrdG9wIiwiZXhwIjoxNjIwNTI4Nzg5LCJ2ZXIiOiIqIiwiaXNzIjoibmVvNGouY29tIiwibmJmIjoxNTg4OTkyNzg5LCJpYXQiOjE1ODg5OTI3ODksImp0aSI6InJHN2RxWmFJYiJ9.pN66t95DNK0rMfcu7D-XnET7gx6IrFgSZg1VmUBciXyTzgnpUzWtlW3MZCaerL0IWO5ZQfmEgX25pAU3Pmq6SlZvW462fZluxgEOw9wfrNhbjCVXSM70bv2tpKoIk9I8xySOaVMOsZ16SZRtlo0QAvaNizaZiMTSy-kdr2t2hzzV4bSgSJ--gBg-nwVBrcPJZfMcEii_zNrOvGkV3LcvRoU8aHRucCLosNxrhmc0Ug-SxnYGU7beJB6pgVAf57TSlU7Cv6rj0aDY_KcWCyCb4r-XvBu-ZVtzxDziYWjF-CWOBotnxEZWA89QM8J-c-DF82CPCUmuzWzj1t4KNDK-9g</span><br></pre></td></tr></table></figure>
+
+<p>直接把dmg文件打开，应用拖到Application里面就行了。之后打开就会自动安装配置，用上面的Activation Key就可以，或者新注册一下。</p>
+<h1 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h1><p><img src="https://upload-images.jianshu.io/upload_images/5060560-80513dd5210397cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="主页选择创建数据库，之后选create local graph"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-b1148a9e8a826e33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建好之后选择启动"></p>
+<p>之后可以点击manage，让它启动后按下open browser打开浏览器进行管理</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-59b2bc221ce71b22.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="浏览器中管理"></p>
+<p>在上面这个地方有写用户名是neo4j，网址和端口也有</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h3><p><code>CREATE (n:Student &#123;name:&#39;张三&#39;&#125;) RETURN n</code></p>
+<p><code>CREATE (n:Teacher &#123;name:&#39;罗翔&#39;&#125;) RETURN n</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-f926d3874060505a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建两个节点"></p>
+<p><code>MATCH (n:Teacher &#123;name:&#39;罗翔&#39;&#125;) DELETE n</code></p>
+<p>接下来再新增一个罗老师：<code>CREATE (n:Teacher &#123;name:&#39;罗翔&#39;&#125;) RETURN n</code></p>
+<h3 id="添加边"><a href="#添加边" class="headerlink" title="添加边"></a>添加边</h3><p><code>MATCH (a: Teacher &#123;name:&#39;罗翔&#39;&#125;), (b: Student &#123;name:&#39;张三&#39;&#125;) MERGE (a)-[:审判]-&gt;(b)</code></p>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>查询所有节点</p>
+<p><code>MATCH (n) RETURN n LIMIT 25</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-908d71d9d146fe54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="查询结果"></p>
+<p>查询所有边的起始节点</p>
+<p><code>MATCH (a)--&gt;() RETURN a</code></p>
+<p>忽略边的方向，查询所有关系的节点</p>
+<p><code>MATCH (a)--() RETURN a LIMIT 25</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6b4fb9974a9bcf97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="边查询结果"></p>
+<p><code>MATCH (a)-[:审判]-() RETURN a LIMIT 25</code></p>
+<p><code>MATCH (a)-[r]-&gt;(b) return a, b, r</code></p>
+<p>注意：选择出来的结果不会做边的筛选</p>
+<p>假如有两个关系，添加一个<code>MATCH (a: Teacher &#123;name:&#39;罗翔&#39;&#125;), (b: Student &#123;name:&#39;张三&#39;&#125;) MERGE (a)-[:教导]-&gt;(b)</code></p>
+<p><code>MATCH (a)-[r:审判]-&gt;(b) RETURN a, b, r</code></p>
+<p>结果直接呈现两个关系</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-9c964d5f3722a444.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="现在有俩关系了"></p>
+<h3 id="删除边"><a href="#删除边" class="headerlink" title="删除边"></a>删除边</h3><p><code>MATCH ()-[r: 教导]-&gt;() DELETE r</code></p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p><code>MATCH (a:Student &#123;name:&#39;张三&#39;&#125;) SET a.test=&#39;test&#39;</code><br><code>MATCH (a:Student &#123;name:&#39;张三&#39;&#125;) REMOVE a.test</code></p>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p>这里使用和前面的语言一样的操作，不过为了区分这里用的是中文的label</p>
+<p>pip install py2neo</p>
+<p>安装好就可以连接了，<strong>注意协议不是http，是bolt</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> py2neo <span class="keyword">import</span> Graph,Node,Relationship</span><br><span class="line"></span><br><span class="line">graph = Graph(<span class="string">&#x27;bolt://localhost:7687&#x27;</span>,username=<span class="string">&#x27;neo4j&#x27;</span>,password=<span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">a = Node(<span class="string">&#x27;学生&#x27;</span>, name=<span class="string">&#x27;张三&#x27;</span>)</span><br><span class="line">b = Node(<span class="string">&#x27;教师&#x27;</span>, name=<span class="string">&#x27;罗翔&#x27;</span>)</span><br><span class="line">graph.create(a)</span><br><span class="line">graph.create(b)</span><br></pre></td></tr></table></figure>
+
+<p>这时我们在数据库里面可以看到：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-3b228dd08744c38f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="用Python创建后"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r = Relationship(b,<span class="string">&#x27;审判&#x27;</span>,a)</span><br><span class="line">graph.create(r)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> py2neo <span class="keyword">import</span> NodeMatcher</span><br><span class="line">luo = NodeMatcher(graph).match(<span class="string">&#x27;教师&#x27;</span>,name=<span class="string">&#x27;罗翔&#x27;</span>)  <span class="comment"># 相当于graph.nodes.match(&#x27;教师&#x27;,name=&#x27;罗翔&#x27;)</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(luo))</span><br><span class="line"><span class="comment"># 不能用luo[0]</span></span><br><span class="line"><span class="built_in">print</span>(luo.first())</span><br><span class="line"><span class="built_in">print</span>(luo.first().__name__)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> luo:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="built_in">print</span>(i[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(luo.graph.nodes)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> luo.graph.relationships:</span><br><span class="line">    <span class="built_in">print</span>(i)  <span class="comment"># 这里会有bug，一些已经删除过的边会仍然留在里面，导致这里报错</span></span><br><span class="line">graph.delete(luo.graph.relationships[<span class="number">0</span>])  <span class="comment"># 注意这里的0不是下标！是边的ID</span></span><br><span class="line"><span class="comment"># 搜索边</span></span><br><span class="line">ans = graph.match(nodes=<span class="literal">None</span>, r_type=<span class="string">&#x27;审判&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="built_in">print</span>(i.identity)  <span class="comment"># 这里是ID</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/05/numpy%E7%9A%84power%E5%92%8Cfloat_power%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckqkjgmaj00dwx4c48cfdh77a" data-title="numpy的power和float_power的区别" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/09/Mac-Neo4j%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="ckqkkayz9004rbcc4eqttcqjl" data-title="Mac-Neo4j安装与使用" class="article-share-link">Share</a>
       
       
       
@@ -382,10 +442,55 @@
 
 
   
-    <article id="post-random-randint和numpy中的同名函数不同" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-PyCharm里面配置Django" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/05/random-randint%E5%92%8Cnumpy%E4%B8%AD%E7%9A%84%E5%90%8C%E5%90%8D%E5%87%BD%E6%95%B0%E4%B8%8D%E5%90%8C/" class="article-date">
-  <time class="dt-published" datetime="2020-05-04T22:06:06.000Z" itemprop="datePublished">2020-05-05</time>
+    <a href="/2020/05/09/PyCharm%E9%87%8C%E9%9D%A2%E9%85%8D%E7%BD%AEDjango/" class="article-date">
+  <time class="dt-published" datetime="2020-05-08T22:06:06.000Z" itemprop="datePublished">2020-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/09/PyCharm%E9%87%8C%E9%9D%A2%E9%85%8D%E7%BD%AEDjango/">PyCharm里面配置Django</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>如果不是通过PyCharm创建的django，有可能PyCharm不认。</p>
+<p>比如提示：unresolved attribute reference objects</p>
+<p>我们可以<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39148947/article/details/82594824">https://blog.csdn.net/qq_39148947/article/details/82594824</a> ，在设置里面打开django支持。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/05/09/PyCharm%E9%87%8C%E9%9D%A2%E9%85%8D%E7%BD%AEDjango/" data-id="ckqkkayzx006vbcc43lnhg5iu" data-title="PyCharm里面配置Django" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Python通过字符串找到函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/08/Python%E9%80%9A%E8%BF%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%BE%E5%88%B0%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2020-05-07T22:06:06.000Z" itemprop="datePublished">2020-05-08</time>
 </a>
     
   <div class="article-category">
@@ -400,7 +505,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/05/random-randint%E5%92%8Cnumpy%E4%B8%AD%E7%9A%84%E5%90%8C%E5%90%8D%E5%87%BD%E6%95%B0%E4%B8%8D%E5%90%8C/">random-randint和numpy中的同名函数不同</a>
+      <a class="p-name article-title" href="/2020/05/08/Python%E9%80%9A%E8%BF%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%BE%E5%88%B0%E5%87%BD%E6%95%B0/">Python通过字符串找到函数</a>
     </h1>
   
 
@@ -408,14 +513,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>random.randint(0,0) 可以得到0</p>
-<p>但是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.random.randint(0,0)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">  File &quot;mtrand.pyx&quot;, line 747, in numpy.random.mtrand.RandomState.randint</span><br><span class="line">  File &quot;_bounded_integers.pyx&quot;, line 1270, in numpy.random._bounded_integers._rand_int64</span><br><span class="line">ValueError: low &gt;&#x3D; high</span><br></pre></td></tr></table></figure>
+        <p>用getattr(a, ‘add_node’)就可以找到a.add_node函数</p>
+<p><a target="_blank" rel="noopener" href="https://www.php.cn/python-tutorials-420336.html">https://www.php.cn/python-tutorials-420336.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/05/random-randint%E5%92%8Cnumpy%E4%B8%AD%E7%9A%84%E5%90%8C%E5%90%8D%E5%87%BD%E6%95%B0%E4%B8%8D%E5%90%8C/" data-id="ckqkjgmav00evx4c41ydw4bk6" data-title="random-randint和numpy中的同名函数不同" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/08/Python%E9%80%9A%E8%BF%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%BE%E5%88%B0%E5%87%BD%E6%95%B0/" data-id="ckqkkaz06007obcc44wbk99h5" data-title="Python通过字符串找到函数" class="article-share-link">Share</a>
       
       
       
@@ -427,14 +531,14 @@
 
 
   
-    <article id="post-知乎匿名与取消" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-django跨域" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/05/%E7%9F%A5%E4%B9%8E%E5%8C%BF%E5%90%8D%E4%B8%8E%E5%8F%96%E6%B6%88/" class="article-date">
-  <time class="dt-published" datetime="2020-05-04T22:06:06.000Z" itemprop="datePublished">2020-05-05</time>
+    <a href="/2020/05/07/django%E8%B7%A8%E5%9F%9F/" class="article-date">
+  <time class="dt-published" datetime="2020-05-06T22:06:06.000Z" itemprop="datePublished">2020-05-07</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a>
   </div>
 
   </div>
@@ -445,7 +549,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/05/%E7%9F%A5%E4%B9%8E%E5%8C%BF%E5%90%8D%E4%B8%8E%E5%8F%96%E6%B6%88/">知乎匿名与取消</a>
+      <a class="p-name article-title" href="/2020/05/07/django%E8%B7%A8%E5%9F%9F/">django跨域</a>
     </h1>
   
 
@@ -453,126 +557,20 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>在这个答案对应的【问题】中选择三个小圆点，之后就有这个选项了。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-94b8bbfa134da71f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="匿名与否的位置"></p>
-<p>知乎为什么能把匿名回答改成实名却不能把实名回答改成匿名？ - 文西湖里的回答 - 知乎<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20945537/answer/140519834">https://www.zhihu.com/question/20945537/answer/140519834</a></p>
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/randomlee/p/9752705.html">django中配置允许跨域请求</a></p>
+<h2 id="以下内容为摘录："><a href="#以下内容为摘录：" class="headerlink" title="以下内容为摘录："></a>以下内容为摘录：</h2><p>安装django-cors-headers，<a target="_blank" rel="noopener" href="https://github.com/ottoyiu/django-cors-headers">详情请看官方文档</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-cors-headers</span><br></pre></td></tr></table></figure>
+
+<p>配置settings.py文件</p>
+<p>a.在INSTALLED_APPS里添加“corsheaders”</p>
+<p>b.在MIDDLEWARE_CLASSES添加 ‘corsheaders.middleware.CorsMiddleware’, ‘django.middleware.common.CommonMiddleware’</p>
+<p>c.在sitting.py底部添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 跨域增加忽略</span></span><br><span class="line">CORS_ALLOW_CREDENTIALS = <span class="literal">True</span></span><br><span class="line">CORS_ORIGIN_ALLOW_ALL = <span class="literal">True</span></span><br><span class="line">CORS_ORIGIN_WHITELIST = ()</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_METHODS = (</span><br><span class="line">    <span class="string">&#x27;DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;OPTIONS&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;PATCH&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;PUT&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;VIEW&#x27;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_HEADERS = (</span><br><span class="line">    <span class="string">&#x27;accept&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;accept-encoding&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;authorization&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;content-type&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;dnt&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;origin&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user-agent&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;x-csrftoken&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;x-requested-with&#x27;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/05/%E7%9F%A5%E4%B9%8E%E5%8C%BF%E5%90%8D%E4%B8%8E%E5%8F%96%E6%B6%88/" data-id="ckqkjgmcw00m2x4c4hgpe9jbp" data-title="知乎匿名与取消" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-数据结构复习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/05/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/" class="article-date">
-  <time class="dt-published" datetime="2020-05-01T22:06:06.000Z" itemprop="datePublished">2020-05-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/">数据结构复习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>红黑树：红色节点不能连续两个，从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点，根和叶子（null）是黑的</p>
-<p>AVL：AVL树中任何节点的两个子树的高度最大差别为1</p>
-<p>快排：worst case是n^2，优化变为nlogn的最差：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/can-quicksort-implemented-onlogn-worst-case-time-complexity/">方法</a>找中位数</li>
-</ul>
-<p>哈希表的separate chaining（分离链接法）方法：直接把冲突的放到一个链表里面</p>
-<p>skiplist：跳表，<a target="_blank" rel="noopener" href="http://www.mathcs.emory.edu/~cheung/Courses/323/Syllabus/Map/skip-list-perf.html">一个英文的说明</a><br>，<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018452079%EF%BC%8C">https://segmentfault.com/a/1190000018452079，</a> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41462047/article/details/81253106">https://blog.csdn.net/weixin_41462047/article/details/81253106</a> 找关键节点，先在关键节点这里搜索</p>
-<ul>
-<li><img src="https://upload-images.jianshu.io/upload_images/5060560-470e5ea43152349e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="跳表示意图"></li>
-<li>Tower指的是垂直排列，在<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/113227225">https://zhuanlan.zhihu.com/p/113227225</a> 有说明</li>
-</ul>
-<p>小顶堆：堆实际上是一棵完全二叉树</p>
-<ul>
-<li>复杂度：创建一个堆是O(n)的，建堆的时候你看看是不是多次调用了调堆的函数呢，那肯定就不只是logN了，如果从底部最后的父节点开始建堆，那么我们可以大概算一下：假如有N个节点，那么高度为H=logN，最后一层每个父节点最多只需要下调1次，倒数第二层最多只需要下调2次，顶点最多需要下调H次，而最后一层父节点共有2^(H-1)个,倒数第二层公有2^(H-2),顶点只有1(2^0)个，所以总共的时间复杂度为s = 1 * 2^(H-1) + 2 * 2^(H-2) + … + (H-1) * 2^1 + H * 2^0  将H代入后s= 2N - 2 - log2(N)，近似的时间复杂度就是O(N)。（<a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/566218328045983884.html%EF%BC%89">https://zhidao.baidu.com/question/566218328045983884.html）</a></li>
-</ul>
-<p>最小生成树：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a2392008643/article/details/81781766">https://blog.csdn.net/a2392008643/article/details/81781766</a></p>
-<ul>
-<li>加点的方法：Prim</li>
-<li>加边的方法：Kruskal</li>
-</ul>
-<p>最短路径：Dijkstra：<a target="_blank" rel="noopener" href="https://blog.csdn.net/heroacool/article/details/51014824">https://blog.csdn.net/heroacool/article/details/51014824</a> 这个里面有一些错误，但大致是对的</p>
-<p>最大流最小割：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hW411W7Tb">https://www.bilibili.com/video/BV1hW411W7Tb</a> ，本质上是在找一条能过去的路</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Booble/archive/2011/03/04/1970453.html">https://www.cnblogs.com/Booble/archive/2011/03/04/1970453.html</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/" data-id="ckqkjgmc400jgx4c48fd30l22" data-title="数据结构复习" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-新iPhone【信息】同步【钱包】卡同步" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/05/02/%E6%96%B0iPhone%E3%80%90%E4%BF%A1%E6%81%AF%E3%80%91%E5%90%8C%E6%AD%A5%E3%80%90%E9%92%B1%E5%8C%85%E3%80%91%E5%8D%A1%E5%90%8C%E6%AD%A5/" class="article-date">
-  <time class="dt-published" datetime="2020-05-01T22:06:06.000Z" itemprop="datePublished">2020-05-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/02/%E6%96%B0iPhone%E3%80%90%E4%BF%A1%E6%81%AF%E3%80%91%E5%90%8C%E6%AD%A5%E3%80%90%E9%92%B1%E5%8C%85%E3%80%91%E5%8D%A1%E5%90%8C%E6%AD%A5/">新iPhone【信息】同步【钱包】卡同步</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>信息同步：在旧手机上，打开iCloud里面的【信息】的同步选项，在新手机上也打开，就可以同步了。</p>
-<p>钱包中的卡同步：直接在旧手机上移除卡，新手机上钱包应用里面添加卡就可以选择旧的卡，这就行了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/02/%E6%96%B0iPhone%E3%80%90%E4%BF%A1%E6%81%AF%E3%80%91%E5%90%8C%E6%AD%A5%E3%80%90%E9%92%B1%E5%8C%85%E3%80%91%E5%8D%A1%E5%90%8C%E6%AD%A5/" data-id="ckqkjgmc500jix4c4hn3jf3c1" data-title="新iPhone【信息】同步【钱包】卡同步" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/07/django%E8%B7%A8%E5%9F%9F/" data-id="ckqkkaz1500b2bcc42d6yh4yh" data-title="django跨域" class="article-share-link">Share</a>
       
       
       
@@ -588,7 +586,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -609,7 +607,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -619,7 +617,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -628,7 +626,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -645,19 +643,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

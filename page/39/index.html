@@ -73,14 +73,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-微信公众号第三方配置及接口" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-docker-node-npm安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/1970/01/01/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E7%AC%AC%E4%B8%89%E6%96%B9%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%8E%A5%E5%8F%A3/" class="article-date">
+    <a href="/1970/01/01/docker-node-npm%E5%AE%89%E8%A3%85/" class="article-date">
   <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/">领域—微信公众号</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
   </div>
 
   </div>
@@ -91,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E7%AC%AC%E4%B8%89%E6%96%B9%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%8E%A5%E5%8F%A3/">微信公众号第三方配置及接口</a>
+      <a class="p-name article-title" href="/1970/01/01/docker-node-npm%E5%AE%89%E8%A3%85/">docker-node-npm安装</a>
     </h1>
   
 
@@ -99,33 +99,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>微信官方给出的开发文档中Start Up部分：<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1472017492_58YV5">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1472017492_58YV5</a></p>
-<p>具体实现可以参考：<a target="_blank" rel="noopener" href="https://github.com/ThssSE/WeChatTicket/blob/master/wechat">https://github.com/ThssSE/WeChatTicket/blob/master/wechat</a></p>
-<p>下面也将用上述工程中的部分代码说明。</p>
-<h2 id="接口测试公众号"><a href="#接口测试公众号" class="headerlink" title="接口测试公众号"></a>接口测试公众号</h2><p>申请地址：<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login">http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login</a></p>
-<p>在上面设置URL、token、域名等信息后，即可开始进行测试。</p>
-<p>其中token是自己随便写的，与服务器那边保持一致就行。</p>
-<h2 id="与微信交互的信息格式"><a href="#与微信交互的信息格式" class="headerlink" title="与微信交互的信息格式"></a>与微信交互的信息格式</h2><p>后端与微信公众号交互时，使用的消息格式为XML格式，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;xml&gt;</span><br><span class="line"> &lt;ToUserName&gt;&lt;![CDATA[公众号&#x2F;粉丝openid]]&gt;&lt;&#x2F;ToUserName&gt;</span><br><span class="line"> &lt;FromUserName&gt;&lt;![CDATA[粉丝openid&#x2F;公众号]]&gt;&lt;&#x2F;FromUserName&gt;</span><br><span class="line"> &lt;CreateTime&gt;1460537339&lt;&#x2F;CreateTime&gt;</span><br><span class="line"> &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;&#x2F;MsgType&gt;</span><br><span class="line"> &lt;Content&gt;&lt;![CDATA[具体内容]]&gt;&lt;&#x2F;Content&gt;</span><br><span class="line"> &lt;MsgId&gt;6272960105994287618&lt;&#x2F;MsgId&gt;</span><br><span class="line"> &lt;&#x2F;xml&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如果使用图片等内容，需要使用其MediaId。此时MsgType为<code>&lt;![CDATA[image]]&gt;</code>，并且用<code>Image</code>标签包含<code>&lt;MediaId&gt;&lt;![CDATA[gyci5oxxxxxxv3cOL]]&gt;&lt;/MediaId&gt;</code>的内容。</p>
-<p>其中，MediaId对应的图片可以通过网址<code>https://api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&amp;media_id=MEDIA_ID</code>下载。</p>
-<h2 id="自定义菜单"><a href="#自定义菜单" class="headerlink" title="自定义菜单"></a>自定义菜单</h2><p>通过服务器向网站<code>https://api.weixin.qq.com/cgi-bin/menu/create?access_token=XXXX</code>进行POST操作来创建菜单，参数为类似如下格式的字符串：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">postJson = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;button&quot;:</span></span><br><span class="line"><span class="string">    [</span></span><br><span class="line"><span class="string">        &#123;</span></span><br><span class="line"><span class="string">            &quot;type&quot;: &quot;click&quot;,</span></span><br><span class="line"><span class="string">            &quot;name&quot;: &quot;开发指引&quot;,</span></span><br><span class="line"><span class="string">            &quot;key&quot;:  &quot;mpGuide&quot;</span></span><br><span class="line"><span class="string">        &#125;,</span></span><br><span class="line"><span class="string">        &#123;</span></span><br><span class="line"><span class="string">            &quot;name&quot;: &quot;公众平台&quot;,</span></span><br><span class="line"><span class="string">            &quot;sub_button&quot;:</span></span><br><span class="line"><span class="string">            [</span></span><br><span class="line"><span class="string">                &#123;</span></span><br><span class="line"><span class="string">                    &quot;type&quot;: &quot;view&quot;,</span></span><br><span class="line"><span class="string">                    &quot;name&quot;: &quot;更新公告&quot;,</span></span><br><span class="line"><span class="string">                    &quot;url&quot;: &quot;http://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1418702138&amp;token=&amp;lang=zh_CN&quot;</span></span><br><span class="line"><span class="string">                &#125;,</span></span><br><span class="line"><span class="string">                &#123;</span></span><br><span class="line"><span class="string">                    &quot;type&quot;: &quot;view&quot;,</span></span><br><span class="line"><span class="string">                    &quot;name&quot;: &quot;接口权限说明&quot;,</span></span><br><span class="line"><span class="string">                    &quot;url&quot;: &quot;http://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1418702138&amp;token=&amp;lang=zh_CN&quot;</span></span><br><span class="line"><span class="string">                &#125;,</span></span><br><span class="line"><span class="string">                &#123;</span></span><br><span class="line"><span class="string">                    &quot;type&quot;: &quot;view&quot;,</span></span><br><span class="line"><span class="string">                    &quot;name&quot;: &quot;返回码说明&quot;,</span></span><br><span class="line"><span class="string">                    &quot;url&quot;: &quot;http://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1433747234&amp;token=&amp;lang=zh_CN&quot;</span></span><br><span class="line"><span class="string">                &#125;</span></span><br><span class="line"><span class="string">            ]</span></span><br><span class="line"><span class="string">        &#125;,</span></span><br><span class="line"><span class="string">        &#123;</span></span><br><span class="line"><span class="string">            &quot;type&quot;: &quot;media_id&quot;,</span></span><br><span class="line"><span class="string">            &quot;name&quot;: &quot;旅行&quot;,</span></span><br><span class="line"><span class="string">            &quot;media_id&quot;: &quot;z2zOokJvlzCXXNhSjF46gdx6rSghwX2xOD5GUV9nbX4&quot;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      ]</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>之后可以在后台接收POST数据，并且进行对应的处理。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>如无特殊说明，以下所指代码均在ThssSE/WeChatTicket/wechat下。</p>
-<h3 id="access-token相关："><a href="#access-token相关：" class="headerlink" title="access token相关："></a>access token相关：</h3><p>使用<code>wrapper.py</code>文件中的<code>WeChatLib</code>的类函数<code>get_wechat_access_token</code>，检查是否超时并且在必要时从<a target="_blank" rel="noopener" href="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=xxx&amp;secret=xxx%E8%8E%B7%E5%8F%96access">https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=xxx&amp;secret=xxx获取access</a> token，通过类函数和类变量来进行access token的管理。</p>
-<h3 id="认证："><a href="#认证：" class="headerlink" title="认证："></a>认证：</h3><p>通过<code>wrapper.py</code>中<code>WeChatLib</code>类的<code>check_signature</code>函数实现，排序后哈希处理即可。</p>
-<h3 id="menu处理"><a href="#menu处理" class="headerlink" title="menu处理"></a>menu处理</h3><p>见get_wechat_menu与set_wechat_menu这两个函数</p>
-<h3 id="signature认证"><a href="#signature认证" class="headerlink" title="signature认证"></a>signature认证</h3><p>见<code>WeChatView</code>类中<code>_check_signature</code>函数</p>
-<h3 id="用户事件响应"><a href="#用户事件响应" class="headerlink" title="用户事件响应"></a>用户事件响应</h3><p>见<code>do_dispatch</code>及<code>parse_msg_xml</code>函数，通过对微信发过来的POST事件进行解析、认证后，直接发送给对应的handler列表进行检查，让他们对这些数据进行对应的相应。</p>
-<p>如<code>handlers.py</code>文件中所写内容，check函数首先通过发送消息的类型与标识进行判断（对于文本内容直接检查文本数据是否符合要求，点击事件直接通过与自己在设置菜单时设置的<code>event_key</code>进行比对来确认），之后直接返回对应的数据并经过<code>wrapper.py</code>文件中<code>do_dispatch</code>函数，用<code>HttpResponse</code>进行XML格式封装，返回微信服务器。</p>
+        <p>docker启动的时候指定执行的指令为：<code>npm install ...</code></p>
+<p>等待完成后，<code>docker ps -a</code>找到刚才安装的那一个container，用start启动即可</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E7%AC%AC%E4%B8%89%E6%96%B9%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%8E%A5%E5%8F%A3/" data-id="ckqkjgmby00iux4c4fmv05wq7" data-title="微信公众号第三方配置及接口" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/docker-node-npm%E5%AE%89%E8%A3%85/" data-id="ckqkkaz1600b6bcc4ga51emxc" data-title="docker-node-npm安装" class="article-share-link">Share</a>
       
       
       
@@ -137,14 +117,14 @@
 
 
   
-    <article id="post-持续集成实验总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-docker-快速删除" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/1970/01/01/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93/" class="article-date">
+    <a href="/1970/01/01/docker-%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4/" class="article-date">
   <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
   </div>
 
   </div>
@@ -155,7 +135,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93/">持续集成实验总结</a>
+      <a class="p-name article-title" href="/1970/01/01/docker-%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4/">docker-快速删除</a>
     </h1>
   
 
@@ -163,23 +143,369 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>在这一次持续集成实验中，我们在学长们已经完成的前端和部分后端框架的基础上补充完成了微信抢票程序，我主要完成的是后端与微信公众号相关的接口部分（包括用户页面、公众号中菜单和回复操作的响应）。</p>
-<p>这次实验由于时间比较紧急，比较仓促，但在整个过程中了解到了持续集成的开发方法，对微信公众号应用有了更为深刻的认识，同时也对git的使用更加熟练。</p>
-<h2 id="关于代码架构"><a href="#关于代码架构" class="headerlink" title="关于代码架构"></a>关于代码架构</h2><p>在阅读原有的代码时，我感受到了学长们顶层设计的科学性，但是高封装性带来的就是在初步上手时的不适应。</p>
-<p>同时，由于此次开发过程较为仓促，导致很多功能的实现仅仅是实现了对应的函数但是并未继续过多考虑与原有架构设计的相容性。而且由于顶层设计已经完成，并未在开发前在明确架构设计上花费较多时间，这也就使得不同成员开发的过程中会以不同的思考方式对原有架构进行修改，从而因为重复设计造成一些冗余的代码。这也更让我理解到架构设计的重要作用。</p>
-<h2 id="关于git-amp-持续集成"><a href="#关于git-amp-持续集成" class="headerlink" title="关于git&amp;持续集成"></a>关于git&amp;持续集成</h2><p>本次实验使得我们对git的使用更加熟悉，特别是在merge conflict的时候更是通过搜索来获取了许多git常用指令。之前的开发过程中虽然也使用过git，但其作用往往只是保存代码，也没有涉及到比较大的conflict的情况。</p>
-<p>git的使用的确是团队开发过程中所必不可少的，通过它可以使得我们及时了解到别人对代码修改的进展以及之前几次修改的情况，如果没有git的使用可能持续集成就无从谈起了。</p>
-<p>在持续集成的开发过程中，每个人都在不断地向master分支进行pull request并且每一次都进行测试，同时可以设置在测试通过后直接部署。这种方式能够用不断地测试来让我们及时了解到代码的bug所在。</p>
-<p>但是持续集成的优势是基于test的，在开发过程中因为test的编写有一些corner case没有覆盖到，就会导致开发过程中个别问题没有被及时发现。</p>
-<p>在像我们这次任务一样的时间短任务量较大的情况，我觉得是非常适合采用持续集成的方法的。这样可以在加快开发进度的同时用足够的验证来保证代码的正确性与可用性。</p>
-<h2 id="关于微信公众平台相关接口"><a href="#关于微信公众平台相关接口" class="headerlink" title="关于微信公众平台相关接口"></a>关于微信公众平台相关接口</h2><p>由于这次我的工作与微信公众平台的关联程度较高，因此查阅了一些相关资料，整理摘录一些自己认为比较重要可以帮助到别人的部分放在了<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0cdc3f85afa3%E4%B8%8A%E3%80%82">https://www.jianshu.com/p/0cdc3f85afa3上。</a></p>
-<h2 id="关于MVC设计模式"><a href="#关于MVC设计模式" class="headerlink" title="关于MVC设计模式"></a>关于MVC设计模式</h2><p>在这次持续集成实验中，我对于学长们对于整体代码架构的设计有了很深的印象，因此我在网上了解了一些关于MVC设计模式的内容，并且摘录到了<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d90a5942e187%E3%80%82">https://www.jianshu.com/p/d90a5942e187。</a></p>
-<h2 id="关于测试"><a href="#关于测试" class="headerlink" title="关于测试"></a>关于测试</h2><p>在本次实验中我深刻感受到了对代码进行测试的必要性，因此了解了更多的代码测试相关的内容，放在了文集<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30319209%E5%86%85%E3%80%82">https://www.jianshu.com/nb/30319209内。</a></p>
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jeikerxiao/article/details/78476925">https://blog.csdn.net/jeikerxiao/article/details/78476925</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93/" data-id="ckqkjgmc100j6x4c49886grtj" data-title="持续集成实验总结" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/docker-%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4/" data-id="ckqkkaz1700babcc4cfsfeohk" data-title="docker-快速删除" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-docker-花式报错" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/docker-%E8%8A%B1%E5%BC%8F%E6%8A%A5%E9%94%99/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/docker-%E8%8A%B1%E5%BC%8F%E6%8A%A5%E9%94%99/">docker-花式报错</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39562468/article/details/80332082">https://blog.csdn.net/qq_39562468/article/details/80332082</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/docker-%E8%8A%B1%E5%BC%8F%E6%8A%A5%E9%94%99/" data-id="ckqkkaz1a00bebcc40kw1flmk" data-title="docker-花式报错" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-dockerpy使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/dockerpy%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/dockerpy%E4%BD%BF%E7%94%A8/">dockerpy使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://docker-py.readthedocs.io/">https://docker-py.readthedocs.io</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/dockerpy%E4%BD%BF%E7%94%A8/" data-id="ckqkkaz1b00bgbcc428zq8rr2" data-title="dockerpy使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-docker踩坑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/docker%E8%B8%A9%E5%9D%91/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/docker%E8%B8%A9%E5%9D%91/">docker踩坑</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>docker挂载时，参数顺序应该是：docker -it -v xxx:xxx image_name command</p>
+<p>dockerpy里面 pull的时候，不指定pull的tag会全部pull下来！！！！！！！！！！！！！！！！！</p>
+<p>dockerfile 里面复制文件夹，不能COPY xx/*，应该直接COPY xx</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/docker%E8%B8%A9%E5%9D%91/" data-id="ckqkkaz1c00bkbcc4g8oi9xbl" data-title="docker踩坑" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ftp实现" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/ftp%E5%AE%9E%E7%8E%B0/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/ftp%E5%AE%9E%E7%8E%B0/">ftp实现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/linux/l-cn-socketftp/index.html">https://www.ibm.com/developerworks/cn/linux/l-cn-socketftp/index.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/ftp%E5%AE%9E%E7%8E%B0/" data-id="ckqkkaz1h00c3bcc49osads5v" data-title="ftp实现" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ftp添加用户" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/ftp%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/ftp%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7/">ftp添加用户</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="http://www.letuknowit.com/post/366.html">http://www.letuknowit.com/post/366.html</a></p>
+<p>权限：<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/410947/permission-denied-in-ftp-even-though-im-the-owner">https://askubuntu.com/questions/410947/permission-denied-in-ftp-even-though-im-the-owner</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/ftp%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7/" data-id="ckqkkaz1j00c7bcc452y3fs5a" data-title="ftp添加用户" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-linux-c目录文件相关" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/linux-c%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/linux-c%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3/">linux-c目录文件相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>获取当前目录：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a351945755/article/details/20048111?utm_source=blogxgwz3">https://blog.csdn.net/a351945755/article/details/20048111?utm_source=blogxgwz3</a></p>
+<p>文件相关：<br><a target="_blank" rel="noopener" href="https://songlee24.github.io/2014/09/20/linux-get-directory/">https://songlee24.github.io/2014/09/20/linux-get-directory/</a></p>
+<p>stat结构体：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/tianmohust/article/details/6609470">https://blog.csdn.net/tianmohust/article/details/6609470</a></p>
+<p>获取相对路径对应的绝对路径<br><a target="_blank" rel="noopener" href="https://www.xuebuyuan.com/2961573.html">https://www.xuebuyuan.com/2961573.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/linux-c%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3/" data-id="ckqkkaz1x00dsbcc4f3xyag2r" data-title="linux-c目录文件相关" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-selenium" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/selenium/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/selenium/">selenium</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>来源：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qhd1994/article/details/79852449">https://blog.csdn.net/qhd1994/article/details/79852449</a><br><a target="_blank" rel="noopener" href="https://morvanzhou.github.io/tutorials/data-manipulation/scraping/5-01-selenium/">https://morvanzhou.github.io/tutorials/data-manipulation/scraping/5-01-selenium/</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><code>pip3 install selenium</code></li>
+<li>goto <a target="_blank" rel="noopener" href="https://github.com/mozilla/geckodriver/releases">https://github.com/mozilla/geckodriver/releases</a> to download selenium for Firefox.</li>
+<li>解压，加可执行权限，复制到<code>/usr/local/bin</code></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/selenium/" data-id="ckqkkaz2h00fkbcc4dbbc9lmd" data-title="selenium" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-取出最大的两个数的算法复杂度" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/%E5%8F%96%E5%87%BA%E6%9C%80%E5%A4%A7%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%9A%84%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/%E5%8F%96%E5%87%BA%E6%9C%80%E5%A4%A7%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%9A%84%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/">取出最大的两个数的算法复杂度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>n个数里面取出最大的两个数的算法及复杂度</p>
+<h1 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h1><p>n-1+logn-1</p>
+<p>胜者树，创建用n-1次比较，之后有logn个数有可能为次大，所以比较logn-1次。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/%E5%8F%96%E5%87%BA%E6%9C%80%E5%A4%A7%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%9A%84%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/" data-id="ckqkkaz3900i9bcc442e0hnbt" data-title="取出最大的两个数的算法复杂度" class="article-share-link">Share</a>
       
       
       
@@ -195,7 +521,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/38/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="page-number" href="/page/38/">38</a><span class="page-number current">39</span>
+    <a class="extend prev" rel="prev" href="/page/38/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="page-number" href="/page/38/">38</a><span class="page-number current">39</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/40/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -216,7 +542,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -226,7 +552,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -235,7 +561,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -252,19 +578,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

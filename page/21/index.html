@@ -73,14 +73,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-每日leetcode-128" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-linux-alias别名" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/03/01/%E6%AF%8F%E6%97%A5leetcode-128/" class="article-date">
-  <time class="dt-published" datetime="2020-02-29T22:06:06.000Z" itemprop="datePublished">2020-03-01</time>
+    <a href="/2020/03/12/linux-alias%E5%88%AB%E5%90%8D/" class="article-date">
+  <time class="dt-published" datetime="2020-03-11T22:06:06.000Z" itemprop="datePublished">2020-03-12</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
   </div>
 
   </div>
@@ -91,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/01/%E6%AF%8F%E6%97%A5leetcode-128/">每日leetcode-128</a>
+      <a class="p-name article-title" href="/2020/03/12/linux-alias%E5%88%AB%E5%90%8D/">linux-alias别名</a>
     </h1>
   
 
@@ -99,35 +99,480 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <ol start="128">
-<li>最长连续序列</li>
-</ol>
-<p>给定一个未排序的整数数组，找出最长连续序列的长度。</p>
-<p>要求算法的时间复杂度为 *O(n)*。</p>
-<p><strong>示例:</strong></p>
-<p><strong>输入:</strong> [100, 4, 200, 1, 3, 2]<br><strong>输出:</strong> 4<br><strong>解释:</strong> 最长连续序列是 `[1, 2, 3, 4]。它的长度为 4。</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-consecutive-sequence/">https://leetcode-cn.com/problems/longest-consecutive-sequence/</a></p>
-<h2 id="简单解答"><a href="#简单解答" class="headerlink" title="简单解答"></a>简单解答</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestConsecutive</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        vector&lt;tuple&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; intervals;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = nums.<span class="built_in">begin</span>(); i != nums.<span class="built_in">end</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">bool</span> ok = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> t = intervals.<span class="built_in">begin</span>(); t != intervals.<span class="built_in">end</span>(); t++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (get&lt;<span class="number">0</span>&gt;(*t) == *i) &#123;</span><br><span class="line">                    ok = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (get&lt;<span class="number">0</span>&gt;(*t) &gt; *i) &#123;</span><br><span class="line">                    <span class="keyword">bool</span> done_with_first = <span class="literal">false</span>;</span><br><span class="line">                    <span class="keyword">if</span> (t != intervals.<span class="built_in">begin</span>()) &#123; <span class="comment">// 需要检查前一个</span></span><br><span class="line">                        <span class="keyword">if</span> (get&lt;<span class="number">1</span>&gt;(*(t - <span class="number">1</span>)) == (*i) - <span class="number">1</span>) &#123; <span class="comment">// 前一个需要和这个数字合并</span></span><br><span class="line">                            <span class="keyword">if</span> (get&lt;<span class="number">0</span>&gt;(*t) == (*i) + <span class="number">1</span>) &#123; <span class="comment">// 前面一个后面一个刚好加上数字合并</span></span><br><span class="line">                                get&lt;<span class="number">1</span>&gt;(*(t - <span class="number">1</span>)) = get&lt;<span class="number">1</span>&gt;(*t);</span><br><span class="line">                                intervals.<span class="built_in">erase</span>(t);</span><br><span class="line">                            &#125; <span class="keyword">else</span> &#123; <span class="comment">// 只把前面的和这个数字合并</span></span><br><span class="line">                                get&lt;<span class="number">1</span>&gt;(*(t - <span class="number">1</span>)) = *i;</span><br><span class="line">                            &#125;</span><br><span class="line">                            done_with_first = <span class="literal">true</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span> <span class="keyword">if</span> (get&lt;<span class="number">1</span>&gt;(*(t - <span class="number">1</span>)) &gt;= (*i)) &#123;</span><br><span class="line">                            <span class="comment">// 已经有了，不用管了</span></span><br><span class="line">                            done_with_first = <span class="literal">true</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (!done_with_first) &#123;</span><br><span class="line">                        <span class="comment">// 前面的不用合并，检查后面的</span></span><br><span class="line">                        <span class="keyword">if</span> (get&lt;<span class="number">0</span>&gt;(*t) == (*i) + <span class="number">1</span>) &#123; <span class="comment">// 后面一个刚好加上数字合并</span></span><br><span class="line">                            *t = <span class="built_in">make_tuple</span>(*i, get&lt;<span class="number">1</span>&gt;(*t));</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="comment">// 需要加上这个数字</span></span><br><span class="line">                            intervals.<span class="built_in">insert</span>(t, <span class="built_in">make_tuple</span>(*i, *i));</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    ok = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!ok) &#123;</span><br><span class="line">                <span class="keyword">if</span> (intervals.<span class="built_in">begin</span>() != intervals.<span class="built_in">end</span>()) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (get&lt;<span class="number">1</span>&gt;(*(intervals.<span class="built_in">end</span>() - <span class="number">1</span>)) == *i - <span class="number">1</span>) &#123;</span><br><span class="line">                        get&lt;<span class="number">1</span>&gt;(*(intervals.<span class="built_in">end</span>() - <span class="number">1</span>)) = *i;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (get&lt;<span class="number">1</span>&gt;(*(intervals.<span class="built_in">end</span>() - <span class="number">1</span>)) &gt; *i - <span class="number">1</span>) &#123;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                intervals.<span class="built_in">emplace_back</span>(*i, *i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> t = intervals.<span class="built_in">begin</span>(); t != intervals.<span class="built_in">end</span>(); t++) &#123;</span><br><span class="line">            ans = <span class="built_in">max</span>(get&lt;<span class="number">1</span>&gt;(*t) - get&lt;<span class="number">0</span>&gt;(*t) + <span class="number">1</span>, ans);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p>如：<code>alias python=&quot;python3&quot;</code></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/YMaster/p/9788938.html">https://www.cnblogs.com/YMaster/p/9788938.html</a></p>
 
-<p>里面有几点要注意：</p>
-<ol>
-<li>要注意新的数字和之前的interval的内容可以相连的时候（包括没有比这个数字大，但是可以和最后一个相连的情况）</li>
-<li>要注意可以有重复的数字，比如[0,0,1,-1]</li>
-</ol>
-<p>但是这样的话比较慢，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">执行用时 :28 ms, 在所有 C++ 提交中击败了15.55%的用户</span><br><span class="line">内存消耗 :12.2 MB, 在所有 C++ 提交中击败了5.04%的用户</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/12/linux-alias%E5%88%AB%E5%90%8D/" data-id="ckqkkaz1w00dqbcc45zg59x06" data-title="linux-alias别名" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
 
-<h2 id="好的解答"><a href="#好的解答" class="headerlink" title="好的解答"></a>好的解答</h2><p>官方题解的做法，直接将所有数字加到HashSet里面，对每个数字：</p>
+
+
+  
+    <article id="post-Java&amp;OOP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/12/Java&OOP/" class="article-date">
+  <time class="dt-published" datetime="2020-03-11T22:06:06.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Java/">语言—Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/12/Java&OOP/">Java&amp;OOP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-OOP"><a href="#Java-OOP" class="headerlink" title="Java OOP"></a>Java OOP</h1><h2 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h2><p>类型</p>
+<p>接口：定义需要具有哪些属性</p>
+<p>类：比较复杂的结构、存储同一个类型的多个变量</p>
 <ul>
-<li>如果比他小1的在这个set里面，就不用找了；</li>
-<li>找从它开始连续增加1的序列的长度。</li>
+<li>封装起来不同的属性，都扔到一个桶里面</li>
+<li>规定：记录下来的属性有啥&amp;能干啥</li>
+<li>实例化：变成一个东西<ul>
+<li>构造函数里面可以进行初始化</li>
+<li>没有初始化的：基本类型设置为默认值，类的设置为null</li>
+<li>从模具到东西</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestConsecutive</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        unordered_set&lt;<span class="keyword">int</span>&gt; numbers;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = nums.<span class="built_in">begin</span>(); i != nums.<span class="built_in">end</span>(); i++) &#123;</span><br><span class="line">            numbers.<span class="built_in">insert</span>(*i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = numbers.<span class="built_in">begin</span>(); i != numbers.<span class="built_in">end</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (numbers.<span class="built_in">find</span>(*i - <span class="number">1</span>) != numbers.<span class="built_in">end</span>()) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> cur = *i;</span><br><span class="line">            <span class="keyword">int</span> len = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (numbers.<span class="built_in">find</span>(cur + <span class="number">1</span>) != numbers.<span class="built_in">end</span>()) &#123;</span><br><span class="line">                cur++;</span><br><span class="line">                len++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = <span class="built_in">max</span>(len, ans);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li>object：对象<ul>
+<li>内存一片区域</li>
+<li>分成几个部分，里面分别装着属性值（instance variables，实例变量，每个object都有自己的）<ul>
+<li>加上static之后就是类变量</li>
+</ul>
+</li>
+<li>通过.来得到他的实例变量引用，可以直接进行操作<ul>
+<li>解引用，de-reference</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>方法：<ul>
+<li>构造函数（上面实例化）</li>
+<li>accessor method：访问方法，只访问不修改 getter</li>
+<li>update method：更新方法，进行修改setter</li>
+</ul>
+</li>
+</ul>
+<h3 id="多态性"><a href="#多态性" class="headerlink" title="多态性"></a>多态性</h3><pre><code>- 重载：overloading，参数不同，方法名相同，一个类的多态性
+  - ![image-20200227093906231](Java OOP&amp;数据结构.assets/image-20200227093906231.png)
+- 重写：overriding，方法名参数都相同，父类子类
+- ![img](Java OOP&amp;数据结构.assets/overloading-vs-overriding.png)
+</code></pre>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><ul>
+<li><p>java通过引用操作自己的对象</p>
+</li>
+<li><p>new函数创建一个对象，把引用给了变量（引用变量），class是引用类型</p>
+<ul>
+<li><p>在heap堆上开一片地方放着</p>
+</li>
+<li><blockquote>
+<p><em>堆</em>Heap内存用于存放由new创建的对象和数组。在<em>堆</em>中分配的内存,由<em>java</em>虚拟机自动垃圾回收器来管理。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><blockquote>
+<p>Java默认new 对象则为强引用，如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;StringBuffer buffer = <span class="keyword">new</span> StringBuffer();</span><br></pre></td></tr></table></figure>
+
+<p>上面创建了一个StringBuffer对象，并将这个对象的强引用存到变量buffer中。如果一个对象通过一串强引用链接可到达，即使内存不足，也不会回收该对象。</p>
+<p>作者：挨踢小能手<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c54d1f00ca5f">https://www.jianshu.com/p/c54d1f00ca5f</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h3><ul>
+<li><p>不赋值默认为null，不同类型的null相等</p>
+</li>
+<li><p>不能转换为null，不能设置null类型</p>
+</li>
+<li><p>不能解引用</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="1定义"><a href="#1定义" class="headerlink" title="1定义"></a>1定义</h3><p>null 是所有引用类型的默认值。</p>
+<h3 id="2-转换"><a href="#2-转换" class="headerlink" title="2. 转换"></a>2. 转换</h3><p>null既不是对象也不是一种类型，它仅是一种特殊的值，你可以将其赋予任何引用类型，它还仅仅是一个特殊值,并不属于任何类型，用instanceof永远返回false。<br>不能将null赋给基本类型变量，例如int、double、float、boolean。如果将null赋值给包装类object，然后将object赋给各自的基本类型，编译器不会报，但是你将会在运行时期遇到空指针异常。<br>null可以被转化为任何引用类型,可以调用引用类型中的静态方法，但是不可以调用非静态方法，运行时会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class NullTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Object o &#x3D; (Object) null;</span><br><span class="line">        &#x2F;&#x2F;int i  &#x3D; null;</span><br><span class="line">        Integer i &#x3D; (Integer) null;</span><br><span class="line">        String s &#x3D; (String) null;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;o: &quot; + o + &quot;i: &quot; + i + &quot;s: &quot; + s);  &#x2F;&#x2F;o: nulli: nulls: null</span><br><span class="line">        System.out.println(o instanceof Object);  &#x2F;&#x2F;false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-运算"><a href="#3-运算" class="headerlink" title="3. 运算"></a>3. 运算</h3><p>null==null返回true,被转换为同种类型的null,都返回true,不同类型直接编译报错.<br>用String转换后的null可以进行字符串运算,这是因为字符串进行连接的时候,编译器对null进行了特别的优化,其实就是例化StringBuilder,在调用append()方法时对null的一个特别处理,当为null时,转化为“null”,最后调用toString()返回一个String对象.<br>用八大基本类型转换后的null,不可以进行基本类型的运算,否则会出现编译或者运行错误.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class NullTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Object o &#x3D; (Object) null;</span><br><span class="line">        Integer i &#x3D; (Integer) null;</span><br><span class="line">        Integer j &#x3D; (Integer) null;</span><br><span class="line">        String s &#x3D; (String) null;</span><br><span class="line">&#x2F;&#x2F;        System.out.println(Objects.equals(i, j));</span><br><span class="line">&#x2F;&#x2F;        System.out.println(i.equals(s));</span><br><span class="line"> &#x2F;&#x2F;       System.out.println(null &#x3D;&#x3D; null);</span><br><span class="line">&#x2F;&#x2F;        i &#x3D; i + 1;   &#x2F;&#x2F;运行时空指针</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;        System.out.println(2 &#x3D;&#x3D; null);</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;o: &quot; + o + &quot;i: &quot; + i + &quot;s: &quot; + s);</span><br><span class="line">        System.out.println(o instanceof Object);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-集合中的key"><a href="#4-集合中的key" class="headerlink" title="4. 集合中的key"></a>4. 集合中的key</h3><table>
+<thead>
+<tr>
+<th>集合类</th>
+<th>key</th>
+<th>value</th>
+<th>super</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HashTable</td>
+<td>不能为null</td>
+<td>不能为null</td>
+<td>Dictionary</td>
+<td>线程安全</td>
+</tr>
+<tr>
+<td>ConcurrentHashMap</td>
+<td>不能为null</td>
+<td>不能为null</td>
+<td>AbstractMap</td>
+<td>线程局部安全</td>
+</tr>
+<tr>
+<td>TreeMap</td>
+<td>不能为null</td>
+<td>可以为null</td>
+<td>AbstractMap</td>
+<td>线程不安全</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>可以为null</td>
+<td>可以为null</td>
+<td>AbstractMap</td>
+<td>线程不安全</td>
+</tr>
+</tbody></table>
+<p>hash表需要进行hash值运算，key不能为null好理解，如果map中value为null也好理解。<br>表中不好理解的是HashMap中key可以为null,看下面代码中对null有个特殊处理，索引位置为0。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6925065-619bd7c983cb75da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200" alt="img"></p>
+<p>image.png</p>
+<p>表中第二个不好理解的点是ConcurrentHashMap中value不能为null的问题。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6925065-f9cf245e2c44330c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200" alt="img"></p>
+<p>image.png</p>
+<p>作者：扎Zn了老Fe<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/83fc81baf115">https://www.jianshu.com/p/83fc81baf115</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<h3 id="OOP：Object-Oriented-Programming"><a href="#OOP：Object-Oriented-Programming" class="headerlink" title="OOP：Object Oriented Programming"></a>OOP：Object Oriented Programming</h3><ul>
+<li><p>基于object进行编程</p>
+</li>
+<li><p>数据&amp;行为</p>
+</li>
+</ul>
+<h4 id="四大特征"><a href="#四大特征" class="headerlink" title="四大特征"></a>四大特征</h4><ul>
+<li><p>抽象，封装（Encapsulation），继承（inheritance），多态（polymorphism）</p>
+<ul>
+<li>三大特性就是封装继承多态</li>
+</ul>
+</li>
+</ul>
+<h5 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h5><ul>
+<li><p>abstraction：抽象</p>
+<ul>
+<li><p>不用管内部怎么实现的，内部细节对于用户隐藏的</p>
+</li>
+<li><p>只暴露必要的/相关的操作&amp;数据</p>
+</li>
+<li><p>不同层次：函数层次和类层次</p>
+</li>
+<li><p>![image-20200227091723756](Java OOP&amp;数据结构.assets/image-20200227091723756.png)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h5><ul>
+<li><p>不要让别人单独看到，用private</p>
+<ul>
+<li><p>用setxxx和getxxx</p>
+</li>
+<li><blockquote>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>1.类内部可以自由修改<br>2.可以对成员变量更准确的控制<br>3.隐藏信息，保护数据<br>4.降低<em>耦合度</em></p>
+<p>耦合度：耦合性是编程中的一个判断代码模块构成质量的属性,不影响已有功能,但影响未来拓展,与之对应的是内聚性</p>
+<p>例如：卧室的窗户与墙壁，如果窗子是扣死在墙里的 ，那么修改窗子时，就必须修改墙，这就比较紧密了，但是如果你窗子是按照某种规格的 可以自由拆装的 那么修改的代价就小，耦合度也就低了<br>在程序中我们要求 高内聚，低耦合！<br>————————————————<br>版权声明：本文为CSDN博主「66Kevin」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44551646/article/details/93721343">https://blog.csdn.net/weixin_44551646/article/details/93721343</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h5><ul>
+<li>重载：overloading，参数不同，方法名相同，一个类的多态性</li>
+<li>重写：overriding，方法名参数都相同，父类子类<ul>
+<li>不想具有虚函数特性，就加上final</li>
+</ul>
+</li>
+</ul>
+<h5 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h5><ul>
+<li>继承：</li>
+</ul>
+<pre><code>- &gt;  继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。
+  &gt;
+  &gt;  ### 生活中的继承：
+  &gt;
+  &gt;  ![img](Java OOP&amp;数据结构.assets/14B0951E-FC75-47A3-B611-4E1883887339.jpg)
+  &gt;
+  &gt;  兔子和羊属于食草动物类，狮子和豹属于食肉动物类。
+  &gt;
+  &gt;  食草动物和食肉动物又是属于动物类。
+  &gt;
+  &gt;  所以继承需要符合的关系是：is-a，父类更通用，子类更具体。
+  &gt;
+  &gt;  虽然食草动物和食肉动物都是属于动物，但是两者的属性和行为上有差别，所以子类会具有父类的一般特性也会具有自身的特性。
+  &gt;
+  &gt;  ### 类的继承格式
+  &gt;
+  &gt;  在 Java 中通过 extends 关键字可以申明一个类是从另外一个类继承而来的，一般形式如下：
+  &gt;
+  &gt;  ## 类的继承格式
+  &gt;
+  &gt;  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 父类 </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> 子类 <span class="keyword">extends</span> 父类 </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  &gt;
+  &gt;  ### 为什么需要继承
+  &gt;
+  &gt;  接下来我们通过实例来说明这个需求。
+  &gt;
+  &gt;  开发动物类，其中动物分别为企鹅以及老鼠，要求如下：
+  &gt;
+  &gt;  - 企鹅：属性（姓名，id），方法（吃，睡，自我介绍）
+  &gt;  - 老鼠：属性（姓名，id），方法（吃，睡，自我介绍）
+
+  -   不支持多继承，但能支持多重继承：
+
+    - ![img](Java OOP&amp;数据结构.assets/types_of_inheritance-1.png)
+
+  - &gt; 子类拥有父类非 private 的属性、方法。
+    &gt;
+    &gt; 子类可以拥有自己的属性和方法，即子类可以对父类进行扩展。
+    &gt;
+    &gt; 子类可以用自己的方式实现父类的方法。
+</code></pre>
+<h6 id="Super、this"><a href="#Super、this" class="headerlink" title="Super、this"></a>Super、this</h6><blockquote>
+<h3 id="super-与-this-关键字"><a href="#super-与-this-关键字" class="headerlink" title="super 与 this 关键字"></a>super 与 this 关键字</h3><p>super关键字：我们可以通过super关键字来实现对父类成员的访问，用来引用当前对象的父类。</p>
+<p>this关键字：指向自己的引用。</p>
+</blockquote>
+<h6 id="Final"><a href="#Final" class="headerlink" title="Final"></a>Final</h6><blockquote>
+<h3 id="Final-1"><a href="#Final-1" class="headerlink" title="Final"></a>Final</h3><p>final 关键字声明类可以把类定义为不能继承的，即最终类；或者用于修饰方法，该方法不能被子类重写：</p>
+<ul>
+<li><p>声明类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> 类名 </span>&#123;<span class="comment">//类体&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>声明方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修饰符(<span class="keyword">public</span>/<span class="keyword">private</span>/<span class="keyword">default</span>/<span class="keyword">protected</span>) <span class="keyword">final</span> 返回值类型 方法名()&#123;<span class="comment">//方法体&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<ul>
+<li><blockquote>
+<p>子类也是父类，可以转换</p>
+<h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><p>子类是不继承父类的构造器（构造方法或者构造函数）的，它只是调用（隐式或显式）。如果父类的构造器带有参数，则必须在子类的构造器中显式地通过 <strong>super</strong> 关键字调用父类的构造器并配以适当的参数列表。</p>
+<p>如果父类构造器没有参数，则在子类的构造器中不需要使用 <strong>super</strong> 关键字调用父类构造器，系统会自动调用父类的无参构造器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SubClass 类继承</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubClass</span> <span class="keyword">extends</span> <span class="title">SuperClass</span></span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">SubClass()&#123; <span class="comment">// 自动调用父类的无参数构造器</span></span><br><span class="line"> System.out.println(<span class="string">&quot;SubClass&quot;</span>);</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">SubClass</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123; </span><br><span class="line"> <span class="keyword">super</span>(<span class="number">300</span>);  <span class="comment">// 调用父类中带有参数的构造器</span></span><br><span class="line"> System.out.println(<span class="string">&quot;SubClass(int n):&quot;</span>+n);</span><br><span class="line"> <span class="keyword">this</span>.n = n;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+</li>
+</ul>
+<h6 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h6><ul>
+<li><blockquote>
+<p>Interface关键字用来声明一个接口。下面是接口声明的一个简单例子。</p>
+<h2 id="NameOfInterface-java-文件代码："><a href="#NameOfInterface-java-文件代码：" class="headerlink" title="NameOfInterface.java 文件代码："></a>NameOfInterface.java 文件代码：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 文件名 : NameOfInterface.java */</span></span><br><span class="line"><span class="keyword">import</span> java.lang.*;</span><br><span class="line"><span class="comment">//引入包</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">NameOfInterface</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="comment">//任何类型 final, static 字段</span></span><br><span class="line">   <span class="comment">//抽象方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接口有以下特性：</p>
+<ul>
+<li>接口是隐式抽象的，当声明一个接口的时候，不必使用<strong>abstract</strong>关键字。</li>
+<li>接口中每一个方法也是隐式抽象的，声明时同样不需要<strong>abstract</strong>关键字。</li>
+<li>接口中的方法都是公有的。</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>可以用<code>public class MammalInt implements Animal&#123;</code>来说明他要有这几个函数</p>
+</li>
+<li><blockquote>
+<h2 id="接口的继承"><a href="#接口的继承" class="headerlink" title="接口的继承"></a>接口的继承</h2><p>一个接口能继承另一个接口，和类之间的继承方式比较相似。接口的继承使用extends关键字，子接口继承父接口的方法。</p>
+<p>下面的Sports接口被Hockey和Football接口继承：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名: Sports.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHomeTeam</span><span class="params">(String name)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setVisitingTeam</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件名: Football.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Football</span> <span class="keyword">extends</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">homeTeamScored</span><span class="params">(<span class="keyword">int</span> points)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitingTeamScored</span><span class="params">(<span class="keyword">int</span> points)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endOfQuarter</span><span class="params">(<span class="keyword">int</span> quarter)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件名: Hockey.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Hockey</span> <span class="keyword">extends</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">homeGoalScored</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitingGoalScored</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endOfPeriod</span><span class="params">(<span class="keyword">int</span> period)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">overtimePeriod</span><span class="params">(<span class="keyword">int</span> ot)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口的多继承"><a href="#接口的多继承" class="headerlink" title="接口的多继承"></a>接口的多继承</h2><p>在Java中，类的多继承是不合法，但接口允许多继承。</p>
+<p>在接口的多继承中extends关键字只需要使用一次，在其后跟着继承接口。 如下所示：</p>
+<p>public interface Hockey extends Sports, Event</p>
+<p>以上的程序片段是合法定义的子接口，与类不同的是，接口允许多继承，而 Sports及 Event 可能定义或是继承相同的方法</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h6><ul>
+<li>使用abstract class来定义抽象类<ul>
+<li>不能被实例化，只能继承<ul>
+<li><blockquote>
+<h2 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h2><p>如果你想设计这样一个类，该类包含一个特别的成员方法，该方法的具体实现由它的子类确定，那么你可以在父类中声明该方法为抽象方法。</p>
+<p>Abstract 关键字同样可以用来声明抽象方法，抽象方法只包含一个方法名，而没有方法体。</p>
+<p>抽象方法没有定义，方法名后面直接跟一个分号，而不是花括号。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="keyword">private</span> String address;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> number;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">computePay</span><span class="params">()</span></span>;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//其余代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>声明抽象方法会造成以下两个结果：</p>
+<ul>
+<li>如果一个类包含抽象方法，那么该类必须是抽象类。</li>
+<li>任何子类必须重写父类的抽象方法，或者声明自身为抽象类。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ul>
+<li><p>值传递：</p>
+<ul>
+<li><p>对于基本类型 num ，赋值运算符会直接改变变量的值，原来的值被覆盖掉。<br>对于引用类型 str，赋值运算符会改变引用中所保存的地址，原来的地址被覆盖掉。<strong>但是原来的对象不会被改变（重要）。</strong></p>
+</li>
+<li><p>因为传递的是引用</p>
+</li>
+<li><p>作者：Intopass<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/31203609/answer/50992895">https://www.zhihu.com/question/31203609/answer/50992895</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</li>
+</ul>
+</li>
+<li><p>三：调用方法时发生了什么？<strong>参数传递基本上就是赋值操作</strong>。</p>
+  <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">第一个例子：基本类型</span><br><span class="line">void foo(int value) &#123;</span><br><span class="line">    value = 100;</span><br><span class="line">&#125;</span><br><span class="line">foo(num); // num 没有被改变</span><br><span class="line"></span><br><span class="line">第二个例子：没有提供改变自身方法的引用类型</span><br><span class="line">void foo(String text) &#123;</span><br><span class="line">    text = &quot;windows&quot;;</span><br><span class="line">&#125;</span><br><span class="line">foo(str); // str 也没有被改变</span><br><span class="line"></span><br><span class="line">第三个例子：提供了改变自身方法的引用类型</span><br><span class="line">StringBuilder sb = new StringBuilder(&quot;iphone&quot;);</span><br><span class="line">void foo(StringBuilder builder) &#123;</span><br><span class="line">    builder.append(&quot;4&quot;);</span><br><span class="line">&#125;</span><br><span class="line">foo(sb); // sb 被改变了，变成了&quot;iphone4&quot;。</span><br><span class="line"></span><br><span class="line">第四个例子：提供了改变自身方法的引用类型，但是不使用，而是使用赋值运算符。</span><br><span class="line">StringBuilder sb = new StringBuilder(&quot;iphone&quot;);</span><br><span class="line">void foo(StringBuilder builder) &#123;</span><br><span class="line">    builder = new StringBuilder(&quot;ipad&quot;);</span><br><span class="line">&#125;</span><br><span class="line">foo(sb); // sb 没有被改变，还是 &quot;iphone&quot;。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="final："><a href="#final：" class="headerlink" title="final："></a>final：</h3><ul>
+<li><blockquote>
+<p><strong>final关键字用法</strong></p>
+<p><strong>修饰类<strong><strong>当用</strong></strong>final去修饰一个类的时候，表示这个类不能被继承。<strong><strong>注意：</strong></strong>a. 被final修饰的类，final类中的成员变量可以根据自己的实际需要设计为fianl。<strong><strong>b. final类中的成员方法都会被隐式的指定为final方法。</strong></strong>说明：</strong>在自己设计一个类的时候，要想好这个类将来是否会被继承，如果可以被继承，则该类不能使用fianl修饰，在这里呢，一般来说工具类我们往往都会设计成为一个fianl类。在JDK中，被设计为final类的有String、System等。<strong>代码：</strong></p>
+<p>![img](Java OOP&amp;数据结构.assets/u=2411423419,2520809892&amp;fm=173&amp;app=25&amp;f=JPEG.jpeg)</p>
+<p>\2. <strong>修饰方法</strong></p>
+<p><strong>被final修饰的方法不能被重写。</strong></p>
+<p><strong>注意：</strong></p>
+<p><strong>a. 一个类的private方法会隐式的被指定为final方法。</strong></p>
+<p><strong>b. 如果父类中有final修饰的方法，那么子类不能去重写。</strong></p>
+<p><strong>代码：</strong></p>
+<p>![img](Java OOP&amp;数据结构.assets/u=876634331,3528497804&amp;fm=173&amp;app=25&amp;f=JPEG.jpeg)</p>
+<p><strong>3. 修饰成员变量</strong></p>
+<p><strong>注意：</strong></p>
+<p><strong>a. 必须要赋初始值，而且是只能初始化一次。</strong></p>
+<p><strong>代码：</strong></p>
+<p>![img](Java OOP&amp;数据结构.assets/u=433607551,3063868730&amp;fm=173&amp;app=25&amp;f=JPEG.jpeg)</p>
+<p>\4. <strong>修饰成员变量</strong></p>
+<p><strong>注意：</strong></p>
+<p><strong>a. 必须初始化值。</strong></p>
+<p><strong>b. 被fianl修饰的成员变量赋值，有两种方式：1、直接赋值 2、全部在构造方法中赋初值。</strong></p>
+<p><strong>c. 如果修饰的成员变量是基本类型，则表示这个变量的值不能改变。</strong></p>
+<p><strong>d. 如果修饰的成员变量是一个引用类型，则是说这个引用的地址的值不能修改，但是这个引用所指向的对象里面的内容还是可以改变的。</strong></p>
+<p><strong>代码：</strong></p>
+<p>![img](Java OOP&amp;数据结构.assets/u=682519727,1257936163&amp;fm=173&amp;app=25&amp;f=JPEG.jpeg)</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Static"><a href="#Static" class="headerlink" title="Static:"></a>Static:</h3><ul>
+<li><p>我们可以一句话来概括：方便在没有创建对象的情况下来进行调用。</p>
+</li>
+<li><blockquote>
+<p>2、static关键字修饰类</p>
+<p>java里面static一般用来修饰成员变量或函数。但有一种特殊用法是用static修饰内部类，普通类是不允许声明为静态的，只有内部类才可以。下面看看如何使用。</p>
+<p>![img](Java OOP&amp;数据结构.assets/8644ebf81a4c510f633a3493cb792028d52aa567.jpeg)</p>
+<p>如果没有用static修饰InterClass，则只能new 一个外部类实例。再通过外部实例创建内部类。</p>
+<p>3、static关键字修饰方法</p>
+<p>修饰方法的时候，其实跟类一样，可以直接通过类名来进行调用：</p>
+<p>![img](Java OOP&amp;数据结构.assets/4afbfbedab64034f7b86b4dc05e37c340b551d41.jpeg)</p>
+<p>4、static关键字修饰变量</p>
+<p>被static修饰的成员变量叫做静态变量，也叫做类变量，说明这个变量是属于这个类的，而不是属于是对象，没有被static修饰的成员变量叫做实例变量，说明这个变量是属于某个具体的对象的。</p>
+<p>我们同样可以使用上面的方式进行调用变量：</p>
+<p>![img](Java OOP&amp;数据结构.assets/d8f9d72a6059252d0a2aeb289fbb063e5bb5b987.jpeg)</p>
+<p>5、static关键字修饰代码块</p>
+<p>静态代码块在类第一次被载入时执行，在这里主要是想验证一下，类初始化的顺序。</p>
+<p>父类静态变量</p>
+<p>父类静态代码块</p>
+<p>子类静态变量</p>
+<p>子类静态代码块</p>
+<p>父类普通变量</p>
+<p>父类普通代码块</p>
+<p>父类构造函数</p>
+<p>子类普通变量</p>
+<p>子类普通代码块</p>
+<p>子类构造函数</p>
+<p>代码验证一下：</p>
+<p>首先我们定义一个父类</p>
+<p>![img](Java OOP&amp;数据结构.assets/faf2b2119313b07ed299fae9a6f7942696dd8cd4.jpeg)</p>
+<p>然后定义一个子类</p>
+<p>![img](Java OOP&amp;数据结构.assets/37d3d539b6003af36f87b1b99f0ac3591138b6cb.jpeg)</p>
+<p>看个结果</p>
+<p>![img](Java OOP&amp;数据结构.assets/d009b3de9c82d158c5bd9c3e2a2a1cddbc3e4223.jpeg)</p>
+<p>二、深入分析static关键字</p>
+<p>上面我们只是描述了一下static关键字的基本使用场景，下面主要解析一下static关键字的深层原理。要理解static为什么会有上面的特性，首先我们还需要从jvm内存说起。我们先给出一张java的内存结构图，然后通过案例描述一下static修饰的变量存放在哪？</p>
+<p>![img](Java OOP&amp;数据结构.assets/024f78f0f736afc33409f1471839eec1b74512b4.jpeg)</p>
+<p>从上图我们可以发现，静态变量存放在方法区中，并且是被所有线程所共享的。这里要说一下java堆，java堆存放的就是我们创建的一个个实例变量。</p>
+<p>堆区:</p>
+<p>1、存储的全部是对象，每个对象都包含一个与之对应的class的信息。(class的目的是得到操作指令)</p>
+<p>2、jvm只有一个堆区(heap)被所有线程共享，堆中不存放基本类型和对象引用，只存放对象本身</p>
+<p>栈区:</p>
+<p>1.每个线程包含一个栈区，栈中只保存基础数据类型的对象和自定义对象的引用(不是对象)，对象都存放在堆区中</p>
+<p>2、每个栈中的数据(原始类型和对象引用)都是私有的，其他栈不能访问。</p>
+<p>3、栈分为3个部分：基本类型变量区、执行环境上下文、操作指令区(存放操作指令)。、</p>
+<p>方法区:</p>
+<p>1、又叫静态区，跟堆一样，被所有的线程共享。方法区包含所有的class和static变量。</p>
+<p>2、方法区中包含的都是在整个程序中永远唯一的元素，如class，static变量。</p>
+<p>下面通过一个案例说明一下，从内存的角度来看，static关键字为什么会有这样的特性。</p>
+<p>首先我们定义一个类</p>
+<p>![img](Java OOP&amp;数据结构.assets/359b033b5bb5c9ea023ba6fe7e19b3053bf3b38c.jpeg)</p>
+<p>接下来我们从内存的角度出发，看看</p>
+<p>![img](Java OOP&amp;数据结构.assets/f3d3572c11dfa9ec028d9199c8f0f206908fc147.jpeg)</p>
+<p>从上面可以看到，我们的方法在调用的时候，是从方法区调用的，但是堆内存不一样，堆内存中的成员变量lastname是随着对象的产生而产生。随着对象的消失而消失。静态变量是所有线程共享的，所以不会消失。这也就能解释上面static关键字的真正原因。</p>
+<p>下面对static关键字进行一个小结：</p>
+<p>（1）特点：</p>
+<p>1、static是一个修饰符，用于修饰成员。（成员变量，成员函数）static修饰的成员变量 称之为静态变量或类变量。</p>
+<p>2、static修饰的成员被所有的对象共享。</p>
+<p>3、static优先于对象存在，因为static的成员随着类的加载就已经存在。</p>
+<p>4、static修饰的成员多了一种调用方式，可以直接被类名所调用，（类名.静态成员）。</p>
+<p>5、static修饰的数据是共享数据，对象中的存储的是特有的数据。</p>
+<p>（2）成员变量和静态变量的区别：</p>
+<p>1、生命周期的不同：</p>
+<p>成员变量随着对象的创建而存在随着对象的回收而释放。</p>
+<p>静态变量随着类的加载而存在随着类的消失而消失。</p>
+<p>2、调用方式不同：</p>
+<p>成员变量只能被对象调用。</p>
+<p>静态变量可以被对象调用，也可以用类名调用。（推荐用类名调用）</p>
+<p>3、别名不同：</p>
+<p>成员变量也称为实例变量。</p>
+<p>静态变量称为类变量。</p>
+<p>4、数据存储位置不同：</p>
+<p>成员变量数据存储在堆内存的对象中，所以也叫对象的特有数据。</p>
+<p>静态变量数据存储在方法区（共享数据区）的静态区，所以也叫对象的共享数据。</p>
+<p>（3）静态使用时需要注意的事项：</p>
+<p>1、静态方法只能访问静态成员。（非静态既可以访问静态，又可以访问非静态）</p>
+<p>2、静态方法中不可以使用this或者super关键字。</p>
+<p>3、主函数是静态的</p>
+<p>好了，static关键字就介绍道这里，谢谢您的支持，如有问题，还请批评指正</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>static代码块也叫静态代码块，是在类中独立于类成员的static语句块，可以有多个，位置可以随便放，它不在任何的方法体内，JVM加载类时会执行这些静态的代码块，如果static代码块有多个，JVM将按照它们在类中出现的先后顺序依次执行它们，每个代码块只会被执行一次。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test5</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> a;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> b;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    Test5.a=<span class="number">3</span>;</span><br><span class="line">    System.out.println(a);</span><br><span class="line">    Test5 t=<span class="keyword">new</span> Test5();</span><br><span class="line">    t.f();</span><br><span class="line">    t.b=<span class="number">1000</span>;</span><br><span class="line">    System.out.println(t.b);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    Test5.a=<span class="number">4</span>;</span><br><span class="line">    System.out.println(a);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// TODO 自动生成方法存根</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    Test5.a=<span class="number">5</span>;</span><br><span class="line">    System.out.println(a);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;</span><br><span class="line">  	System.out.println(<span class="string">&quot;hhahhahah&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>　　运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">hhahhahah</span><br><span class="line">1000</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+
+<p>　　利用静态代码块可以对一些static变量进行赋值，最后再看一眼这些例子，都一个static的main方法，这样JVM在运行main方法的时候可以直接调用而不用创建实例。　</p>
+<p>　　<strong>4、static和final一块用表示什么</strong><br>　　static final用来修饰成员变量和成员方法，可简单理解为“全局常量”！<br>　　对于变量，表示一旦给值就不可修改，并且通过类名可以访问。<br>　　对于方法，表示不可覆盖，并且可以通过类名直接访问。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="this"><a href="#this" class="headerlink" title="this:"></a>this:</h3><ul>
+<li>指代自己变量的，防止被覆盖</li>
+<li>可以调用对应的构造函数</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/01/%E6%AF%8F%E6%97%A5leetcode-128/" data-id="ckqkjgmcb00k4x4c4c3efcf0x" data-title="每日leetcode-128" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/03/12/Java&OOP/" data-id="ckqkkaz5d00pgbcc4d5uehah3" data-title="Java&amp;OOP" class="article-share-link">Share</a>
       
       
       
@@ -139,347 +584,10 @@
 
 
   
-    <article id="post-每日leetcode-面试题-04-08-" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-scipy说明" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/03/01/%E6%AF%8F%E6%97%A5leetcode-%E9%9D%A2%E8%AF%95%E9%A2%98-04-08-/" class="article-date">
-  <time class="dt-published" datetime="2020-02-29T22:06:06.000Z" itemprop="datePublished">2020-03-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/01/%E6%AF%8F%E6%97%A5leetcode-%E9%9D%A2%E8%AF%95%E9%A2%98-04-08-/">每日leetcode-面试题-04-08-</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/first-common-ancestor-lcci/">面试题 04.08. 首个共同祖先</a></p>
-<p>设计并实现一个算法，找出二叉树中某两个节点的第一个共同祖先。不得将其他的节点存储在另外的数据结构中。注意：这不一定是二叉搜索树。</p>
-<p>例如，给定如下二叉树: root = [3,5,1,6,2,0,8,null,null,7,4]</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    3</span><br><span class="line">   &#x2F; \</span><br><span class="line">  5   1</span><br><span class="line"> &#x2F; \ &#x2F; \</span><br><span class="line">6 2 0 8</span><br><span class="line">  &#x2F; \</span><br><span class="line"> 7   4</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 1:</strong></p>
-<p><strong>输入:</strong> root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1<br><strong>输入:</strong> 3<br><strong>解释:</strong> 节点 5 和节点 1 的最近公共祖先是节点 3。</p>
-<p><strong>示例 2:</strong></p>
-<p><strong>输入:</strong> root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4<br><strong>输出:</strong> 5<br><strong>解释:</strong> 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。</p>
-<p><strong>说明:</strong></p>
-<p>所有节点的值都是唯一的。<br>p、q 为不同节点且均存在于给定的二叉树中。</p>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TreeNode* tNode = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">checkRoot</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (tNode || !root) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> base = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (root == p) &#123;</span><br><span class="line">            base = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root == q) &#123;</span><br><span class="line">            base = <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = base + <span class="built_in">checkRoot</span>(root-&gt;left, p, q) + <span class="built_in">checkRoot</span>(root-&gt;right, p, q);</span><br><span class="line">        <span class="keyword">if</span> (ans == <span class="number">3</span> &amp;&amp; !tNode) &#123;</span><br><span class="line">            tNode = root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        tNode = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">checkRoot</span>(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> tNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>其实没有必要去判断这个节点下面有左还是右还是都有，有一个更简单的做法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 返回最低的共同祖先，如果p和q中只有一个元素在下面的话就返回这个元素</span></span><br><span class="line">        <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root == p || root == q) &#123; <span class="comment">// 如果root就是p或者q，就说明root是共同祖先或者是p和q本身</span></span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode* left = <span class="built_in">lowestCommonAncestor</span>(root-&gt;left, p, q);</span><br><span class="line">        TreeNode* right = <span class="built_in">lowestCommonAncestor</span>(root-&gt;right, p, q);</span><br><span class="line">        <span class="keyword">if</span> (left &amp;&amp; right) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;  <span class="comment">// 共同祖先</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (left) &#123;</span><br><span class="line">            <span class="keyword">return</span> left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (right) &#123;</span><br><span class="line">            <span class="keyword">return</span> right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>直接来判断可能是首个共同祖先。这个节点本身是p或者q的话，他就可能是首个共同祖先；如果左右子树里面不同时有p或者q的话，就肯定不是第一个共同祖先了。</p>
-<h2 id="另一种写法"><a href="#另一种写法" class="headerlink" title="另一种写法"></a>另一种写法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 返回最低的共同祖先，如果p和q中只有一个元素在下面的话就返回这个元素</span></span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span> || root == p || root == q) <span class="keyword">return</span> root;</span><br><span class="line">        TreeNode *left = <span class="built_in">lowestCommonAncestor</span>(root-&gt;left,p,q);</span><br><span class="line">        TreeNode *right = <span class="built_in">lowestCommonAncestor</span>(root-&gt;right,p,q);</span><br><span class="line">        <span class="keyword">if</span>(left &amp;&amp; right) <span class="keyword">return</span> root;</span><br><span class="line">        <span class="keyword">if</span>(left) <span class="keyword">return</span> left;</span><br><span class="line">        <span class="keyword">return</span> right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>如果要返回NULL的时候返回root自己，也不会有影响。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/01/%E6%AF%8F%E6%97%A5leetcode-%E9%9D%A2%E8%AF%95%E9%A2%98-04-08-/" data-id="ckqkjgmcn00l6x4c4hs721jwo" data-title="每日leetcode-面试题-04-08-" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-人工智能相关报道" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/02/29/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%81%93/" class="article-date">
-  <time class="dt-published" datetime="2020-02-28T22:06:06.000Z" itemprop="datePublished">2020-02-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/02/29/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%81%93/">人工智能相关报道</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>特斯拉被一条胶带忽悠，将35“看成”85，异常加速80公里/小时 - 量子位的文章 - 知乎<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108787517">https://zhuanlan.zhihu.com/p/108787517</a></p>
-<p>AI动漫头像生成 <a target="_blank" rel="noopener" href="https://cre8tiveai.com/">https://cre8tiveai.com</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/02/29/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%81%93/" data-id="ckqkjgmbd00gtx4c4hjzg95wt" data-title="人工智能相关报道" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-清华资源校外访问" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/02/27/%E6%B8%85%E5%8D%8E%E8%B5%84%E6%BA%90%E6%A0%A1%E5%A4%96%E8%AE%BF%E9%97%AE/" class="article-date">
-  <time class="dt-published" datetime="2020-02-26T22:06:06.000Z" itemprop="datePublished">2020-02-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/02/27/%E6%B8%85%E5%8D%8E%E8%B5%84%E6%BA%90%E6%A0%A1%E5%A4%96%E8%AE%BF%E9%97%AE/">清华资源校外访问</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>proquest：可以清华登陆（机构搜Tsinghua）</p>
-<p>电子资源列表：<a target="_blank" rel="noopener" href="https://lib.tsinghua.edu.cn/dra/news/annoucement/7875">https://lib.tsinghua.edu.cn/dra/news/annoucement/7875</a></p>
-<p><a target="_blank" rel="noopener" href="http://eproxy2.lib.tsinghua.edu.cn/login">http://eproxy2.lib.tsinghua.edu.cn/login</a> 登陆进去就有电子资源列表</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/02/27/%E6%B8%85%E5%8D%8E%E8%B5%84%E6%BA%90%E6%A0%A1%E5%A4%96%E8%AE%BF%E9%97%AE/" data-id="ckqkjgmcu00lwx4c4fan6c11v" data-title="清华资源校外访问" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-django-一些网址资源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/02/18/django-%E4%B8%80%E4%BA%9B%E7%BD%91%E5%9D%80%E8%B5%84%E6%BA%90/" class="article-date">
-  <time class="dt-published" datetime="2020-02-17T22:06:06.000Z" itemprop="datePublished">2020-02-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/02/18/django-%E4%B8%80%E4%BA%9B%E7%BD%91%E5%9D%80%E8%B5%84%E6%BA%90/">django-一些网址资源</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="admin显示"><a href="#admin显示" class="headerlink" title="admin显示"></a>admin显示</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/django/django-admin-manage-tool.html">https://www.runoob.com/django/django-admin-manage-tool.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liu--huan/articles/10548050.html">https://www.cnblogs.com/liu--huan/articles/10548050.html</a></p>
-<h1 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/donghaiming/p/11007505.html">https://www.cnblogs.com/donghaiming/p/11007505.html</a></p>
-<h1 id="filter-或关系"><a href="#filter-或关系" class="headerlink" title="filter 或关系"></a>filter 或关系</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/guan__ye/article/details/80053744">https://blog.csdn.net/guan__ye/article/details/80053744</a></p>
-<h1 id="manytomany"><a href="#manytomany" class="headerlink" title="manytomany"></a>manytomany</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lovershowtime/p/11361198.html">https://www.cnblogs.com/lovershowtime/p/11361198.html</a></p>
-<h2 id="要加上一定属性的话"><a href="#要加上一定属性的话" class="headerlink" title="要加上一定属性的话"></a>要加上一定属性的话</h2><p>使用through</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaoyingm/article/details/8652471?utm_source=distribute.pc_relevant.none-task">https://blog.csdn.net/zhaoyingm/article/details/8652471?utm_source=distribute.pc_relevant.none-task</a></p>
-<h3 id="修改后直接migrate是不行的"><a href="#修改后直接migrate是不行的" class="headerlink" title="修改后直接migrate是不行的"></a>修改后直接migrate是不行的</h3><p>需要先删除这个字段做migrate，之后再加上做一次</p>
-<p><a target="_blank" rel="noopener" href="https://my.oschina.net/bestraven/blog/870562">https://my.oschina.net/bestraven/blog/870562</a></p>
-<h1 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h1><p>.distinct()</p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/49d3dc15dd06">https://www.jianshu.com/p/49d3dc15dd06</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/02/18/django-%E4%B8%80%E4%BA%9B%E7%BD%91%E5%9D%80%E8%B5%84%E6%BA%90/" data-id="ckqkjgm9h00ajx4c429h75e7u" data-title="django-一些网址资源" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-django简单服务流程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/02/18/django%E7%AE%80%E5%8D%95%E6%9C%8D%E5%8A%A1%E6%B5%81%E7%A8%8B/" class="article-date">
-  <time class="dt-published" datetime="2020-02-17T22:06:06.000Z" itemprop="datePublished">2020-02-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/02/18/django%E7%AE%80%E5%8D%95%E6%9C%8D%E5%8A%A1%E6%B5%81%E7%A8%8B/">django简单服务流程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>由于一些很扯淡的兼容性问题，用的是1.11的django，不过这几个命令好像一直没有变。</p>
-<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p><code>django-admin startproject HelloWorld</code></p>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/django/django-first-app.html">https://www.runoob.com/django/django-first-app.html</a></p>
-<h2 id="创建model"><a href="#创建model" class="headerlink" title="创建model"></a>创建model</h2><p>先创建app：<code>django-admin startapp TestModel</code></p>
-<p>再接下来在settings.py中找到INSTALLED_APPS这一项，添加上创建的app</p>
-<p>做makemigrations和migrate的操作。</p>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/django/django-model.html">https://www.runoob.com/django/django-model.html</a></p>
-<h2 id="RESTFUL-API禁用csrf"><a href="#RESTFUL-API禁用csrf" class="headerlink" title="RESTFUL API禁用csrf"></a>RESTFUL API禁用csrf</h2><p>注释掉setting里的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x27;django.middleware.csrf.CsrfViewMiddleware&#x27;,</span></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f69b241e0894?utm_source=oschina-app">https://www.jianshu.com/p/f69b241e0894?utm_source=oschina-app</a></p>
-<h2 id="login使用"><a href="#login使用" class="headerlink" title="login使用"></a>login使用</h2><p>django自带的user类的基础上，修改变成自己的user类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> AbstractUser</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserProfile</span>(<span class="params">AbstractUser</span>):</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">&quot;个人信息&quot;</span></span><br><span class="line">        verbose_name_plural = verbose_name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.username</span><br></pre></td></tr></table></figure>
-
-<p>之后再在setting里面加上<code>AUTH_USER_MODEL = &#39;info.UserProfile&#39;</code>, 这里的info是自己的app名字</p>
-<h2 id="JSON形式登录退出验证及错误情况处理"><a href="#JSON形式登录退出验证及错误情况处理" class="headerlink" title="JSON形式登录退出验证及错误情况处理"></a>JSON形式登录退出验证及错误情况处理</h2><p>view文件里</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> info.consts <span class="keyword">import</span> StatusCode</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"><span class="keyword">from</span> info.models <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> auth</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">response_json</span>(<span class="params">o</span>):</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(json.dumps(o, ensure_ascii=<span class="literal">False</span>), content_type=<span class="string">&quot;application/json,charset=utf-8&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 做一个装饰器方便后面进行登录状态监测</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_required_json</span>(<span class="params">f</span>):</span></span><br><span class="line"><span class="meta">    @wraps(<span class="params">f</span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span>(<span class="params">request, *arg, **kwargs</span>):</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">if</span> request.user.is_authenticated:</span><br><span class="line">                <span class="keyword">return</span> f(request, *arg, **kwargs)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span> response_json(&#123;</span><br><span class="line">            <span class="string">&#x27;code&#x27;</span>: StatusCode.NEED_LOGIN_ERROR,</span><br><span class="line">            <span class="string">&#x27;msg&#x27;</span>: <span class="string">&quot;请先登录&quot;</span>,</span><br><span class="line">            <span class="string">&#x27;data&#x27;</span>: &#123;&#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">param_error_json</span>(<span class="params">msg=<span class="string">&quot;参数或者方法错误&quot;</span></span>):</span></span><br><span class="line">    <span class="keyword">return</span> response_json(&#123;</span><br><span class="line">        <span class="string">&#x27;code&#x27;</span>: StatusCode.WRONG_PARAM,</span><br><span class="line">        <span class="string">&#x27;msg&#x27;</span>: msg,</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span>: &#123;&#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">response_ok_json</span>(<span class="params">data</span>):</span></span><br><span class="line">    <span class="keyword">return</span> response_json(&#123;</span><br><span class="line">        <span class="string">&#x27;code&#x27;</span>: StatusCode.OK,</span><br><span class="line">        <span class="string">&#x27;msg&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span>: data</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&quot;POST&quot;</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            username = request.POST.get(<span class="string">&#x27;username&#x27;</span>)</span><br><span class="line">            password = request.POST.get(<span class="string">&#x27;password&#x27;</span>)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">return</span> param_error_json()</span><br><span class="line"></span><br><span class="line">        user = auth.authenticate(username=username, password=password)</span><br><span class="line">        <span class="keyword">if</span> user:</span><br><span class="line">            <span class="comment"># 验证成功 登陆</span></span><br><span class="line">            auth.login(request, user)</span><br><span class="line">            <span class="keyword">return</span> response_ok_json(&#123;</span><br><span class="line">                <span class="string">&quot;type&quot;</span>: <span class="string">&quot;login&quot;</span>,</span><br><span class="line">                <span class="string">&quot;authority&quot;</span>: request.user.is_superuser</span><br><span class="line">            &#125;)</span><br><span class="line">        <span class="keyword">return</span> param_error_json(<span class="string">&#x27;用户名或密码错误，请重试&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> param_error_json()</span><br><span class="line"></span><br><span class="line"><span class="meta">@login_required_json</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&quot;POST&quot;</span>:</span><br><span class="line">        auth.logout(request)</span><br><span class="line">        <span class="keyword">return</span> response_ok_json(&#123;</span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;logout&quot;</span></span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="keyword">return</span> param_error_json()</span><br></pre></td></tr></table></figure>
-
-<p>consts文件里面是这样的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StatusCode</span>:</span></span><br><span class="line">    OK = <span class="number">0</span></span><br><span class="line">    NEED_LOGIN_ERROR = <span class="number">1</span></span><br><span class="line">    INTERNAL_ERROR = <span class="number">2</span></span><br><span class="line">    AUTH_FAILED = <span class="number">3</span></span><br><span class="line">    WRONG_PARAM = <span class="number">4</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="postman测试"><a href="#postman测试" class="headerlink" title="postman测试"></a>postman测试</h3><p>正常发送测试就行，注意密码其实是加密存储的，所以创建用户的时候可以用<code>createsuperuser</code>指令，也可以用model的<code>create_user</code>函数。不能直接操作数据库放进去。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/check2255/article/details/70338497">https://blog.csdn.net/check2255/article/details/70338497</a></p>
-<p>POSTMAN的时候注意，因为是post方法，所以参数是写在Body而不是Param里面的。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-fc2035969a42c9a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="POSTMAN"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/02/18/django%E7%AE%80%E5%8D%95%E6%9C%8D%E5%8A%A1%E6%B5%81%E7%A8%8B/" data-id="ckqkjgm9k00alx4c4946b38lx" data-title="django简单服务流程" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-每日leetcode-126" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/02/17/%E6%AF%8F%E6%97%A5leetcode-126/" class="article-date">
-  <time class="dt-published" datetime="2020-02-16T22:06:06.000Z" itemprop="datePublished">2020-02-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/02/17/%E6%AF%8F%E6%97%A5leetcode-126/">每日leetcode-126</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>给定两个单词（beginWord 和 endWord）和一个字典 wordList，找出所有从 beginWord 到 endWord 的最短转换序列。转换需遵循如下规则：</p>
-<p>每次转换只能改变一个字母。<br>转换过程中的中间单词必须是字典中的单词。<br>说明:</p>
-<p>如果不存在这样的转换序列，返回一个空列表。<br>所有单词具有相同的长度。<br>所有单词只由小写字母组成。<br>字典中不存在重复的单词。<br>你可以假设 beginWord 和 endWord 是非空的，且二者不相同。<br>示例 1:</p>
-<p>输入:<br>beginWord = “hit”,<br>endWord = “cog”,<br>wordList = [“hot”,”dot”,”dog”,”lot”,”log”,”cog”]</p>
-<p>输出:<br>[<br>  [“hit”,”hot”,”dot”,”dog”,”cog”],<br>  [“hit”,”hot”,”lot”,”log”,”cog”]<br>]<br>示例 2:</p>
-<p>输入:<br>beginWord = “hit”<br>endWord = “cog”<br>wordList = [“hot”,”dot”,”dog”,”lot”,”log”]</p>
-<p>输出: []</p>
-<p>解释: endWord “cog” 不在字典中，所以不存在符合要求的转换序列。</p>
-<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/word-ladder-ii">https://leetcode-cn.com/problems/word-ladder-ii</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>一个简单的BFS。</p>
-<p>每一轮检查上一轮的时候加进去的单词的相邻单词，发现没有检查过的就加进去。</p>
-<p>直接用两个变量存储每一轮加进去的点和剩下的单词。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">is_change_one</span><span class="params">(<span class="keyword">const</span> string&amp; a, <span class="keyword">const</span> string&amp; b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lena = a.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> diff = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lena; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] != b[i]) &#123;</span><br><span class="line">                diff += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> diff == <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">findLadders</span>(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList) &#123;</span><br><span class="line">        <span class="keyword">int</span> all_size = wordList.<span class="built_in">size</span>();  <span class="comment">// wordList</span></span><br><span class="line">        map&lt;string, vector&lt;vector&lt;string&gt;&gt;&gt; shortest_record;</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; temp;</span><br><span class="line">        vector&lt;string&gt; t2;</span><br><span class="line">        t2.<span class="built_in">push_back</span>(beginWord);</span><br><span class="line">        temp.<span class="built_in">push_back</span>(t2);</span><br><span class="line">        shortest_record[beginWord] = temp;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// start node</span></span><br><span class="line">        set&lt;string&gt; available;  <span class="comment">// 没有处理的</span></span><br><span class="line">        set&lt;string&gt; lasttime; <span class="comment">// 上次的单词</span></span><br><span class="line">        lasttime.<span class="built_in">insert</span>(beginWord);</span><br><span class="line">        <span class="keyword">bool</span> end_in = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = wordList.<span class="built_in">begin</span>(); i != wordList.<span class="built_in">end</span>(); i++) &#123;</span><br><span class="line">            available.<span class="built_in">insert</span>(*i);</span><br><span class="line">            <span class="keyword">if</span> (*i == endWord) &#123;</span><br><span class="line">                end_in = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (!end_in) &#123;</span><br><span class="line">            <span class="keyword">return</span> vector&lt;vector&lt;string&gt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!lasttime.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">bool</span> got_ans = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">//            cout &lt;&lt; &quot;\nLasttime: &quot;;</span></span><br><span class="line"><span class="comment">//            for (auto tt = lasttime.begin(); tt != lasttime.end(); tt++) &#123;</span></span><br><span class="line"><span class="comment">//                cout &lt;&lt; &quot; &quot; &lt;&lt; *tt;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//            cout &lt;&lt; &quot;\nAva: &quot;;</span></span><br><span class="line"><span class="comment">//            for (auto tt = available.begin(); tt != available.end(); tt++) &#123;</span></span><br><span class="line"><span class="comment">//                cout &lt;&lt; &quot; &quot; &lt;&lt; *tt;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//            cout &lt;&lt; &quot;\n======&quot;;</span></span><br><span class="line">            vector&lt;vector&lt;string&gt;&gt; result;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> cand = lasttime.<span class="built_in">begin</span>(); cand != lasttime.<span class="built_in">end</span>(); cand++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">is_change_one</span>(*cand, endWord)) &#123;</span><br><span class="line">                    got_ans = <span class="literal">true</span>;</span><br><span class="line">                    vector&lt;vector&lt;string&gt;&gt; &amp;a = shortest_record[*cand];</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">auto</span> ttt = a.<span class="built_in">begin</span>(); ttt != a.<span class="built_in">end</span>(); ttt++) &#123;</span><br><span class="line">                        result.<span class="built_in">push_back</span>(vector&lt;string&gt;(*ttt));</span><br><span class="line">                        (*(result.<span class="built_in">end</span>() - <span class="number">1</span>)).<span class="built_in">push_back</span>(endWord);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (got_ans) &#123;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">            set&lt;string&gt; new_lasttime;</span><br><span class="line">            set&lt;string&gt; new_available;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> now = available.<span class="built_in">begin</span>(); now != available.<span class="built_in">end</span>(); now++) &#123;</span><br><span class="line">                <span class="keyword">bool</span> got_ans = <span class="literal">false</span>;</span><br><span class="line">                vector&lt;vector&lt;string&gt;&gt; result;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> cand = lasttime.<span class="built_in">begin</span>(); cand != lasttime.<span class="built_in">end</span>(); cand++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">is_change_one</span>(*cand, *now)) &#123;</span><br><span class="line">                        got_ans = <span class="literal">true</span>;</span><br><span class="line">                        vector&lt;vector&lt;string&gt;&gt; &amp;a = shortest_record[*cand];</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">auto</span> ttt = a.<span class="built_in">begin</span>(); ttt != a.<span class="built_in">end</span>(); ttt++) &#123;</span><br><span class="line">                            result.<span class="built_in">push_back</span>(vector&lt;string&gt;(*ttt));</span><br><span class="line">                            (*(result.<span class="built_in">end</span>() - <span class="number">1</span>)).<span class="built_in">push_back</span>(*now);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (got_ans) &#123;</span><br><span class="line">                    shortest_record[*now] = result;</span><br><span class="line">                    new_lasttime.<span class="built_in">insert</span>(*now);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    new_available.<span class="built_in">insert</span>(*now);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            available = <span class="built_in">move</span>(new_available);</span><br><span class="line">            lasttime = <span class="built_in">move</span>(new_lasttime);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> vector&lt;vector&lt;string&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>但是用了一秒多。</p>
-<h2 id="24ms的示例代码"><a href="#24ms的示例代码" class="headerlink" title="24ms的示例代码"></a>24ms的示例代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; res;</span><br><span class="line">    unordered_map&lt;string, vector&lt;string&gt;&gt; hash;</span><br><span class="line">    </span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">findLadders</span>(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList) &#123;</span><br><span class="line">        <span class="function">unordered_set&lt;string&gt; <span class="title">dirc</span><span class="params">(wordList.begin(), wordList.end())</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (dirc.<span class="built_in">find</span>(endWord) == dirc.<span class="built_in">end</span>()) <span class="keyword">return</span> res;</span><br><span class="line">        unordered_set&lt;string&gt; beginw&#123;beginWord&#125;;</span><br><span class="line">        unordered_set&lt;string&gt; endw&#123;endWord&#125;;</span><br><span class="line">        <span class="keyword">int</span> flag1 = <span class="number">0</span>, flag2 = <span class="number">0</span>;  <span class="comment">//第一个是否找到最短序列标志, 第二个是否反转标志。</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!beginw.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            unordered_set&lt;string&gt; tmp;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> str : beginw) dirc.<span class="built_in">erase</span>(str);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> str : beginw) &#123; <span class="comment">//每次都是对beginw进行操作，所以后面有判断让beginw比endw小</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">                    string s = str;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">char</span> j = <span class="string">&#x27;a&#x27;</span>; j &lt;= <span class="string">&#x27;z&#x27;</span>; ++j) &#123;</span><br><span class="line">                        s[i] = j;</span><br><span class="line">                        <span class="keyword">if</span> (dirc.<span class="built_in">find</span>(s) == dirc.<span class="built_in">end</span>()) <span class="keyword">continue</span>;  <span class="comment">// 在候选里面没有现在判断的这个可能的下一个</span></span><br><span class="line">                        <span class="keyword">if</span> (endw.<span class="built_in">find</span>(s) != endw.<span class="built_in">end</span>()) flag1 = <span class="number">1</span>;<span class="comment">// 已经到头了</span></span><br><span class="line">                        <span class="keyword">else</span> tmp.<span class="built_in">insert</span>(s);<span class="comment">// 接下来就是从这个开始进行搜索</span></span><br><span class="line">                        flag2 ? hash[s].<span class="built_in">push_back</span>(str) : hash[str].<span class="built_in">push_back</span>(s);<span class="comment">// 记录一下前后关系  // 刚开始flag2是0，所以刚开始的时候是把s记录在str的里面</span></span><br><span class="line">                    &#125; </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (flag1) <span class="keyword">break</span>;  <span class="comment">//已经找到最短序列退出循环。</span></span><br><span class="line">            <span class="keyword">if</span> (tmp.<span class="built_in">size</span>() &lt;= endw.<span class="built_in">size</span>()) <span class="comment">// 判断让beginw比endw小</span></span><br><span class="line">                beginw = tmp;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                beginw = endw; endw = tmp; </span><br><span class="line">                flag2 = !flag2;  <span class="comment">//这里需要使用！反转。</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;string&gt; ans = &#123;beginWord&#125;;</span><br><span class="line">        <span class="built_in">dfs</span>(ans, beginWord, endWord);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(vector&lt;string&gt;&amp; ans, string&amp; begin, string&amp; end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">            res.<span class="built_in">emplace_back</span>(ans);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (hash.<span class="built_in">find</span>(begin) == hash.<span class="built_in">end</span>()) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> str : hash[begin]) &#123;</span><br><span class="line">            ans.<span class="built_in">emplace_back</span>(str);</span><br><span class="line">            <span class="built_in">dfs</span>(ans, str, end);</span><br><span class="line">            ans.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>用了unordered_set而不是set，区别可以见<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1338333%EF%BC%8C%E6%80%A7%E8%83%BD%E4%B8%8A%E5%B7%AE%E7%9A%84%E8%BF%98%E6%98%AF%E6%8C%BA%E5%A4%9A%E7%9A%84">https://cloud.tencent.com/developer/article/1338333，性能上差的还是挺多的</a></li>
-<li>构造函数可以直接用unordered_set<string> dirc(wordList.begin(), wordList.end());，不必写个for循环来整；</li>
-<li>两个方向进行操作，让比较少的一头开始；</li>
-<li>unordered_set进行find操作是很快的</li>
-<li>记录的时候没有必要记录到这个节点的全部路径，只用记录下来从上一个节点的路径就可以了，最后用一个深搜就行（因为现在最多的能连上的层数就是最短的，不会有更长的能连起来的）</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/02/17/%E6%AF%8F%E6%97%A5leetcode-126/" data-id="ckqkjgmca00k2x4c4dzibdj2d" data-title="每日leetcode-126" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-list和set运行效率" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/02/16/list%E5%92%8Cset%E8%BF%90%E8%A1%8C%E6%95%88%E7%8E%87/" class="article-date">
-  <time class="dt-published" datetime="2020-02-15T22:06:06.000Z" itemprop="datePublished">2020-02-16</time>
+    <a href="/2020/03/11/scipy%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time class="dt-published" datetime="2020-03-10T22:06:06.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
     
   <div class="article-category">
@@ -494,7 +602,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/02/16/list%E5%92%8Cset%E8%BF%90%E8%A1%8C%E6%95%88%E7%8E%87/">list和set运行效率</a>
+      <a class="p-name article-title" href="/2020/03/11/scipy%E8%AF%B4%E6%98%8E/">scipy说明</a>
     </h1>
   
 
@@ -502,20 +610,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>list和set中进行增加、减少的操作都是比较消耗资源的，所以尽量定长</p>
-<p>Leetcode 204，计数小于n的质数有多少个：</p>
-<p>用set来写：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countPrimes</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        data = <span class="built_in">set</span>(<span class="built_in">range</span>(<span class="number">2</span>, n))</span><br><span class="line">        primes = <span class="built_in">set</span>()</span><br><span class="line">        <span class="keyword">while</span> data:</span><br><span class="line">            t = data.pop()</span><br><span class="line">            primes.add(t)</span><br><span class="line">            <span class="keyword">if</span> t ** <span class="number">2</span> &gt; n:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n // t + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    data.remove(i * t)</span><br><span class="line">                <span class="keyword">except</span>:</span><br><span class="line">                    <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(primes) + <span class="built_in">len</span>(data)</span><br></pre></td></tr></table></figure>
-
-<p>用list来写：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countPrimes</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        l = [<span class="number">1</span>] * n      <span class="comment"># l为记录1至n-1是否为质数的列表</span></span><br><span class="line">        l[<span class="number">0</span>] = l[<span class="number">1</span>] = <span class="number">0</span>       <span class="comment"># 0和1不是质数</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="built_in">int</span>(n ** <span class="number">0.5</span>) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> l[i] == <span class="number">1</span>:           <span class="comment"># 若i为质数</span></span><br><span class="line">                l[<span class="number">2</span>*i:n:i] = [<span class="number">0</span>] * ((n - i - <span class="number">1</span>) // i)    <span class="comment"># i的整数倍都不是质数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(l)</span><br></pre></td></tr></table></figure>
-
-<p>时间差别很大。后者显著要快。</p>
+        <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6c742912047f">https://www.jianshu.com/p/6c742912047f</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/02/16/list%E5%92%8Cset%E8%BF%90%E8%A1%8C%E6%95%88%E7%8E%87/" data-id="ckqkjgmad00dgx4c4gk6xc24y" data-title="list和set运行效率" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/03/11/scipy%E8%AF%B4%E6%98%8E/" data-id="ckqkkaz2g00fibcc437wk2mz4" data-title="scipy说明" class="article-share-link">Share</a>
       
       
       
@@ -527,10 +627,10 @@
 
 
   
-    <article id="post-每日leetcode-124" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-每日leetcode-145" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/02/16/%E6%AF%8F%E6%97%A5leetcode-124/" class="article-date">
-  <time class="dt-published" datetime="2020-02-15T22:06:06.000Z" itemprop="datePublished">2020-02-16</time>
+    <a href="/2020/03/11/%E6%AF%8F%E6%97%A5leetcode-145/" class="article-date">
+  <time class="dt-published" datetime="2020-03-10T22:06:06.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
     
   <div class="article-category">
@@ -545,7 +645,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/02/16/%E6%AF%8F%E6%97%A5leetcode-124/">每日leetcode-124</a>
+      <a class="p-name article-title" href="/2020/03/11/%E6%AF%8F%E6%97%A5leetcode-145/">每日leetcode-145</a>
     </h1>
   
 
@@ -553,32 +653,124 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>给定一个非空二叉树，返回其最大路径和。</p>
-<p>本题中，路径被定义为一条从树中任意节点出发，达到任意节点的序列。该路径至少包含一个节点，且不一定经过根节点。</p>
-<p>示例 1:</p>
-<p>输入: [1,2,3]</p>
-<pre><code>   1
-  / \
- 2   3
-</code></pre>
-<p>输出: 6<br>示例 2:</p>
-<p>输入: [-10,9,20,null,null,15,7]</p>
-<p>   -10<br>   / <br>  9  20<br>    /  <br>   15   7</p>
-<p>输出: 42</p>
-<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-maximum-path-sum">https://leetcode-cn.com/problems/binary-tree-maximum-path-sum</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>有一些因为节点可能是负数导致的坑，在注释里面也写了。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">checkPathMax</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> leftPathMax = <span class="number">0</span>, rightPathMax = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (root-&gt;left) &#123;</span><br><span class="line">            leftPathMax = <span class="built_in">max</span>(<span class="number">0</span>, <span class="built_in">checkPathMax</span>(root-&gt;left));  <span class="comment">// 如果从下面走更小的话就别走下面了呗……</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root-&gt;right) &#123;</span><br><span class="line">            rightPathMax = <span class="built_in">max</span>(<span class="number">0</span>, <span class="built_in">checkPathMax</span>(root-&gt;right));</span><br><span class="line">        &#125;</span><br><span class="line">        ans = <span class="built_in">max</span>(ans, leftPathMax + root-&gt;val + rightPathMax);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(leftPathMax, rightPathMax) + root-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 对于每个节点：</span></span><br><span class="line">        <span class="comment">// 1. 计算当前左侧的路径和</span></span><br><span class="line">        <span class="comment">// 2. 计算右侧的路径和</span></span><br><span class="line">        <span class="comment">// 刚开始需要初始化一下</span></span><br><span class="line">        ans = root-&gt;val;  <span class="comment">// 注意这里应该不是0，因为让节点从根节点到根节点，所以初始化为root-&gt;val</span></span><br><span class="line">        <span class="built_in">checkPathMax</span>(root);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p>二叉树的后序遍历。</p>
+<h2 id="两个栈方式的"><a href="#两个栈方式的" class="headerlink" title="两个栈方式的"></a>两个栈方式的</h2><p>直接看<a target="_blank" rel="noopener" href="http://www.bilibili.com/video/av23885544/">http://www.bilibili.com/video/av23885544/</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">postorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        &#125;</span><br><span class="line">        stack&lt;TreeNode*&gt; nodes;</span><br><span class="line">        stack&lt;<span class="keyword">bool</span>&gt; tag;</span><br><span class="line">        nodes.<span class="built_in">push</span>(root);</span><br><span class="line">        tag.<span class="built_in">push</span>(<span class="literal">false</span>); <span class="comment">// 标记应不应该访问nodes的第一个元素</span></span><br><span class="line">        TreeNode* p = root-&gt;left;</span><br><span class="line">        <span class="keyword">while</span> (p || !nodes.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p) &#123;</span><br><span class="line">                nodes.<span class="built_in">push</span>(p);</span><br><span class="line">                tag.<span class="built_in">push</span>(<span class="literal">false</span>);</span><br><span class="line">                p = p-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (tag.<span class="built_in">top</span>()) &#123;</span><br><span class="line">                    <span class="comment">// 这个时候已经访问了nodes这个stack里面第一个节点的左右子树了，所以需要访问nodes这个节点，之后就pop出来，继续访问他的上面没有访问的节点或者右子树</span></span><br><span class="line">                    tag.<span class="built_in">pop</span>();</span><br><span class="line">                    <span class="keyword">auto</span> a = nodes.<span class="built_in">top</span>();</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(a-&gt;val);</span><br><span class="line">                    nodes.<span class="built_in">pop</span>();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    tag.<span class="built_in">pop</span>();</span><br><span class="line">                    tag.<span class="built_in">push</span>(<span class="literal">true</span>);</span><br><span class="line">                    p = nodes.<span class="built_in">top</span>()-&gt;right;  <span class="comment">// 这时候要访问右子树了！</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>对应的两个坑的样例：</p>
+<h2 id="前序遍历改一下"><a href="#前序遍历改一下" class="headerlink" title="前序遍历改一下"></a>前序遍历改一下</h2><p>前序遍历的时候，把左右子树进栈的顺序反一下，得到的结果就是后序遍历的反向。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">postorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        &#125;</span><br><span class="line">        stack&lt;TreeNode*&gt; nodes;</span><br><span class="line">        nodes.<span class="built_in">push</span>(root);</span><br><span class="line">        <span class="keyword">while</span> (!nodes.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">auto</span> a = nodes.<span class="built_in">top</span>();</span><br><span class="line">            nodes.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span> (a) &#123;</span><br><span class="line">                ans.<span class="built_in">insert</span>(ans.<span class="built_in">begin</span>(), a-&gt;val);</span><br><span class="line">                nodes.<span class="built_in">push</span>(a-&gt;left);</span><br><span class="line">                nodes.<span class="built_in">push</span>(a-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/11/%E6%AF%8F%E6%97%A5leetcode-145/" data-id="ckqkkaz4500l3bcc4bv3e9r01" data-title="每日leetcode-145" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-词云生成" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/11/%E8%AF%8D%E4%BA%91%E7%94%9F%E6%88%90/" class="article-date">
+  <time class="dt-published" datetime="2020-03-10T22:06:06.000Z" itemprop="datePublished">2020-03-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/11/%E8%AF%8D%E4%BA%91%E7%94%9F%E6%88%90/">词云生成</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91382540">https://zhuanlan.zhihu.com/p/91382540</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/11/%E8%AF%8D%E4%BA%91%E7%94%9F%E6%88%90/" data-id="ckqkkaz5000o5bcc4305panc1" data-title="词云生成" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-每日leetcode-140" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/09/%E6%AF%8F%E6%97%A5leetcode-140/" class="article-date">
+  <time class="dt-published" datetime="2020-03-08T22:06:06.000Z" itemprop="datePublished">2020-03-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/09/%E6%AF%8F%E6%97%A5leetcode-140/">每日leetcode-140</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol start="140">
+<li>单词拆分 II</li>
+</ol>
+<p>给定一个<strong>非空</strong>字符串 <em>s</em> 和一个包含<strong>非空</strong>单词列表的字典 <em>wordDict</em>，在字符串中增加空格来构建一个句子，使得句子中所有的单词都在词典中。返回所有这些可能的句子。</p>
+<p><strong>说明：</strong></p>
 <ul>
-<li>[-3]，应该是-3</li>
-<li>[1,-2,3]，应该是4</li>
+<li>  分隔时可以重复使用字典中的单词。</li>
+<li>  你可以假设字典中没有重复的单词。</li>
 </ul>
+<p><strong>示例 1：</strong></p>
+<p><strong>输入:</strong> s = “<code>catsanddog</code>“<br>wordDict = <code>[&quot;cat&quot;, &quot;cats&quot;, &quot;and&quot;, &quot;sand&quot;, &quot;dog&quot;]</code><br><strong>输出:</strong> <code>[   &quot;cats and dog&quot;,   &quot;cat sand dog&quot; ]</code></p>
+<p><strong>示例 2：</strong></p>
+<p><strong>输入:</strong> s = “pineapplepenapple”<br>wordDict = [“apple”, “pen”, “applepen”, “pine”, “pineapple”]<br><strong>输出:</strong> [<br>  “pine apple pen apple”,<br>  “pineapple pen apple”,<br>  “pine applepen apple”<br>]<br><strong>解释:</strong> 注意你可以重复使用字典中的单词。</p>
+<p><strong>示例 3：</strong></p>
+<p><strong>输入:</strong> s = “catsandog”<br>wordDict = [“cats”, “dog”, “sand”, “and”, “cat”]<br><strong>输出:</strong> []</p>
+<h2 id="简单递归写法"><a href="#简单递归写法" class="headerlink" title="简单递归写法"></a>简单递归写法</h2><p>会超时：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">wordBreak</span><span class="params">(string s, vector&lt;string&gt;&amp; wordDict)</span> </span>&#123;</span><br><span class="line">        vector&lt;string&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = wordDict.<span class="built_in">begin</span>(); i != wordDict.<span class="built_in">end</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.<span class="built_in">rfind</span>(*i, <span class="number">0</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 找到了</span></span><br><span class="line">                <span class="keyword">if</span> (s.<span class="built_in">size</span>() == (*i).<span class="built_in">size</span>()) &#123;</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(*i);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">auto</span> m = <span class="built_in">wordBreak</span>(s.<span class="built_in">substr</span>((*i).<span class="built_in">size</span>()), wordDict);</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">auto</span> t = m.<span class="built_in">begin</span>(); t != m.<span class="built_in">end</span>(); t++) &#123;</span><br><span class="line">                        ans.<span class="built_in">push_back</span>(*i + <span class="string">&quot; &quot;</span> + *t);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="加上记录，不多算"><a href="#加上记录，不多算" class="headerlink" title="加上记录，不多算"></a>加上记录，不多算</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    map&lt;<span class="keyword">int</span>, vector&lt;string&gt;&gt; memo;</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">wordBreakIndex</span><span class="params">(string&amp; s, vector&lt;string&gt;&amp; wordDict, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (memo.<span class="built_in">find</span>(index) != memo.<span class="built_in">end</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> memo[index];</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;string&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i = wordDict.<span class="built_in">begin</span>(); i != wordDict.<span class="built_in">end</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.<span class="built_in">rfind</span>(*i, index) == index) &#123;</span><br><span class="line">                <span class="comment">// 找到了</span></span><br><span class="line">                <span class="keyword">if</span> (s.<span class="built_in">size</span>() == index + (*i).<span class="built_in">size</span>()) &#123;</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(*i);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">auto</span> m = <span class="built_in">wordBreakIndex</span>(s, wordDict, index + (*i).<span class="built_in">size</span>());</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">auto</span> t = m.<span class="built_in">begin</span>(); t != m.<span class="built_in">end</span>(); t++) &#123;</span><br><span class="line">                        ans.<span class="built_in">push_back</span>(*i + <span class="string">&quot; &quot;</span> + *t);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        memo[index] = ans;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">wordBreak</span><span class="params">(string s, vector&lt;string&gt;&amp; wordDict)</span> </span>&#123;</span><br><span class="line">        memo.<span class="built_in">clear</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">wordBreakIndex</span>(s, wordDict, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">执行用时 : 112 ms, 在所有 C++ 提交中击败了5.27%的用户</span><br><span class="line">内存消耗 : 11.2 MB, 在所有 C++ 提交中击败了77.66%的用户</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/02/16/%E6%AF%8F%E6%97%A5leetcode-124/" data-id="ckqkjgmca00k0x4c43ljs68q1" data-title="每日leetcode-124" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/03/09/%E6%AF%8F%E6%97%A5leetcode-140/" data-id="ckqkkaz4200kzbcc4e51m1ige" data-title="每日leetcode-140" class="article-share-link">Share</a>
       
       
       
@@ -590,10 +782,54 @@
 
 
   
-    <article id="post-筛法的一个可视化图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-iPhone打开html网页和代码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/02/16/%E7%AD%9B%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%AA%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE/" class="article-date">
-  <time class="dt-published" datetime="2020-02-15T22:06:06.000Z" itemprop="datePublished">2020-02-16</time>
+    <a href="/2020/03/07/iPhone%E6%89%93%E5%BC%80html%E7%BD%91%E9%A1%B5%E5%92%8C%E4%BB%A3%E7%A0%81/" class="article-date">
+  <time class="dt-published" datetime="2020-03-06T22:06:06.000Z" itemprop="datePublished">2020-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/07/iPhone%E6%89%93%E5%BC%80html%E7%BD%91%E9%A1%B5%E5%92%8C%E4%BB%A3%E7%A0%81/">iPhone打开html网页和代码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>可以把它保存到icloud，之后用“文件”这个软件打开。打开的时候长按选择“快速查看”</p>
+<p>如果要看源代码，Code Viewer是可以的。CodeViewer可以用来打开代码看一下，修改的话用textastic</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/07/iPhone%E6%89%93%E5%BC%80html%E7%BD%91%E9%A1%B5%E5%92%8C%E4%BB%A3%E7%A0%81/" data-id="ckqkkaz1o00csbcc41nl7bojf" data-title="iPhone打开html网页和代码" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-每日leetcode-337" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/07/%E6%AF%8F%E6%97%A5leetcode-337/" class="article-date">
+  <time class="dt-published" datetime="2020-03-06T22:06:06.000Z" itemprop="datePublished">2020-03-07</time>
 </a>
     
   <div class="article-category">
@@ -608,7 +844,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/02/16/%E7%AD%9B%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%AA%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE/">筛法的一个可视化图</a>
+      <a class="p-name article-title" href="/2020/03/07/%E6%AF%8F%E6%97%A5leetcode-337/">每日leetcode-337</a>
     </h1>
   
 
@@ -616,12 +852,123 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-primes/solution/ru-he-gao-xiao-pan-ding-shai-xuan-su-shu-by-labula/">https://leetcode-cn.com/problems/count-primes/solution/ru-he-gao-xiao-pan-ding-shai-xuan-su-shu-by-labula/</a></p>
+        <ol start="337">
+<li>打家劫舍 III</li>
+</ol>
+<p>在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果两个直接相连的房子在同一天晚上被打劫，房屋将自动报警。</p>
+<p>计算在不触动警报的情况下，小偷一晚能够盗取的最高金额。</p>
+<p><strong>示例 1:</strong></p>
+<p><strong>输入:</strong> [3,2,3,null,3,null,1]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">2   3</span><br><span class="line"> \   \ </span><br><span class="line">  3   1</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出:</strong> 7<br><strong>解释:</strong> 小偷一晚能够盗取的最高金额 = 3 + 3 + 1 = <strong>7</strong>.</p>
+<p><strong>示例 2:</strong></p>
+<p><strong>输入:</strong> [3,4,5,1,3,null,1]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     3</span><br><span class="line">   &#x2F; \</span><br><span class="line">  4   5</span><br><span class="line"> &#x2F; \   \ </span><br><span class="line">1   3   1</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出:</strong> 9<br><strong>解释:</strong> 小偷一晚能够盗取的最高金额 = <strong>4</strong> + <strong>5</strong> = <strong>9</strong>.</p>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>使用后序遍历非递归，分别记录每一个节点的抢劫能抢到的钱，以及不抢它能抢到的钱，总之还是动态规划。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        unordered_map&lt;TreeNode*, <span class="keyword">int</span>&gt; data;  <span class="comment">// 抢了这个节点的话，可以有多少钱</span></span><br><span class="line">        unordered_map&lt;TreeNode*, <span class="keyword">int</span>&gt; pre;  <span class="comment">// 不抢这个节点的话，可以有多少钱</span></span><br><span class="line">        <span class="comment">// 后序遍历，先把孩子整完了，在整爹，具体看http://www.bilibili.com/video/av23885544/</span></span><br><span class="line">        <span class="comment">// 每一次后序遍历的时候，先把指针p指向左子树，再对根节点做个标记后指向右子树</span></span><br><span class="line">        TreeNode* p = root;</span><br><span class="line">        stack&lt;TreeNode*&gt; tree;</span><br><span class="line">        stack&lt;<span class="keyword">bool</span>&gt; check;</span><br><span class="line">        <span class="keyword">while</span> (p || !tree.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p) &#123;</span><br><span class="line">                tree.<span class="built_in">push</span>(p);</span><br><span class="line">                check.<span class="built_in">push</span>(<span class="literal">false</span>);</span><br><span class="line">                p = p-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">bool</span> need_pop = check.<span class="built_in">top</span>();</span><br><span class="line">                <span class="keyword">if</span> (need_pop) &#123;</span><br><span class="line">                    TreeNode* check_node = tree.<span class="built_in">top</span>();</span><br><span class="line">                    check.<span class="built_in">pop</span>();</span><br><span class="line">                    tree.<span class="built_in">pop</span>();</span><br><span class="line">                    <span class="keyword">int</span> check_val = check_node-&gt;val;;</span><br><span class="line">                    <span class="keyword">int</span> pre_val = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">if</span> (check_node-&gt;left) &#123;</span><br><span class="line">                        check_val += pre[check_node-&gt;left];</span><br><span class="line">                        pre_val += data[check_node-&gt;left];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (check_node-&gt;right) &#123;</span><br><span class="line">                        check_val += pre[check_node-&gt;right];</span><br><span class="line">                        pre_val += data[check_node-&gt;right];</span><br><span class="line">                    &#125;</span><br><span class="line">                    data[check_node] = <span class="built_in">max</span>(check_val, pre_val);</span><br><span class="line">                    pre[check_node] = pre_val;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    check.<span class="built_in">pop</span>();</span><br><span class="line">                    check.<span class="built_in">push</span>(<span class="literal">true</span>);</span><br><span class="line">                    p = tree.<span class="built_in">top</span>()-&gt;right;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> data[root];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://www.bilibili.com/video/av23885544/">http://www.bilibili.com/video/av23885544/</a> 这里的后序遍历非递归的说明挺清楚的</p>
+<h2 id="后序遍历递归版本"><a href="#后序遍历递归版本" class="headerlink" title="后序遍历递归版本"></a>后序遍历递归版本</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        unordered_map&lt;TreeNode*, <span class="keyword">int</span>&gt; data;  <span class="comment">// 抢了这个节点的话，可以有多少钱</span></span><br><span class="line">        unordered_map&lt;TreeNode*, <span class="keyword">int</span>&gt; pre;  <span class="comment">// 不抢这个节点的话，可以有多少钱</span></span><br><span class="line">        <span class="comment">// 这次直接用递归方式的后序遍历</span></span><br><span class="line">        <span class="built_in">search</span>(root, data, pre);</span><br><span class="line">        <span class="keyword">return</span> data[root];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">search</span><span class="params">(TreeNode* check_node, unordered_map&lt;TreeNode*, <span class="keyword">int</span>&gt;&amp; data, unordered_map&lt;TreeNode*, <span class="keyword">int</span>&gt;&amp; pre)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> check_val = check_node-&gt;val;;</span><br><span class="line">        <span class="keyword">int</span> pre_val = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (check_node-&gt;left) &#123;</span><br><span class="line">            <span class="built_in">search</span>(check_node-&gt;left, data, pre);</span><br><span class="line">            check_val += pre[check_node-&gt;left];</span><br><span class="line">            pre_val += data[check_node-&gt;left];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (check_node-&gt;right) &#123;</span><br><span class="line">            <span class="built_in">search</span>(check_node-&gt;right, data, pre);</span><br><span class="line">            check_val += pre[check_node-&gt;right];</span><br><span class="line">            pre_val += data[check_node-&gt;right];</span><br><span class="line">        &#125;</span><br><span class="line">        data[check_node] = <span class="built_in">max</span>(check_val, pre_val);</span><br><span class="line">        pre[check_node] = pre_val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其实比上面的要慢，主要是因为unordered_map的使用，其实并不需要用这个map，每一次返回两个数就行</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>换成返回两个数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 这次直接用递归方式的后序遍历</span></span><br><span class="line">        <span class="keyword">auto</span> ans = <span class="built_in">search</span>(root);</span><br><span class="line">        <span class="keyword">return</span> ans.first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pair&lt;int, int&gt; search(TreeNode* check_node) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!check_node) &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">auto</span> left = <span class="built_in">search</span>(check_node-&gt;left);</span><br><span class="line">        <span class="keyword">auto</span> right = <span class="built_in">search</span>(check_node-&gt;right);</span><br><span class="line">        <span class="keyword">int</span> check_val = check_node-&gt;val + left.second + right.second;</span><br><span class="line">        <span class="keyword">int</span> pre_val = left.first + right.first;</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="built_in">max</span>(check_val, pre_val), pre_val&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/02/16/%E7%AD%9B%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%AA%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE/" data-id="ckqkjgmd100mkx4c40v3lei6c" data-title="筛法的一个可视化图" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/03/07/%E6%AF%8F%E6%97%A5leetcode-337/" data-id="ckqkkaz4a00lnbcc44pqi4mng" data-title="每日leetcode-337" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Notability" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/05/Notability/" class="article-date">
+  <time class="dt-published" datetime="2020-03-04T22:06:06.000Z" itemprop="datePublished">2020-03-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/05/Notability/">Notability</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>打开就开始从网上下载一直转圈：iPad存储内存不够了（</p>
+<p>mac上面找到自己的文件：直接搜索笔记名，加上.nbn后缀，搜到后打开上层文件夹，这个是在icloud里面的</p>
+<p>元数据错误：直接找历史版本，如果找不到的话<strong>多试几次</strong>就有了……不懂原理</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/05/Notability/" data-id="ckqkkayzs006jbcc45142eqqn" data-title="Notability" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-iCloud相关用法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/05/iCloud%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2020-03-04T22:06:06.000Z" itemprop="datePublished">2020-03-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/05/iCloud%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/">iCloud相关用法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://sspai.com/post/44602">https://sspai.com/post/44602</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/03/05/iCloud%E7%9B%B8%E5%85%B3%E7%94%A8%E6%B3%95/" data-id="ckqkkaz1n00cobcc48x51gpaz" data-title="iCloud相关用法" class="article-share-link">Share</a>
       
       
       
@@ -637,7 +984,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/20/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/22/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/20/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/22/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -658,7 +1005,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -668,7 +1015,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -677,7 +1024,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -694,19 +1041,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

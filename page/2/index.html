@@ -73,10 +73,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-强化学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Ridge-Regression" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/04/28/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time class="dt-published" datetime="2021-04-27T22:06:06.000Z" itemprop="datePublished">2021-04-28</time>
+    <a href="/2021/05/30/Ridge-Regression/" class="article-date">
+  <time class="dt-published" datetime="2021-05-29T22:06:06.000Z" itemprop="datePublished">2021-05-30</time>
 </a>
     
   <div class="article-category">
@@ -91,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/28/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a>
+      <a class="p-name article-title" href="/2021/05/30/Ridge-Regression/">Ridge-Regression</a>
     </h1>
   
 
@@ -99,43 +99,23 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>一个模拟环境：<a target="_blank" rel="noopener" href="https://gym.openai.com/">https://gym.openai.com/</a></p>
-<p>一套教程：<a target="_blank" rel="noopener" href="https://mofanpy.com/tutorials/machine-learning/reinforcement-learning/intro-q-learning/">https://mofanpy.com/tutorials/machine-learning/reinforcement-learning/intro-q-learning/</a></p>
-<p>来自 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=2xATEwcRpy8">https://www.youtube.com/watch?v=2xATEwcRpy8</a> 和 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=JgvyzIkgxF0">https://www.youtube.com/watch?v=JgvyzIkgxF0</a></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1762ec9eaff30ceb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="强化学习示意图"></p>
-<p>Agent会进行Environment的探索，agent可以感知environment的状态state（s），agent采取的行动action（a）会影响Environment，而这个行动会有一个reward（r）。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e4bc3874a19c653e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="另一个图"></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27860483">https://zhuanlan.zhihu.com/p/27860483</a></p>
-<p>主动对环境进行试探，并根据试探后，环境反馈回来的结果进行评价、总结，以改进和调整自身的行为，然后环境会根据新的行为作出新的反馈，持续调整的学习过程。</p>
-<p>环境（Environment）：环境会接收Agent执行的一系列的动作（Action），并且对这一系列的动作的好坏进行评价，并转换成一种可量化的（标量信号）Reward反馈给Agent，而不会告诉Agent应该如何去学习动作。Agent只能靠自己的历史（History）经历去学习。同时，环境还像Agent提供它所处的状态（State）信息。环境有完全可观测（Fully Observable）和部分可观测（Partial Observable）两种情况。</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30315707">https://zhuanlan.zhihu.com/p/30315707</a></p>
-<p>reward：</p>
-<ul>
-<li>我们定义了“奖励”，这是一个标量，他代表了一个反馈的信号，代表时刻的的action的表现如何</li>
-<li>我们的目标是得到累计的reward的最大值</li>
-<li>reward hypothesis：reinforcement learning 在reward方面都是基于这个假设的，也就是说，我们认为我们的目标都能够被描述为reward的累计的最大值</li>
-<li>如果我们的任务是基于时间的目标问题，比如我们希望让任务在最小时间完成，这样，我们可以再每次执行完一个action之后，设定一个”-1”的反馈，这样的话，这样我们的优化目标就能够最小化任务执行的时间</li>
-</ul>
-<p>Goal</p>
-<ul>
-<li>对于任何的任务，我们的统一目标是：得到reward的累计的最大值</li>
-<li>有时候我们的agent需要提前做思考，不能只看到当前的reward，要在当前状态就考虑如何使得我的未来得到的reward最大化</li>
-<li>基于上面的特点，这就意味着，我们可能需要放弃眼前的利益以获得累计的更大的奖励。</li>
-<li>比如说，我们在直升机游戏中，会选择停下来补充燃料，然后继续飞行，短期看降低了飞行的距离，但是长期看，他能够在坠前飞的更久</li>
-</ul>
-<p>History 和 State 的关系</p>
-<ul>
-<li>history是一个action、observation、reward的序列：$H_{t}=A_{1}, O_{1}, R_{1}, \ldots, A_{t}, O_{t}, R_{t}$</li>
-<li>history能够决定action接下来采取什么行动；实际上，agent做的就是从history到action的映射</li>
-<li>对于环境而言，history和产生的action交给environment，从而得到对应的observation和reward</li>
-<li>state是history的一个总结，用来决定下一步的action是什么，实际上，他是一个关于history的函数，我们可以这样表示：$S_{t}=f\left(H_{t}\right), A_{t}=h\left(S_{t}\right)$</li>
-<li>State相对于hisory而言最大的好处在于他的信息量很少，实际上，我们也不需要得到所有的history来得到下一步的action（在之后的马尔科夫状态中会提到原因）。</li>
-</ul>
+        <p><a target="_blank" rel="noopener" href="https://youtu.be/Q81RR3yKn30">https://youtu.be/Q81RR3yKn30</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-d7010490063d218a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="例子"></p>
+<p>数据集里面，训练集训出来的模型在测试集上效果不好。这是因为数据没有很好的代表性，把斜率带偏了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-9ba0016ff3fc817d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="所以要把模型调整一下"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-2d73e053fdafce61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="具体例子"></p>
+<p>在这个例子里面，通过加上正则项，使得最后的结果斜率更低。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-641a7dc08f3810bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="作用原理解释"></p>
+<p>如果是参数比较大，自变量的变化会导致因变量变化很大。所以要对参数限制。</p>
+<p>得到的模型斜率比较低，所以预测结果对于斜率的敏感性比较低。</p>
+<p>在ridge regression里面，如果要求截距也是很小，就会导致0点处基本为0。所以不会这样要求。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-c7cbf7eecf6394e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据个数说明"></p>
+<p>普通的线性回归的数据量应该大于参数量，但是用Ridge Regression可以在数据量很少的时候进行计算。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/28/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" data-id="ckqkjgmbu00iox4c4g7p62407" data-title="强化学习" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2021/05/30/Ridge-Regression/" data-id="ckqkkaz0b0088bcc4ezvja8uk" data-title="Ridge-Regression" class="article-share-link">Share</a>
       
       
       
@@ -147,159 +127,10 @@
 
 
   
-    <article id="post-SVD的几何理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-偏差(bias)方差(variance)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/04/27/SVD%E7%9A%84%E5%87%A0%E4%BD%95%E7%90%86%E8%A7%A3/" class="article-date">
-  <time class="dt-published" datetime="2021-04-26T22:06:06.000Z" itemprop="datePublished">2021-04-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/27/SVD%E7%9A%84%E5%87%A0%E4%BD%95%E7%90%86%E8%A7%A3/">SVD的几何理解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>来自 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=DG7YTlGnCEo">https://www.youtube.com/watch?v=DG7YTlGnCEo</a> ，Singular Value Decomposition (SVD) and Image Compression</p>
-<h2 id="几何变换"><a href="#几何变换" class="headerlink" title="几何变换"></a>几何变换</h2><p>我们有些时候需要做一个变换，比如：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-18d496511a38e1ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="变换示例"></p>
-<p>在这种情况下，我们需要进行旋转、水平和竖直方向的拉伸和压缩，并且再次进行旋转。</p>
-<p>而矩阵可以表示一个线性变换，比如：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-620061b450d1bc0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="矩阵表示线性变换的例子"></p>
-<p>有一些特殊的矩阵：</p>
-<ul>
-<li>旋转：<ul>
-<li><img src="https://upload-images.jianshu.io/upload_images/5060560-46b6046769ff16f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="旋转矩阵"></li>
-</ul>
-</li>
-<li>拉伸压缩：<ul>
-<li><img src="https://upload-images.jianshu.io/upload_images/5060560-ea56df34a1fb5dee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="拉伸压缩矩阵"></li>
-</ul>
-</li>
-</ul>
-<p>并且可以进行分解：</p>
-<ul>
-<li><img src="https://upload-images.jianshu.io/upload_images/5060560-b4e363256f70db9a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解"></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-b0accb666bb5e8d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="转换为SVD"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-c8ce7d35a2957f49.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="转换为矩阵形式的示意图"></p>
-<h2 id="降维"><a href="#降维" class="headerlink" title="降维"></a>降维</h2><p>0.44很小，所以可以考虑把它去掉（变为0）</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e933e42c82cc01eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="比较不重要的部分"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-dfc8d5dc92613d67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="变成0之后"></p>
-<p>因此可以降维：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1f0b48052b3edc97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="降维"></p>
-<p>而且可以将矩阵分解之后压缩存储：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-3627907b88ff7ad8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解后从16个数缩减到8个数"></p>
-<p>而其实矩阵可以用SVD的方式分解出来：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-a6d655f486bb962a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解的示意图"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-af57eb93c1caee3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解的示意图2"></p>
-<p>所以可以考虑把后面的比较小的去掉。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-52e5b9889544bb84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="前n项计算出来的结果"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8272b364c93a4bff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="四个不同的大小矩阵计算"></p>
-<p>如果不是一个方阵，其实也可以做：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e20329bd991311ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="非方阵的情况"></p>
-<h2 id="图像压缩"><a href="#图像压缩" class="headerlink" title="图像压缩"></a>图像压缩</h2><p>基于之前的SVD技术，可以进行图像压缩。</p>
-<p>先对原始图像进行分解，只保留一行一列的情况下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-3ec9c076a691edef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图像压缩保留一行一列"></p>
-<p>而之后已经基本上等于0了：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6f2b8026044423c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="到后面就基本上等于0了"></p>
-<p>如果保留前3项，就已经和原图很像了；如果保留前4项，就已经一样了。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-9b18a3c591df5f3d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="压缩"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/27/SVD%E7%9A%84%E5%87%A0%E4%BD%95%E7%90%86%E8%A7%A3/" data-id="ckqkjgm8s0084x4c40iqn2ot4" data-title="SVD的几何理解" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-推荐系统矩阵分解的直观理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/04/27/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/" class="article-date">
-  <time class="dt-published" datetime="2021-04-26T22:06:06.000Z" itemprop="datePublished">2021-04-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/27/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/">推荐系统矩阵分解的直观理解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>内容来自 How does Netflix recommend movies? Matrix Factorization （ <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ZspR5PZemcs">https://www.youtube.com/watch?v=ZspR5PZemcs</a> ），讲得非常清晰易懂</p>
-<p>代码在 <a target="_blank" rel="noopener" href="https://github.com/yanneta/pytorch-tutorials/blob/master/collaborative-filtering-nn.ipynb">https://github.com/yanneta/pytorch-tutorials/blob/master/collaborative-filtering-nn.ipynb</a></p>
-<p>我们可以假设每个人和每个电影有内在的一些feature，假如考虑两个feature，Comedy和Action：</p>
-<ul>
-<li>每个电影包含的两部分的量和每个人对两部分的喜爱与否是下表所示：<ul>
-<li><img src="https://upload-images.jianshu.io/upload_images/5060560-93299a95465e43b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解量的直观理解"></li>
-<li>这里√可以写成1，×可以写成0，所以预期评分就是两部分的内积</li>
-</ul>
-</li>
-<li>最后可以算出一个评分表，就代表每个人对于电影的喜爱程度：<ul>
-<li><img src="https://upload-images.jianshu.io/upload_images/5060560-d06b0f6cfdaa3d6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="算出的矩阵"></li>
-</ul>
-</li>
-</ul>
-<p>左边的两个矩阵相对较小，而右边的矩阵相对较大。这样做也可以起到节省存储空间的作用。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-f8a2ca7b05150890.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="矩阵表示"></p>
-<p>也可以用图的方式来观察，相当于是有中间的feature部分：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-2b8767db112560a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图形式"></p>
-<p>分解的时候可以用梯度下降的方式，先给一个随机值再更新，使用平方求和的方式算误差。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-04b12738baf24acc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Error function"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/27/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/" data-id="ckqkjgmc300jcx4c44p92dw2x" data-title="推荐系统矩阵分解的直观理解" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Colab使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/04/25/Colab%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2021-04-24T22:06:06.000Z" itemprop="datePublished">2021-04-25</time>
+    <a href="/2021/05/30/%E5%81%8F%E5%B7%AE(bias)%E6%96%B9%E5%B7%AE(variance)/" class="article-date">
+  <time class="dt-published" datetime="2021-05-29T22:06:06.000Z" itemprop="datePublished">2021-05-30</time>
 </a>
     
   <div class="article-category">
@@ -314,7 +145,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/25/Colab%E4%BD%BF%E7%94%A8/">Colab使用</a>
+      <a class="p-name article-title" href="/2021/05/30/%E5%81%8F%E5%B7%AE(bias)%E6%96%B9%E5%B7%AE(variance)/">偏差(bias)方差(variance)</a>
     </h1>
   
 
@@ -322,17 +153,24 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>挂载磁盘：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-d3ded3d6baf1e376.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="挂载"></p>
-<p>解压和压缩：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1758badcc87b4fc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="解压和压缩"></p>
-<p>如果有很多图片的数据集，应该直接将这些图片的压缩包用上面的方式解压到挂载的磁盘上，如果直接从drive读取所有图片是很慢的！</p>
-<p>也可以使用git clone或者wget命令</p>
+        <p><a target="_blank" rel="noopener" href="https://youtu.be/EuBBz3bI-aA">https://youtu.be/EuBBz3bI-aA</a></p>
+<p>数据点里面，蓝色表示训练集，绿色表示测试集，中间的曲线表示ground truth。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-526e8ebdaf5377c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据"></p>
+<p>Bias：The inability for a machine learing method to capture the true relationship is called bias. 无法捕获真实关系</p>
+<p>线性模型怎样都不能拟合数据，所以bias比较大。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1f0d3fcb248a5232.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="线性模型"></p>
+<p>波浪线可以很好地拟合数据点，所以bias很小。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e15c4e2991abea9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="波浪线模型"></p>
+<p>但是如果考虑测试集，会发现测试集上反而是线性模型更好一些。</p>
+<p>在不同数据集上的表现差异是variance。下面的图就说明overfit了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-9043ace0f879975b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Variance"></p>
+<p>方差比较大的模型，在新的数据上面的表现不确定。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-48725fde252387fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="西瓜书上的数学定义"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/25/Colab%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm6u001nx4c4c3yugym8" data-title="Colab使用" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2021/05/30/%E5%81%8F%E5%B7%AE(bias)%E6%96%B9%E5%B7%AE(variance)/" data-id="ckqkkaz3300hobcc48inu1j4s" data-title="偏差(bias)方差(variance)" class="article-share-link">Share</a>
       
       
       
@@ -344,95 +182,10 @@
 
 
   
-    <article id="post-删除desktop-ini" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-CS224W-03-1-2021" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/04/25/%E5%88%A0%E9%99%A4desktop-ini/" class="article-date">
-  <time class="dt-published" datetime="2021-04-24T22:06:06.000Z" itemprop="datePublished">2021-04-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/25/%E5%88%A0%E9%99%A4desktop-ini/">删除desktop-ini</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>使用powershell，用<code>Remove-Item -Path .\desktop.ini -Force</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/25/%E5%88%A0%E9%99%A4desktop-ini/" data-id="ckqkjgmbh00h7x4c480ko207v" data-title="删除desktop-ini" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-推荐系统与强化学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/04/25/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time class="dt-published" datetime="2021-04-24T22:06:06.000Z" itemprop="datePublished">2021-04-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/25/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">推荐系统与强化学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/25/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" data-id="ckqkjgmc200j8x4c47i4p2snz" data-title="推荐系统与强化学习" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-推荐系统数据集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/04/24/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E9%9B%86/" class="article-date">
-  <time class="dt-published" datetime="2021-04-23T22:06:06.000Z" itemprop="datePublished">2021-04-24</time>
+    <a href="/2021/05/29/CS224W-03-1-2021/" class="article-date">
+  <time class="dt-published" datetime="2021-05-28T22:06:06.000Z" itemprop="datePublished">2021-05-29</time>
 </a>
     
   <div class="article-category">
@@ -447,7 +200,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/24/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E9%9B%86/">推荐系统数据集</a>
+      <a class="p-name article-title" href="/2021/05/29/CS224W-03-1-2021/">CS224W-03-1-2021</a>
     </h1>
   
 
@@ -455,12 +208,18 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>MovieLens：<a target="_blank" rel="noopener" href="https://grouplens.org/datasets/movielens/">https://grouplens.org/datasets/movielens/</a></p>
+        <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1RZ4y1c7Co?p=7">https://www.bilibili.com/video/BV1RZ4y1c7Co?p=7</a></p>
+<p>传统的ML，输入图之后，获取一些特征描述拓扑特征，并将属性信息输入，一起进行预测。</p>
+<p>需要创建structured features，并用学习算法。</p>
+<p>获取特征的过程：feature engineering。所以要研究怎么摆脱：用表示学习representation learning，不用人工获取特征。</p>
+<p>要进行高效的、和任务无关的表示学习，每个node映射到一个vector（feature representation、embedding），维度d。</p>
+<p>similarity of embeddings of nodes show similarity of nodes in the network。</p>
+<p>downstream tasks：</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/24/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E9%9B%86/" data-id="ckqkjgmc300jax4c49fqx4m9t" data-title="推荐系统数据集" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2021/05/29/CS224W-03-1-2021/" data-id="ckqkkayy50015bcc479o2bns5" data-title="CS224W-03-1-2021" class="article-share-link">Share</a>
       
       
       
@@ -472,14 +231,14 @@
 
 
   
-    <article id="post-SHELL脚本执行SQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-windows-gcc" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/04/15/SHELL%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8CSQL/" class="article-date">
-  <time class="dt-published" datetime="2021-04-14T22:06:06.000Z" itemprop="datePublished">2021-04-15</time>
+    <a href="/2021/05/28/windows-gcc/" class="article-date">
+  <time class="dt-published" datetime="2021-05-27T22:06:06.000Z" itemprop="datePublished">2021-05-28</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a>
   </div>
 
   </div>
@@ -490,7 +249,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/15/SHELL%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8CSQL/">SHELL脚本执行SQL</a>
+      <a class="p-name article-title" href="/2021/05/28/windows-gcc/">windows-gcc</a>
     </h1>
   
 
@@ -498,13 +257,25 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><code>mysql -u用户名 -p密码 -D数据库名 -e&quot;sql 语句&quot;</code></p>
-<p>注意大小写，注意字母这里没有空格</p>
+        <h3 id="下载cygwin"><a href="#下载cygwin" class="headerlink" title="下载cygwin"></a>下载cygwin</h3><p><a target="_blank" rel="noopener" href="https://cygwin.com/">https://cygwin.com/</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装的时候记得搜索gcc进行安装。现在安装了mingw64-x86_64-gcc-g++ 、gcc-g++、vim、wget等常用的</p>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/duke56/article/details/100368938">Cygwin安装GCC、G++、Python、git、vim教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www3.ntu.edu.sg/home/ehchua/programming/howto/Cygwin_HowTo.html">https://www3.ntu.edu.sg/home/ehchua/programming/howto/Cygwin_HowTo.html</a> </li>
+</ul>
+<h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>PATH中添加<code>C:\cygwin64\bin</code></p>
+<h3 id="gcc、g-使用"><a href="#gcc、g-使用" class="headerlink" title="gcc、g++使用"></a>gcc、g++使用</h3><p>mingw64的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 32-bit Windows</span><br><span class="line">$ i686-w64-mingw32-gcc --version</span><br><span class="line">i686-w64-mingw32-gcc (GCC) 6.4.0</span><br><span class="line">$ i686-w64-mingw32-g++ --version</span><br><span class="line">i686-w64-mingw32-g++ (GCC) 6.4.0</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 64-bit Windows</span><br><span class="line">$ x86_64-w64-mingw32-gcc --version</span><br><span class="line">x86_64-w64-mingw32-gcc (GCC) 6.4.0</span><br><span class="line">$ x86_64-w64-mingw32-g++ --version</span><br><span class="line">x86_64-w64-mingw32-g++ (GCC) 6.4.0</span><br></pre></td></tr></table></figure>
+
+<p>普通的直接用gcc g++就行</p>
+<h3 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h3><p>用<code>cmake . -G &quot;Unix Makefiles&quot;</code> 或者 <code>cmake . -G &quot;MinGW Makefiles&quot;</code></p>
+<p>(最好先创建一个build目录，在build目录中<code>cmake .. -G &quot;Unix Makefiles&quot;</code>)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/15/SHELL%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8CSQL/" data-id="ckqkjgm8r0082x4c4bbflh33v" data-title="SHELL脚本执行SQL" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2021/05/28/windows-gcc/" data-id="ckqkkaz2t00gsbcc4glnd1iyv" data-title="windows-gcc" class="article-share-link">Share</a>
       
       
       
@@ -516,14 +287,14 @@
 
 
   
-    <article id="post-conda-jupyter-安装与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-nginx-centos" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/04/11/conda-jupyter-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2021-04-10T22:06:06.000Z" itemprop="datePublished">2021-04-11</time>
+    <a href="/2021/05/18/nginx-centos/" class="article-date">
+  <time class="dt-published" datetime="2021-05-17T22:06:06.000Z" itemprop="datePublished">2021-05-18</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
   </div>
 
   </div>
@@ -534,7 +305,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/11/conda-jupyter-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">conda-jupyter-安装与使用</a>
+      <a class="p-name article-title" href="/2021/05/18/nginx-centos/">nginx-centos</a>
     </h1>
   
 
@@ -542,17 +313,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>安装时直接用<code>conda install jupyter</code></p>
-<p>如果不能用，提示找不到<code>jupyter_core</code>，要记得重启！！！！</p>
-<h2 id="jupyter配置文件"><a href="#jupyter配置文件" class="headerlink" title="jupyter配置文件"></a>jupyter配置文件</h2><p>通过<code>jupyter notebook --generate-config</code>生成，在<code>~/.jupyter/jupyter_notebook_config.py</code></p>
-<p>见<a target="_blank" rel="noopener" href="https://jupyter-notebook.readthedocs.io/en/stable/public_server.html">https://jupyter-notebook.readthedocs.io/en/stable/public_server.html</a></p>
-<h2 id="配置服务器可以被外界访问"><a href="#配置服务器可以被外界访问" class="headerlink" title="配置服务器可以被外界访问"></a>配置服务器可以被外界访问</h2><p>在配置文件中，设置<code>c.NotebookApp.ip = &#39;*&#39;</code></p>
-<h2 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h2><p><code>jupyter notebook password</code></p>
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>下载：<code>sudo yum install nginx</code></p>
+<p>开机启动：<code>sudo systemctl enable nginx</code></p>
+<p>文件在<code>/etc/nginx/nginx.conf</code>，对其进行修改，将file.xxxx.top转发到8002，将blog.xxxx.top转发到8003</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">user nginx;</span><br><span class="line">worker_processes auto;</span><br><span class="line">error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log;</span><br><span class="line">pid &#x2F;run&#x2F;nginx.pid;</span><br><span class="line"></span><br><span class="line"># Load dynamic modules. See &#x2F;usr&#x2F;share&#x2F;doc&#x2F;nginx&#x2F;README.dynamic.</span><br><span class="line">include &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;modules&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span><br><span class="line">                      &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;</span><br><span class="line">                      &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;</span><br><span class="line"></span><br><span class="line">    access_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile            on;</span><br><span class="line">    tcp_nopush          on;</span><br><span class="line">    tcp_nodelay         on;</span><br><span class="line">    keepalive_timeout   65;</span><br><span class="line">    types_hash_max_size 2048;</span><br><span class="line"></span><br><span class="line">    include             &#x2F;etc&#x2F;nginx&#x2F;mime.types;</span><br><span class="line">    default_type        application&#x2F;octet-stream;</span><br><span class="line"></span><br><span class="line">    include &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  file.xxxx.top;</span><br><span class="line"></span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass  http:&#x2F;&#x2F;127.0.0.1:8002;</span><br><span class="line">            proxy_set_header Host $proxy_host;</span><br><span class="line">            proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  blog.xxxx.top;</span><br><span class="line"></span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            proxy_pass  http:&#x2F;&#x2F;127.0.0.1:8003;</span><br><span class="line">            proxy_set_header Host $proxy_host;</span><br><span class="line">            proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动：<code>sudo systemctl start nginx</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/11/conda-jupyter-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm9d00a0x4c40xuk2ep5" data-title="conda-jupyter-安装与使用" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2021/05/18/nginx-centos/" data-id="ckqkkaz2200ebbcc43dk9fypf" data-title="nginx-centos" class="article-share-link">Share</a>
       
       
       
@@ -564,14 +335,14 @@
 
 
   
-    <article id="post-Pytorch-conda安装torch" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-cuda安装报错信息踩坑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/04/10/Pytorch-conda%E5%AE%89%E8%A3%85torch/" class="article-date">
-  <time class="dt-published" datetime="2021-04-09T22:06:06.000Z" itemprop="datePublished">2021-04-10</time>
+    <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/" class="article-date">
+  <time class="dt-published" datetime="2021-05-07T22:06:06.000Z" itemprop="datePublished">2021-05-08</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
   </div>
 
   </div>
@@ -582,7 +353,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/10/Pytorch-conda%E5%AE%89%E8%A3%85torch/">Pytorch-conda安装torch</a>
+      <a class="p-name article-title" href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
     </h1>
   
 
@@ -590,14 +361,199 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>由于电脑中安装某些版本的cudatoolkit的时候会报错，所以在 <a target="_blank" rel="noopener" href="https://pytorch.org/get-started/previous-versions/">https://pytorch.org/get-started/previous-versions/</a> 找到对应的版本，比如：</p>
-<p><code>conda install pytorch==1.1.0 torchvision==0.3.0 cudatoolkit=9.0</code></p>
-<p>最后<strong>记得deactivate然后再activate！！！！！！</strong></p>
+        <p>如果是安装的时候有报错，并且<code>/var/log/cuda-installer.log</code>中写的是<code>[ERROR]: Install of driver component failed.</code>，就**记得看一下<code>/var/log/nvidia-installer.log</code>**。不一定是因为已经装了多个版本cuda的原因，可能是X service等原因！  <a target="_blank" rel="noopener" href="https://forums.developer.nvidia.com/t/info-finished-with-code-256-error-install-of-driver-component-failed/107661/6">https://forums.developer.nvidia.com/t/info-finished-with-code-256-error-install-of-driver-component-failed/107661/6</a></p>
+<h2 id="X-service-error问题"><a href="#X-service-error问题" class="headerlink" title="X service error问题"></a>X service error问题</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lien0906/article/details/54312166">https://blog.csdn.net/lien0906/article/details/54312166</a></p>
+<p>命令行模式下用 <code>sudo init 3</code></p>
+<p>注：这个报错信息是：<code>You appear to be running an X server; please exit X before installing</code> </p>
+<h2 id="多个显卡驱动"><a href="#多个显卡驱动" class="headerlink" title="多个显卡驱动"></a>多个显卡驱动</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41010198/article/details/109367449">https://blog.csdn.net/weixin_41010198/article/details/109367449</a></p>
+<p>可以用<code>sudo apt-get purge nvidia*</code> 删除旧的，再把cuda旧版本的安装包手动删除</p>
+<h2 id="空间不足"><a href="#空间不足" class="headerlink" title="空间不足"></a>空间不足</h2><p>如果是刚开始安装提示空间不足或者安装包损坏，用md5sum确认安装包没有问题的话，就可以用 <code>sudo sh xxx.run --tmpdir=路径</code>换一下安装的临时文件路径。注意是tmpdir不是tempdir</p>
+<p>如果后面安装出错提示空间不足（log记录中或者直接提示），就可以用df看看安装路径下面的盘是不是满了 <a target="_blank" rel="noopener" href="https://www.sohu.com/a/223172587_495675">https://www.sohu.com/a/223172587_495675</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/10/Pytorch-conda%E5%AE%89%E8%A3%85torch/" data-id="ckqkjgm8j007gx4c4fddgfc9n" data-title="Pytorch-conda安装torch" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/" data-id="ckqkkaz0y00aibcc4fko60pk5" data-title="cuda安装报错信息踩坑" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-cuda清华源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/" class="article-date">
+  <time class="dt-published" datetime="2021-05-07T22:06:06.000Z" itemprop="datePublished">2021-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5df0c6b541eb">https://www.jianshu.com/p/5df0c6b541eb</a></p>
+<p>可以直接改配置文件。</p>
+<p>手动输入的话，输入下面这几个，还需要添加channel：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;free </span><br><span class="line">conda config --add channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;main</span><br><span class="line">conda config --add channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;pro</span><br><span class="line">conda config --add channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;msys2</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加channel"><a href="#添加channel" class="headerlink" title="添加channel"></a>添加channel</h2><p>可以直接打开<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/">https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/</a> 看有哪些channel，比如pytorch的添加可以用<code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/" data-id="ckqkkaz0z00albcc46wevb8gv" data-title="cuda清华源" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-md5sum" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/07/md5sum/" class="article-date">
+  <time class="dt-published" datetime="2021-05-06T22:06:06.000Z" itemprop="datePublished">2021-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/07/md5sum/">md5sum</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>用法 md5sum 文件名</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/05/07/md5sum/" data-id="ckqkkaz2000e3bcc473yj6g12" data-title="md5sum" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-torchtext安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/07/torchtext%E5%AE%89%E8%A3%85/" class="article-date">
+  <time class="dt-published" datetime="2021-05-06T22:06:06.000Z" itemprop="datePublished">2021-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/07/torchtext%E5%AE%89%E8%A3%85/">torchtext安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>torchtext的版本与pytorch的版本对应表在 <a target="_blank" rel="noopener" href="https://pypi.org/project/torchtext/0.9.1/">https://pypi.org/project/torchtext/0.9.1/</a> 可以看到。</p>
+<p>比如，pytorch1.8对应torchtext0.8和python3.6+</p>
+<p>安装时，需要使用conda install torchtext==0.8.1 -c pytorch</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/05/07/torchtext%E5%AE%89%E8%A3%85/" data-id="ckqkkaz2j00fubcc47555gwp5" data-title="torchtext安装" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ubuntu版本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/07/ubuntu%E7%89%88%E6%9C%AC/" class="article-date">
+  <time class="dt-published" datetime="2021-05-06T22:06:06.000Z" itemprop="datePublished">2021-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/07/ubuntu%E7%89%88%E6%9C%AC/">ubuntu版本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://linuxize.com/post/how-to-check-your-ubuntu-version/">https://linuxize.com/post/how-to-check-your-ubuntu-version/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/05/07/ubuntu%E7%89%88%E6%9C%AC/" data-id="ckqkkaz2l00g0bcc4648d9wdq" data-title="ubuntu版本" class="article-share-link">Share</a>
       
       
       
@@ -613,7 +569,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -634,7 +590,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -644,7 +600,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -653,7 +609,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -670,19 +626,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

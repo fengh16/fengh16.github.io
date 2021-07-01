@@ -73,172 +73,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Antlr4+python3安装&amp;示例程序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-查找文件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/12/21/Antlr4+python3%E5%AE%89%E8%A3%85&%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F/" class="article-date">
-  <time class="dt-published" datetime="2018-12-20T22:06:06.000Z" itemprop="datePublished">2018-12-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/12/21/Antlr4+python3%E5%AE%89%E8%A3%85&%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F/">Antlr4+python3安装&amp;示例程序</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Antlr系列（配合Python3）文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/32570686">https://www.jianshu.com/nb/32570686</a></p>
-<h2 id="Ubuntu安装"><a href="#Ubuntu安装" class="headerlink" title="Ubuntu安装"></a>Ubuntu安装</h2><p>安装方法：（来自官网首页，Quick Start）</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/lib</span><br><span class="line">$ wget https://www.antlr.org/download/antlr-4.7.2-complete.jar</span><br><span class="line">$ <span class="built_in">export</span> CLASSPATH=<span class="string">&quot;.:/usr/local/lib/antlr-4.7.2-complete.jar:<span class="variable">$CLASSPATH</span>&quot;</span></span><br><span class="line">$ <span class="built_in">alias</span> antlr4=<span class="string">&#x27;java -jar /usr/local/lib/antlr-4.7.2-complete.jar&#x27;</span></span><br><span class="line">$ <span class="built_in">alias</span> grun=<span class="string">&#x27;java org.antlr.v4.gui.TestRig&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>直接运行<code>antlr4</code>和<code>grun</code>出现帮助信息就说明成功。</p>
-<p>第二步下载的时候如果权限不够，就<code>sudo</code>下载并且之后<code>sudo chmod 777 antlr-4.7.2-complete.jar</code></p>
-<p>然后为方便使用，在<code>.bashrc</code>里面添加后三行：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CLASSPATH=<span class="string">&quot;.:/usr/local/lib/antlr-4.7.2-complete.jar:<span class="variable">$CLASSPATH</span>&quot;</span></span><br><span class="line"><span class="built_in">alias</span> antlr4=<span class="string">&#x27;java -jar /usr/local/lib/antlr-4.7.2-complete.jar&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> grun=<span class="string">&#x27;java org.antlr.v4.gui.TestRig&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>一定要注意这里的classpath里面要有<code>.</code></strong></p>
-<h2 id="Windows安装"><a href="#Windows安装" class="headerlink" title="Windows安装"></a>Windows安装</h2><p>添加下载的jar文件与<code>.</code>添加到CLASSPATH中，同时在Path内的路径里面建立两个bat文件：</p>
-<p><code>antlr4.bat</code></p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java org.antlr.v4.Tool %*</span><br></pre></td></tr></table></figure>
-
-<p><code>grun.bat</code></p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java org.antlr.v4.gui.TestRig %*</span><br></pre></td></tr></table></figure>
-
-<p><strong>要特别注意，<code>.</code>一定要添加到CLASSPATH中！！！！！！！</strong></p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>（官方GetStarted：<a target="_blank" rel="noopener" href="https://github.com/antlr/antlr4/blob/master/doc/getting-started.md">https://github.com/antlr/antlr4/blob/master/doc/getting-started.md</a></p>
-<p>创建文件<code>Hello.g4</code>，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grammar Hello;</span><br><span class="line">r  : &#39;hello&#39; ID ;         &#x2F;&#x2F; match keyword hello followed by an identifier</span><br><span class="line">ID : [a-z]+ ;             &#x2F;&#x2F; match lower-case identifiers</span><br><span class="line">WS : [ \t\r\n]+ -&gt; skip ; &#x2F;&#x2F; skip spaces, tabs, newlines</span><br></pre></td></tr></table></figure>
-
-<p>执行<code>antlr4 Hello.g4</code>和<code>javac Hello*.java</code></p>
-<p>之后<code>grun Hello r -tree</code>或者<code>grun Hello r -gui</code>，输入某一个输入串（如<code>hello pjio</code>）后回车并按下<code>Ctrl-D</code>（Windows下为<code>Ctrl-Z</code>），就可以看到解析结果。</p>
-<p>这里的<code>r</code>表示的是第二行的起始符号<code>r</code></p>
-<h2 id="python部分"><a href="#python部分" class="headerlink" title="python部分"></a>python部分</h2><p>（官方说明：<a target="_blank" rel="noopener" href="https://github.com/antlr/antlr4/blob/master/doc/python-target.md">https://github.com/antlr/antlr4/blob/master/doc/python-target.md</a></p>
-<p>准备python库：</p>
-<p><code>pip install antlr4-python3-runtime</code></p>
-<p>执行antlr4，其中需要声明<code>Dlanguage</code>：<code>antlr4 -Dlanguage=Python3 Hello.g4</code> （注意是<strong>P</strong>ython3，P要大写！）</p>
-<p>之后在那个执行antlr4的目录下，创建以下程序并运行：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> antlr4 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> HelloLexer <span class="keyword">import</span> HelloLexer</span><br><span class="line"><span class="keyword">from</span> HelloParser <span class="keyword">import</span> HelloParser</span><br><span class="line"><span class="keyword">from</span> HelloListener <span class="keyword">import</span> HelloListener</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloPrintListener</span>(<span class="params">HelloListener</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enterR</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="comment"># 函数名enterR的R指的是非终结符r</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Hello: %s&quot;</span> % ctx.ID())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    lexer = HelloLexer(StdinStream())</span><br><span class="line">    stream = CommonTokenStream(lexer)</span><br><span class="line">    parser = HelloParser(stream)</span><br><span class="line">    tree = parser.r()</span><br><span class="line">    printer = HelloPrintListener()</span><br><span class="line">    walker = ParseTreeWalker()</span><br><span class="line">    walker.walk(printer, tree)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>还是直接启动后输入<code>hello wjgoiwejgoiw</code>并且回车，输入<code>Ctrl-D</code>或者<code>Ctrl-Z</code>（Windows）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/12/21/Antlr4+python3%E5%AE%89%E8%A3%85&%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F/" data-id="ckqkjgm6g000ex4c474f2bzi0" data-title="Antlr4+python3安装&amp;示例程序" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Test分类与区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/12/03/Test%E5%88%86%E7%B1%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="article-date">
-  <time class="dt-published" datetime="2018-12-02T22:06:06.000Z" itemprop="datePublished">2018-12-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/12/03/Test%E5%88%86%E7%B1%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/">Test分类与区别</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/rickenwang/article/details/78033575">https://blog.csdn.net/rickenwang/article/details/78033575</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/12/03/Test%E5%88%86%E7%B1%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" data-id="ckqkjgm8t0086x4c42vivhllc" data-title="Test分类与区别" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-服务器selenium截图中文问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/11/09/%E6%9C%8D%E5%8A%A1%E5%99%A8selenium%E6%88%AA%E5%9B%BE%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2018-11-08T22:06:06.000Z" itemprop="datePublished">2018-11-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/11/09/%E6%9C%8D%E5%8A%A1%E5%99%A8selenium%E6%88%AA%E5%9B%BE%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/">服务器selenium截图中文问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39792252/article/details/80415550">https://blog.csdn.net/weixin_39792252/article/details/80415550</a></p>
-<p>sudo apt-get install fonts-droid-fallback ttf-wqy-zenhei ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/11/09/%E6%9C%8D%E5%8A%A1%E5%99%A8selenium%E6%88%AA%E5%9B%BE%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" data-id="ckqkjgmc600jox4c4hhc4dszd" data-title="服务器selenium截图中文问题" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-apt-get-problem-with-merge-list" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/11/08/apt-get-problem-with-merge-list/" class="article-date">
-  <time class="dt-published" datetime="2018-11-07T22:06:06.000Z" itemprop="datePublished">2018-11-08</time>
+    <a href="/2019/06/26/%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6/" class="article-date">
+  <time class="dt-published" datetime="2019-06-25T22:06:06.000Z" itemprop="datePublished">2019-06-26</time>
 </a>
     
   <div class="article-category">
@@ -253,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/11/08/apt-get-problem-with-merge-list/">apt-get-problem-with-merge-list</a>
+      <a class="p-name article-title" href="/2019/06/26/%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6/">查找文件</a>
     </h1>
   
 
@@ -261,14 +99,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/30072/how-do-i-fix-a-problem-with-mergelist-or-status-file-could-not-be-parsed-err">https://askubuntu.com/questions/30072/how-do-i-fix-a-problem-with-mergelist-or-status-file-could-not-be-parsed-err</a></p>
-<p><code>sudo rm -vf /var/lib/apt/lists/*</code></p>
-<p><code>sudo apt-get update</code></p>
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xxmonstor/article/details/80507769">https://blog.csdn.net/xxmonstor/article/details/80507769</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/11/08/apt-get-problem-with-merge-list/" data-id="ckqkjgm99009mx4c4dcaac9ua" data-title="apt-get-problem-with-merge-list" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/06/26/%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6/" data-id="ckqkkaz3x00kjbcc4bwdlgnrw" data-title="查找文件" class="article-share-link">Share</a>
       
       
       
@@ -280,14 +116,14 @@
 
 
   
-    <article id="post-printf不显示" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-RN0-59-9使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/10/23/printf%E4%B8%8D%E6%98%BE%E7%A4%BA/" class="article-date">
-  <time class="dt-published" datetime="2018-10-22T22:06:06.000Z" itemprop="datePublished">2018-10-23</time>
+    <a href="/2019/06/25/RN0-59-9%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-06-24T22:06:06.000Z" itemprop="datePublished">2019-06-25</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a>
   </div>
 
   </div>
@@ -298,7 +134,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/23/printf%E4%B8%8D%E6%98%BE%E7%A4%BA/">printf不显示</a>
+      <a class="p-name article-title" href="/2019/06/25/RN0-59-9%E4%BD%BF%E7%94%A8/">RN0-59-9使用</a>
     </h1>
   
 
@@ -306,12 +142,32 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>需要缓冲区满或者scanf或者fflush(stdout);或者有\n才显示。</p>
+        <p>pod换源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shenxiandashu/article/details/80550162">https://blog.csdn.net/shenxiandashu/article/details/80550162</a></p>
+<p>pod install时提示Too many open files in system - sw_vers (Errno::ENFILE)：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b7c3e7904cd0%EF%BC%88%E6%89%A7%E8%A1%8Cpod">https://www.jianshu.com/p/b7c3e7904cd0（执行pod</a> install之前执行sudo ulimit -n 4096）</p>
+<p>安装react native之后安装amap提示找不到-lDoubleConversion：<br>不能打开原来的项目，要打开安装pod后的新的启动文件（pod install的时候，最后的提示信息有说）</p>
+<p>mobx：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32400821/article/details/87887078">https://blog.csdn.net/qq_32400821/article/details/87887078</a></p>
+<p>Support for the experimental syntax ‘decorators-legacy’ isn’t currently enabled：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1cc6d4273445%E3%80%82%E9%87%8C%E9%9D%A2%E8%BF%98%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85babel-preset-react-app">https://www.jianshu.com/p/1cc6d4273445。里面还需要安装babel-preset-react-app</a></p>
+<p>PropTypes现在来自自己npm下载的’prop-types’</p>
+<p>权限申请：<a target="_blank" rel="noopener" href="https://blog.csdn.net/mochiwxtianya/article/details/78545975">https://blog.csdn.net/mochiwxtianya/article/details/78545975</a></p>
+<p>地图定位权限：<a target="_blank" rel="noopener" href="https://lbs.amap.com/api/android-location-sdk/guide/android-location/getlocation">https://lbs.amap.com/api/android-location-sdk/guide/android-location/getlocation</a></p>
+<p>debug模式签名（安卓）：<a target="_blank" rel="noopener" href="https://blog.csdn.net/chengxu_kuangrexintu/article/details/80949884">https://blog.csdn.net/chengxu_kuangrexintu/article/details/80949884</a></p>
+<p>安卓真机调试：到sdk目录（/Users/xxx/Library/Android/sdk/platform-tools）后./adb reverse tcp:8081 tcp:8081</p>
+<p>安卓发布报错：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/72683f7e9488">https://www.jianshu.com/p/72683f7e9488</a></p>
+<p>app下面的build.gradle，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">project.ext.react &#x3D; [</span><br><span class="line">    entryFile: &quot;index.android.js&quot; &#x2F;&#x2F; 原来是&quot;index.js&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>ios发布的时候：’Multiple commands produce’ <a target="_blank" rel="noopener" href="https://github.com/facebook/react-native/issues/20492">https://github.com/facebook/react-native/issues/20492</a></p>
+<p>duplicate symbols可以在build phases里面删掉</p>
+<p>安卓发布<strong>不用</strong>运行bundle-android</p>
+<p>ios发布相关realpath不存在的错误：<br><img src="https://upload-images.jianshu.io/upload_images/5060560-814f58e966d44850.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>安卓9不允许http联网：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b7ee5f412d1e">https://www.jianshu.com/p/b7ee5f412d1e</a></p>
+<p>CameraRoll 找不到的问题：<a target="_blank" rel="noopener" href="https://www.shiqidu.com/p/132">https://www.shiqidu.com/p/132</a></p>
+<p>和汉字等宽空格：<a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/wordpress/2015/01/tips-blank-character-chinese-align/">https://www.zhangxinxu.com/wordpress/2015/01/tips-blank-character-chinese-align/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/23/printf%E4%B8%8D%E6%98%BE%E7%A4%BA/" data-id="ckqkjgmaq00egx4c473k9fp9d" data-title="printf不显示" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/06/25/RN0-59-9%E4%BD%BF%E7%94%A8/" data-id="ckqkkaz08007wbcc40k4z5la7" data-title="RN0-59-9使用" class="article-share-link">Share</a>
       
       
       
@@ -323,10 +179,258 @@
 
 
   
-    <article id="post-django-rander导致网址被转义" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-已有Tomcat部署&amp;使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/10/17/django-rander%E5%AF%BC%E8%87%B4%E7%BD%91%E5%9D%80%E8%A2%AB%E8%BD%AC%E4%B9%89/" class="article-date">
-  <time class="dt-published" datetime="2018-10-16T22:06:06.000Z" itemprop="datePublished">2018-10-17</time>
+    <a href="/2019/05/03/%E5%B7%B2%E6%9C%89Tomcat%E9%83%A8%E7%BD%B2&%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-05-02T22:06:06.000Z" itemprop="datePublished">2019-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/05/03/%E5%B7%B2%E6%9C%89Tomcat%E9%83%A8%E7%BD%B2&%E4%BD%BF%E7%94%A8/">已有Tomcat部署&amp;使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>首先安装java环境：<br><del><a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2017-11/148695.htm">https://www.linuxidc.com/Linux/2017-11/148695.htm</a><br>如果找不到add-命令看<a target="_blank" rel="noopener" href="https://blog.csdn.net/dogfish/article/details/67150703">https://blog.csdn.net/dogfish/article/details/67150703</a></del><br>直接用default-jdk</p>
+<p>update-alternatives –config java查看java目录<br>export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64<br>export JRE_HOME=。。。</p>
+<p>cd 。。。。。。。/tomcat8/bin<br>sudo tar zvxf commons-daemon-native.tar.gz<br>cd commons-daemon-1.0.15-native-src/unix<br>sudo ./configure –with-java=$JAVA_HOME<br>sudo make<br>sudo cp jsvc ../..</p>
+<p>sudo useradd -r -s /sbin/nologin tomcat<br>sudo chown -R tomcat: /路径<br>之后./daemon start</p>
+<p>lsof -i:8009可以查看谁占用了8009端口</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/05/03/%E5%B7%B2%E6%9C%89Tomcat%E9%83%A8%E7%BD%B2&%E4%BD%BF%E7%94%A8/" data-id="ckqkkaz3m00jdbcc4czjxht3q" data-title="已有Tomcat部署&amp;使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-React-Native开发-iOS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/13/React-Native%E5%BC%80%E5%8F%91-iOS/" class="article-date">
+  <time class="dt-published" datetime="2019-04-12T22:06:06.000Z" itemprop="datePublished">2019-04-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/04/13/React-Native%E5%BC%80%E5%8F%91-iOS/">React-Native开发-iOS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>MacBook Pro，10.14.4 (18E226)</li>
+<li>Xcode Version 10.2 (10E125)</li>
+<li>node 11.14.0</li>
+<li>watchman: stable 4.9.0 (bottled)</li>
+<li>真机：iPhone 7，iOS 12.2</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>直接按照教程（<a target="_blank" rel="noopener" href="https://reactnative.cn/docs/getting-started.html%EF%BC%89%E8%B5%B0%E4%B8%8B%E6%9D%A5%EF%BC%8C%E5%90%AF%E5%8A%A8%E7%9A%84%E6%97%B6%E5%80%99%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%81%E4%B8%8B%E9%9D%A2%E3%80%82">https://reactnative.cn/docs/getting-started.html）走下来，启动的时候的问题见下面。</a></p>
+<h2 id="调试问题"><a href="#调试问题" class="headerlink" title="调试问题"></a>调试问题</h2><ol>
+<li>提示：找不到模拟器</li>
+</ol>
+<ul>
+<li>直接使用<code>Xcode</code>打开<code>ios</code>目录下的<code>.xcodeproj</code>文件，在里面点击开始的三角按钮打开调试</li>
+</ul>
+<ol start="2">
+<li>真机调试需要development team</li>
+</ol>
+<ul>
+<li>直接按照<a target="_blank" rel="noopener" href="https://blog.csdn.net/liuchuo/article/details/52554997%E8%BF%99%E9%87%8C%E5%86%99%E7%9A%84%EF%BC%8C%E5%88%9B%E5%BB%BA%E8%B4%A6%E6%88%B7%E5%B9%B6%E4%B8%94%E7%99%BB%E5%BD%95%EF%BC%8C%E9%80%89%E6%8B%A9%E8%BF%99%E4%B8%AA%E8%B4%A6%E6%88%B7%E3%80%82%E6%8E%A5%E4%B8%8B%E6%9D%A5%E6%8C%89%E7%85%A7%E4%B8%8B%E4%B8%80%E6%9D%A1%E8%AF%B4%E7%9A%84%E4%BF%AE%E6%94%B9">https://blog.csdn.net/liuchuo/article/details/52554997这里写的，创建账户并且登录，选择这个账户。接下来按照下一条说的修改</a></li>
+</ul>
+<ol start="3">
+<li>真机调试提示The app ID cannot be registered to your development team</li>
+</ol>
+<ul>
+<li>按照<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_31337641/article/details/78401465%EF%BC%8C%E4%BF%AE%E6%94%B9bundle">https://blog.csdn.net/qq_31337641/article/details/78401465，修改bundle</a> identifier</li>
+</ul>
+<ol start="4">
+<li>按照上两步修改完还提示同样的错误</li>
+</ol>
+<ul>
+<li>因为还有tests这个target没有修改</li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-449184b6e39f2950.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-13 上午10.32.05.png"></li>
+<li>选择<code>General</code>左侧下拉框，选择为<code>Tests</code>，并且选择team</li>
+</ul>
+<ol start="5">
+<li>无法启动，提示不受信任的开发者</li>
+</ol>
+<ul>
+<li>解决方案：（<a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/574c52196f55486c8d9dc106.html%EF%BC%89%E6%89%8B%E6%9C%BA%E4%B8%8A%EF%BC%8C%E8%AE%BE%E7%BD%AE%E2%80%94%E2%80%94%E9%80%9A%E7%94%A8%E2%80%94%E2%80%94%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E6%89%BE%E5%88%B0%E5%90%8E%E4%BF%A1%E4%BB%BB">https://jingyan.baidu.com/article/574c52196f55486c8d9dc106.html）手机上，设置——通用——设备管理——找到后信任</a></li>
+</ul>
+<h2 id="启动屏"><a href="#启动屏" class="headerlink" title="启动屏"></a>启动屏</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/suwu150/article/details/81269870">https://blog.csdn.net/suwu150/article/details/81269870</a></p>
+<h2 id="模版资料"><a href="#模版资料" class="headerlink" title="模版资料"></a>模版资料</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zuiuren/p/6067384.html">https://www.cnblogs.com/zuiuren/p/6067384.html</a></p>
+<h2 id="关于npm-audix"><a href="#关于npm-audix" class="headerlink" title="关于npm audix"></a>关于npm audix</h2><p><del>会出现奇奇怪怪的bug，人生苦短，别管他了</del>该管还得管，看下面</p>
+<h2 id="老版本升级"><a href="#老版本升级" class="headerlink" title="老版本升级"></a>老版本升级</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bb9bb98a32be">https://www.jianshu.com/p/bb9bb98a32be</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000015680046">https://segmentfault.com/a/1190000015680046</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.mamicode.com/info-detail-2500980.html">http://www.mamicode.com/info-detail-2500980.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ZhangYaBo_Code/article/details/83066844">https://blog.csdn.net/ZhangYaBo_Code/article/details/83066844</a></p>
+<h3 id="重要：网络问题无法下载的解决："><a href="#重要：网络问题无法下载的解决：" class="headerlink" title="重要：网络问题无法下载的解决："></a>重要：网络问题无法下载的解决：</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b7d4d9e1d2ed">https://www.jianshu.com/p/b7d4d9e1d2ed</a></p>
+<h2 id="模拟器慢"><a href="#模拟器慢" class="headerlink" title="模拟器慢"></a>模拟器慢</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c1a51ff6ed33">https://www.jianshu.com/p/c1a51ff6ed33</a></p>
+<h2 id="无法访问网络"><a href="#无法访问网络" class="headerlink" title="无法访问网络"></a>无法访问网络</h2><p>NSAllowsArbitraryLoads没有设置</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/joyfixing/article/details/52535922">https://blog.csdn.net/joyfixing/article/details/52535922</a></p>
+<h2 id="fetch传递参数"><a href="#fetch传递参数" class="headerlink" title="fetch传递参数"></a>fetch传递参数</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ygj0930/p/7488088.html">https://www.cnblogs.com/ygj0930/p/7488088.html</a></p>
+<h2 id="link后忽然报错无法link到x-x-x-x-tvOS"><a href="#link后忽然报错无法link到x-x-x-x-tvOS" class="headerlink" title="link后忽然报错无法link到x x x x-tvOS"></a>link后忽然报错无法link到x x x x-tvOS</h2><p><img src="https://upload-images.jianshu.io/upload_images/5060560-874ba9406b1fb92e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-05-24 下午12.36.09.png"></p>
+<p>INSTALL_FAILED_INVALID_APK：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/netcorner/p/9669044.html">https://www.cnblogs.com/netcorner/p/9669044.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/04/13/React-Native%E5%BC%80%E5%8F%91-iOS/" data-id="ckqkkaz0a0083bcc43w6t1ntf" data-title="React-Native开发-iOS" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ftp服务开启" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/11/ftp%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%90%AF/" class="article-date">
+  <time class="dt-published" datetime="2019-03-10T22:06:06.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/11/ftp%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%90%AF/">ftp服务开启</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>用apt安装vsftpd</li>
+<li>修改配置文件：</li>
+</ol>
+<ul>
+<li><code> vim /etc/vsftpd.conf</code></li>
+<li>修改<code>listen=YES</code>, <code>local_enable=YES</code>, <code>write_enable=YES</code></li>
+</ul>
+<ol start="3">
+<li>用FileZilla连接，用sftp协议（22端口）</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/03/11/ftp%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%90%AF/" data-id="ckqkkaz1i00c5bcc458ir8qmb" data-title="ftp服务开启" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-阿里云开启虚拟内存" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/10/%E9%98%BF%E9%87%8C%E4%BA%91%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/" class="article-date">
+  <time class="dt-published" datetime="2019-03-09T22:06:06.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/10/%E9%98%BF%E9%87%8C%E4%BA%91%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">阿里云开启虚拟内存</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://my.oschina.net/u/2306127/blog/657269">https://my.oschina.net/u/2306127/blog/657269</a></p>
+<p>阿里云服务器默认没有开启虚拟内存，经常遇到软件内存不足，运行崩溃的情况。</p>
+<p>为了减少购买昂贵的内存资源，可以暂时使用虚拟内存代替（根据运行的程序需求，性能会降低一些）。</p>
+<p>这个技术在云服务器上使用，可以省很多银子的哦！！！</p>
+<p>1、查看内存使用情况<br>free -m</p>
+<p>root@supermap:/swap# free -m<br>             total       used       free     shared    buffers     cached<br>Mem:           488        480          8          0          1        337<br>-/+ buffers/cache:        141        346<br>Swap:         0          0       0<br>虚拟内存空间竟然为0，实在是没有想到！！！</p>
+<p>2、创建虚拟内存磁盘卷</p>
+<h1 id="大概count-2024288，2G左右，可以视磁盘大小和需求创建。"><a href="#大概count-2024288，2G左右，可以视磁盘大小和需求创建。" class="headerlink" title="大概count=2024288，2G左右，可以视磁盘大小和需求创建。"></a>大概count=2024288，2G左右，可以视磁盘大小和需求创建。</h1><h1 id="默认存放在-swap-swapadd，可以是自己的任何目录。阿里云服务器默认没有swap，需要自己mkdir-swap创建。"><a href="#默认存放在-swap-swapadd，可以是自己的任何目录。阿里云服务器默认没有swap，需要自己mkdir-swap创建。" class="headerlink" title="默认存放在/swap/swapadd，可以是自己的任何目录。阿里云服务器默认没有swap，需要自己mkdir /swap创建。"></a>默认存放在/swap/swapadd，可以是自己的任何目录。阿里云服务器默认没有swap，需要自己mkdir /swap创建。</h1><p>dd if=/dev/zero of=/swap/swapadd bs=1024 count=2024288<br>3、将磁盘卷转为虚拟内存卷<br>mkswap /swap/swapadd<br>4、启用虚拟内存服务<br>swapon /swap/swapadd<br>5、再来查看内存使用情况<br>root@supermap:/swap# free -m<br>             total       used       free     shared    buffers     cached<br>Mem:           488        480          8          0          1        337<br>-/+ buffers/cache:        141        346<br>Swap:         1976          0       1976<br>多出来2G左右的swap空间。</p>
+<p>6、关闭虚拟内存服务<br>swapoff -v /swap/swapadd<br>7、移动虚拟内存空间<br>如果当前的虚存所在的磁盘空间不够，可以首先关闭虚存服务，将其移动到别的磁盘，再启用即可。</p>
+<p>swapoff -v /swap/swapadd<br>mv /swap/swapadd /mnt/swap<br>swapon /swap/swapadd<br>嗯，这个技术在云服务器上使用，可以省很多银子的哦！！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/03/10/%E9%98%BF%E9%87%8C%E4%BA%91%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/" data-id="ckqkkaz5500olbcc4ckachmcn" data-title="阿里云开启虚拟内存" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Cygwin安装与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/01/Cygwin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-02-28T22:06:06.000Z" itemprop="datePublished">2019-03-01</time>
 </a>
     
   <div class="article-category">
@@ -341,7 +445,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/17/django-rander%E5%AF%BC%E8%87%B4%E7%BD%91%E5%9D%80%E8%A2%AB%E8%BD%AC%E4%B9%89/">django-rander导致网址被转义</a>
+      <a class="p-name article-title" href="/2019/03/01/Cygwin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">Cygwin安装与使用</a>
     </h1>
   
 
@@ -349,211 +453,276 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>网址中具有的&amp;符号可能被django转义。</p>
-<p>解决：可以把改为</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/17/django-rander%E5%AF%BC%E8%87%B4%E7%BD%91%E5%9D%80%E8%A2%AB%E8%BD%AC%E4%B9%89/" data-id="ckqkjgm9g00afx4c47lh0b438" data-title="django-rander导致网址被转义" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Pycharm-search-in-path-快捷键冲突" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/10/16/Pycharm-search-in-path-%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%86%B2%E7%AA%81/" class="article-date">
-  <time class="dt-published" datetime="2018-10-15T22:06:06.000Z" itemprop="datePublished">2018-10-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/16/Pycharm-search-in-path-%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%86%B2%E7%AA%81/">Pycharm-search-in-path-快捷键冲突</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Ctrl-Alt-F快捷键在Win10自带中文输入法下是切换繁体简体的，但是该快捷键同时也是Pycharm等的search in path快捷键</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/16/Pycharm-search-in-path-%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%86%B2%E7%AA%81/" data-id="ckqkjgm8a006px4c41atnb177" data-title="Pycharm-search-in-path-快捷键冲突" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Win32-编程添加控件及监听" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/10/16/Win32-%E7%BC%96%E7%A8%8B%E6%B7%BB%E5%8A%A0%E6%8E%A7%E4%BB%B6%E5%8F%8A%E7%9B%91%E5%90%AC/" class="article-date">
-  <time class="dt-published" datetime="2018-10-15T22:06:06.000Z" itemprop="datePublished">2018-10-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/16/Win32-%E7%BC%96%E7%A8%8B%E6%B7%BB%E5%8A%A0%E6%8E%A7%E4%BB%B6%E5%8F%8A%E7%9B%91%E5%90%AC/">Win32-编程添加控件及监听</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Win32编程系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30332818">https://www.jianshu.com/nb/30332818</a></p>
-<h2 id="添加控件"><a href="#添加控件" class="headerlink" title="添加控件"></a>添加控件</h2><p>在Hello World基础上，添加：</p>
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>Cygwin是一个在windows平台上运行的类UNIX模拟环境。直接从官方<a target="_blank" rel="noopener" href="https://cygwin.com/install.html%E4%B8%8B%E8%BD%BD%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85%EF%BC%88https://cygwin.com/setup-x86_64.exe%EF%BC%89%EF%BC%8C%E5%AE%89%E8%A3%85%E5%8D%B3%E5%8F%AF%E3%80%82">https://cygwin.com/install.html下载在线安装包（https://cygwin.com/setup-x86_64.exe），安装即可。</a></p>
+<p>其中选择网站那一步，镜像可以填163的：<a target="_blank" rel="noopener" href="http://mirrors.163.com/cygwin/%EF%BC%8C%E7%82%B9%E5%87%BBadd%E5%90%8E%E4%B8%80%E7%9B%B4%E7%82%B9%E4%B8%8B%E4%B8%80%E6%AD%A5%E3%80%82">http://mirrors.163.com/cygwin/，点击add后一直点下一步。</a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>他的根目录是在安装目录（如<code>C:\cygwin64</code>下），</p>
+<ol>
+<li>命令运行：</li>
+</ol>
 <ul>
-<li><code>wWinMain</code>内部创建变量，使用的是如下的方法：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建静态文本控件</span></span><br><span class="line">HWND hStatic = <span class="built_in">CreateWindow</span>(</span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;static&quot;</span>),  <span class="comment">//静态文本框的类名</span></span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;hahaha&quot;</span>),  <span class="comment">//控件的文本</span></span><br><span class="line">	WS_CHILD <span class="comment">/*子窗口*/</span> | WS_VISIBLE <span class="comment">/*创建时显示*/</span> | WS_BORDER <span class="comment">/*带边框*/</span>,</span><br><span class="line">	<span class="number">120</span> <span class="comment">/*X坐标*/</span>, <span class="number">20</span><span class="comment">/*Y坐标*/</span>, <span class="number">150</span><span class="comment">/*宽度*/</span>, <span class="number">80</span><span class="comment">/*高度*/</span>, hwnd<span class="comment">/*父窗口句柄*/</span>,</span><br><span class="line">	(HMENU)<span class="number">1</span>,  <span class="comment">//为控件指定一个唯一标识符</span></span><br><span class="line">	hInstance,  <span class="comment">//当前实例句柄</span></span><br><span class="line">	<span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
-<li>类似可以创建按钮、输入框等，如下：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面一行代码创建输入框</span></span><br><span class="line"><span class="built_in">CreateWindow</span>(<span class="string">L&quot;EDIT&quot;</span>, <span class="number">0</span>, WS_BORDER | WS_CHILD | WS_VISIBLE, <span class="number">56</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">18</span>, hwnd, <span class="number">0</span>, hInstance, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面一行代码创建按钮</span></span><br><span class="line">my_button = <span class="built_in">CreateWindow</span>(<span class="string">L&quot;BUTTON&quot;</span>, <span class="string">L&quot;一个按钮&quot;</span>, WS_CHILD | WS_VISIBLE, <span class="number">70</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">25</span>, hwnd, (HMENU)<span class="number">8</span>, hInstance, <span class="number">0</span>);</span><br></pre></td></tr></table></figure></li>
-<li>创建下拉框的时候会比较麻烦，需要绑定数据，如下所示：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">TCHAR Planets[<span class="number">9</span>][<span class="number">10</span>] =</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;Mercury&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Venus&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Terra&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Mars&quot;</span>),</span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;Jupiter&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Saturn&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Uranus&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Neptune&quot;</span>),</span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;Pluto??&quot;</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> xpos = <span class="number">100</span>;            <span class="comment">// Horizontal position of the window.</span></span><br><span class="line"><span class="keyword">int</span> ypos = <span class="number">100</span>;            <span class="comment">// Vertical position of the window.</span></span><br><span class="line"><span class="keyword">int</span> nwidth = <span class="number">200</span>;          <span class="comment">// Width of the window</span></span><br><span class="line"><span class="keyword">int</span> nheight = <span class="number">200</span>;         <span class="comment">// Height of the window</span></span><br><span class="line">HWND hwndParent = hwnd; <span class="comment">// Handle to the parent window</span></span><br><span class="line"></span><br><span class="line">HWND hWndComboBox = <span class="built_in">CreateWindow</span>(<span class="string">L&quot;COMBOBOX&quot;</span>, <span class="built_in">TEXT</span>(<span class="string">&quot;&quot;</span>),</span><br><span class="line">	CBS_DROPDOWN | CBS_HASSTRINGS | WS_CHILD | WS_OVERLAPPED | WS_VISIBLE,</span><br><span class="line">	xpos, ypos, nwidth, nheight, hwndParent, <span class="literal">NULL</span>, hInstance,</span><br><span class="line">	<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">TCHAR A[<span class="number">16</span>];</span><br><span class="line"><span class="keyword">int</span>  k = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(&amp;A, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(A));</span><br><span class="line"><span class="keyword">for</span> (k = <span class="number">0</span>; k &lt;= <span class="number">8</span>; k += <span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">wcscpy_s</span>(A, <span class="built_in"><span class="keyword">sizeof</span></span>(A) / <span class="built_in"><span class="keyword">sizeof</span></span>(TCHAR), (TCHAR*)Planets[k]);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Add string to combobox.</span></span><br><span class="line">	<span class="built_in">SendMessage</span>(hWndComboBox, (UINT)CB_ADDSTRING, (WPARAM)<span class="number">0</span>, (LPARAM)A);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Send the CB_SETCURSEL message to display an initial item </span></span><br><span class="line"><span class="comment">//  in the selection field  </span></span><br><span class="line"><span class="built_in">SendMessage</span>(hWndComboBox, CB_SETCURSEL, (WPARAM)<span class="number">2</span>, (LPARAM)<span class="number">0</span>);</span><br></pre></td></tr></table></figure></li>
+<li>如<code>ls</code>, <code>mkdir</code>, <code>ps</code>等命令都可以执行</li>
 </ul>
-<h2 id="绑定事件"><a href="#绑定事件" class="headerlink" title="绑定事件"></a>绑定事件</h2><ul>
-<li>在<code>WindowProc</code>里面添加对应的switch-case，如下：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wchar_t</span> a[<span class="number">6</span>] = <span class="built_in">TEXT</span>(<span class="string">&quot;Dian0&quot;</span>);</span><br><span class="line"><span class="keyword">int</span> wmId = <span class="built_in">LOWORD</span>(wParam);</span><br><span class="line"><span class="keyword">int</span> wmEvent = <span class="built_in">HIWORD</span>(wParam);</span><br><span class="line"><span class="built_in"><span class="keyword">switch</span></span> (uMsg)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> WM_CLOSE:</span><br><span class="line">	<span class="built_in">DestroyWindow</span>(hwnd);</span><br><span class="line">	<span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">	<span class="built_in">PostQuitMessage</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> WM_COMMAND:</span><br><span class="line">	<span class="keyword">if</span> (wmEvent == BN_CLICKED) &#123;</span><br><span class="line">		a[<span class="number">4</span>] = <span class="string">L&#x27;0&#x27;</span> + (a[<span class="number">4</span>] - <span class="string">L&#x27;0&#x27;</span> + <span class="number">1</span>) % <span class="number">10</span>;</span><br><span class="line">		<span class="built_in">SetWindowText</span>(my_button, a);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (wmEvent == CBN_SELCHANGE)</span><br><span class="line">		<span class="comment">// If the user makes a selection from the list:</span></span><br><span class="line">		<span class="comment">//   Send CB_GETCURSEL message to get the index of the selected list item.</span></span><br><span class="line">		<span class="comment">//   Send CB_GETLBTEXT message to get the item.</span></span><br><span class="line">		<span class="comment">//   Display the item in a messagebox.</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> ItemIndex = <span class="built_in">SendMessage</span>((HWND)lParam, (UINT)CB_GETCURSEL,</span><br><span class="line">			(WPARAM)<span class="number">0</span>, (LPARAM)<span class="number">0</span>);</span><br><span class="line">		TCHAR  ListItem[<span class="number">256</span>];</span><br><span class="line">		(TCHAR)<span class="built_in">SendMessage</span>((HWND)lParam, (UINT)CB_GETLBTEXT,</span><br><span class="line">			(WPARAM)ItemIndex, (LPARAM)ListItem);</span><br><span class="line">		<span class="built_in">MessageBox</span>(hwnd, (LPCWSTR)ListItem, <span class="built_in">TEXT</span>(<span class="string">&quot;Item Selected&quot;</span>), MB_OK);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Here don&#x27;t write break on purpose!</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">DefWindowProc</span>(hwnd, msg, wParam, lParam);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 还是得要去处理default的事件</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/16/Win32-%E7%BC%96%E7%A8%8B%E6%B7%BB%E5%8A%A0%E6%8E%A7%E4%BB%B6%E5%8F%8A%E7%9B%91%E5%90%AC/" data-id="ckqkjgm940095x4c4drttft6j" data-title="Win32-编程添加控件及监听" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Win32编程-系统托盘" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/10/16/Win32%E7%BC%96%E7%A8%8B-%E7%B3%BB%E7%BB%9F%E6%89%98%E7%9B%98/" class="article-date">
-  <time class="dt-published" datetime="2018-10-15T22:06:06.000Z" itemprop="datePublished">2018-10-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/16/Win32%E7%BC%96%E7%A8%8B-%E7%B3%BB%E7%BB%9F%E6%89%98%E7%9B%98/">Win32编程-系统托盘</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Win32编程系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30332818">https://www.jianshu.com/nb/30332818</a></p>
-<p>见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/mycwq/article/details/14169991">https://blog.csdn.net/mycwq/article/details/14169991</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/16/Win32%E7%BC%96%E7%A8%8B-%E7%B3%BB%E7%BB%9F%E6%89%98%E7%9B%98/" data-id="ckqkjgm940098x4c4eadx24u1" data-title="Win32编程-系统托盘" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Win32-C++-Hello-World及程序运行" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/10/15/Win32-C++-Hello-World%E5%8F%8A%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C/" class="article-date">
-  <time class="dt-published" datetime="2018-10-14T22:06:06.000Z" itemprop="datePublished">2018-10-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/15/Win32-C++-Hello-World%E5%8F%8A%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C/">Win32-C++-Hello-World及程序运行</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Win32编程系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30332818">https://www.jianshu.com/nb/30332818</a></p>
-<p>Win32编程可以实现GUI界面，具体可以参考微软官方给出的教程，下面介绍一下Hello World。</p>
-<p>微软提供的入门基础HelloWorld程序见<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/learnwin32/your-first-windows-program">https://docs.microsoft.com/en-us/windows/desktop/learnwin32/your-first-windows-program</a></p>
-<p>摘录代码如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> UNICODE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UNICODE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WindowProc</span><span class="params">(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> WINAPI <span class="title">wWinMain</span><span class="params">(HINSTANCE hInstance, HINSTANCE, PWSTR pCmdLine, <span class="keyword">int</span> nCmdShow)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Register the window class.</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">wchar_t</span> CLASS_NAME[]  = <span class="string">L&quot;Sample Window Class&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    WNDCLASS wc = &#123; &#125;;</span><br><span class="line"></span><br><span class="line">    wc.lpfnWndProc   = WindowProc;</span><br><span class="line">    wc.hInstance     = hInstance;</span><br><span class="line">    wc.lpszClassName = CLASS_NAME;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">RegisterClass</span>(&amp;wc);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create the window.</span></span><br><span class="line"></span><br><span class="line">    HWND hwnd = <span class="built_in">CreateWindowEx</span>(</span><br><span class="line">        <span class="number">0</span>,                              <span class="comment">// Optional window styles.</span></span><br><span class="line">        CLASS_NAME,                     <span class="comment">// Window class</span></span><br><span class="line">        <span class="string">L&quot;Learn to Program Windows&quot;</span>,    <span class="comment">// Window text</span></span><br><span class="line">        WS_OVERLAPPEDWINDOW,            <span class="comment">// Window style</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Size and position</span></span><br><span class="line">        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,</span><br><span class="line"></span><br><span class="line">        <span class="literal">NULL</span>,       <span class="comment">// Parent window    </span></span><br><span class="line">        <span class="literal">NULL</span>,       <span class="comment">// Menu</span></span><br><span class="line">        hInstance,  <span class="comment">// Instance handle</span></span><br><span class="line">        <span class="literal">NULL</span>        <span class="comment">// Additional application data</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (hwnd == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">ShowWindow</span>(hwnd, nCmdShow);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Run the message loop.</span></span><br><span class="line"></span><br><span class="line">    MSG msg = &#123; &#125;;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">GetMessage</span>(&amp;msg, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">TranslateMessage</span>(&amp;msg);</span><br><span class="line">        <span class="built_in">DispatchMessage</span>(&amp;msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WindowProc</span><span class="params">(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span> (uMsg)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">        <span class="built_in">PostQuitMessage</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> WM_PAINT:</span><br><span class="line">        &#123;</span><br><span class="line">            PAINTSTRUCT ps;</span><br><span class="line">            HDC hdc = <span class="built_in">BeginPaint</span>(hwnd, &amp;ps);</span><br><span class="line"><span class="built_in">FillRect</span>(hdc, &amp;ps.rcPaint, (HBRUSH) (COLOR_WINDOW+<span class="number">1</span>));</span><br><span class="line">            <span class="built_in">EndPaint</span>(hwnd, &amp;ps);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">DefWindowProc</span>(hwnd, uMsg, wParam, lParam);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<ol start="2">
+<li>访问Windows下内容：</li>
+</ol>
 <ul>
-<li>使用方法<br>我是在VS2017中使用的<ul>
-<li>创建一个Windows窗口程序</li>
-<li>删除掉里面原有的文件</li>
-<li>设置项目属性C/C++-预编译头-不使用预编译头</li>
-<li>创建新的Cpp文件，内容是上面的代码</li>
-<li>运行即可</li>
+<li>在<code>ls</code>, <code>ps</code>时是不能直接看到Windows下的东西的，所以需要特殊的操作：<ul>
+<li>文件查看：在<code>/dev</code>目录下面会有windows的设备，在<code>/cygdrive</code>目录下也有所有盘符，所以如果需要访问C盘，就可以直接<code>cd /cygdrive/c</code></li>
+<li>进程查看：需要输入<code>ps -aW</code>才能查看到</li>
+<li>执行主机上的程序：直接执行即可，比如cmd可以直接通过任意目录直接输入<code>cmd.exe</code>回车执行</li>
 </ul>
 </li>
-<li>这个东西其实就是一个代码的框架，写其他的时候直接在上面添加就行</li>
+</ul>
+<ol start="3">
+<li>直接编译：</li>
+</ol>
+<ul>
+<li>到相应目录下直接用gcc等即可</li>
+</ul>
+<ol start="4">
+<li>安装新的包：</li>
+</ol>
+<ul>
+<li>重新打开安装程序，选择要安装什么的时候搜索自己想要的包，并且选择右侧的skip为版本号</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/15/Win32-C++-Hello-World%E5%8F%8A%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C/" data-id="ckqkjgm930093x4c4absc66kz" data-title="Win32-C++-Hello-World及程序运行" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/03/01/Cygwin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="ckqkkayyb001tbcc44q158pd7" data-title="Cygwin安装与使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-igraph在Windows上" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/01/igraph%E5%9C%A8Windows%E4%B8%8A/" class="article-date">
+  <time class="dt-published" datetime="2019-02-28T22:06:06.000Z" itemprop="datePublished">2019-03-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/01/igraph%E5%9C%A8Windows%E4%B8%8A/">igraph在Windows上</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Windows下先安装Cygwin，里面选择上cymwin的gcc相关的几个包（gcc-g++以及几个cygwin-gcc的包），make，automake和autoconf。</p>
+<p>如果出现找不到<code>sys/time</code>等文件，可能是因为使用的是Windows里面的gcc，这时候可以用which gcc来检查一下，如果发现是，那就需要重新安装cymwin中的gcc。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/03/01/igraph%E5%9C%A8Windows%E4%B8%8A/" data-id="ckqkkaz1q00d0bcc46p8ses47" data-title="igraph在Windows上" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-01简单使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/26/01%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-01-25T22:06:06.000Z" itemprop="datePublished">2019-01-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/01/26/01%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">01简单使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Tensorflow基本使用方法"><a href="#Tensorflow基本使用方法" class="headerlink" title="Tensorflow基本使用方法"></a>Tensorflow基本使用方法</h2><p>B站视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av41751450/">https://www.bilibili.com/video/av41751450/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br></pre></td></tr></table></figure>
+
+<p>图计算：</p>
+<ul>
+<li>节点：<ul>
+<li>数据<ul>
+<li>constant, variable, placeholder</li>
+<li>是张量（Tensor）<ul>
+<li>其实就是高维数组</li>
+<li>0维：一个数；1维：数组；2维：矩阵</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>运算<ul>
+<li>各种函数&amp;操作</li>
+<li>如：tf.add, tf.multiply, 以及一些重载的运算符（可以直接使用 +， *）</li>
+<li>广播机制：比如一个数组<code>[1, 2, 3]</code>和一个数<code>1</code>相加，会看作数组中每一个元素与数相加，得到<code>[2, 3, 4]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>边：节点之间的关系</li>
+</ul>
+<h3 id="常数操作"><a href="#常数操作" class="headerlink" title="常数操作"></a>常数操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const1 = tf.constant(<span class="number">3</span>, dtype=tf.float32, name=<span class="string">&#x27;const2&#x27;</span>)</span><br><span class="line">const2 = tf.constant(<span class="number">4.5</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">added = tf.add(const1, const2)  <span class="comment"># operation节点</span></span><br><span class="line">const3 = tf.constant(<span class="number">3.0</span>)</span><br><span class="line">mult = added * const3</span><br><span class="line"><span class="built_in">print</span>(mult)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Tensor(&quot;mul:0&quot;, shape=(), dtype=float32)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sess = tf.Session()</span><br><span class="line"><span class="built_in">print</span>(sess.run(mult))</span><br><span class="line">sess.close()</span><br></pre></td></tr></table></figure>
+
+<pre><code>22.5
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:  <span class="comment"># __enter__和__exit__</span></span><br><span class="line">    <span class="built_in">print</span>(sess.run([mult, added]))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[22.5, 7.5]
+</code></pre>
+<h3 id="内置的常数生成"><a href="#内置的常数生成" class="headerlink" title="内置的常数生成"></a>内置的常数生成</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a = tf.zeros([<span class="number">2</span>,<span class="number">3</span>], dtype=tf.float32)</span><br><span class="line">b = tf.ones([<span class="number">3</span>,<span class="number">2</span>])</span><br><span class="line">c = tf.constant(<span class="number">2.0</span>, shape=[<span class="number">2</span>,<span class="number">2</span>])</span><br><span class="line">d = tf.random_normal([<span class="number">2</span>,<span class="number">2</span>], mean=<span class="number">3</span>, stddev=<span class="number">4</span>)</span><br><span class="line">mul = tf.matmul(a,b)  <span class="comment"># 2*2的矩阵，全是0</span></span><br><span class="line">added = tf.add(mul, c)  <span class="comment"># 2*2的矩阵，全是2</span></span><br><span class="line"></span><br><span class="line">e = tf.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">f = tf.constant([<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>])</span><br><span class="line">mul2 = tf.multiply(e,f)</span><br><span class="line">added2 = tf.add(e, <span class="number">1</span>)</span><br><span class="line">added3 = e + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span>(sess.run(added))</span><br><span class="line">    <span class="built_in">print</span>(sess.run(mul2))</span><br><span class="line">    <span class="built_in">print</span>(sess.run(added2))</span><br><span class="line">    <span class="built_in">print</span>(sess.run(added3))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[2. 2.]
+ [2. 2.]]
+[ 5 12 21]
+[2 3 4]
+[2 3 4]
+</code></pre>
+<h3 id="变量操作"><a href="#变量操作" class="headerlink" title="变量操作"></a>变量操作</h3><p>注意要有初始化</p>
+<ul>
+<li>声明变量的时候给的数不是变量本身，所以需要建立起这个数和变量之间的关系</li>
+<li>也可以用其他节点初始化变量，这时就可以看出初始化操作的必要性<ul>
+<li>变量和传入的节点不是相同的关系，所以需要另外建立联系</li>
+</ul>
+</li>
+</ul>
+<p>可以进行赋值</p>
+<ul>
+<li>使用tf.assign(目标Variable，源节点)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = tf.constant(<span class="number">2</span>)</span><br><span class="line">b = tf.Variable(<span class="number">5</span>)</span><br><span class="line">c = tf.Variable(a + <span class="number">5</span>)</span><br><span class="line">d = tf.multiply(c, c)</span><br><span class="line">update = tf.assign(c, d)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    <span class="built_in">print</span>(sess.run([update]))</span><br><span class="line">    <span class="built_in">print</span>(sess.run([update]))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[49]
+[2401]
+</code></pre>
+<h3 id="占位符placeholder"><a href="#占位符placeholder" class="headerlink" title="占位符placeholder"></a>占位符placeholder</h3><p>需要使用<code>feed_dict</code>进行赋值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">m = tf.placeholder(tf.float32)</span><br><span class="line">n = tf.placeholder(tf.float32)</span><br><span class="line">added = m + n</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span>(sess.run(added, feed_dict=&#123;m: <span class="number">1</span>, n: <span class="number">2</span>&#125;))</span><br></pre></td></tr></table></figure>
+
+<pre><code>3.0
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/01/26/01%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" data-id="ckqkkayxn0006bcc4b20b8qos" data-title="01简单使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-jupyter-notebook入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/25/jupyter-notebook%E5%85%A5%E9%97%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-01-24T22:06:06.000Z" itemprop="datePublished">2019-01-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/01/25/jupyter-notebook%E5%85%A5%E9%97%A8/">jupyter-notebook入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>先安装好python和pip，直接<code>pip install jupyter</code></p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p><code>jupyter notebook</code>，稍等就会打开jupyter。</p>
+<p>同时会显示<code>The Jupyter Notebook is running at:</code>的信息，打开对应的网址（下图中的<code>http://localhost:8888/?token=e05bd6eeb83cd681c886af7e4c6852a3a62f591a8a49d1f8</code>）就行。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8566591ef04a4fb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动显示信息"></p>
+<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><p><img src="https://upload-images.jianshu.io/upload_images/5060560-8f59c94ea138e090.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Jupyter主界面"></p>
+<p>如图，进入你想要创建notebook的页面，点击new创建想要的notebook（在这里只有安装过python3，所以只有python3版本的notebook可用）。</p>
+<p>等待terminal启动后，出现如图界面：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e4826ff111120afc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="notebook界面"></p>
+<p>现在就可以进行输入了，按下回车是换行，shift+回车是运行。返回值会显示到out里面，但是print的结果不会显示在表格中。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-73b7694258fd9f25.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行界面"></p>
+<p>所有代码都是在同一个terminal里面运行的，所以之前计算过的变量都会保存，相当于顺序在python里面执行这些代码。</p>
+<p>运行结束后就可以保存为<code>.ipynb</code>类型的文件了。</p>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><p>修改之前的单元格，也可以单独运行（shift+enter），也可以直接点击Cell -&gt; Run All来直接按照从上到下的顺序来运行所有单元格。</p>
+<h2 id="单元格类型"><a href="#单元格类型" class="headerlink" title="单元格类型"></a>单元格类型</h2><p>除了代码单元格，还可以创建Markdown单元格（Cell-&gt;Celltype-&gt;Markdown），如图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-9bb149f1cda6d236.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择单元格类型"></p>
+<p>例如，输入：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># hhh</span></span><br><span class="line">$$a=\sqrt&#123;M&#125;$$</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://upload-images.jianshu.io/upload_images/5060560-8566591ef04a4fb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot;</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>之后shift+enter，就可以获得如图的结果：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-4eba32404ac01f55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown示例"></p>
+<p>如果需要修改的话，可以直接双击修改。</p>
+<p>Markdown语法示例可以参见<a target="_blank" rel="noopener" href="https://github.com/fengh16/Copy_README%E3%80%82">https://github.com/fengh16/Copy_README。</a></p>
+<h2 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h2><p>首先保证电脑中已经安装过matplotlib，如果没有就在控制台中通过<code>pip install matplotlib</code>安装。</p>
+<p>为了能够直接画图，我们需要执行<code>%matplotlib inline</code>。</p>
+<p>例如：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-55f9744a785fbc2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="matplotlib使用示例"></p>
+<p>可见只有将<code>%matplotlib inline</code>执行后才能直接画图。</p>
+<h2 id="密码设置"><a href="#密码设置" class="headerlink" title="密码设置"></a>密码设置</h2><p><a target="_blank" rel="noopener" href="https://www.wandouip.com/t5i226529/">https://www.wandouip.com/t5i226529/</a></p>
+<h2 id="Java支持"><a href="#Java支持" class="headerlink" title="Java支持"></a>Java支持</h2><p><a target="_blank" rel="noopener" href="https://github.com/SpencerPark/IJava">https://github.com/SpencerPark/IJava</a> 按照readme的说明整</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/01/25/jupyter-notebook%E5%85%A5%E9%97%A8/" data-id="ckqkkaz1s00dabcc4d989d7nw" data-title="jupyter-notebook入门" class="article-share-link">Share</a>
       
       
       
@@ -569,7 +738,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/27/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/29/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/27/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/29/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -590,7 +759,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -600,7 +769,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -609,7 +778,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -626,19 +795,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

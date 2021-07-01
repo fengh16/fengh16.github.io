@@ -73,565 +73,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-已有Tomcat部署&amp;使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-每日leetcode-143" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2019/05/03/%E5%B7%B2%E6%9C%89Tomcat%E9%83%A8%E7%BD%B2&%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2019-05-02T22:06:06.000Z" itemprop="datePublished">2019-05-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/05/03/%E5%B7%B2%E6%9C%89Tomcat%E9%83%A8%E7%BD%B2&%E4%BD%BF%E7%94%A8/">已有Tomcat部署&amp;使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>首先安装java环境：<br><del><a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2017-11/148695.htm">https://www.linuxidc.com/Linux/2017-11/148695.htm</a><br>如果找不到add-命令看<a target="_blank" rel="noopener" href="https://blog.csdn.net/dogfish/article/details/67150703">https://blog.csdn.net/dogfish/article/details/67150703</a></del><br>直接用default-jdk</p>
-<p>update-alternatives –config java查看java目录<br>export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64<br>export JRE_HOME=。。。</p>
-<p>cd 。。。。。。。/tomcat8/bin<br>sudo tar zvxf commons-daemon-native.tar.gz<br>cd commons-daemon-1.0.15-native-src/unix<br>sudo ./configure –with-java=$JAVA_HOME<br>sudo make<br>sudo cp jsvc ../..</p>
-<p>sudo useradd -r -s /sbin/nologin tomcat<br>sudo chown -R tomcat: /路径<br>之后./daemon start</p>
-<p>lsof -i:8009可以查看谁占用了8009端口</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/05/03/%E5%B7%B2%E6%9C%89Tomcat%E9%83%A8%E7%BD%B2&%E4%BD%BF%E7%94%A8/" data-id="ckqkjgmbu00imx4c4g4zvggaa" data-title="已有Tomcat部署&amp;使用" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-React-Native开发-iOS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/04/13/React-Native%E5%BC%80%E5%8F%91-iOS/" class="article-date">
-  <time class="dt-published" datetime="2019-04-12T22:06:06.000Z" itemprop="datePublished">2019-04-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/04/13/React-Native%E5%BC%80%E5%8F%91-iOS/">React-Native开发-iOS</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
-<li>MacBook Pro，10.14.4 (18E226)</li>
-<li>Xcode Version 10.2 (10E125)</li>
-<li>node 11.14.0</li>
-<li>watchman: stable 4.9.0 (bottled)</li>
-<li>真机：iPhone 7，iOS 12.2</li>
-</ul>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>直接按照教程（<a target="_blank" rel="noopener" href="https://reactnative.cn/docs/getting-started.html%EF%BC%89%E8%B5%B0%E4%B8%8B%E6%9D%A5%EF%BC%8C%E5%90%AF%E5%8A%A8%E7%9A%84%E6%97%B6%E5%80%99%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%81%E4%B8%8B%E9%9D%A2%E3%80%82">https://reactnative.cn/docs/getting-started.html）走下来，启动的时候的问题见下面。</a></p>
-<h2 id="调试问题"><a href="#调试问题" class="headerlink" title="调试问题"></a>调试问题</h2><ol>
-<li>提示：找不到模拟器</li>
-</ol>
-<ul>
-<li>直接使用<code>Xcode</code>打开<code>ios</code>目录下的<code>.xcodeproj</code>文件，在里面点击开始的三角按钮打开调试</li>
-</ul>
-<ol start="2">
-<li>真机调试需要development team</li>
-</ol>
-<ul>
-<li>直接按照<a target="_blank" rel="noopener" href="https://blog.csdn.net/liuchuo/article/details/52554997%E8%BF%99%E9%87%8C%E5%86%99%E7%9A%84%EF%BC%8C%E5%88%9B%E5%BB%BA%E8%B4%A6%E6%88%B7%E5%B9%B6%E4%B8%94%E7%99%BB%E5%BD%95%EF%BC%8C%E9%80%89%E6%8B%A9%E8%BF%99%E4%B8%AA%E8%B4%A6%E6%88%B7%E3%80%82%E6%8E%A5%E4%B8%8B%E6%9D%A5%E6%8C%89%E7%85%A7%E4%B8%8B%E4%B8%80%E6%9D%A1%E8%AF%B4%E7%9A%84%E4%BF%AE%E6%94%B9">https://blog.csdn.net/liuchuo/article/details/52554997这里写的，创建账户并且登录，选择这个账户。接下来按照下一条说的修改</a></li>
-</ul>
-<ol start="3">
-<li>真机调试提示The app ID cannot be registered to your development team</li>
-</ol>
-<ul>
-<li>按照<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_31337641/article/details/78401465%EF%BC%8C%E4%BF%AE%E6%94%B9bundle">https://blog.csdn.net/qq_31337641/article/details/78401465，修改bundle</a> identifier</li>
-</ul>
-<ol start="4">
-<li>按照上两步修改完还提示同样的错误</li>
-</ol>
-<ul>
-<li>因为还有tests这个target没有修改</li>
-<li><img src="https://upload-images.jianshu.io/upload_images/5060560-449184b6e39f2950.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-04-13 上午10.32.05.png"></li>
-<li>选择<code>General</code>左侧下拉框，选择为<code>Tests</code>，并且选择team</li>
-</ul>
-<ol start="5">
-<li>无法启动，提示不受信任的开发者</li>
-</ol>
-<ul>
-<li>解决方案：（<a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/574c52196f55486c8d9dc106.html%EF%BC%89%E6%89%8B%E6%9C%BA%E4%B8%8A%EF%BC%8C%E8%AE%BE%E7%BD%AE%E2%80%94%E2%80%94%E9%80%9A%E7%94%A8%E2%80%94%E2%80%94%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E6%89%BE%E5%88%B0%E5%90%8E%E4%BF%A1%E4%BB%BB">https://jingyan.baidu.com/article/574c52196f55486c8d9dc106.html）手机上，设置——通用——设备管理——找到后信任</a></li>
-</ul>
-<h2 id="启动屏"><a href="#启动屏" class="headerlink" title="启动屏"></a>启动屏</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/suwu150/article/details/81269870">https://blog.csdn.net/suwu150/article/details/81269870</a></p>
-<h2 id="模版资料"><a href="#模版资料" class="headerlink" title="模版资料"></a>模版资料</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zuiuren/p/6067384.html">https://www.cnblogs.com/zuiuren/p/6067384.html</a></p>
-<h2 id="关于npm-audix"><a href="#关于npm-audix" class="headerlink" title="关于npm audix"></a>关于npm audix</h2><p><del>会出现奇奇怪怪的bug，人生苦短，别管他了</del>该管还得管，看下面</p>
-<h2 id="老版本升级"><a href="#老版本升级" class="headerlink" title="老版本升级"></a>老版本升级</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bb9bb98a32be">https://www.jianshu.com/p/bb9bb98a32be</a></p>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000015680046">https://segmentfault.com/a/1190000015680046</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.mamicode.com/info-detail-2500980.html">http://www.mamicode.com/info-detail-2500980.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ZhangYaBo_Code/article/details/83066844">https://blog.csdn.net/ZhangYaBo_Code/article/details/83066844</a></p>
-<h3 id="重要：网络问题无法下载的解决："><a href="#重要：网络问题无法下载的解决：" class="headerlink" title="重要：网络问题无法下载的解决："></a>重要：网络问题无法下载的解决：</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b7d4d9e1d2ed">https://www.jianshu.com/p/b7d4d9e1d2ed</a></p>
-<h2 id="模拟器慢"><a href="#模拟器慢" class="headerlink" title="模拟器慢"></a>模拟器慢</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c1a51ff6ed33">https://www.jianshu.com/p/c1a51ff6ed33</a></p>
-<h2 id="无法访问网络"><a href="#无法访问网络" class="headerlink" title="无法访问网络"></a>无法访问网络</h2><p>NSAllowsArbitraryLoads没有设置</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/joyfixing/article/details/52535922">https://blog.csdn.net/joyfixing/article/details/52535922</a></p>
-<h2 id="fetch传递参数"><a href="#fetch传递参数" class="headerlink" title="fetch传递参数"></a>fetch传递参数</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ygj0930/p/7488088.html">https://www.cnblogs.com/ygj0930/p/7488088.html</a></p>
-<h2 id="link后忽然报错无法link到x-x-x-x-tvOS"><a href="#link后忽然报错无法link到x-x-x-x-tvOS" class="headerlink" title="link后忽然报错无法link到x x x x-tvOS"></a>link后忽然报错无法link到x x x x-tvOS</h2><p><img src="https://upload-images.jianshu.io/upload_images/5060560-874ba9406b1fb92e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2019-05-24 下午12.36.09.png"></p>
-<p>INSTALL_FAILED_INVALID_APK：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/netcorner/p/9669044.html">https://www.cnblogs.com/netcorner/p/9669044.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/04/13/React-Native%E5%BC%80%E5%8F%91-iOS/" data-id="ckqkjgm8o007sx4c489v80e1k" data-title="React-Native开发-iOS" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-ftp服务开启" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/03/11/ftp%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%90%AF/" class="article-date">
-  <time class="dt-published" datetime="2019-03-10T22:06:06.000Z" itemprop="datePublished">2019-03-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/03/11/ftp%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%90%AF/">ftp服务开启</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>用apt安装vsftpd</li>
-<li>修改配置文件：</li>
-</ol>
-<ul>
-<li><code> vim /etc/vsftpd.conf</code></li>
-<li>修改<code>listen=YES</code>, <code>local_enable=YES</code>, <code>write_enable=YES</code></li>
-</ul>
-<ol start="3">
-<li>用FileZilla连接，用sftp协议（22端口）</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/03/11/ftp%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%90%AF/" data-id="ckqkjgm9v00bqx4c4g1b44dis" data-title="ftp服务开启" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-阿里云开启虚拟内存" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/03/10/%E9%98%BF%E9%87%8C%E4%BA%91%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/" class="article-date">
-  <time class="dt-published" datetime="2019-03-09T22:06:06.000Z" itemprop="datePublished">2019-03-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/03/10/%E9%98%BF%E9%87%8C%E4%BA%91%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">阿里云开启虚拟内存</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://my.oschina.net/u/2306127/blog/657269">https://my.oschina.net/u/2306127/blog/657269</a></p>
-<p>阿里云服务器默认没有开启虚拟内存，经常遇到软件内存不足，运行崩溃的情况。</p>
-<p>为了减少购买昂贵的内存资源，可以暂时使用虚拟内存代替（根据运行的程序需求，性能会降低一些）。</p>
-<p>这个技术在云服务器上使用，可以省很多银子的哦！！！</p>
-<p>1、查看内存使用情况<br>free -m</p>
-<p>root@supermap:/swap# free -m<br>             total       used       free     shared    buffers     cached<br>Mem:           488        480          8          0          1        337<br>-/+ buffers/cache:        141        346<br>Swap:         0          0       0<br>虚拟内存空间竟然为0，实在是没有想到！！！</p>
-<p>2、创建虚拟内存磁盘卷</p>
-<h1 id="大概count-2024288，2G左右，可以视磁盘大小和需求创建。"><a href="#大概count-2024288，2G左右，可以视磁盘大小和需求创建。" class="headerlink" title="大概count=2024288，2G左右，可以视磁盘大小和需求创建。"></a>大概count=2024288，2G左右，可以视磁盘大小和需求创建。</h1><h1 id="默认存放在-swap-swapadd，可以是自己的任何目录。阿里云服务器默认没有swap，需要自己mkdir-swap创建。"><a href="#默认存放在-swap-swapadd，可以是自己的任何目录。阿里云服务器默认没有swap，需要自己mkdir-swap创建。" class="headerlink" title="默认存放在/swap/swapadd，可以是自己的任何目录。阿里云服务器默认没有swap，需要自己mkdir /swap创建。"></a>默认存放在/swap/swapadd，可以是自己的任何目录。阿里云服务器默认没有swap，需要自己mkdir /swap创建。</h1><p>dd if=/dev/zero of=/swap/swapadd bs=1024 count=2024288<br>3、将磁盘卷转为虚拟内存卷<br>mkswap /swap/swapadd<br>4、启用虚拟内存服务<br>swapon /swap/swapadd<br>5、再来查看内存使用情况<br>root@supermap:/swap# free -m<br>             total       used       free     shared    buffers     cached<br>Mem:           488        480          8          0          1        337<br>-/+ buffers/cache:        141        346<br>Swap:         1976          0       1976<br>多出来2G左右的swap空间。</p>
-<p>6、关闭虚拟内存服务<br>swapoff -v /swap/swapadd<br>7、移动虚拟内存空间<br>如果当前的虚存所在的磁盘空间不够，可以首先关闭虚存服务，将其移动到别的磁盘，再启用即可。</p>
-<p>swapoff -v /swap/swapadd<br>mv /swap/swapadd /mnt/swap<br>swapon /swap/swapadd<br>嗯，这个技术在云服务器上使用，可以省很多银子的哦！！！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/03/10/%E9%98%BF%E9%87%8C%E4%BA%91%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/" data-id="ckqkjgmdf00nux4c4e7qa29x2" data-title="阿里云开启虚拟内存" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Cygwin安装与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/03/01/Cygwin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2019-02-28T22:06:06.000Z" itemprop="datePublished">2019-03-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/03/01/Cygwin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">Cygwin安装与使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>Cygwin是一个在windows平台上运行的类UNIX模拟环境。直接从官方<a target="_blank" rel="noopener" href="https://cygwin.com/install.html%E4%B8%8B%E8%BD%BD%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85%EF%BC%88https://cygwin.com/setup-x86_64.exe%EF%BC%89%EF%BC%8C%E5%AE%89%E8%A3%85%E5%8D%B3%E5%8F%AF%E3%80%82">https://cygwin.com/install.html下载在线安装包（https://cygwin.com/setup-x86_64.exe），安装即可。</a></p>
-<p>其中选择网站那一步，镜像可以填163的：<a target="_blank" rel="noopener" href="http://mirrors.163.com/cygwin/%EF%BC%8C%E7%82%B9%E5%87%BBadd%E5%90%8E%E4%B8%80%E7%9B%B4%E7%82%B9%E4%B8%8B%E4%B8%80%E6%AD%A5%E3%80%82">http://mirrors.163.com/cygwin/，点击add后一直点下一步。</a></p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>他的根目录是在安装目录（如<code>C:\cygwin64</code>下），</p>
-<ol>
-<li>命令运行：</li>
-</ol>
-<ul>
-<li>如<code>ls</code>, <code>mkdir</code>, <code>ps</code>等命令都可以执行</li>
-</ul>
-<ol start="2">
-<li>访问Windows下内容：</li>
-</ol>
-<ul>
-<li>在<code>ls</code>, <code>ps</code>时是不能直接看到Windows下的东西的，所以需要特殊的操作：<ul>
-<li>文件查看：在<code>/dev</code>目录下面会有windows的设备，在<code>/cygdrive</code>目录下也有所有盘符，所以如果需要访问C盘，就可以直接<code>cd /cygdrive/c</code></li>
-<li>进程查看：需要输入<code>ps -aW</code>才能查看到</li>
-<li>执行主机上的程序：直接执行即可，比如cmd可以直接通过任意目录直接输入<code>cmd.exe</code>回车执行</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li>直接编译：</li>
-</ol>
-<ul>
-<li>到相应目录下直接用gcc等即可</li>
-</ul>
-<ol start="4">
-<li>安装新的包：</li>
-</ol>
-<ul>
-<li>重新打开安装程序，选择要安装什么的时候搜索自己想要的包，并且选择右侧的skip为版本号</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/03/01/Cygwin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm6v001qx4c48c6k0yry" data-title="Cygwin安装与使用" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-igraph在Windows上" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/03/01/igraph%E5%9C%A8Windows%E4%B8%8A/" class="article-date">
-  <time class="dt-published" datetime="2019-02-28T22:06:06.000Z" itemprop="datePublished">2019-03-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/03/01/igraph%E5%9C%A8Windows%E4%B8%8A/">igraph在Windows上</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Windows下先安装Cygwin，里面选择上cymwin的gcc相关的几个包（gcc-g++以及几个cygwin-gcc的包），make，automake和autoconf。</p>
-<p>如果出现找不到<code>sys/time</code>等文件，可能是因为使用的是Windows里面的gcc，这时候可以用which gcc来检查一下，如果发现是，那就需要重新安装cymwin中的gcc。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/03/01/igraph%E5%9C%A8Windows%E4%B8%8A/" data-id="ckqkjgma400clx4c4at0f5i9s" data-title="igraph在Windows上" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-01简单使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/01/26/01%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2019-01-25T22:06:06.000Z" itemprop="datePublished">2019-01-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94TF/">使用—软件—TF</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/01/26/01%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">01简单使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Tensorflow基本使用方法"><a href="#Tensorflow基本使用方法" class="headerlink" title="Tensorflow基本使用方法"></a>Tensorflow基本使用方法</h2><p>B站视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av41751450/">https://www.bilibili.com/video/av41751450/</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br></pre></td></tr></table></figure>
-
-<p>图计算：</p>
-<ul>
-<li>节点：<ul>
-<li>数据<ul>
-<li>constant, variable, placeholder</li>
-<li>是张量（Tensor）<ul>
-<li>其实就是高维数组</li>
-<li>0维：一个数；1维：数组；2维：矩阵</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>运算<ul>
-<li>各种函数&amp;操作</li>
-<li>如：tf.add, tf.multiply, 以及一些重载的运算符（可以直接使用 +， *）</li>
-<li>广播机制：比如一个数组<code>[1, 2, 3]</code>和一个数<code>1</code>相加，会看作数组中每一个元素与数相加，得到<code>[2, 3, 4]</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>边：节点之间的关系</li>
-</ul>
-<h3 id="常数操作"><a href="#常数操作" class="headerlink" title="常数操作"></a>常数操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const1 = tf.constant(<span class="number">3</span>, dtype=tf.float32, name=<span class="string">&#x27;const2&#x27;</span>)</span><br><span class="line">const2 = tf.constant(<span class="number">4.5</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">added = tf.add(const1, const2)  <span class="comment"># operation节点</span></span><br><span class="line">const3 = tf.constant(<span class="number">3.0</span>)</span><br><span class="line">mult = added * const3</span><br><span class="line"><span class="built_in">print</span>(mult)</span><br></pre></td></tr></table></figure>
-
-<pre><code>Tensor(&quot;mul:0&quot;, shape=(), dtype=float32)
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sess = tf.Session()</span><br><span class="line"><span class="built_in">print</span>(sess.run(mult))</span><br><span class="line">sess.close()</span><br></pre></td></tr></table></figure>
-
-<pre><code>22.5
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:  <span class="comment"># __enter__和__exit__</span></span><br><span class="line">    <span class="built_in">print</span>(sess.run([mult, added]))</span><br></pre></td></tr></table></figure>
-
-<pre><code>[22.5, 7.5]
-</code></pre>
-<h3 id="内置的常数生成"><a href="#内置的常数生成" class="headerlink" title="内置的常数生成"></a>内置的常数生成</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a = tf.zeros([<span class="number">2</span>,<span class="number">3</span>], dtype=tf.float32)</span><br><span class="line">b = tf.ones([<span class="number">3</span>,<span class="number">2</span>])</span><br><span class="line">c = tf.constant(<span class="number">2.0</span>, shape=[<span class="number">2</span>,<span class="number">2</span>])</span><br><span class="line">d = tf.random_normal([<span class="number">2</span>,<span class="number">2</span>], mean=<span class="number">3</span>, stddev=<span class="number">4</span>)</span><br><span class="line">mul = tf.matmul(a,b)  <span class="comment"># 2*2的矩阵，全是0</span></span><br><span class="line">added = tf.add(mul, c)  <span class="comment"># 2*2的矩阵，全是2</span></span><br><span class="line"></span><br><span class="line">e = tf.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">f = tf.constant([<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>])</span><br><span class="line">mul2 = tf.multiply(e,f)</span><br><span class="line">added2 = tf.add(e, <span class="number">1</span>)</span><br><span class="line">added3 = e + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span>(sess.run(added))</span><br><span class="line">    <span class="built_in">print</span>(sess.run(mul2))</span><br><span class="line">    <span class="built_in">print</span>(sess.run(added2))</span><br><span class="line">    <span class="built_in">print</span>(sess.run(added3))</span><br></pre></td></tr></table></figure>
-
-<pre><code>[[2. 2.]
- [2. 2.]]
-[ 5 12 21]
-[2 3 4]
-[2 3 4]
-</code></pre>
-<h3 id="变量操作"><a href="#变量操作" class="headerlink" title="变量操作"></a>变量操作</h3><p>注意要有初始化</p>
-<ul>
-<li>声明变量的时候给的数不是变量本身，所以需要建立起这个数和变量之间的关系</li>
-<li>也可以用其他节点初始化变量，这时就可以看出初始化操作的必要性<ul>
-<li>变量和传入的节点不是相同的关系，所以需要另外建立联系</li>
-</ul>
-</li>
-</ul>
-<p>可以进行赋值</p>
-<ul>
-<li>使用tf.assign(目标Variable，源节点)</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = tf.constant(<span class="number">2</span>)</span><br><span class="line">b = tf.Variable(<span class="number">5</span>)</span><br><span class="line">c = tf.Variable(a + <span class="number">5</span>)</span><br><span class="line">d = tf.multiply(c, c)</span><br><span class="line">update = tf.assign(c, d)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    <span class="built_in">print</span>(sess.run([update]))</span><br><span class="line">    <span class="built_in">print</span>(sess.run([update]))</span><br></pre></td></tr></table></figure>
-
-<pre><code>[49]
-[2401]
-</code></pre>
-<h3 id="占位符placeholder"><a href="#占位符placeholder" class="headerlink" title="占位符placeholder"></a>占位符placeholder</h3><p>需要使用<code>feed_dict</code>进行赋值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">m = tf.placeholder(tf.float32)</span><br><span class="line">n = tf.placeholder(tf.float32)</span><br><span class="line">added = m + n</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span>(sess.run(added, feed_dict=&#123;m: <span class="number">1</span>, n: <span class="number">2</span>&#125;))</span><br></pre></td></tr></table></figure>
-
-<pre><code>3.0
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/01/26/01%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm690004x4c406o5h6on" data-title="01简单使用" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-jupyter-notebook入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/01/25/jupyter-notebook%E5%85%A5%E9%97%A8/" class="article-date">
-  <time class="dt-published" datetime="2019-01-24T22:06:06.000Z" itemprop="datePublished">2019-01-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/01/25/jupyter-notebook%E5%85%A5%E9%97%A8/">jupyter-notebook入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>先安装好python和pip，直接<code>pip install jupyter</code></p>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p><code>jupyter notebook</code>，稍等就会打开jupyter。</p>
-<p>同时会显示<code>The Jupyter Notebook is running at:</code>的信息，打开对应的网址（下图中的<code>http://localhost:8888/?token=e05bd6eeb83cd681c886af7e4c6852a3a62f591a8a49d1f8</code>）就行。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8566591ef04a4fb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动显示信息"></p>
-<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><p><img src="https://upload-images.jianshu.io/upload_images/5060560-8f59c94ea138e090.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Jupyter主界面"></p>
-<p>如图，进入你想要创建notebook的页面，点击new创建想要的notebook（在这里只有安装过python3，所以只有python3版本的notebook可用）。</p>
-<p>等待terminal启动后，出现如图界面：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e4826ff111120afc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="notebook界面"></p>
-<p>现在就可以进行输入了，按下回车是换行，shift+回车是运行。返回值会显示到out里面，但是print的结果不会显示在表格中。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-73b7694258fd9f25.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行界面"></p>
-<p>所有代码都是在同一个terminal里面运行的，所以之前计算过的变量都会保存，相当于顺序在python里面执行这些代码。</p>
-<p>运行结束后就可以保存为<code>.ipynb</code>类型的文件了。</p>
-<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><p>修改之前的单元格，也可以单独运行（shift+enter），也可以直接点击Cell -&gt; Run All来直接按照从上到下的顺序来运行所有单元格。</p>
-<h2 id="单元格类型"><a href="#单元格类型" class="headerlink" title="单元格类型"></a>单元格类型</h2><p>除了代码单元格，还可以创建Markdown单元格（Cell-&gt;Celltype-&gt;Markdown），如图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-9bb149f1cda6d236.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择单元格类型"></p>
-<p>例如，输入：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># hhh</span></span><br><span class="line">$$a=\sqrt&#123;M&#125;$$</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://upload-images.jianshu.io/upload_images/5060560-8566591ef04a4fb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot;</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>之后shift+enter，就可以获得如图的结果：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-4eba32404ac01f55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown示例"></p>
-<p>如果需要修改的话，可以直接双击修改。</p>
-<p>Markdown语法示例可以参见<a target="_blank" rel="noopener" href="https://github.com/fengh16/Copy_README%E3%80%82">https://github.com/fengh16/Copy_README。</a></p>
-<h2 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h2><p>首先保证电脑中已经安装过matplotlib，如果没有就在控制台中通过<code>pip install matplotlib</code>安装。</p>
-<p>为了能够直接画图，我们需要执行<code>%matplotlib inline</code>。</p>
-<p>例如：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-55f9744a785fbc2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="matplotlib使用示例"></p>
-<p>可见只有将<code>%matplotlib inline</code>执行后才能直接画图。</p>
-<h2 id="密码设置"><a href="#密码设置" class="headerlink" title="密码设置"></a>密码设置</h2><p><a target="_blank" rel="noopener" href="https://www.wandouip.com/t5i226529/">https://www.wandouip.com/t5i226529/</a></p>
-<h2 id="Java支持"><a href="#Java支持" class="headerlink" title="Java支持"></a>Java支持</h2><p><a target="_blank" rel="noopener" href="https://github.com/SpencerPark/IJava">https://github.com/SpencerPark/IJava</a> 按照readme的说明整</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/01/25/jupyter-notebook%E5%85%A5%E9%97%A8/" data-id="ckqkjgma700cvx4c44ui499q7" data-title="jupyter-notebook入门" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Viterbi" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/01/16/Viterbi/" class="article-date">
-  <time class="dt-published" datetime="2019-01-15T22:06:06.000Z" itemprop="datePublished">2019-01-16</time>
+    <a href="/2019/09/24/%E6%AF%8F%E6%97%A5leetcode-143/" class="article-date">
+  <time class="dt-published" datetime="2019-09-23T22:06:06.000Z" itemprop="datePublished">2019-09-24</time>
 </a>
     
   <div class="article-category">
@@ -646,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/01/16/Viterbi/">Viterbi</a>
+      <a class="p-name article-title" href="/2019/09/24/%E6%AF%8F%E6%97%A5leetcode-143/">每日leetcode-143</a>
     </h1>
   
 
@@ -654,38 +99,23 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>转载自：</p>
-<p>作者：Kiwee<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20136144/answer/239971177">https://www.zhihu.com/question/20136144/answer/239971177</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<p>最高票的回答结果是正确的，但是并没有把viterbi算法讲明白，尤其是其中的dp思想。可以用相同的例子来解释：</p>
-<p><strong>1.题目背景：</strong></p>
-<p>从前有个村儿，村里的人的身体情况只有两种可能：健康或者发烧。<br>假设这个村儿的人没有体温计或者百度这种神奇东西，他唯一判断他身体情况的途径就是到村头我的偶像金正月的小诊所询问。<br>月儿通过询问村民的感觉，判断她的病情，再假设村民只会回答正常、头晕或冷。<br>有一天村里奥巴驴就去月儿那去询问了。<br>第一天她告诉月儿她感觉正常。<br>第二天她告诉月儿感觉有点冷。<br>第三天她告诉月儿感觉有点头晕。<br>那么问题来了，月儿如何根据阿驴的描述的情况，推断出这三天中阿驴的一个身体状态呢?<br>为此月儿上百度搜 google ，一番狂搜，发现维特比算法正好能解决这个问题。月儿乐了。</p>
-<p><strong>2.已知情况：</strong></p>
-<p>隐含的身体状态 = { 健康 , 发烧 }</p>
-<p>可观察的感觉状态 = { 正常 , 冷 , 头晕 }</p>
-<p>月儿预判的阿驴身体状态的概率分布 = { 健康：0.6 , 发烧： 0.4 }<br><strong>这就是初始状态序列。</strong></p>
-<p>月儿认为的阿驴身体健康状态的转换概率分布 = {<br>健康-&gt;健康： 0.7 ,<br>健康-&gt;发烧： 0.3 ,<br>发烧-&gt;健康：0.4 ,<br>发烧-&gt;发烧： 0.6<br>}</p>
-<p><strong>这样就可以列出相应的状态转移矩阵。</strong>（人懒。。不想编辑公式了）</p>
-<p>月儿认为的在相应健康状况条件下，阿驴的感觉的概率分布 = {<br>健康，正常：0.5 ，冷 ：0.4 ，头晕： 0.1 ；<br>发烧，正常：0.1 ，冷 ：0.3 ，头晕： 0.6<br>}</p>
-<p><strong>这样就可以列出相应的观测矩阵。</strong></p>
-<p>由上面我们可以发现，HMM的三要素都齐备了，下面就是解决问题了。<br>阿驴连续三天的身体感觉依次是： 正常、冷、头晕 。</p>
-<p><strong>3.题目：</strong></p>
-<p>已知如上，求：阿驴这三天的身体健康状态变化的过程是怎么样的？<strong>即已知观测序列和HMM模型的情况下，求状态序列。</strong><br><strong>4.过程：</strong></p>
-<ul>
-<li>  初始化。第一天的时候，对每一个状态（健康或者发烧），分别求出第一天身体感觉正常的概率：P(第一天健康) = P(正常|健康)*P(健康|初始情况) = 0.5 * 0.6 = <strong>0.3</strong> P(第一天发烧) = P(正常|发烧)*P(发烧|初始情况) = 0.1 * 0.4 = <strong>0.04</strong></li>
-<li>  第二天的时候，对每个状态，分别求在第一天状态为健康或者发烧情况下观察到冷的最大概率。在维特比算法中，我们先要求得路径的单个路径的最大概率，然后再乘上观测概率。P(第二天健康) = max{0.3<em>0.7, 0.04</em>0.4}<em>0.4=0.3</em>0.7<em>0.4=0.084 此时我们需要记录概率最大的<strong>路径的前一个状态</strong>，即0.084路径的前一个状态，我们在小本本上记下，第一天健康。 P(第二天发烧)=max{0.3</em>0.3, 0.04*0.6}*0.3=0.027, 同样的在0.027这个路径上，第一天也是健康的。</li>
-<li>  第三天的时候，跟第二天一样。P(第三天健康)=max{0.084<em>0.7, 0.027</em>0.4}<em>0.1=0.00588，在这条路径上，第二天是健康的。P(第三天发烧)=max{0.084</em>0.3, 0.027*0.6}*0.6=0.01512,在这条路径上，第二天是健康的。</li>
-<li>  最后一天的状态概率分布即为最优路径的概率，即P(最优)=0.01512，这样我们可以得到最优路径的终点，是发烧</li>
-<li>  由最优路径开始<strong>回溯</strong>。请看我们的小本本，在求得第三天发烧概率的时候，我们的小本本上面写的是第二天健康，好了，第二天就应该是健康的状态，然后在第二天健康的情况下，我们记录的第一天是健康的。这样，我们的状态序列逆推出来了。即为：<strong>健康，健康，发烧</strong>。</li>
-<li>  简略的画个图吧：</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/5060560-abc17ba7d661a59d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-0e8ad92c61c40a9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>这儿的箭头指向就是一个回溯查询小本本的过程，我们在编写算法的时候，其实也得注意，每一个概率最大的<strong>单条路径</strong>上都要把前一个状态记录下来。</p>
+        <h1 id="143-Reorder-List"><a href="#143-Reorder-List" class="headerlink" title="143. Reorder List"></a>143. Reorder List</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reorder-list/">https://leetcode.com/problems/reorder-list</a></p>
+<p>最简单的算法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!head || !(head-&gt;next)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *last = head-&gt;next, *last_pre = head;</span><br><span class="line">        <span class="keyword">if</span> (!last-&gt;next) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (last-&gt;next) &#123;</span><br><span class="line">            last_pre = last;</span><br><span class="line">            last = last-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        last-&gt;next = head-&gt;next;</span><br><span class="line">        head-&gt;next = last;</span><br><span class="line">        last_pre-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">reorderList</span>(last-&gt;next);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>写的时候忘了：</p>
+<ol>
+<li><code>!(head-&gt;next)</code>判断的时候要先判断head</li>
+<li>在<code>last-&gt;next</code>为空的时候如果不return会循环链表</li>
+</ol>
+<p>但是复杂度很高，直接递归找最后一个元素</p>
+<p>优秀解法：</p>
+<p>使用快慢指针直接操作，划分成两部分然后转置后半部分，插入</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/01/16/Viterbi/" data-id="ckqkjgm90008tx4c4es7i59rr" data-title="Viterbi" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/09/24/%E6%AF%8F%E6%97%A5leetcode-143/" data-id="ckqkkaz4400l1bcc4c98xcuez" data-title="每日leetcode-143" class="article-share-link">Share</a>
       
       
       
@@ -697,14 +127,14 @@
 
 
   
-    <article id="post-Antlr4+python3-visitor使用（四则运算解析）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-lua安装&amp;th没有找到" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/12/21/Antlr4+python3-visitor%E4%BD%BF%E7%94%A8%EF%BC%88%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E8%A7%A3%E6%9E%90%EF%BC%89/" class="article-date">
-  <time class="dt-published" datetime="2018-12-20T22:06:06.000Z" itemprop="datePublished">2018-12-21</time>
+    <a href="/2019/09/03/lua%E5%AE%89%E8%A3%85&th%E6%B2%A1%E6%9C%89%E6%89%BE%E5%88%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-09-02T22:06:06.000Z" itemprop="datePublished">2019-09-03</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
   </div>
 
   </div>
@@ -715,7 +145,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/12/21/Antlr4+python3-visitor%E4%BD%BF%E7%94%A8%EF%BC%88%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E8%A7%A3%E6%9E%90%EF%BC%89/">Antlr4+python3-visitor使用（四则运算解析）</a>
+      <a class="p-name article-title" href="/2019/09/03/lua%E5%AE%89%E8%A3%85&th%E6%B2%A1%E6%9C%89%E6%89%BE%E5%88%B0/">lua安装&amp;th没有找到</a>
     </h1>
   
 
@@ -723,21 +153,439 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Antlr系列（配合Python3）文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/32570686">https://www.jianshu.com/nb/32570686</a></p>
-<h2 id="Visitor实现四则运算的计算"><a href="#Visitor实现四则运算的计算" class="headerlink" title="Visitor实现四则运算的计算"></a>Visitor实现四则运算的计算</h2><p>文法规则文件<code>Expr.g4</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">grammar Expr;		</span><br><span class="line">prog:	expr NEWLINE            # printExpr;</span><br><span class="line">expr:	left&#x3D;expr op&#x3D;(&#39;*&#39;|&#39;&#x2F;&#39;) right&#x3D;expr   # mulDiv    &#x2F;&#x2F; 用来确定优先级，在上面的优先级高</span><br><span class="line">    |	left&#x3D;expr op&#x3D;(&#39;+&#39;|&#39;-&#39;) right&#x3D;expr   # addSub</span><br><span class="line">    |	INT                     # int</span><br><span class="line">    |	&#39;(&#39; expr &#39;)&#39;            # brackets</span><br><span class="line">    ;</span><br><span class="line">NEWLINE : [\r\n]+ ;</span><br><span class="line">INT     : [0-9]+ ;</span><br><span class="line"></span><br><span class="line">MUL     : &#39;*&#39; ;  &#x2F;&#x2F; 用来便于当作常量引用</span><br><span class="line">DIV     : &#39;&#x2F;&#39; ;</span><br><span class="line">ADD     : &#39;+&#39; ;</span><br><span class="line">SUB     : &#39;-&#39; ;</span><br></pre></td></tr></table></figure>
-
-<p>在执行antlr4的时候需要指明<code>-no-listener</code>和<code>-visitor</code>，因此执行<code>antlr4 -no-listener -visitor -Dlanguage=Python3 Expr.g4</code></p>
-<p>创建文件<code>Expr.py</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> antlr4 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> ExprLexer <span class="keyword">import</span> ExprLexer</span><br><span class="line"><span class="keyword">from</span> ExprParser <span class="keyword">import</span> ExprParser</span><br><span class="line"><span class="keyword">from</span> ExprVisitor <span class="keyword">import</span> ExprVisitor</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExprCalculateVisitor</span>(<span class="params">ExprVisitor</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitPrintExpr</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="comment"># 函数名enterR的R指的是非终结符r</span></span><br><span class="line">        val = self.visit(ctx.expr())</span><br><span class="line">        <span class="built_in">print</span>(val)</span><br><span class="line">        <span class="keyword">return</span> val</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitBrackets</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.visit(ctx.expr())</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitAddSub</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="keyword">if</span> ctx.op.<span class="built_in">type</span> == ExprParser.ADD:</span><br><span class="line">            <span class="keyword">return</span> self.visit(ctx.left) + self.visit(ctx.right)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.visit(ctx.left) - self.visit(ctx.right)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitMulDiv</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="keyword">if</span> ctx.op.<span class="built_in">type</span> == ExprParser.MUL:</span><br><span class="line">            <span class="keyword">return</span> self.visit(ctx.left) * self.visit(ctx.right)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.visit(ctx.left) / self.visit(ctx.right)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitInt</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(ctx.getText())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    lexer = ExprLexer(StdinStream())</span><br><span class="line">    stream = CommonTokenStream(lexer)</span><br><span class="line">    parser = ExprParser(stream)</span><br><span class="line">    tree = parser.prog()</span><br><span class="line">    calculator = ExprCalculateVisitor()</span><br><span class="line">    calculator.visitPrintExpr(tree)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-<p>这里的visitXXX的XXX部分都是上面#后的内容；如果不写#后的东西，就会是visitProg之类的</p>
-<p>之后仍然是运行并且输入后回车输入EOF（Ctrl-D/Ctrl-Z）即可看到结果输出</p>
+        <p>lua是在安装torch的时候直接安装上去的，但是没有找到th指令。</p>
+<p>可以使用：export PATH=$PATH:$HOME/torch/install/bin 来处理这个问题</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/12/21/Antlr4+python3-visitor%E4%BD%BF%E7%94%A8%EF%BC%88%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E8%A7%A3%E6%9E%90%EF%BC%89/" data-id="ckqkjgm6g000dx4c4axrrhbhi" data-title="Antlr4+python3-visitor使用（四则运算解析）" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/09/03/lua%E5%AE%89%E8%A3%85&th%E6%B2%A1%E6%9C%89%E6%89%BE%E5%88%B0/" data-id="ckqkkaz1z00e1bcc4h1ii1ql4" data-title="lua安装&amp;th没有找到" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-准备考研机试做的Leetcode题目" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/10/%E5%87%86%E5%A4%87%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E5%81%9A%E7%9A%84Leetcode%E9%A2%98%E7%9B%AE/" class="article-date">
+  <time class="dt-published" datetime="2019-08-09T22:06:06.000Z" itemprop="datePublished">2019-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/08/10/%E5%87%86%E5%A4%87%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E5%81%9A%E7%9A%84Leetcode%E9%A2%98%E7%9B%AE/">准备考研机试做的Leetcode题目</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>string：size方法，substr（第一个，长度）<br>vector：size, push_back, pop_back方法，front、back函数是返回引用<br>stack: size, empty, top, pop, push<br>map：map&lt;string, int&gt;，之后可以用find，如果查找不到得到的就是end<br>stack：push、size、top、pop</p>
+<h1 id="73-zeros"><a href="#73-zeros" class="headerlink" title="73 zeros"></a>73 zeros</h1><p>矩阵中0的同行同列设置成0：常数空间：直接用第一行记录这一行/列是否为0，再记录一下第一行和第一列需不需要为0</p>
+<h1 id="74-Search-a-2D-Matrix"><a href="#74-Search-a-2D-Matrix" class="headerlink" title="74 Search a 2D Matrix"></a>74 Search a 2D Matrix</h1><p>在一个全部排序好的数组中寻找元素，返回是否在：直接二分</p>
+<h1 id="75-Sort-Colors"><a href="#75-Sort-Colors" class="headerlink" title="75 Sort Colors"></a>75 Sort Colors</h1><p>排序一个只有0、1、2的数组：一遍扫描：</p>
+<ul>
+<li>三个指针分别指向当前的、0后面的一位、2前方的一位</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i_0 = <span class="number">0</span>, i, i_2 = nums.<span class="built_in">size</span>() - <span class="number">1</span>;  <span class="comment">// i是遍历的，i_0是连续的0后面的，i_2是连续的2前面的</span></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= i_2; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) &#123;  <span class="comment">// 这时i_0肯定&lt;=i，所以不会有换掉后的问题</span></span><br><span class="line">                nums[i] = nums[i_0];</span><br><span class="line">                nums[i_0++] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] == <span class="number">2</span>) &#123;</span><br><span class="line">                nums[i--] = nums[i_2];  <span class="comment">// 因为可能有[1,2,0]这样交换的情况，换过来的有可能是小于1的数，如果不加上i--会有问题</span></span><br><span class="line">                nums[i_2--] = <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="76-Minimum-Window-Substring"><a href="#76-Minimum-Window-Substring" class="headerlink" title="76. Minimum Window Substring"></a>76. Minimum Window Substring</h1><p>找到包含有某些指定字母的最小字符串，直接双指针判断，注意substr的用法。用数组记录下来所有的元素需要多少个、已有多少个即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">minWindow</span><span class="params">(string s, string t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, min_length = s.<span class="built_in">size</span>(), start = <span class="number">0</span>, end = <span class="number">-1</span>, len = s.<span class="built_in">size</span>(), t_len = t.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (t_len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> times[<span class="number">128</span>] = &#123;&#125;, need[<span class="number">128</span>] = &#123;&#125;, need_cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; t_len; k++) &#123;</span><br><span class="line">            need_cnt += <span class="number">1</span>;</span><br><span class="line">            need[<span class="built_in"><span class="keyword">int</span></span>(t[k])] += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (j &lt; len) &#123;</span><br><span class="line">            <span class="keyword">if</span> (need[<span class="built_in"><span class="keyword">int</span></span>(s[j])]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (times[<span class="built_in"><span class="keyword">int</span></span>(s[j])] &lt; need[<span class="built_in"><span class="keyword">int</span></span>(s[j])]) &#123;</span><br><span class="line">                    need_cnt -= <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                times[<span class="built_in"><span class="keyword">int</span></span>(s[j])] += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (need_cnt &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 发现所有的字母了！</span></span><br><span class="line">                <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!need[<span class="built_in"><span class="keyword">int</span></span>(s[i])]) &#123;</span><br><span class="line">                        i++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (times[<span class="built_in"><span class="keyword">int</span></span>(s[i])] &gt; need[<span class="built_in"><span class="keyword">int</span></span>(s[i])]) &#123;</span><br><span class="line">                        times[<span class="built_in"><span class="keyword">int</span></span>(s[i++])] -= <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (j - i &lt; min_length) &#123;</span><br><span class="line">                    min_length = j - i;</span><br><span class="line">                    start = i;</span><br><span class="line">                    end = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.<span class="built_in">substr</span>(start, end - start + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="77-Combinations"><a href="#77-Combinations" class="headerlink" title="77. Combinations"></a>77. Combinations</h1><p>找到长度为k的在1-n中的所有组合，直接回溯或者用栈。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">combine</span>(<span class="keyword">int</span> n, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; nums;</span><br><span class="line">        <span class="keyword">int</span> now_index = <span class="number">0</span>, now_number = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (k - now_index &lt;= n - now_number + <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (now_index == k) &#123;</span><br><span class="line">                    <span class="comment">// ok</span></span><br><span class="line">                    ans.<span class="built_in">push_back</span>(nums);</span><br><span class="line">                    nums.<span class="built_in">pop_back</span>();</span><br><span class="line">                    now_index -= <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    nums.<span class="built_in">push_back</span>(now_number);</span><br><span class="line">                    now_index += <span class="number">1</span>;</span><br><span class="line">                    now_number += <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// try to pop</span></span><br><span class="line">                <span class="keyword">if</span> (nums.<span class="built_in">size</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    nums.<span class="built_in">pop_back</span>();</span><br><span class="line">                    now_index -= <span class="number">1</span>;</span><br><span class="line">                    now_number = nums[now_index] + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="78-subsets"><a href="#78-subsets" class="headerlink" title="78 subsets"></a>78 subsets</h1><p>直接用每一个元素在不在集合中判断就行，用幂集对应的性质，用数字控制</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">subsets</span>(vector&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> nums_all = <span class="number">1</span> &lt;&lt; nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums_all; i++) &#123;</span><br><span class="line">            vector&lt;<span class="keyword">int</span>&gt; temp;</span><br><span class="line">            <span class="keyword">int</span> i_s = i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; i_s; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i_s % <span class="number">2</span>) &#123;</span><br><span class="line">                    temp.<span class="built_in">push_back</span>(nums[j]);</span><br><span class="line">                &#125;</span><br><span class="line">                i_s /= <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>或者直接递归</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> len2;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">get</span>(<span class="keyword">int</span> i, vector&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= nums.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;(&#123;vector&lt;<span class="keyword">int</span>&gt;(&#123;&#125;)&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; ans = <span class="built_in">get</span>(i + <span class="number">1</span>, nums);</span><br><span class="line">        <span class="keyword">int</span> len = ans.<span class="built_in">size</span>(), len2 = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">            <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">temp</span><span class="params">(ans[j])</span></span>;</span><br><span class="line">            temp.<span class="built_in">push_back</span>(nums[len2 - i - <span class="number">1</span>]);</span><br><span class="line">            ans.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">subsets</span>(vector&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        len2 = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">get</span>(<span class="number">0</span>, nums);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="79-word-search"><a href="#79-word-search" class="headerlink" title="79 word search"></a>79 word search</h1><p>直接递归</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> board_h, board_w, w_len;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, string word, <span class="keyword">int</span> now_i, <span class="keyword">int</span> now_j, vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt;&amp; record, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; w_len) &#123;</span><br><span class="line">            <span class="keyword">char</span> w_now = word[index];</span><br><span class="line">            <span class="keyword">if</span> (now_i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// try left</span></span><br><span class="line">                <span class="keyword">if</span> (!record[now_i - <span class="number">1</span>][now_j] &amp;&amp; board[now_i - <span class="number">1</span>][now_j] == w_now) &#123;</span><br><span class="line">                    record[now_i - <span class="number">1</span>][now_j] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(board, word, now_i - <span class="number">1</span>, now_j, record, index + <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    record[now_i - <span class="number">1</span>][now_j] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (now_i &lt; board_h - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="comment">// try right</span></span><br><span class="line">                <span class="keyword">if</span> (!record[now_i + <span class="number">1</span>][now_j] &amp;&amp; board[now_i + <span class="number">1</span>][now_j] == w_now) &#123;</span><br><span class="line">                    record[now_i + <span class="number">1</span>][now_j] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(board, word, now_i + <span class="number">1</span>, now_j, record, index + <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    record[now_i + <span class="number">1</span>][now_j] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (now_j &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// try left</span></span><br><span class="line">                <span class="keyword">if</span> (!record[now_i][now_j - <span class="number">1</span>] &amp;&amp; board[now_i][now_j - <span class="number">1</span>] == w_now) &#123;</span><br><span class="line">                    record[now_i][now_j - <span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(board, word, now_i, now_j - <span class="number">1</span>, record, index + <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    record[now_i][now_j - <span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (now_j &lt; board_w - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="comment">// try left</span></span><br><span class="line">                <span class="keyword">if</span> (!record[now_i][now_j + <span class="number">1</span>] &amp;&amp; board[now_i][now_j + <span class="number">1</span>] == w_now) &#123;</span><br><span class="line">                    record[now_i][now_j + <span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(board, word, now_i, now_j + <span class="number">1</span>, record, index + <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    record[now_i][now_j + <span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">exist</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, string word)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// search first letter</span></span><br><span class="line">        <span class="keyword">char</span> w0 = word[<span class="number">0</span>];</span><br><span class="line">        board_h = board.<span class="built_in">size</span>();</span><br><span class="line">        board_w = board[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        w_len = word.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt; record;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i2 = <span class="number">0</span>; i2 &lt; board_h; i2++) &#123;</span><br><span class="line">            vector&lt;<span class="keyword">bool</span>&gt; temp;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j2 = <span class="number">0</span>; j2 &lt; board_w; j2++) &#123;</span><br><span class="line">                temp.<span class="built_in">push_back</span>(<span class="literal">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            record.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board_h; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board_w; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (board[i][j] == w0) &#123;</span><br><span class="line">                    <span class="comment">// 从这里开始</span></span><br><span class="line">                    record[i][j] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(board, word, i, j, record, <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    record[i][j] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="80-Remove-Duplicates-from-Sorted-Array-II"><a href="#80-Remove-Duplicates-from-Sorted-Array-II" class="headerlink" title="80. Remove Duplicates from Sorted Array II"></a>80. Remove Duplicates from Sorted Array II</h1><p>双指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, now_cnt = <span class="number">0</span>, len = nums.<span class="built_in">size</span>(), last_num = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == last_num) &#123;</span><br><span class="line">                now_cnt ++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                last_num = nums[i];</span><br><span class="line">                now_cnt = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (now_cnt &lt; <span class="number">3</span>) &#123;</span><br><span class="line">                nums[j++] = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="81-search-in-rotated-sorted-array-II"><a href="#81-search-in-rotated-sorted-array-II" class="headerlink" title="81 search in rotated sorted array II"></a>81 search in rotated sorted array II</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">search2</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">bool</span> ordered)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left &gt; right) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ordered) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">search2</span>(nums, target, mid + <span class="number">1</span>, right, ordered);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">search2</span>(nums, target, left, mid - <span class="number">1</span>, ordered);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">search2</span>(nums, target, left, mid - <span class="number">1</span>, nums[mid] &gt; nums[left]) || <span class="built_in">search2</span>(nums, target, mid + <span class="number">1</span>, right, nums[mid] &lt; nums[right]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (right &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">search2</span>(nums, target, left, right, nums[left] &lt; nums[right]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="82-remove-duplicates-from-sorted-list-II"><a href="#82-remove-duplicates-from-sorted-list-II" class="headerlink" title="82 remove duplicates from sorted list II"></a>82 remove duplicates from sorted list II</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">deleteDuplicates</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="function">ListNode <span class="title">new_head</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">        ListNode* now = &amp;new_head;</span><br><span class="line">        <span class="comment">// ListNode* check = head;</span></span><br><span class="line">        <span class="keyword">while</span> (head) &#123;</span><br><span class="line">            <span class="keyword">if</span> (head-&gt;next &amp;&amp; head-&gt;next-&gt;val == head-&gt;val) &#123;</span><br><span class="line">                <span class="comment">// move</span></span><br><span class="line">                <span class="keyword">int</span> now = head-&gt;val;</span><br><span class="line">                head = head-&gt;next;</span><br><span class="line">                <span class="keyword">while</span> (head) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (head-&gt;val == now) &#123;</span><br><span class="line">                        head = head-&gt;next;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                now-&gt;next = head;</span><br><span class="line">                now = head;</span><br><span class="line">                head = head-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        now-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">return</span> new_head.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="84-Largest-Rectangle-in-Histogram"><a href="#84-Largest-Rectangle-in-Histogram" class="headerlink" title="84. Largest Rectangle in Histogram"></a>84. Largest Rectangle in Histogram</h1><p>直方图中最大的长方形：</p>
+<p>一种方法：可以观察到，只需要判断比后面一个大的位置，将它作为右边界即可。因为如果一个的右边界比他右边的低，就可以把他右边的这个带上。</p>
+<p>但是每一个右边界对应的位置，他左边所有可能的情况都要找一遍。</p>
+<p>另一种方法：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lichen782/p/leetcode_Largest_Rectangle_in_Histogram.html">https://www.cnblogs.com/lichen782/p/leetcode_Largest_Rectangle_in_Histogram.html</a></p>
+<p>只储存递增的，因为每一次只需要找它左侧比他低的东西。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; heights)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; increase_index, increase_data;</span><br><span class="line">        heights.<span class="built_in">push_back</span>(<span class="number">0</span>);</span><br><span class="line">        increase_data.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">        increase_index.<span class="built_in">push</span>(<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">int</span> now_highest = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> len = heights.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (heights[i] &gt; now_highest) &#123;</span><br><span class="line">                now_highest = heights[i];</span><br><span class="line">                increase_data.<span class="built_in">push</span>(now_highest);</span><br><span class="line">                increase_index.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (heights[i] &lt; now_highest) &#123;</span><br><span class="line">                now_highest = heights[i];</span><br><span class="line">                <span class="comment">// check!</span></span><br><span class="line">                <span class="keyword">while</span> (increase_data.<span class="built_in">top</span>() &gt;= now_highest) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (now_highest == <span class="number">0</span> &amp;&amp; increase_data.<span class="built_in">top</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    increase_index.<span class="built_in">pop</span>();</span><br><span class="line">                    <span class="keyword">int</span> data = increase_data.<span class="built_in">top</span>();</span><br><span class="line">                    increase_data.<span class="built_in">pop</span>();</span><br><span class="line">                    <span class="keyword">int</span> index = increase_index.<span class="built_in">top</span>();</span><br><span class="line">                    <span class="keyword">int</span> temp = (i - index - <span class="number">1</span>) * data;</span><br><span class="line">                    <span class="keyword">if</span> (ans &lt; temp) &#123;</span><br><span class="line">                        ans = temp;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                increase_data.<span class="built_in">push</span>(now_highest);</span><br><span class="line">                increase_index.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                increase_index.<span class="built_in">pop</span>();</span><br><span class="line">                increase_index.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="85-Maximal-Rectangle"><a href="#85-Maximal-Rectangle" class="headerlink" title="85. Maximal Rectangle"></a>85. Maximal Rectangle</h1><p>每行分别作为一个直方图考虑，看它上面的有多少个连续的1就是直方图这个位置有多少个1</p>
+<h1 id="86-Partition-List"><a href="#86-Partition-List" class="headerlink" title="86. Partition List"></a>86. Partition List</h1><p>可以选择进行交换，或者是直接新建一个列表来储存小于x的元素。</p>
+<p>交换的时候记得换到的位置和要换走的位置前后都要注意考虑！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">partition</span><span class="params">(ListNode* head, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="function">ListNode <span class="title">newHead</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">        newHead.next = head;</span><br><span class="line">        ListNode *lastSmaller = &amp;newHead, *nowNode = head, *temp, *temp2, *lastNode = &amp;newHead;</span><br><span class="line">        <span class="keyword">while</span> (nowNode) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nowNode-&gt;val &lt; x) &#123;</span><br><span class="line">                lastSmaller = nowNode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (nowNode-&gt;val &gt;= x) &#123;</span><br><span class="line">                lastNode = nowNode;</span><br><span class="line">                nowNode = nowNode-&gt;next;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            lastNode = nowNode;</span><br><span class="line">            nowNode = nowNode-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (nowNode) &#123;</span><br><span class="line">            temp2 = nowNode-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (nowNode-&gt;val &lt; x) &#123;</span><br><span class="line">                temp = lastSmaller-&gt;next;</span><br><span class="line">                lastSmaller-&gt;next = nowNode;</span><br><span class="line">                lastSmaller = nowNode;</span><br><span class="line">                lastSmaller-&gt;next = temp;</span><br><span class="line">                lastNode-&gt;next = temp2;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                lastNode = nowNode;</span><br><span class="line">            &#125;</span><br><span class="line">            nowNode = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="87-Scramble-String"><a href="#87-Scramble-String" class="headerlink" title="87. Scramble String"></a>87. Scramble String</h1><p>分治。记得要先判断排序后是不是相同的字符串！这样可以减少很多</p>
+<h1 id="89-Gray-Code"><a href="#89-Gray-Code" class="headerlink" title="89. Gray Code"></a>89. Gray Code</h1><p>每个数字和前一个只差二进制的一位，给了二进制表示时候一共n位</p>
+<p>其实就是从0开始，先把第n位保持不变，对后面的进行操作（变成了n-1的问题），之后改变第n位，对后面的n-1位进行操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">checkPositionN</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; ans, <span class="keyword">int</span> N, <span class="keyword">int</span>&amp; nowNum)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// do N-1</span></span><br><span class="line">        <span class="comment">// change</span></span><br><span class="line">        <span class="comment">// do N-1</span></span><br><span class="line">        <span class="keyword">if</span> (N &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(nowNum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">checkPositionN</span>(ans, N - <span class="number">1</span>, nowNum);</span><br><span class="line">            nowNum = nowNum ^ (<span class="number">1</span> &lt;&lt; N);</span><br><span class="line">            <span class="built_in">checkPositionN</span>(ans, N - <span class="number">1</span>, nowNum);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">grayCode</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="comment">// Each time, reverse one</span></span><br><span class="line">        <span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">checkPositionN</span>(ans, n - <span class="number">1</span>, now);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="300-Longest-Increasing-Subsequence"><a href="#300-Longest-Increasing-Subsequence" class="headerlink" title="300. Longest Increasing Subsequence"></a>300. Longest Increasing Subsequence</h2><p>动态规划，记录下来长度为n的数组的最后一位，如果发现新的一位的大小小于最后一位的大小，就把最后一位更新为这个</p>
+<p>比如长度为2: 1, 3；长度为3: 1, 3, 5；长度为4: 1, 3, 5, 7：</p>
+<ul>
+<li>来了一个4，就把长度为3的最后一位更新为4</li>
+</ul>
+<h2 id="376-Wiggle-Subsequence"><a href="#376-Wiggle-Subsequence" class="headerlink" title="376. Wiggle Subsequence"></a>376. Wiggle Subsequence</h2><p>摆动子序列只需要观察一位和之前一位的关系即可，不用记录之前的数会是多少。</p>
+<p>第5位比第4位小，那把前4位组成的最后一次是增的摆动数列调整一下可以让最后一位变成第四位，从而使得前5位变成最后一次是减少的摆动数列。</p>
+<h2 id="最长公共子数列"><a href="#最长公共子数列" class="headerlink" title="最长公共子数列"></a>最长公共子数列</h2><p>只需要记录A数组最后一位是第i位和B数组最后一位是第j位的最长公共子序列的长度。</p>
+<h2 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="0-1背包问题"></a>0-1背包问题</h2><p>按照顺序依次判断放不放，放的话更新当前的空位和价值。数组以<strong>物品和空位</strong>为下标，a[i][j]记录体积加起来不超过j的物品在判断到i的时候的价值。也可以只保留下标j，因为物品是按照顺序放的。</p>
+<p>但是要循环的顺序<strong>反过来</strong>！！！</p>
+<h2 id="416-Partition-Equal-Subset-Sum"><a href="#416-Partition-Equal-Subset-Sum" class="headerlink" title="416. Partition Equal Subset Sum"></a>416. Partition Equal Subset Sum</h2><p>直接用动态规划，记录和为i的是否可以达到</p>
+<h2 id="494-Target-Sum"><a href="#494-Target-Sum" class="headerlink" title="494. Target Sum"></a>494. Target Sum</h2><p>正的*2-所有的和=规定的数，和416一样</p>
+<h2 id="474-Ones-and-Zeroes"><a href="#474-Ones-and-Zeroes" class="headerlink" title="474. Ones and Zeroes"></a>474. Ones and Zeroes</h2><p>用m个0和n个1组成给定数组中尽可能多的字符串，和背包一样。是多重背包，需要有两个下标分别记录0和1的个数。</p>
+<h2 id="找零钱最少硬币数目"><a href="#找零钱最少硬币数目" class="headerlink" title="找零钱最少硬币数目"></a>找零钱最少硬币数目</h2><p>完全背包，需要<strong>正序</strong>遍历！！！</p>
+<h2 id="找零钱硬币数组合的数目"><a href="#找零钱硬币数组合的数目" class="headerlink" title="找零钱硬币数组合的数目"></a>找零钱硬币数组合的数目</h2><p>完全背包，状态转换方程改为+coins[i-adder]而不是+1</p>
+<h2 id="有顺序的完全背包问题"><a href="#有顺序的完全背包问题" class="headerlink" title="有顺序的完全背包问题"></a>有顺序的完全背包问题</h2><p>普通完全背包问题是外层循环放第几个物品，现在是内层循环来循环第几个物品</p>
+<h2 id="股票问题"><a href="#股票问题" class="headerlink" title="股票问题"></a>股票问题</h2><p>记录当前状态，设计状态机。</p>
+<h2 id="删掉字符使得两个字符串相等"><a href="#删掉字符使得两个字符串相等" class="headerlink" title="删掉字符使得两个字符串相等"></a>删掉字符使得两个字符串相等</h2><p>使用最长公共子序列长度</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/08/10/%E5%87%86%E5%A4%87%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E5%81%9A%E7%9A%84Leetcode%E9%A2%98%E7%9B%AE/" data-id="ckqkkaz5f00plbcc4bhldaoqw" data-title="准备考研机试做的Leetcode题目" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-linux上selenium安装使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/24/linux%E4%B8%8Aselenium%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-07-23T22:06:06.000Z" itemprop="datePublished">2019-07-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/24/linux%E4%B8%8Aselenium%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">linux上selenium安装使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/longronglang/p/8078898.html">https://www.cnblogs.com/longronglang/p/8078898.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/timezhang/p/9640354.html">https://www.cnblogs.com/timezhang/p/9640354.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/07/24/linux%E4%B8%8Aselenium%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" data-id="ckqkkaz1x00dubcc4bytmev1p" data-title="linux上selenium安装使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-获取进程打开的文件句柄" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/18/%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84/" class="article-date">
+  <time class="dt-published" datetime="2019-07-17T22:06:06.000Z" itemprop="datePublished">2019-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/18/%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84/">获取进程打开的文件句柄</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.winhelponline.com/blog/find-process-locked-file-openfiles-utility/">https://www.winhelponline.com/blog/find-process-locked-file-openfiles-utility/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/howto-linux-get-list-of-open-files/">https://www.cyberciti.biz/faq/howto-linux-get-list-of-open-files/</a></p>
+<p>Mac的lsof</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/07/18/%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84/" data-id="ckqkkaz4x00nxbcc4hu5s9e6w" data-title="获取进程打开的文件句柄" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-venv虚拟环境" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/14/venv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time class="dt-published" datetime="2019-07-13T22:06:06.000Z" itemprop="datePublished">2019-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/14/venv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/">venv虚拟环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39363022/article/details/87467208">https://blog.csdn.net/qq_39363022/article/details/87467208</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/07/14/venv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" data-id="ckqkkaz2n00g6bcc47kid4lrz" data-title="venv虚拟环境" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-QT下载安装-python版本qt的使用（macos）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/13/QT%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-python%E7%89%88%E6%9C%ACqt%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88macos%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2019-07-12T22:06:06.000Z" itemprop="datePublished">2019-07-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/13/QT%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-python%E7%89%88%E6%9C%ACqt%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88macos%EF%BC%89/">QT下载安装-python版本qt的使用（macos）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>QT下载地址很难找，可以从这里下载：<a target="_blank" rel="noopener" href="http://download.qt.io/archive/qt/5.13/5.13.0/qt-opensource-mac-x64-5.13.0.dmg">mac-x64-5.13.0.dmg</a></p>
+<p>安装的时候除了creator之外还要安装上qt</p>
+<p>python版本适用：<a target="_blank" rel="noopener" href="https://gavinliu.cn/2016/01/17/Python-Mac%E4%B8%8BPyCharm-PyQt5%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">https://gavinliu.cn/2016/01/17/Python-Mac下PyCharm-PyQt5环境搭建/</a></p>
+<p>pip install pyqt5</p>
+<p>但是pyqt5-tools不支持Mac……</p>
+<p> 遇到问题：qt.qpa.plugin: Could not find the Qt platform plugin “cocoa” in “”</p>
+<p>解决：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/54297627/qt-could-not-find-the-platform-plugin-cocoa%EF%BC%8C%E7%9B%B4%E6%8E%A5%60export">https://stackoverflow.com/questions/54297627/qt-could-not-find-the-platform-plugin-cocoa，直接`export</a> QT_QPA_PLATFORM_PLUGIN_PATH=/Users/xxxx/Qt5.13.0/5.13.0/clang_64/plugins`</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/07/13/QT%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-python%E7%89%88%E6%9C%ACqt%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88macos%EF%BC%89/" data-id="ckqkkaz08007ubcc4gyy86z45" data-title="QT下载安装-python版本qt的使用（macos）" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Babel服务器上安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/12/Babel%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85/" class="article-date">
+  <time class="dt-published" datetime="2019-07-11T22:06:06.000Z" itemprop="datePublished">2019-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/12/Babel%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85/">Babel服务器上安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>apt install nodejs<br>apt install npm</p>
+<p>如果npm install出现权限问题：用<a target="_blank" rel="noopener" href="https://blog.csdn.net/gentlycare/article/details/51279529%E9%87%8C%E9%9D%A2%E7%9A%84%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84%EF%BC%8C%E6%8A%8A%E9%87%8C%E9%9D%A2%E7%9A%84npm">https://blog.csdn.net/gentlycare/article/details/51279529里面的修改默认全局安装路径，把里面的npm</a> config set prefix ‘~/.npm-global’ 的引号换掉</p>
+<p>babel：用babel-cli全局安装，需要用<a target="_blank" rel="noopener" href="https://www.jb51.net/article/105968.htm%E8%BF%99%E9%87%8C%E7%9A%84npm">https://www.jb51.net/article/105968.htm这里的npm</a> install –save-dev babel-preset-es2015和配置.babelrc文件</p>
+<p>使用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/07/12/Babel%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="ckqkkayy0000qbcc48dnahtpx" data-title="Babel服务器上安装" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-docker-正常使用&amp;push" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/10/docker-%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8&push/" class="article-date">
+  <time class="dt-published" datetime="2019-07-09T22:06:06.000Z" itemprop="datePublished">2019-07-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/10/docker-%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8&push/">docker-正常使用&amp;push</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>例如用这个的时候：<a target="_blank" rel="noopener" href="https://github.com/fengh16/2019SummerIntern/blob/master/CodeSearch/Readme.md">https://github.com/fengh16/2019SummerIntern/blob/master/CodeSearch/Readme.md</a></p>
+<p>启动：docker run -it name什么的</p>
+<p>之后一定要exit</p>
+<p>之后docker stop再docker commit id imagename</p>
+<p>如果已经退出了，先用docker start id，再用docker exec -it ID bash</p>
+<p>注意：存在挂载盘的问题，如果在挂载盘上进行操作，commit的时候不会被记录进去</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/07/10/docker-%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8&push/" data-id="ckqkkaz1800bcbcc4fbcr4w6p" data-title="docker-正常使用&amp;push" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-python-requirement-生成" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/05/python-requirement-%E7%94%9F%E6%88%90/" class="article-date">
+  <time class="dt-published" datetime="2019-07-04T22:06:06.000Z" itemprop="datePublished">2019-07-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/05/python-requirement-%E7%94%9F%E6%88%90/">python-requirement-生成</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>pip freeze &gt; requirements.txt</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/07/05/python-requirement-%E7%94%9F%E6%88%90/" data-id="ckqkkaz2c00f8bcc49ndq910e" data-title="python-requirement-生成" class="article-share-link">Share</a>
       
       
       
@@ -753,7 +601,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/26/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/28/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/26/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/28/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -774,7 +622,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -784,7 +632,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -793,7 +641,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -810,19 +658,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

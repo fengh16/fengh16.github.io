@@ -73,297 +73,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-多个CUDA和cuDNN安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-《深度学习推荐系统》PDF彩色版+王喆" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/04/10/%E5%A4%9A%E4%B8%AACUDA%E5%92%8CcuDNN%E5%AE%89%E8%A3%85/" class="article-date">
-  <time class="dt-published" datetime="2021-04-09T22:06:06.000Z" itemprop="datePublished">2021-04-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/10/%E5%A4%9A%E4%B8%AACUDA%E5%92%8CcuDNN%E5%AE%89%E8%A3%85/">多个CUDA和cuDNN安装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1663920145053509733&amp;wfr=spider&amp;for=pc&amp;qq-pf-to=pcqq.c2c">https://baijiahao.baidu.com/s?id=1663920145053509733&amp;wfr=spider&amp;for=pc&amp;qq-pf-to=pcqq.c2c</a></p>
-<p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/installing-multiple-cuda-cudnn-versions-in-ubuntu-fcb6aa5194e2">https://towardsdatascience.com/installing-multiple-cuda-cudnn-versions-in-ubuntu-fcb6aa5194e2</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/10/%E5%A4%9A%E4%B8%AACUDA%E5%92%8CcuDNN%E5%AE%89%E8%A3%85/" data-id="ckqkjgmbq00iax4c4964s6as7" data-title="多个CUDA和cuDNN安装" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-WOL（网络唤醒）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/04/04/WOL%EF%BC%88%E7%BD%91%E7%BB%9C%E5%94%A4%E9%86%92%EF%BC%89/" class="article-date">
-  <time class="dt-published" datetime="2021-04-03T22:06:06.000Z" itemprop="datePublished">2021-04-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/04/WOL%EF%BC%88%E7%BD%91%E7%BB%9C%E5%94%A4%E9%86%92%EF%BC%89/">WOL（网络唤醒）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>一台华硕主板电脑网络唤醒设置：</p>
-<ol>
-<li>开机按下DEL键，在BIOS设置中开启PCI-E唤醒：<br><img src="https://upload-images.jianshu.io/upload_images/5060560-1a96a9cc46f748cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="PCI-E唤醒"></li>
-<li>升级驱动，驱动精灵中升级即可：<br><img src="https://upload-images.jianshu.io/upload_images/5060560-955a366e6853bf34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="驱动精灵升级完毕后的样子"></li>
-<li>设备管理器中，属性：<br><img src="https://upload-images.jianshu.io/upload_images/5060560-0366de338d7dea3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设备管理器"></li>
-<li>设置关机网络唤醒：<br><img src="https://upload-images.jianshu.io/upload_images/5060560-8e265c87695f23b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="关机网络唤醒"></li>
-<li>电源管理：<br><img src="https://upload-images.jianshu.io/upload_images/5060560-c492e9f111d4b468.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="电源管理"></li>
-<li>安装RemoteBoot WOL软件，添加，输入IP和MAC地址（通过<code>ipconfig /all</code>获取），端口填<code>9</code></li>
-<li>防火墙设置中，加上入站规则：<br><img src="https://upload-images.jianshu.io/upload_images/5060560-24a2a603490229d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="入站规则"></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/04/WOL%EF%BC%88%E7%BD%91%E7%BB%9C%E5%94%A4%E9%86%92%EF%BC%89/" data-id="ckqkjgm91008vx4c48zzwc8n5" data-title="WOL（网络唤醒）" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-latex找不到sty" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/04/01/latex%E6%89%BE%E4%B8%8D%E5%88%B0sty/" class="article-date">
-  <time class="dt-published" datetime="2021-03-31T22:06:06.000Z" itemprop="datePublished">2021-04-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/01/latex%E6%89%BE%E4%B8%8D%E5%88%B0sty/">latex找不到sty</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>提示File xxx.sty not found</p>
-<p>执行 <code>docker exec sharelatex tlmgr install xxx</code></p>
-<p>如果不行的话，用<code>tlmgr search --global --file xxx.sty</code>搜搜，比如：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-360173d288e3e289.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="搜索结果"></p>
-<p>这里名称完全一致的是ncctools。这样就知道要安装哪个包了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/04/01/latex%E6%89%BE%E4%B8%8D%E5%88%B0sty/" data-id="ckqkjgma900d3x4c43b5qfmh7" data-title="latex找不到sty" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-docker-overleaf" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/03/29/docker-overleaf/" class="article-date">
-  <time class="dt-published" datetime="2021-03-28T22:06:06.000Z" itemprop="datePublished">2021-03-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/03/29/docker-overleaf/">docker-overleaf</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>参考资料：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/overleaf/overleaf/wiki/Quick-Start-Guide">https://github.com/overleaf/overleaf/wiki/Quick-Start-Guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://medium.com/@shuangzizuobh2/host-your-own-latex-server-a-docker-example-2787531bf93b">https://medium.com/@shuangzizuobh2/host-your-own-latex-server-a-docker-example-2787531bf93b</a></li>
-</ul>
-<h2 id="下载与启动"><a href="#下载与启动" class="headerlink" title="下载与启动"></a>下载与启动</h2><p>安装好docker后，下载文件<a target="_blank" rel="noopener" href="https://github.com/overleaf/overleaf/blob/master/docker-compose.yml">https://github.com/overleaf/overleaf/blob/master/docker-compose.yml</a> 。可以打开修改<code>volumes: - ~/sharelatex_data:/var/lib/sharelatex</code>这种挂载路径。</p>
-<p>在<code>docker-compose.yml</code>文件的文件夹下，执行 <code>docker-compose up</code></p>
-<p>在这一过程中，会自动进行：</p>
-<ul>
-<li><code>docker pull sharelatex/sharelatex</code></li>
-<li><code>docker pull redis</code></li>
-<li><code>docker pull mongo</code><br>并且会自动启动。</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-f05ff295e5776dd7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动后的docker界面显示"></p>
-<h2 id="安装完整包"><a href="#安装完整包" class="headerlink" title="安装完整包"></a>安装完整包</h2><p>在另一个窗口中，执行：</p>
-<ul>
-<li><code>docker exec sharelatex tlmgr update --self</code></li>
-<li><code>docker exec sharelatex tlmgr install scheme-full</code></li>
-</ul>
-<h2 id="创建管理员账号"><a href="#创建管理员账号" class="headerlink" title="创建管理员账号"></a>创建管理员账号</h2><p>访问<code>localhost\launchpad</code>页面。</p>
-<h2 id="提示File-xxx-sty-not-found"><a href="#提示File-xxx-sty-not-found" class="headerlink" title="提示File xxx.sty not found"></a>提示File xxx.sty not found</h2><p>执行 <code>docker exec sharelatex tlmgr install xxx</code></p>
-<p>如果不行的话，用<code>docker exec sharelatex tlmgr search --global --file xxx.sty</code>搜搜，比如：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-360173d288e3e289.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="搜索结果"></p>
-<p>这里名称完全一致的是ncctools。这样就知道要安装哪个包了。</p>
-<h2 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h2><p>今天忽然提示要升级，所以记录一下升级的过程。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6fe326374ef06640.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="升级提示"></p>
-<p>如果手动做，升级的说明在：<a target="_blank" rel="noopener" href="https://tug.org/texlive/upgrade.html">https://tug.org/texlive/upgrade.html</a></p>
-<p>但如果重新下载，可以参考<a target="_blank" rel="noopener" href="https://github.com/overleaf/overleaf/wiki/Upgrading-Containers">https://github.com/overleaf/overleaf/wiki/Upgrading-Containers</a> 。但是目前还没有新的image打包好。</p>
-<p>如果不想升级，可以直接用： –verify-repo=none ，比如<code>docker exec sharelatex tlmgr --verify-repo=none search --global --file xxx.sty</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/03/29/docker-overleaf/" data-id="ckqkjgm9m00atx4c4fggxg59a" data-title="docker-overleaf" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-docker安装数据库与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/03/27/docker%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2021-03-26T22:06:06.000Z" itemprop="datePublished">2021-03-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/03/27/docker%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E4%BD%BF%E7%94%A8/">docker安装数据库与使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>该文章前提是已经下载安装好docker。将介绍neo4j、mongo、mysql数据库在docker的安装和使用。</p>
-<h1 id="neo4j"><a href="#neo4j" class="headerlink" title="neo4j"></a>neo4j</h1><p><a target="_blank" rel="noopener" href="https://neo4j.com/developer/docker/">https://neo4j.com/developer/docker/</a></p>
-<p>下载镜像：<code>docker pull neo4j</code></p>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>执行：<code>docker run -p7474:7474 -p7687:7687 -e NEO4J_AUTH=neo4j/s3cr3t neo4j</code></p>
-<h2 id="浏览器使用"><a href="#浏览器使用" class="headerlink" title="浏览器使用"></a>浏览器使用</h2><p>打开浏览器<a href="http://localhost:7474，用户名和密码分别输入`neo4j`和`s3cr3t`即可。">http://localhost:7474，用户名和密码分别输入`neo4j`和`s3cr3t`即可。</a></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-569b5760f08fe373.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="neo4j网页版"></p>
-<p>可以执行几句，比如：</p>
-<p><code>create (p:Person &#123;name: &quot;Jennifer&quot;&#125;)-[rel:LIKES]-&gt;(g:Technology &#123;type: &quot;Graphs&quot;&#125;)</code><br><code>CREATE (p:Person)-[:LIKES]-&gt;(t:Technology)</code><br><code>MATCH (p:Person)-[:LIKES]-&gt;(t:Technology) return p,t</code></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-f32ad391bcb32e5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="neo4j浏览器执行出来的结果"></p>
-<h1 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h1><p><a target="_blank" rel="noopener" href="https://phoenixnap.com/kb/docker-mongodb">https://phoenixnap.com/kb/docker-mongodb</a></p>
-<p>下载镜像：<code>docker pull mongo</code></p>
-<h2 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h2><p>首先新建一个文件夹装数据，比如我用<code>D:\dataset\mongodb</code>，则执行 <code>docker run -it -v D:\dataset\mongodb:/data/db -p 27017:27017 --name mongodb -d mongo</code>，之后会产生一行container的ID：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-b5cccb6ea0010e67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建MongoDB的container"></p>
-<h2 id="查看日志记录"><a href="#查看日志记录" class="headerlink" title="查看日志记录"></a>查看日志记录</h2><p><code>docker logs mongodb</code></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-9fa1233cfc6425de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MongoDB日志"></p>
-<h2 id="使用bash"><a href="#使用bash" class="headerlink" title="使用bash"></a>使用bash</h2><p><code>docker exec -it mongodb bash</code></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-4b259fe0244c5eff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MongoDB的bash交互"></p>
-<p>如果要退出，bash中输入<code>exit</code>即可</p>
-<h2 id="关闭数据库-amp-重新打开"><a href="#关闭数据库-amp-重新打开" class="headerlink" title="关闭数据库&amp;重新打开"></a>关闭数据库&amp;重新打开</h2><p><code>docker stop mongodb</code> 和 <code>docker start mongodb</code></p>
-<h2 id="GUI连接"><a href="#GUI连接" class="headerlink" title="GUI连接"></a>GUI连接</h2><p><a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/compass">https://www.mongodb.com/try/download/compass</a></p>
-<p>下载后用<code>mongodb://localhost:27017</code>连接即可。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ef3338e731c80f48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Compass连接"></p>
-<p>这时可以打开本地数据记录看一下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-229bec54030b9491.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="查看本地数据记录"></p>
-<h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><p><code>docker pull mysql</code></p>
-<p><code>docker pull phpmyadmin</code></p>
-<h2 id="启动-2"><a href="#启动-2" class="headerlink" title="启动"></a>启动</h2><p><code>docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql</code></p>
-<p>在控制台找到docker的IP，如windows中输入ipconfig，得到的结果中，WSL的IP就是（这里是172.22.176.1）</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-06a4b7cbc42408b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ipconfig出来的结果"></p>
-<p><code>docker run -itd --name mysql_php -p 8081:80 -e PMA_HOST=172.22.176.1 -e PMA_PORT=3306 phpmyadmin</code></p>
-<p>之后访问localhost:8081即可。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/03/27/docker%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm9o00b3x4c4a98dfncl" data-title="docker安装数据库与使用" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-GAT" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/03/23/GAT/" class="article-date">
-  <time class="dt-published" datetime="2021-03-22T22:06:06.000Z" itemprop="datePublished">2021-03-23</time>
+    <a href="/2021/05/07/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E3%80%8BPDF%E5%BD%A9%E8%89%B2%E7%89%88+%E7%8E%8B%E5%96%86/" class="article-date">
+  <time class="dt-published" datetime="2021-05-06T22:06:06.000Z" itemprop="datePublished">2021-05-07</time>
 </a>
     
   <div class="article-category">
@@ -378,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/03/23/GAT/">GAT</a>
+      <a class="p-name article-title" href="/2021/05/07/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E3%80%8BPDF%E5%BD%A9%E8%89%B2%E7%89%88+%E7%8E%8B%E5%96%86/">《深度学习推荐系统》PDF彩色版+王喆</a>
     </h1>
   
 
@@ -386,25 +99,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1671028964544884749&amp;wfr=spider&amp;for=pc">https://baijiahao.baidu.com/s?id=1671028964544884749&amp;wfr=spider&amp;for=pc</a></p>
-<p>图神经网络 GNN 把深度学习应用到图结构 (Graph) 中，其中的图卷积网络 GCN 可以在 Graph 上进行卷积操作。但是 GCN 存在一些缺陷：</p>
-<ol>
-<li>依赖拉普拉斯矩阵，不能直接用于有向图；</li>
-<li>模型训练依赖于整个图结构，不能用于动态图（只能处理 transductive 任务，不能处理 inductive 任务。transductive 指训练和测试的时候基于相同的图结构，例如在一个社交网络上，知道一部分人的类别，预测另一部分人的类别。inductive 指训练和测试使用不同的图结构，例如在一个社交网络上训练，在另一个社交网络上预测。）</li>
-<li>卷积的时候没办法为邻居节点分配不同的权重。</li>
-</ol>
-<p>因此 2018 年图注意力网络 GAT (Graph Attention Network) 被提出，解决 GCN 存在的问题。</p>
-<p>对节点特征向量 h 进行线性变换，可以得到新的特征向量 h’i，维度是 F’，如下所示，W 为线性变换（从旧特征到新特征）的矩阵：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-a78abc2394d43aa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="特征"></p>
-<p>节点 j 是节点 i 的邻居，则可以使用 Attention 机制计算节点 j 对于节点 i 的重要性，即 Attention Score：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-0ec78b08744eb61e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Attention Score"></p>
-<p>Attention 做法如下，把节点 i、j 的特征向量 h’i、h’j 拼接在一起，然后和一个 2F’ 维的向量 a 计算内积。激活函数采用 LeakyReLU</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-cb510f224fd6de86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="具体计算过程"></p>
+        <p>密码是DLREMT978</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/share/init?surl=aUbP6Ukun0_yCYDwEjIrbw">https://pan.baidu.com/share/init?surl=aUbP6Ukun0_yCYDwEjIrbw</a> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/03/23/GAT/" data-id="ckqkjgm77002tx4c4g96ahf3t" data-title="GAT" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2021/05/07/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E3%80%8BPDF%E5%BD%A9%E8%89%B2%E7%89%88+%E7%8E%8B%E5%96%86/" data-id="ckqkkaz2x00h3bcc47vpw8fdt" data-title="《深度学习推荐系统》PDF彩色版+王喆" class="article-share-link">Share</a>
       
       
       
@@ -416,61 +117,10 @@
 
 
   
-    <article id="post-图神经网络GNN" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-线性变换" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/03/23/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CGNN/" class="article-date">
-  <time class="dt-published" datetime="2021-03-22T22:06:06.000Z" itemprop="datePublished">2021-03-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/03/23/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CGNN/">图神经网络GNN</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010159842/article/details/105939263">https://blog.csdn.net/u010159842/article/details/105939263</a></p>
-<p>GCN：图卷积，将卷积扩展到图的频域卷积</p>
-<p>GAT：将注意力机制引入</p>
-<p>GraphSAGE：提供了一种通用的归纳式框架，使用结点信息特征为未出现过的（unseen）结点生成结点向量</p>
-<p>从消息传播角度考虑，可以看：</p>
-<blockquote>
-<p>【GNN系列1】从Message Passing理解图神经网络(GCN，GraphSage，GAT) - balajia的文章 - 知乎<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/150596886">https://zhuanlan.zhihu.com/p/150596886</a></p>
-</blockquote>
-<p>GCN是将周围的信息直接聚合，GAT是用节点之间的相似度作为Attention进行聚合</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/03/23/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CGNN/" data-id="ckqkjgmbn00hzx4c4gw7wfst1" data-title="图神经网络GNN" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-奇异值和特征值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/03/16/%E5%A5%87%E5%BC%82%E5%80%BC%E5%92%8C%E7%89%B9%E5%BE%81%E5%80%BC/" class="article-date">
-  <time class="dt-published" datetime="2021-03-15T22:06:06.000Z" itemprop="datePublished">2021-03-16</time>
+    <a href="/2021/05/05/%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/" class="article-date">
+  <time class="dt-published" datetime="2021-05-04T22:06:06.000Z" itemprop="datePublished">2021-05-05</time>
 </a>
     
   <div class="article-category">
@@ -485,7 +135,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/03/16/%E5%A5%87%E5%BC%82%E5%80%BC%E5%92%8C%E7%89%B9%E5%BE%81%E5%80%BC/">奇异值和特征值</a>
+      <a class="p-name article-title" href="/2021/05/05/%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/">线性变换</a>
     </h1>
   
 
@@ -493,25 +143,20 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>奇异值与特征值辨析 - gwave的文章 - 知乎<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/353637184">https://zhuanlan.zhihu.com/p/353637184</a></p>
-</blockquote>
-<p>特征向量描述的是矩阵的方向不变作用(invariant action)的向量；<br>奇异向量描述的是矩阵最大作用(maximum action)的方向向量。（在$A$与所有单位向量$x$的乘积中，$Ax$模长是最大的）</p>
-<h3 id="特征值分解"><a href="#特征值分解" class="headerlink" title="特征值分解"></a>特征值分解</h3><p>$Av=\lambda v$</p>
-<p>特征值分解是将方阵分解：$A=P\Lambda P^{-1}$，$P$中每一列是单位特征向量。其实就是从$AP=P\Lambda$转换得到的。</p>
-<h3 id="奇异值分解SVD"><a href="#奇异值分解SVD" class="headerlink" title="奇异值分解SVD"></a>奇异值分解SVD</h3><p><img src="https://upload-images.jianshu.io/upload_images/5060560-489506c5fde5d645.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="奇异值分解"></p>
-<blockquote>
-<p>人们是如何想到奇异值分解的？ - 石溪的回答 - 知乎 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/263722514/answer/1447844961">https://www.zhihu.com/question/263722514/answer/1447844961</a></p>
-</blockquote>
-<p>SVD其实是找到一个$Av_i=\sigma_i u_i$，相当于把一个空间的向量变换后变成另一个空间的向量。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ec27b0a48f3c43cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="写成向量形式"></p>
-<p>所以$AV=U\Sigma$，其中$A$不需要是方阵</p>
-<p>而$V$的每一列是标准正交向量，所以$V^{-1}=V^T$</p>
+        <p>视频说明，来自 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=kYB8IZa5AuE">https://www.youtube.com/watch?v=kYB8IZa5AuE</a></p>
+<p>线性变换：Linear Transformation ，transformation代表一种函数，但这个单词表示需要考虑一种移动（将一个向量移动到另一个位置，或者将一个点移动到另一个点）</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-947f2ee78023e451.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="变换"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-d08132b90001bf94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="坐标轴表示的变换"></p>
+<p>而Linear代表，一条直线变换完还是直线，原点不变。</p>
+<p>线性变换的时候，可以将原来的向量坐标分解，然后再对每个轴进行处理。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-0526edfa5a0134e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="线性变换坐标变换"></p>
+<p>矩阵方式表示坐标变换：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-2dc190de6fbf8e69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="矩阵表示坐标变换"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/03/16/%E5%A5%87%E5%BC%82%E5%80%BC%E5%92%8C%E7%89%B9%E5%BE%81%E5%80%BC/" data-id="ckqkjgmbr00iex4c4ez37740u" data-title="奇异值和特征值" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2021/05/05/%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/" data-id="ckqkkaz4t00ndbcc4cbko5f8y" data-title="线性变换" class="article-share-link">Share</a>
       
       
       
@@ -523,14 +168,14 @@
 
 
   
-    <article id="post-selenium爬虫检测" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-强化学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/03/05/selenium%E7%88%AC%E8%99%AB%E6%A3%80%E6%B5%8B/" class="article-date">
-  <time class="dt-published" datetime="2021-03-04T22:06:06.000Z" itemprop="datePublished">2021-03-05</time>
+    <a href="/2021/04/28/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2021-04-27T22:06:06.000Z" itemprop="datePublished">2021-04-28</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
   </div>
 
   </div>
@@ -541,7 +186,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/03/05/selenium%E7%88%AC%E8%99%AB%E6%A3%80%E6%B5%8B/">selenium爬虫检测</a>
+      <a class="p-name article-title" href="/2021/04/28/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a>
     </h1>
   
 
@@ -549,17 +194,43 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/328768200">https://zhuanlan.zhihu.com/p/328768200</a></p>
-<p>提到了可以用：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chrome_options.add_experimental_option(</span><br><span class="line">    <span class="string">&quot;excludeSwitches&quot;</span>, [<span class="string">&quot;enable-automation&quot;</span>])</span><br><span class="line">chrome_options.add_experimental_option(<span class="string">&#x27;useAutomationExtension&#x27;</span>, <span class="literal">False</span>)</span><br><span class="line">chrome_options.add_argument(<span class="string">&quot;disable-blink-features=AutomationControlled&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>下面的文章中提到了一些特征js变量：</p>
-<p>selenium爬虫被检测到 该如何破？ - Angel的回答 - 知乎<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/50738719/answer/545145218">https://www.zhihu.com/question/50738719/answer/545145218</a></p>
+        <p>一个模拟环境：<a target="_blank" rel="noopener" href="https://gym.openai.com/">https://gym.openai.com/</a></p>
+<p>一套教程：<a target="_blank" rel="noopener" href="https://mofanpy.com/tutorials/machine-learning/reinforcement-learning/intro-q-learning/">https://mofanpy.com/tutorials/machine-learning/reinforcement-learning/intro-q-learning/</a></p>
+<p>来自 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=2xATEwcRpy8">https://www.youtube.com/watch?v=2xATEwcRpy8</a> 和 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=JgvyzIkgxF0">https://www.youtube.com/watch?v=JgvyzIkgxF0</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1762ec9eaff30ceb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="强化学习示意图"></p>
+<p>Agent会进行Environment的探索，agent可以感知environment的状态state（s），agent采取的行动action（a）会影响Environment，而这个行动会有一个reward（r）。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e4bc3874a19c653e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="另一个图"></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27860483">https://zhuanlan.zhihu.com/p/27860483</a></p>
+<p>主动对环境进行试探，并根据试探后，环境反馈回来的结果进行评价、总结，以改进和调整自身的行为，然后环境会根据新的行为作出新的反馈，持续调整的学习过程。</p>
+<p>环境（Environment）：环境会接收Agent执行的一系列的动作（Action），并且对这一系列的动作的好坏进行评价，并转换成一种可量化的（标量信号）Reward反馈给Agent，而不会告诉Agent应该如何去学习动作。Agent只能靠自己的历史（History）经历去学习。同时，环境还像Agent提供它所处的状态（State）信息。环境有完全可观测（Fully Observable）和部分可观测（Partial Observable）两种情况。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30315707">https://zhuanlan.zhihu.com/p/30315707</a></p>
+<p>reward：</p>
+<ul>
+<li>我们定义了“奖励”，这是一个标量，他代表了一个反馈的信号，代表时刻的的action的表现如何</li>
+<li>我们的目标是得到累计的reward的最大值</li>
+<li>reward hypothesis：reinforcement learning 在reward方面都是基于这个假设的，也就是说，我们认为我们的目标都能够被描述为reward的累计的最大值</li>
+<li>如果我们的任务是基于时间的目标问题，比如我们希望让任务在最小时间完成，这样，我们可以再每次执行完一个action之后，设定一个”-1”的反馈，这样的话，这样我们的优化目标就能够最小化任务执行的时间</li>
+</ul>
+<p>Goal</p>
+<ul>
+<li>对于任何的任务，我们的统一目标是：得到reward的累计的最大值</li>
+<li>有时候我们的agent需要提前做思考，不能只看到当前的reward，要在当前状态就考虑如何使得我的未来得到的reward最大化</li>
+<li>基于上面的特点，这就意味着，我们可能需要放弃眼前的利益以获得累计的更大的奖励。</li>
+<li>比如说，我们在直升机游戏中，会选择停下来补充燃料，然后继续飞行，短期看降低了飞行的距离，但是长期看，他能够在坠前飞的更久</li>
+</ul>
+<p>History 和 State 的关系</p>
+<ul>
+<li>history是一个action、observation、reward的序列：$H_{t}=A_{1}, O_{1}, R_{1}, \ldots, A_{t}, O_{t}, R_{t}$</li>
+<li>history能够决定action接下来采取什么行动；实际上，agent做的就是从history到action的映射</li>
+<li>对于环境而言，history和产生的action交给environment，从而得到对应的observation和reward</li>
+<li>state是history的一个总结，用来决定下一步的action是什么，实际上，他是一个关于history的函数，我们可以这样表示：$S_{t}=f\left(H_{t}\right), A_{t}=h\left(S_{t}\right)$</li>
+<li>State相对于hisory而言最大的好处在于他的信息量很少，实际上，我们也不需要得到所有的history来得到下一步的action（在之后的马尔科夫状态中会提到原因）。</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/03/05/selenium%E7%88%AC%E8%99%AB%E6%A3%80%E6%B5%8B/" data-id="ckqkjgmaw00ezx4c4dkvbcb8w" data-title="selenium爬虫检测" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2021/04/28/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" data-id="ckqkkaz3m00jfbcc4a10c9fwp" data-title="强化学习" class="article-share-link">Share</a>
       
       
       
@@ -571,14 +242,14 @@
 
 
   
-    <article id="post-名字中的van-der" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-SVD的几何理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/03/05/%E5%90%8D%E5%AD%97%E4%B8%AD%E7%9A%84van-der/" class="article-date">
-  <time class="dt-published" datetime="2021-03-04T22:06:06.000Z" itemprop="datePublished">2021-03-05</time>
+    <a href="/2021/04/27/SVD%E7%9A%84%E5%87%A0%E4%BD%95%E7%90%86%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2021-04-26T22:06:06.000Z" itemprop="datePublished">2021-04-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a>
   </div>
 
   </div>
@@ -589,7 +260,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/03/05/%E5%90%8D%E5%AD%97%E4%B8%AD%E7%9A%84van-der/">名字中的van-der</a>
+      <a class="p-name article-title" href="/2021/04/27/SVD%E7%9A%84%E5%87%A0%E4%BD%95%E7%90%86%E8%A7%A3/">SVD的几何理解</a>
     </h1>
   
 
@@ -597,14 +268,338 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Van Der是一个姓氏的前缀。</p>
-<p>wiki中提到：“Van is a very common prefix in Dutch language surnames … The most common cases of this are van de, van der and van den”(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Van_(Dutch)">https://en.wikipedia.org/wiki/Van_(Dutch)</a>) </p>
-<p>另外知乎上也有说（van der 是什么意思？ - TK语言私教的回答 - 知乎 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/284416848/answer/438434316">https://www.zhihu.com/question/284416848/answer/438434316</a> ）</p>
+        <p>来自 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=DG7YTlGnCEo">https://www.youtube.com/watch?v=DG7YTlGnCEo</a> ，Singular Value Decomposition (SVD) and Image Compression</p>
+<h2 id="几何变换"><a href="#几何变换" class="headerlink" title="几何变换"></a>几何变换</h2><p>我们有些时候需要做一个变换，比如：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-18d496511a38e1ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="变换示例"></p>
+<p>在这种情况下，我们需要进行旋转、水平和竖直方向的拉伸和压缩，并且再次进行旋转。</p>
+<p>而矩阵可以表示一个线性变换，比如：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-620061b450d1bc0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="矩阵表示线性变换的例子"></p>
+<p>有一些特殊的矩阵：</p>
+<ul>
+<li>旋转：<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-46b6046769ff16f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="旋转矩阵"></li>
+</ul>
+</li>
+<li>拉伸压缩：<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-ea56df34a1fb5dee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="拉伸压缩矩阵"></li>
+</ul>
+</li>
+</ul>
+<p>并且可以进行分解：</p>
+<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-b4e363256f70db9a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解"></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-b0accb666bb5e8d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="转换为SVD"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-c8ce7d35a2957f49.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="转换为矩阵形式的示意图"></p>
+<h2 id="降维"><a href="#降维" class="headerlink" title="降维"></a>降维</h2><p>0.44很小，所以可以考虑把它去掉（变为0）</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e933e42c82cc01eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="比较不重要的部分"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-dfc8d5dc92613d67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="变成0之后"></p>
+<p>因此可以降维：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1f0b48052b3edc97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="降维"></p>
+<p>而且可以将矩阵分解之后压缩存储：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-3627907b88ff7ad8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解后从16个数缩减到8个数"></p>
+<p>而其实矩阵可以用SVD的方式分解出来：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-a6d655f486bb962a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解的示意图"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-af57eb93c1caee3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解的示意图2"></p>
+<p>所以可以考虑把后面的比较小的去掉。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-52e5b9889544bb84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="前n项计算出来的结果"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8272b364c93a4bff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="四个不同的大小矩阵计算"></p>
+<p>如果不是一个方阵，其实也可以做：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e20329bd991311ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="非方阵的情况"></p>
+<h2 id="图像压缩"><a href="#图像压缩" class="headerlink" title="图像压缩"></a>图像压缩</h2><p>基于之前的SVD技术，可以进行图像压缩。</p>
+<p>先对原始图像进行分解，只保留一行一列的情况下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-3ec9c076a691edef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图像压缩保留一行一列"></p>
+<p>而之后已经基本上等于0了：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6f2b8026044423c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="到后面就基本上等于0了"></p>
+<p>如果保留前3项，就已经和原图很像了；如果保留前4项，就已经一样了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-9b18a3c591df5f3d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="压缩"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2021/03/05/%E5%90%8D%E5%AD%97%E4%B8%AD%E7%9A%84van-der/" data-id="ckqkjgmbk00hnx4c4d1ffhd4x" data-title="名字中的van-der" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2021/04/27/SVD%E7%9A%84%E5%87%A0%E4%BD%95%E7%90%86%E8%A7%A3/" data-id="ckqkkaz0e008hbcc46snbg3db" data-title="SVD的几何理解" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-推荐系统矩阵分解的直观理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/27/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2021-04-26T22:06:06.000Z" itemprop="datePublished">2021-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/27/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/">推荐系统矩阵分解的直观理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>内容来自 How does Netflix recommend movies? Matrix Factorization （ <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ZspR5PZemcs">https://www.youtube.com/watch?v=ZspR5PZemcs</a> ），讲得非常清晰易懂</p>
+<p>代码在 <a target="_blank" rel="noopener" href="https://github.com/yanneta/pytorch-tutorials/blob/master/collaborative-filtering-nn.ipynb">https://github.com/yanneta/pytorch-tutorials/blob/master/collaborative-filtering-nn.ipynb</a></p>
+<p>我们可以假设每个人和每个电影有内在的一些feature，假如考虑两个feature，Comedy和Action：</p>
+<ul>
+<li>每个电影包含的两部分的量和每个人对两部分的喜爱与否是下表所示：<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-93299a95465e43b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分解量的直观理解"></li>
+<li>这里√可以写成1，×可以写成0，所以预期评分就是两部分的内积</li>
+</ul>
+</li>
+<li>最后可以算出一个评分表，就代表每个人对于电影的喜爱程度：<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/5060560-d06b0f6cfdaa3d6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="算出的矩阵"></li>
+</ul>
+</li>
+</ul>
+<p>左边的两个矩阵相对较小，而右边的矩阵相对较大。这样做也可以起到节省存储空间的作用。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-f8a2ca7b05150890.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="矩阵表示"></p>
+<p>也可以用图的方式来观察，相当于是有中间的feature部分：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-2b8767db112560a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图形式"></p>
+<p>分解的时候可以用梯度下降的方式，先给一个随机值再更新，使用平方求和的方式算误差。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-04b12738baf24acc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Error function"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/27/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3/" data-id="ckqkkaz3t00k3bcc43lnn9epl" data-title="推荐系统矩阵分解的直观理解" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Colab使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/25/Colab%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2021-04-24T22:06:06.000Z" itemprop="datePublished">2021-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/25/Colab%E4%BD%BF%E7%94%A8/">Colab使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>挂载磁盘：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-d3ded3d6baf1e376.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="挂载"></p>
+<p>解压和压缩：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1758badcc87b4fc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="解压和压缩"></p>
+<p>如果有很多图片的数据集，应该直接将这些图片的压缩包用上面的方式解压到挂载的磁盘上，如果直接从drive读取所有图片是很慢的！</p>
+<p>也可以使用git clone或者wget命令</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/25/Colab%E4%BD%BF%E7%94%A8/" data-id="ckqkkayya001qbcc4ckke9ap4" data-title="Colab使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-删除desktop-ini" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/25/%E5%88%A0%E9%99%A4desktop-ini/" class="article-date">
+  <time class="dt-published" datetime="2021-04-24T22:06:06.000Z" itemprop="datePublished">2021-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/25/%E5%88%A0%E9%99%A4desktop-ini/">删除desktop-ini</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>使用powershell，用<code>Remove-Item -Path .\desktop.ini -Force</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/25/%E5%88%A0%E9%99%A4desktop-ini/" data-id="ckqkkaz3500hwbcc43dh447zd" data-title="删除desktop-ini" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-推荐系统与强化学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/25/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2021-04-24T22:06:06.000Z" itemprop="datePublished">2021-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/25/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">推荐系统与强化学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/25/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" data-id="ckqkkaz3s00jzbcc48cjlfrba" data-title="推荐系统与强化学习" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-推荐系统数据集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/24/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E9%9B%86/" class="article-date">
+  <time class="dt-published" datetime="2021-04-23T22:06:06.000Z" itemprop="datePublished">2021-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/24/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E9%9B%86/">推荐系统数据集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>MovieLens：<a target="_blank" rel="noopener" href="https://grouplens.org/datasets/movielens/">https://grouplens.org/datasets/movielens/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/24/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E9%9B%86/" data-id="ckqkkaz3s00k1bcc48vlvgw3z" data-title="推荐系统数据集" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-SHELL脚本执行SQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/15/SHELL%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8CSQL/" class="article-date">
+  <time class="dt-published" datetime="2021-04-14T22:06:06.000Z" itemprop="datePublished">2021-04-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/15/SHELL%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8CSQL/">SHELL脚本执行SQL</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><code>mysql -u用户名 -p密码 -D数据库名 -e&quot;sql 语句&quot;</code></p>
+<p>注意大小写，注意字母这里没有空格</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2021/04/15/SHELL%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8CSQL/" data-id="ckqkkaz0e008fbcc4bi0312ei" data-title="SHELL脚本执行SQL" class="article-share-link">Share</a>
       
       
       
@@ -620,7 +615,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -641,7 +636,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -651,7 +646,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -660,7 +655,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -677,19 +672,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

@@ -73,10 +73,471 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-win10双显示器后-cocos无法显示在单显示器中" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-汇编过程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/07/25/win10%E5%8F%8C%E6%98%BE%E7%A4%BA%E5%99%A8%E5%90%8E-cocos%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%9C%A8%E5%8D%95%E6%98%BE%E7%A4%BA%E5%99%A8%E4%B8%AD/" class="article-date">
-  <time class="dt-published" datetime="2018-07-24T22:06:06.000Z" itemprop="datePublished">2018-07-25</time>
+    <a href="/2018/10/03/%E6%B1%87%E7%BC%96%E8%BF%87%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2018-10-02T22:06:06.000Z" itemprop="datePublished">2018-10-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/10/03/%E6%B1%87%E7%BC%96%E8%BF%87%E7%A8%8B/">汇编过程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>汇编系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/29822876">https://www.jianshu.com/nb/29822876</a></p>
+<h3 id="stack的使用"><a href="#stack的使用" class="headerlink" title="stack的使用"></a>stack的使用</h3><ul>
+<li>使用SS和ESP进行寻址，每一次push和pop都是对栈顶操作，栈顶在低地址，同时是指向顶部存储的内容。如PUSH后，会先移动后再push进去东西。</li>
+<li>PUSH、POP都是只有一个操作数，因为只有一个栈。</li>
+<li>注意由于后进先出，PUSH和POP的操作对象顺序相反。</li>
+<li>PUSHFD、POPFD：用于EFLAGS寄存器</li>
+<li>PUSHAD、POPAD：所有32位通用寄存器，顺序：<code>EAX、ECX、EDX、EBX、ESP、EBP、ESI、EDI</code></li>
+<li>PUSHA、POPA用于16位</li>
+</ul>
+<h3 id="过程procedure定义："><a href="#过程procedure定义：" class="headerlink" title="过程procedure定义："></a>过程procedure定义：</h3><ul>
+<li>输入输出可以使用寄存器</li>
+<li>使用PROC和ENDP定义，里面使用ret，直接用call调用</li>
+<li>ret用来进行EIP赋值，继续执行调用前的下一条的指令</li>
+<li>USES操作符：在PROC之后加上USES esi ecx可以让编译器自动在PROC内部加上两个寄存器的push和pop操作</li>
+</ul>
+<h3 id="LINK-library"><a href="#LINK-library" class="headerlink" title="LINK library"></a>LINK library</h3><ul>
+<li>用机器码编译出来的procedures</li>
+<li>自己生成lib时需要先把每一个asm编译成obj然后把他们添加在lib文件中</li>
+<li>使用include来声明函数原型</li>
+</ul>
+<h3 id="64位"><a href="#64位" class="headerlink" title="64位"></a>64位</h3><ul>
+<li>用PROTO，使用的栈指针是RSP，每次减8；</li>
+<li>前四个参数必须放在RCX、RDX、R8、R9里</li>
+<li>必须在stack中预留至少32bytes，子过程调用时栈指针在16-byte边界上对齐</li>
+</ul>
+<h3 id="Stack-Frames栈帧"><a href="#Stack-Frames栈帧" class="headerlink" title="Stack Frames栈帧"></a>Stack Frames栈帧</h3><ul>
+<li>也叫做activation record，用于记录调用过程传递的参数、返回地址、保存的寄存器及局部变量的值</li>
+<li>调用的时候参数入栈，调用过程，被调用的过程将EBP推入栈中，在函数调用时把原来的栈顶esp变成被调用函数的栈底ebp。如果需要局部变量，会在esp上减小常数以存放。<ul>
+<li>子过程中，<code>push ebp</code>、<code>mov ebp, esp</code>，最后<code>pop ebp</code></li>
+</ul>
+</li>
+<li>stack parameters：比用寄存器传递参数更方便，直接把参数倒序入栈。<ul>
+<li>值传递时，为了保证栈对齐，保护模式中只使用32位值作为参数，返回值放在EAX里面，如果被调用过程没有把参数清除就自己清除这个栈。</li>
+<li>引用传递时，传递offset</li>
+</ul>
+</li>
+<li>栈传参数&amp;清除<ul>
+<li>在call之前push，如push两个参数，在子过程中可以使用[esp + 8]、[esp + 12]获取参数</li>
+<li>最后可以由子过程ret 8来清除参数（相当于让esp移动），或者在caller中进行（让esp移动）</li>
+</ul>
+</li>
+<li>局部变量<ul>
+<li>如函数中，<code>int x = 10</code>，就在改变ebp、esp之后<code>sub esp 4</code>，并且把局部变量存进去。</li>
+<li>高到低：参数、return地址、ebp、局部变量</li>
+</ul>
+</li>
+<li>ENTER：为被调用过程保留栈帧（<code>push ebp</code>、<code>mov ebp esp</code>、<code>sub esp, n</code>）</li>
+<li>LEAVE：<code>mov esp ebp</code>、<code>pop ebp</code></li>
+<li>LOCAL伪指令：<code>local var1:BYTE, var2:DWORD</code>这样声明</li>
+<li>LEA：获取栈帧中内容或者局部变量的offset，而OFFSET只能获取常offsets</li>
+</ul>
+<h3 id="INVOKE"><a href="#INVOKE" class="headerlink" title="INVOKE"></a>INVOKE</h3><ul>
+<li><code>INVOKE</code>后跟PROC、参数列表</li>
+<li>64位不可用</li>
+</ul>
+<h3 id="PROC"><a href="#PROC" class="headerlink" title="PROC"></a>PROC</h3><ul>
+<li><code>label PROC [attributes] [USES list], params</code></li>
+</ul>
+<h3 id="PROTO"><a href="#PROTO" class="headerlink" title="PROTO"></a>PROTO</h3><ul>
+<li><code>label PROTO paramslist</code></li>
+</ul>
+<h3 id="参数类型"><a href="#参数类型" class="headerlink" title="参数类型"></a>参数类型</h3><ul>
+<li>输入参数、输出参数、输入输出参数</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/10/03/%E6%B1%87%E7%BC%96%E8%BF%87%E7%A8%8B/" data-id="ckqkkaz4i00mdbcc4d2kg4ewt" data-title="汇编过程" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-汇编hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/09/27/%E6%B1%87%E7%BC%96hello-world/" class="article-date">
+  <time class="dt-published" datetime="2018-09-26T22:06:06.000Z" itemprop="datePublished">2018-09-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/09/27/%E6%B1%87%E7%BC%96hello-world/">汇编hello-world</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>汇编系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/29822876">https://www.jianshu.com/nb/29822876</a></p>
+<p>来源：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/del/archive/2010/04/03/1703689.html">https://www.cnblogs.com/del/archive/2010/04/03/1703689.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011770174/article/details/77914375">https://blog.csdn.net/u011770174/article/details/77914375</a><br><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/390495916">https://bbs.csdn.net/topics/390495916</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22095837">https://www.zhihu.com/question/22095837</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yshblog/p/3379663.html">https://www.cnblogs.com/yshblog/p/3379663.html</a></p>
+<p>首先放上一段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">option casemap:none</span><br><span class="line"></span><br><span class="line">include masm32.inc</span><br><span class="line">include kernel32.inc</span><br><span class="line">includelib masm32.lib</span><br><span class="line">includelib kernel32.lib</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">    szText db &quot;Hello World!&quot;, 0</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">start:</span><br><span class="line">    invoke StdOut, addr szText</span><br><span class="line">    ret</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+
+<p>对程序中内容进行逐一解释：</p>
+<ul>
+<li>.386表明使用的指令集</li>
+<li>.model flat, stdcall 表示平坦内存模式，API调用时右边的参数先入栈</li>
+<li>option casemap:none 表示大小写敏感</li>
+<li>include的.inc文件与.h类似，若没有就需要进行类似<code>StdOut  PROTO STDCALL:DWORD</code>的声明</li>
+<li>includelib指定使用的库文件</li>
+<li>.data与.code分别指定数据与代码</li>
+<li>invoke伪指令用于函数调用</li>
+<li>ret 是用于子程序返回的指令, 这里用它代替 ExitProcess(在没有生成 Win32 窗口时是可以的)</li>
+<li>end start让汇编程序结束汇编并且指明程序开始地址，汇编程序看到这个后就会结束并且找到start标签作为起始位置</li>
+</ul>
+<p>但是这样输出变量（内存地址上的值）就不方便，可以使用printf函数（这里是<code>crt_printf</code>），如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line"></span><br><span class="line">include msvcrt.inc</span><br><span class="line">includelib msvcrt.lib</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">    szFmt db &#39;Hello world! No %d&#39;, 0</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">start:</span><br><span class="line">    mov eax, 11</span><br><span class="line">    invoke crt_printf, addr szFmt, eax</span><br><span class="line">    ret</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/09/27/%E6%B1%87%E7%BC%96hello-world/" data-id="ckqkkaz4g00m5bcc43gsj31sk" data-title="汇编hello-world" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-汇编指令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/09/27/%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2018-09-26T22:06:06.000Z" itemprop="datePublished">2018-09-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/09/27/%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4/">汇编指令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>汇编系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/29822876">https://www.jianshu.com/nb/29822876</a></p>
+<h3 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h3><p>通用寄存器：</p>
+<ul>
+<li>EAX~EDX，EBP、ESP、ESI、EDI，EFLAGS、EIP</li>
+</ul>
+<p>段寄存器：</p>
+<ul>
+<li>CS、SS、DS、ES、FS、GS</li>
+</ul>
+<p>寄存器E开头表示32位，H结尾表示高8位，L结尾表示低8位</p>
+<p>64位下，原有的32位E开头的变为R开头就是64位，添加R8-R15（R8对应的32位为R8D，16位R8W，8位R8B）</p>
+<p>一些特殊用途寄存器：</p>
+<ul>
+<li>EAX：accumulator；</li>
+<li>ECX：loop counter；</li>
+<li>ESP：stack pointer；</li>
+<li>ESI，EDI：index register；</li>
+<li>EBP：extended frame pointer；</li>
+<li>CS：code；</li>
+<li>DS：data；</li>
+<li>SS：stack；</li>
+<li>ES，FS，GS：additional；</li>
+<li>EIP：instruction pointer；</li>
+<li>EFLAGS：flags<ul>
+<li>carry：无符号溢出</li>
+<li>overflow：有符号溢出</li>
+<li>sign：负数</li>
+<li>zero</li>
+<li>auxiliary carry：半进位（考虑第4位）</li>
+<li>parity：奇偶校验（1的个数是偶数）</li>
+</ul>
+</li>
+</ul>
+<h3 id="基本符号"><a href="#基本符号" class="headerlink" title="基本符号"></a>基本符号</h3><p>数字</p>
+<ul>
+<li><code>+-</code>号</li>
+<li>进制后缀：h（若以字母开头则需要加个0）、d、b、o</li>
+</ul>
+<p>数字表达式</p>
+<ul>
+<li>优先级：括号&gt;正负&gt;乘除&gt;MOD&gt;加减</li>
+</ul>
+<p>字符&amp;字符串 常数</p>
+<ul>
+<li>单引号双引号都行，一个ASCII一个byte，字符串不会自动加结束符号</li>
+</ul>
+<p>保留字 标记符</p>
+<ul>
+<li>不区分大小写</li>
+<li>ASCII 1-247，首字母为字母_@?$</li>
+</ul>
+<p>伪指令directives</p>
+<ul>
+<li>简化代码，编译器相关，大小写不敏感</li>
+</ul>
+<p>指令instructions</p>
+<ul>
+<li>[Label: ] Mnemonic (Operand) [;comment]</li>
+<li>Label：data（不带冒号） 和 code</li>
+<li>指令注记符&amp;操作数（常量、常量表达式、内存（data label）和寄存器）<ul>
+<li>常量和常量表达式是立即数</li>
+</ul>
+</li>
+<li>注释：单行用分号；多行用COMMENT+自己的符号，最后再用这个符号结尾（注意检查中间的代码有没有这个符号）</li>
+<li>不带操作数的如stc（set carry flag），带一个操作数的如inc</li>
+</ul>
+<h3 id="汇编执行"><a href="#汇编执行" class="headerlink" title="汇编执行"></a>汇编执行</h3><p>编译-链接-执行</p>
+<ul>
+<li>listing file可以查看自己的程序如何被编译</li>
+</ul>
+<h3 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h3><ul>
+<li>内部数据类型（INT）<ul>
+<li>8bit：BYTE、SBYTE</li>
+<li>16bit：WORD、SWORD</li>
+<li>32bit：DWORD、SDWORD</li>
+<li>64bit：QWORD</li>
+<li>80bit：TBYTE</li>
+</ul>
+</li>
+<li>内部数据类型（REAL）<ul>
+<li>4byte（32bit）：REAL4</li>
+<li>8byte：REAL8</li>
+<li>10byte：REAL10</li>
+</ul>
+</li>
+<li>语句<ul>
+<li>[name] directive initializer[,initializer…]</li>
+<li>如：<code>value1 BYTE 10</code></li>
+<li>声明内存中数据</li>
+<li>可以用?表示未初始化，可以减小生成的exe文件大小</li>
+<li>数组直接用逗号分开</li>
+</ul>
+</li>
+<li>字符串：<ul>
+<li>直接用BYTE，如<code>str2 BYTE &#39;Error: halting program&#39;,0</code></li>
+<li>一行结尾处写逗号，下一行可以继续，如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">menu BYTE &quot;Checking Account&quot;,0dh,0ah,0dh,0ah,</span><br><span class="line">&quot;1. Create a new account&quot;,0dh,0ah,</span><br></pre></td></tr></table></figure>
+其中<code>,0dh,0ah</code>可以换行，前者表示 carriage return回车（及到行首），后者表示到下一行</li>
+</ul>
+</li>
+<li>重复 DUP：<ul>
+<li><code>var BYTE 10, 3 DUP(1), 2</code> 其实表示<code>var 10, 1, 1, 1, 2</code>，也就是先写重复个数，再写要重复什么</li>
+</ul>
+</li>
+<li>WORD可以储存16位整数，也可以储存两个字符</li>
+<li>小端序：小端存低位，但是像字符串和数组什么的都是按照低位到高位排列的，比如数组<code>12h, 34h</code>是从低位到高位，但是<code>12h</code>内部是1为高位，如果用小端序存储得到的实际存储顺序是<code>34h, 12h</code>（高位到低位）</li>
+</ul>
+<p>符号常量</p>
+<ul>
+<li>等号伪指令：32bit整数（表达式或者常数），编译器会处理</li>
+<li>当前位置的计数器<code>$</code>：如获取数组长度，可以<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list BYTE 10,20,30,40</span><br><span class="line">ListSize &#x3D; ($ - list)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>需要注意：这样计算得到的是byte个数，如果是WORD数组的长度应该除以2</li>
+</ul>
+</li>
+<li>EQU伪指令：<ul>
+<li>可能是数或者字符串表达式，不可以重定义，如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PI EQU &lt;3.1416&gt;</span><br><span class="line">pressKey EQU &lt;&quot;Press any key to continue...&quot;,0&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>TEXTEQU伪指令：<ul>
+<li>可以重定义，是宏定义</li>
+</ul>
+</li>
+</ul>
+<h3 id="64位："><a href="#64位：" class="headerlink" title="64位："></a>64位：</h3><ul>
+<li>MASM中，支持64位变成，但是不支持INVOKE、ADDR、.model、.386、.stack等</li>
+</ul>
+<h3 id="数据转移"><a href="#数据转移" class="headerlink" title="数据转移"></a>数据转移</h3><p>直接内存操作：</p>
+<ul>
+<li>在<code>.data</code>中声明的内存地址的label，在代码中可以直接被解引用（dereferenced），可以在外层加上中括号<br>MOV：</li>
+<li>先destination再source</li>
+<li>不能两个内存地址</li>
+<li>CS、EIP、IP不能为destination</li>
+<li>DS、SS、ES等也不能直接被立即数mov</li>
+<li>注意：64位中，如果mov一个32位内存地址的到64位，高位清除，8或者16位不会；但是如果mov一个数，都会直接清除高位<br>MOVZX：</li>
+<li>可以扩展高位为0后再赋值<br>MOVSX：</li>
+<li>可以扩展高位为符号位后赋值<br>XCHG：</li>
+<li>交换，至少一个寄存器，不能有立即数<br>Direct-Offset Operands：</li>
+<li>data label的内容其实是内存地址，所以加上常数相当于进行偏移</li>
+</ul>
+<h3 id="加减法："><a href="#加减法：" class="headerlink" title="加减法："></a>加减法：</h3><ul>
+<li>INC、DEC：1个操作数</li>
+<li>ADD、SUB：先destination，destination &lt;- destination +/- source</li>
+<li>NEG</li>
+<li>FLAGS：ZF（zero）、SF（sign）、CF（Carry）、OF（Overflow）</li>
+</ul>
+<h3 id="数据相关操作"><a href="#数据相关操作" class="headerlink" title="数据相关操作"></a>数据相关操作</h3><ul>
+<li>OFFSET：考虑从数据段开始的偏移</li>
+<li>PTR：可以转换数据类型，只是一个指针，如WORD PTR myDouble就是取myDouble对应内存区域的一个WORD大小的数据</li>
+<li>TYPE：用来获得数据类型的大小（byte数）</li>
+<li>LENGTHOF：计数元素的个数（相当于数组元素的个数）</li>
+<li>SIZEOF：相当于LENGTHOF乘TYPE</li>
+<li><em>注：一个声明包含多行的逗号分隔的，但不包含换行后再次写类型的</em></li>
+<li>LABEL可以用来对同一个内存地址进行不同的解释，在一个声明<code>intList BYTE 00h,10h,00h,20h</code>前加上<code>wordList LABEL WORD</code>可以让这两个label指向同一个内存地址，但是对数据类型的解读不同。</li>
+</ul>
+<h3 id="间接寻址indirect-addressing"><a href="#间接寻址indirect-addressing" class="headerlink" title="间接寻址indirect addressing"></a>间接寻址indirect addressing</h3><ul>
+<li>直接把地址赋值给一个寄存器，用[]就可以取寻找这个寄存器对应的地址上的内容，相当于在指针前面用*</li>
+<li><strong>一定要注意这里用的是寄存器，不是label</strong></li>
+<li>地址赋值时，可以用OFFSET。但是要注意解引用时使用的类型是否与需要的类型一致（如一个WORD的地址，如果赋给eax会有问题，会将之后的地址上一部分也用到，如<code>tax WORD 0 1</code>，因为小端序，如果<code>mov eax, OFFSET tax</code>并且<code>mov ebx, [eax]</code>就会得到ebx上为65536）。</li>
+<li>要注意，对于所有的内存地址，增加1只是加1BYTE，如果它本身是WORD或者更大的单位，需要增加2或者更多，或者直接增加TYPE label名称</li>
+<li>此时如果要对内存地址上的内容增加，不能直接写<code>INC [eax]</code>，而要指明上面的类型。如<code>tax WORD 65535 1</code>，<code>mov eax, OFFSET tax</code>，进行一些操作后<code>mov ebx, [eax]</code>，若上述操作是<code>inc DWORD PTR [eax]</code>则得到131072，否则<code>inc WORD PTR [eax]</code>则得到65536。</li>
+</ul>
+<h3 id="变址操作数Indexed-Operands"><a href="#变址操作数Indexed-Operands" class="headerlink" title="变址操作数Indexed Operands"></a>变址操作数Indexed Operands</h3><p>对于数组来说，可以用<code>[label+reg]</code>或者<code>label[reg]</code>的形式访问label代表的数组中的第若干个值，但是不能不在label+reg外面加括号，也不能把reg换成某个label。<br>其实本质上，label就是一个内存地址，不能让内存地址相加。<br>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line"></span><br><span class="line">include msvcrt.inc</span><br><span class="line">includelib msvcrt.lib</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">    szFmt db &#39;Now: %d&#39;, 0dh, 0ah, 0</span><br><span class="line">	tax DWORD 1, 2</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">start:</span><br><span class="line">	mov ebx, tax</span><br><span class="line">	invoke crt_printf, addr szFmt, ebx ;1</span><br><span class="line">	mov ebx, [tax]</span><br><span class="line">	invoke crt_printf, addr szFmt, ebx ;1</span><br><span class="line">	mov ebx, tax + 4</span><br><span class="line">	invoke crt_printf, addr szFmt, ebx ;2 因为DWORD所以加4</span><br><span class="line">	mov ebx, [tax + 4]</span><br><span class="line">	invoke crt_printf, addr szFmt, ebx ;2</span><br><span class="line">	mov ebx, tax[4]</span><br><span class="line">	invoke crt_printf, addr szFmt, ebx ;2</span><br><span class="line">	mov eax, 4</span><br><span class="line">	;mov ebx, tax + eax</span><br><span class="line">	;invoke crt_printf, addr szFmt, ebx ; 报错</span><br><span class="line">	mov ebx, [tax + eax]</span><br><span class="line">	invoke crt_printf, addr szFmt, ebx ;2</span><br><span class="line">	mov eax, 4          ; invoke这个函数时会改掉eax，所以需要再次mov</span><br><span class="line">	mov ebx, tax[eax]</span><br><span class="line">	invoke crt_printf, addr szFmt, ebx ;2</span><br><span class="line">    ret</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+
+<h3 id="索引比例Index-Scaling"><a href="#索引比例Index-Scaling" class="headerlink" title="索引比例Index Scaling"></a>索引比例Index Scaling</h3><p>为了避免上面索引的过程还要判断加几，可以把加的数改成TYPE label名</p>
+<h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><p>可以在声明data时直接用<code>ptrW DWORD arrayW</code>或者<code>ptrW DWORD OFFSET arrayW</code>把arrayW的内存地址赋值给ptrW的内存地址</p>
+<h3 id="JMP"><a href="#JMP" class="headerlink" title="JMP"></a>JMP</h3><p>JMP 代码label<br>直接跳转到对应的代码标签处继续执行。</p>
+<h3 id="LOOP"><a href="#LOOP" class="headerlink" title="LOOP"></a>LOOP</h3><p>LOOP 代码label<br>在循环中，每一次都会将ECX减1，之后如果不为0就跳转到代码label处。<br><strong>注意：如果在循环里面使用invoke，需要首先保存ecx的值，之后再还原</strong><br>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">	mov ecx, 5</span><br><span class="line">l1:</span><br><span class="line">	mov eax, ecx</span><br><span class="line">	pushad</span><br><span class="line">	invoke crt_printf, addr szFmt, eax</span><br><span class="line">	popad</span><br><span class="line">	loop l1</span><br></pre></td></tr></table></figure>
+<p>如果双层或者多层循环，需要先把外层循环的ecx保留下来，之后恢复。<br>64位中，使用RCX进行循环计数。</p>
+<h3 id="shift-amp-rotate"><a href="#shift-amp-rotate" class="headerlink" title="shift&amp;rotate"></a>shift&amp;rotate</h3><ul>
+<li>右移时：逻辑移位Logical Shift符号位为0，算术移位Arithmetic Shift符号位为原来的符号位</li>
+<li>SHL、SAL指令为左移，SHR为逻辑右移（符号位为0），SAR为算术右移（符号位保持），丢掉的那一位放在Carry Flag里面</li>
+<li>ROL为向左循环移位，原来的最高位在被移动到最低位的同时也移动到CF里面；ROR向右，CF存储原来的最低位</li>
+<li>RCL为向左循环，把原来的CF拷到最低位，原来的最高位放入CF中；RCR同理，最低位-&gt;CF，CF-&gt;最高位</li>
+<li>SHLD（Shift left double），操作数是dest,source,n，相当于用source接在dest后面做左移，移出去的放在CF，不改变source；SHRD类似，低位移出去的放在CF，相当于source接在前面</li>
+</ul>
+<h3 id="乘除"><a href="#乘除" class="headerlink" title="乘除"></a>乘除</h3><ul>
+<li>MUL是unsigned，把操作数乘AL/AX/EAX/RAX后放在AX/DX:AX/EDX:EAX/RDX:RAX中，若AH/DX/EDX/RDX中非0，会修改CF</li>
+<li>IMUL是signed int mul，结果中会扩展符号位以保持结果的正负，可能修改OF</li>
+<li>DIV是Unsigned，它的操作数为除数，AX/DX:AX/EDX:EAX为被除数，商放在AL/AX/EAX，余数放在AH/DX/EDX</li>
+<li>IDIV是signed integer division，需要符号位扩展（指令有CBW即al扩展到ax，convert byte to word，CWD即ax扩展到dx:ax，CDQ）。注意负数时余数与被除数正负保持一致（49/-5=0xFFF7(-9)…0x0004，-49/-5=0x0009…0xFFFC(-4)，-49/5=0xFFF7…0xFFFC）</li>
+</ul>
+<h3 id="扩展加减"><a href="#扩展加减" class="headerlink" title="扩展加减"></a>扩展加减</h3><ul>
+<li>ADC在加的时候还加上CF，SBB在减的时候还减去CF，以实现多位的加减</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/09/27/%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4/" data-id="ckqkkaz4g00m7bcc4ek52dugd" data-title="汇编指令" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-汇编环境配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/09/27/%E6%B1%87%E7%BC%96%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2018-09-26T22:06:06.000Z" itemprop="datePublished">2018-09-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/09/27/%E6%B1%87%E7%BC%96%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">汇编环境配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>汇编系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/29822876">https://www.jianshu.com/nb/29822876</a></p>
+<p>来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u013761036/article/details/52186683">https://blog.csdn.net/u013761036/article/details/52186683</a></p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>VS2017 Community</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ul>
+<li>从官网（<a target="_blank" rel="noopener" href="http://www.masm32.com/%EF%BC%89%E4%B8%8B%E8%BD%BD%E5%90%8E%E5%AE%89%E8%A3%85%EF%BC%9B">http://www.masm32.com/）下载后安装；</a></li>
+<li>语法高亮<ul>
+<li>VS中工具-扩展和更新，联网下载<code>AsmHighlighter</code>，重启安装即可</li>
+</ul>
+</li>
+<li>在VS中新建项目：<ul>
+<li>选择空解决方案</li>
+<li>手动新建空项目（<code>Visual C++</code>内）</li>
+<li>项目上右键-生成依赖项-生成自定义 选择<code>masm</code></li>
+<li>项目上右键-属性-连接器 下：<ul>
+<li>常规-附加库目录 设置为<code>masm32</code>路径下<code>lib</code>文件夹</li>
+<li>系统-子系统 选择 控制台程序</li>
+</ul>
+</li>
+<li>新建<code>asm</code>文件</li>
+<li>项目属性中 Microsoft Macro Assembler-General中设置Include Paths中设置<code>masm32</code>路径下<code>include</code>文件夹</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/09/27/%E6%B1%87%E7%BC%96%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="ckqkkaz4h00mbbcc4h1wbfhf9" data-title="汇编环境配置" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-putty+tmux-工作异常的问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/08/10/putty+tmux-%E5%B7%A5%E4%BD%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2018-08-09T22:06:06.000Z" itemprop="datePublished">2018-08-10</time>
 </a>
     
   <div class="article-category">
@@ -91,7 +552,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/07/25/win10%E5%8F%8C%E6%98%BE%E7%A4%BA%E5%99%A8%E5%90%8E-cocos%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%9C%A8%E5%8D%95%E6%98%BE%E7%A4%BA%E5%99%A8%E4%B8%AD/">win10双显示器后-cocos无法显示在单显示器中</a>
+      <a class="p-name article-title" href="/2018/08/10/putty+tmux-%E5%B7%A5%E4%BD%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/">putty+tmux-工作异常的问题</a>
     </h1>
   
 
@@ -99,14 +560,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>点选任务栏中的图标，之后alt+space，M，之后按下方向键移回来。</p>
-<h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>别的应用都可以自动适应单显示器双显示器，为啥cocos就不行？！？！？！？！？！？！？？！？！？！？！！？！？！？！？！？！？！？！？！？！？？<br>关了之后还在那里？！？！？！？！？？！？！？！？！？！？</p>
-<p>垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾cocos！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！垃圾！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！毁我青春！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！</p>
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chjbbs/p/5698072.html">https://www.cnblogs.com/chjbbs/p/5698072.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/07/25/win10%E5%8F%8C%E6%98%BE%E7%A4%BA%E5%99%A8%E5%90%8E-cocos%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%9C%A8%E5%8D%95%E6%98%BE%E7%A4%BA%E5%99%A8%E4%B8%AD/" data-id="ckqkjgmdv00p8x4c42ml6h40n" data-title="win10双显示器后-cocos无法显示在单显示器中" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/08/10/putty+tmux-%E5%B7%A5%E4%BD%9C%E5%BC%82%E5%B8%B8%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="ckqkkaz2b00f4bcc47qmf42ap" data-title="putty+tmux-工作异常的问题" class="article-share-link">Share</a>
       
       
       
@@ -118,10 +577,72 @@
 
 
   
-    <article id="post-代替几何画板的画图测量计算工具" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-深度学习网络" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/07/18/%E4%BB%A3%E6%9B%BF%E5%87%A0%E4%BD%95%E7%94%BB%E6%9D%BF%E7%9A%84%E7%94%BB%E5%9B%BE%E6%B5%8B%E9%87%8F%E8%AE%A1%E7%AE%97%E5%B7%A5%E5%85%B7/" class="article-date">
-  <time class="dt-published" datetime="2018-07-17T22:06:06.000Z" itemprop="datePublished">2018-07-18</time>
+    <a href="/2018/08/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C/" class="article-date">
+  <time class="dt-published" datetime="2018-08-07T22:06:06.000Z" itemprop="datePublished">2018-08-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/08/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C/">深度学习网络</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="SVM-Support-Vector-Machine-支持向量机"><a href="#SVM-Support-Vector-Machine-支持向量机" class="headerlink" title="SVM Support Vector Machine 支持向量机"></a>SVM Support Vector Machine 支持向量机</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/v_july_v/article/details/7624837">https://blog.csdn.net/v_july_v/article/details/7624837</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/96e8fad1a2a4">https://www.jianshu.com/p/96e8fad1a2a4</a></p>
+<p>线性分类器：找超平面分开。logistic函数（sigmoid函数）将自变量映射到(0,1)上，回归就是学习参数矩阵，找到后直接判断结果是正还是负即可。</p>
+<p>几何间隔：点到分类面的距离。</p>
+<p>支持向量的距离最近，为1/||w||</p>
+<p>非线性可分则选择核函数将数据映射到高维空间解决问题。</p>
+<p>避免过拟合可以使用别的损失函数，加上正则化项</p>
+<h1 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h1><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/lc1217/p/7324935.html">http://www.cnblogs.com/lc1217/p/7324935.html</a></p>
+<h1 id="RCNN"><a href="#RCNN" class="headerlink" title="RCNN"></a>RCNN</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/skyfsm/p/6806246.html">https://www.cnblogs.com/skyfsm/p/6806246.html</a>  // 挺生动形象的</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lhanchao/article/details/72287377">https://blog.csdn.net/lhanchao/article/details/72287377</a></p>
+<p>候选区域选择、CNN特征提取、分类与边界回归</p>
+<p>检测时每一类都使用一个SVM（用于判断是否是这类）</p>
+<h2 id="RCNN里面用到的Selective-Search算法见："><a href="#RCNN里面用到的Selective-Search算法见：" class="headerlink" title="RCNN里面用到的Selective Search算法见："></a>RCNN里面用到的Selective Search算法见：</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/small_munich/article/details/79595257">https://blog.csdn.net/small_munich/article/details/79595257</a></p>
+<p>对输入图像进行分割算法产生许多小的子区域。其次，根据这些子区域之间相似性(相似性标准主要有颜色、纹理、大小等等)进行区域合并，不断的进行区域迭代合并。每次迭代过程中对这些合并的子区域做bounding boxes(外切矩形)，</p>
+<h1 id="SPP-NET"><a href="#SPP-NET" class="headerlink" title="SPP-NET"></a>SPP-NET</h1><p>在RCNN中，提取特征耗时较长，因此在初始没有提取特征的时候就先进行卷积运算，减少卷积运算数目，以加速。</p>
+<p>同时取消掉了图像归一化的过程，同时使用空间金字塔池化。</p>
+<p>空间金字塔池化：一种可伸缩的池化层，输出都是特定尺寸的特征。金字塔可以通过多尺度增加特征鲁棒性。</p>
+<h1 id="Fast-RCNN"><a href="#Fast-RCNN" class="headerlink" title="Fast-RCNN"></a>Fast-RCNN</h1><p>简化版的池化层（无金字塔），加入了候选框映射功能以反向传播。多任务Loss层（SoftmaxLoss代替SVM，SmoothL1Loss取代Bounding box回归），将分类与边框回归进行合并。多连接层通过SVD加速</p>
+<h1 id="Faster-RCNN"><a href="#Faster-RCNN" class="headerlink" title="Faster-RCNN"></a>Faster-RCNN</h1><p>使用EdgeBoxes（<a target="_blank" rel="noopener" href="https://blog.csdn.net/wsj998689aa/article/details/39476551%EF%BC%89%E6%8F%90%E5%8F%96%E5%80%99%E9%80%89%E6%A1%86%EF%BC%8C%E5%B9%B6%E4%B8%94%E6%98%AF%E5%9C%A8%E7%89%B9%E5%BE%81%E5%9B%BE%E4%B8%8A%E6%8F%90%E5%8F%96%E3%80%82">https://blog.csdn.net/wsj998689aa/article/details/39476551）提取候选框，并且是在特征图上提取。</a></p>
+<h1 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h1><p>划分为固定网络，如果样本中心落在对应网络，就负责回归。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/08/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C/" data-id="ckqkkaz4k00mjbcc42jrzcp0j" data-title="深度学习网络" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-解决pycharm无法调用pip安装的包" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/08/08/%E8%A7%A3%E5%86%B3pycharm%E6%97%A0%E6%B3%95%E8%B0%83%E7%94%A8pip%E5%AE%89%E8%A3%85%E7%9A%84%E5%8C%85/" class="article-date">
+  <time class="dt-published" datetime="2018-08-07T22:06:06.000Z" itemprop="datePublished">2018-08-08</time>
 </a>
     
   <div class="article-category">
@@ -136,7 +657,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/07/18/%E4%BB%A3%E6%9B%BF%E5%87%A0%E4%BD%95%E7%94%BB%E6%9D%BF%E7%9A%84%E7%94%BB%E5%9B%BE%E6%B5%8B%E9%87%8F%E8%AE%A1%E7%AE%97%E5%B7%A5%E5%85%B7/">代替几何画板的画图测量计算工具</a>
+      <a class="p-name article-title" href="/2018/08/08/%E8%A7%A3%E5%86%B3pycharm%E6%97%A0%E6%B3%95%E8%B0%83%E7%94%A8pip%E5%AE%89%E8%A3%85%E7%9A%84%E5%8C%85/">解决pycharm无法调用pip安装的包</a>
     </h1>
   
 
@@ -144,12 +665,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.geogebra.org/">https://www.geogebra.org</a></p>
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/github_34606293/article/details/66975676">https://blog.csdn.net/github_34606293/article/details/66975676</a></p>
+<p>问题：pycharm无法调用pip安装的包</p>
+<p>原因：pycharm没有设置解析器</p>
+<p>解决方法:</p>
+<p>打开pycharm-&gt;File-&gt;Settings-&gt;Project Interpreter-&gt;设置为你的python路径</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/07/18/%E4%BB%A3%E6%9B%BF%E5%87%A0%E4%BD%95%E7%94%BB%E6%9D%BF%E7%9A%84%E7%94%BB%E5%9B%BE%E6%B5%8B%E9%87%8F%E8%AE%A1%E7%AE%97%E5%B7%A5%E5%85%B7/" data-id="ckqkjgmbe00gvx4c48933ek9p" data-title="代替几何画板的画图测量计算工具" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/08/08/%E8%A7%A3%E5%86%B3pycharm%E6%97%A0%E6%B3%95%E8%B0%83%E7%94%A8pip%E5%AE%89%E8%A3%85%E7%9A%84%E5%8C%85/" data-id="ckqkkaz4z00o1bcc4azsc8113" data-title="解决pycharm无法调用pip安装的包" class="article-share-link">Share</a>
       
       
       
@@ -161,10 +686,10 @@
 
 
   
-    <article id="post-微信小游戏开发教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-six-库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/07/09/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" class="article-date">
-  <time class="dt-published" datetime="2018-07-08T22:06:06.000Z" itemprop="datePublished">2018-07-09</time>
+    <a href="/2018/08/06/six-%E5%BA%93/" class="article-date">
+  <time class="dt-published" datetime="2018-08-05T22:06:06.000Z" itemprop="datePublished">2018-08-06</time>
 </a>
     
   <div class="article-category">
@@ -179,7 +704,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/07/09/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">微信小游戏开发教程</a>
+      <a class="p-name article-title" href="/2018/08/06/six-%E5%BA%93/">six-库</a>
     </h1>
   
 
@@ -187,20 +712,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="微信小游戏创建"><a href="#微信小游戏创建" class="headerlink" title="微信小游戏创建"></a>微信小游戏创建</h1><p>正常到mp.weixin.qq.com新建小程序，在新建完后选择类目选上小游戏即可。<br>之后到微信开发者工具创建新的小程序，填入appid，就可以新建demo。</p>
-<h1 id="微信小程序实例"><a href="#微信小程序实例" class="headerlink" title="微信小程序实例"></a>微信小程序实例</h1><p>在demo里面，已经有打飞机的一个游戏，里面readme已经给了整体架构：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;js</span><br><span class="line">├── base                                   &#x2F;&#x2F; 定义游戏开发基础类</span><br><span class="line">│   ├── animatoin.js                       &#x2F;&#x2F; 帧动画的简易实现</span><br><span class="line">│   ├── pool.js                            &#x2F;&#x2F; 对象池的简易实现</span><br><span class="line">│   └── sprite.js                          &#x2F;&#x2F; 游戏基本元素精灵类</span><br><span class="line">├── libs</span><br><span class="line">│   ├── symbol.js                          &#x2F;&#x2F; ES6 Symbol简易兼容</span><br><span class="line">│   └── weapp-adapter.js                   &#x2F;&#x2F; 小游戏适配器</span><br><span class="line">├── npc</span><br><span class="line">│   └── enemy.js                           &#x2F;&#x2F; 敌机类</span><br><span class="line">├── player</span><br><span class="line">│   ├── bullet.js                          &#x2F;&#x2F; 子弹类</span><br><span class="line">│   └── index.js                           &#x2F;&#x2F; 玩家类</span><br><span class="line">├── runtime</span><br><span class="line">│   ├── background.js                      &#x2F;&#x2F; 背景类</span><br><span class="line">│   ├── gameinfo.js                        &#x2F;&#x2F; 用于展示分数和结算界面</span><br><span class="line">│   └── music.js                           &#x2F;&#x2F; 全局音效管理器</span><br><span class="line">├── databus.js                             &#x2F;&#x2F; 管控游戏状态</span><br><span class="line">└── main.js                                &#x2F;&#x2F; 游戏入口主函数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h1><p>在<code>game.js</code>里面主要调用了小游戏适配器和Symbol，并且创建了游戏控制主程序。所以现在看一看<code>main.js</code>的内容。</p>
-<p>引入玩家和npc，引入背景、游戏信息、音乐和游戏状态管理器。新建canvas。</p>
-<p>主函数中，每次游戏开始都调用restart（包括刚开始启动游戏），刚启动的时候还要重置动画帧ID的信息。restart里面重置数据，重置触摸事件，重置背景、玩家、游戏信息、音乐，绑定事件循环并且清除动画，之后请求动画帧以在canvas上面绑定循环。</p>
-<p>还有npc产生，碰撞检测，触摸事件（在游戏结束后，这也是为什么开始游戏需要重置触摸事件），每一帧都需要重新画，并且有状态更新和循环。</p>
-<h1 id="sprite-js"><a href="#sprite-js" class="headerlink" title="sprite.js"></a>sprite.js</h1><p>一个精灵类（一个精灵是一个物体的抽象，具有画在图像上的能力与碰撞检测的能力）</p>
+        <p>一个Python2和Python3兼容的库，<a target="_blank" rel="noopener" href="https://www.aliyun.com/jiaocheng/514828.html">https://www.aliyun.com/jiaocheng/514828.html</a></p>
+<p>为什么叫six? 因为2 * 3 = 6。为什么不是+,因为*更牛逼</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/07/09/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" data-id="ckqkjgmbz00ixx4c4b3na902e" data-title="微信小游戏开发教程" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/08/06/six-%E5%BA%93/" data-id="ckqkkaz2i00fobcc4br5j4gdz" data-title="six-库" class="article-share-link">Share</a>
       
       
       
@@ -212,14 +730,14 @@
 
 
   
-    <article id="post-html-css-ppt" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-GAN-DCGAN" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/07/02/html-css-ppt/" class="article-date">
-  <time class="dt-published" datetime="2018-07-01T22:06:06.000Z" itemprop="datePublished">2018-07-02</time>
+    <a href="/2018/08/05/GAN-DCGAN/" class="article-date">
+  <time class="dt-published" datetime="2018-08-04T22:06:06.000Z" itemprop="datePublished">2018-08-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
   </div>
 
   </div>
@@ -230,7 +748,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/07/02/html-css-ppt/">html-css-ppt</a>
+      <a class="p-name article-title" href="/2018/08/05/GAN-DCGAN/">GAN-DCGAN</a>
     </h1>
   
 
@@ -238,12 +756,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://ppt.baomitu.com/d/39b55a57#/">https://ppt.baomitu.com/d/39b55a57#/</a><br><a target="_blank" rel="noopener" href="https://ppt.baomitu.com/d/920cccd3#/">https://ppt.baomitu.com/d/920cccd3#/</a></p>
+        <p><a target="_blank" rel="noopener" href="http://news.kejixun.com/article/COEd68R1MUg!oEJf/">http://news.kejixun.com/article/COEd68R1MUg!oEJf/</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8f46f9ddf59984c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Goodfellow"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/07/02/html-css-ppt/" data-id="ckqkjgma000c4x4c4743x9ymw" data-title="html-css-ppt" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/08/05/GAN-DCGAN/" data-id="ckqkkayym002pbcc40f1u9htq" data-title="GAN-DCGAN" class="article-share-link">Share</a>
       
       
       
@@ -255,14 +774,14 @@
 
 
   
-    <article id="post-vue+node-入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Numpy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/07/02/vue+node-%E5%85%A5%E9%97%A8/" class="article-date">
-  <time class="dt-published" datetime="2018-07-01T22:06:06.000Z" itemprop="datePublished">2018-07-02</time>
+    <a href="/2018/08/05/Numpy/" class="article-date">
+  <time class="dt-published" datetime="2018-08-04T22:06:06.000Z" itemprop="datePublished">2018-08-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
   </div>
 
   </div>
@@ -273,7 +792,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/07/02/vue+node-%E5%85%A5%E9%97%A8/">vue+node-入门</a>
+      <a class="p-name article-title" href="/2018/08/05/Numpy/">Numpy</a>
     </h1>
   
 
@@ -281,231 +800,106 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://juejin.im/entry/57fcd8088ac2470058cadd6e">https://juejin.im/entry/57fcd8088ac2470058cadd6e</a></p>
+        <p><a target="_blank" rel="noopener" href="https://www.yiibai.com/numpy/">https://www.yiibai.com/numpy/</a></p>
+<p>NumPy 是一个 Python 包。 它代表 “Numeric Python”。 它是一个由多维数组对象和用于处理数组的例程集合组成的库。</p>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>NumPy 中定义的最重要的对象是称为 <code>ndarray</code> 的 N 维数组类型。 它描述相同类型的元素集合。 可以使用基于零的索引访问集合中的项目。</p>
+<p>ndarray中的每个元素在内存中使用相同大小的块。 ndarray中的每个元素是数据类型对象的对象(称为 dtype)。</p>
+<p><code>numpy.array(object, dtype = None, copy = True, order = None, subok = False, ndmin = 0)</code><br><code>a = np.array([1,2,3])  </code><br><code>a = np.array([[1,  2],  [3,  4]])</code><br><code>a = np.array([1,  2,  3,4,5], ndmin =  2)</code><br><code>a = np.array([1,  2,  3], dtype = complex)</code></p>
+<p><code>astype</code>可以用来进行类型转换<br><code>finfo</code>可以用来查看取值范围</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 使用端记号  </span><br><span class="line">import numpy as np </span><br><span class="line">dt &#x3D; np.dtype(&#39;&gt;i4&#39;)  </span><br><span class="line">print dt</span><br><span class="line"></span><br><span class="line">dt &#x3D; np.dtype([(&#39;age&#39;,np.int8)]) </span><br><span class="line">a &#x3D; np.array([(10,),(20,),(30,)], dtype &#x3D; dt)  </span><br><span class="line"># 或者直接用a &#x3D; np.array([1,2], dtype &#x3D; dt)</span><br><span class="line">print a</span><br><span class="line">print a[&#39;age&#39;]</span><br><span class="line"></span><br><span class="line">student &#x3D; np.dtype([(&#39;name&#39;,&#39;S20&#39;),  (&#39;age&#39;,  &#39;i1&#39;),  (&#39;marks&#39;,  &#39;f4&#39;)]) </span><br><span class="line">a &#x3D; np.array([(&#39;abc&#39;,  21,  50),(&#39;xyz&#39;,  18,  75)], dtype &#x3D; student)  </span><br><span class="line">print a</span><br></pre></td></tr></table></figure>
+
+<p>每个内建类型都有一个唯一定义它的字符代码：</p>
+<ul>
+<li>‘b’：布尔值</li>
+<li>‘i’：符号整数</li>
+<li>‘u’：无符号整数</li>
+<li>‘f’：浮点</li>
+<li>‘c’：复数浮点</li>
+<li>‘m’：时间间隔</li>
+<li>‘M’：日期时间</li>
+<li>‘O’：Python 对象</li>
+<li>‘S’, ‘a’：字节串</li>
+<li>‘U’：Unicode</li>
+<li>‘V’：原始数据(void)</li>
+</ul>
+<h3 id="字节序："><a href="#字节序：" class="headerlink" title="字节序："></a>字节序：</h3><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/11/byte-order.html">http://www.ruanyifeng.com/blog/2016/11/byte-order.html</a><br>降序(Big-endian)大端字节序存储时 由左到右<br>升序(Little-endian)小端字节序存储时 由右向左<br>1byte是8bit，所以需要两位16进制</p>
+<h3 id="数组属性"><a href="#数组属性" class="headerlink" title="数组属性"></a>数组属性</h3><ul>
+<li>ndarray.shape<ul>
+<li>可读可写</li>
+</ul>
+</li>
+<li>reshape<ul>
+<li>类似直接修改shape，但不修改原来的数组</li>
+</ul>
+</li>
+<li>dim<ul>
+<li>返回数组的维度</li>
+</ul>
+</li>
+<li>itemsize<ul>
+<li>字节单位的长度，如int8（-128~127）的字节长度为1</li>
+</ul>
+</li>
+<li>flags<ul>
+<li>C_CONTIGUOUS (C) 数组位于单一的、C 风格的连续区段内</li>
+<li>F_CONTIGUOUS (F) 数组位于单一的、Fortran 风格的连续区段内</li>
+<li>OWNDATA (O) 数组的内存从其它对象处借用</li>
+<li>WRITEABLE (W) 数据区域可写入。 将它设置为flase会锁定数据，使其只读</li>
+<li>ALIGNED (A) 数据和任何元素会为硬件适当对齐</li>
+<li>UPDATEIFCOPY (U) 这个数组是另一数组的副本。当这个数组释放时，源数组会由这个数组中的元素更新</li>
+</ul>
+</li>
+</ul>
+<h3 id="数组创建"><a href="#数组创建" class="headerlink" title="数组创建"></a>数组创建</h3><ul>
+<li>empty：未初始化，指定shape，dtype和order</li>
+<li>zeros：初始化为0</li>
+<li>ones：初始化为1</li>
+<li>asarray：接受列表、列表的元组、元组、元组的元组、元组的列表等各种形式的输入，并且可以指定dtype和order</li>
+<li>frombuffer：缓冲区作为参数，指定dtype、count（读取的数字数量，默认-1读取全部）、offset</li>
+<li>fromiter：迭代器</li>
+<li>range：设定start、stop、step、dtype</li>
+<li>linspace：设定start、stop、num、endpoint（是否包含stop）、retstep（返回样例及步长）、dtype</li>
+<li>logspace：对数轴上均匀分布，start（起始为base ** start）、stop、num、endpoint、base（默认为10）、dtype</li>
+</ul>
+<h3 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h3><ul>
+<li><p>切片：用起始、终止、步长。如：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; np.arange(10)</span><br><span class="line">s &#x3D; slice(2,7,2)  </span><br><span class="line">print a[s]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; a &#x3D; np.arange(10)</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span><br><span class="line">&gt;&gt;&gt; a[3:8]</span><br><span class="line">array([3, 4, 5, 6, 7])</span><br><span class="line">&gt;&gt;&gt; a[3:8:2]</span><br><span class="line">array([3, 5, 7])</span><br><span class="line">&gt;&gt;&gt; a+9</span><br><span class="line">array([ 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])</span><br><span class="line">&gt;&gt;&gt; (a+9)[a[3:8:2]]</span><br><span class="line">array([12, 14, 16])</span><br></pre></td></tr></table></figure></li>
+<li><p>第二列用<code>a[...,1] </code>，第二行用<code>a[1,...]</code>，第二列及以后所有为<code>a[...,1:]</code></p>
+<ul>
+<li><p>高级索引：</p>
+<ul>
+<li>整数索引：<code>y = x[[0,1,2],  [0,1,0]]</code>包括数组中(0,0)，(1,1)和(2,0)位置处的元素。</li>
+<li>布尔索引：<code>x[x &gt;  5]</code>可以输出大于5的所有元素值，<code>a[~np.isnan(a)]</code>可以过滤nan</li>
+</ul>
+</li>
+<li><p>广播</p>
+<ul>
+<li>对数组的算术运算通常在相应的元素上进行。 如果两个阵列具有完全相同的形状，则这些操作被无缝执行。在 NumPy 中仍然可以对形状不相似的数组进行操作，因为它拥有广播功能。 较小的数组会广播到较大数组的大小，以便使它们的形状可兼容。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.array([1,2])+1</span><br><span class="line">array([2, 3])</span><br><span class="line">&gt;&gt;&gt; np.array([1,2])*3</span><br><span class="line">array([3, 6])</span><br><span class="line">&gt;&gt;&gt; np.array([1,2])*np.array([2,3])</span><br><span class="line">array([2, 6])</span><br></pre></td></tr></table></figure>
+<img src="https://upload-images.jianshu.io/upload_images/5060560-9e38c838192d387d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="广播示例"></li>
+</ul>
+</li>
+<li><p>迭代：数组变成迭代器，<code>np.nditer</code></p>
+</li>
+<li><p>转置：直接<code>a.T</code></p>
+</li>
+<li><p>修改形状：reshape</p>
+</li>
+<li><p>flat：一维迭代器</p>
+</li>
+<li><p>flatten：数组副本，可以带参数order</p>
+</li>
+<li><p>ravel</p>
+</li>
+<li><p>transpose：翻转给定的维度，同<code>.T</code></p>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/07/02/vue+node-%E5%85%A5%E9%97%A8/" data-id="ckqkjgmb300fpx4c49mzz4v9e" data-title="vue+node-入门" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-pdf重排符合kindle" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/06/24/pdf%E9%87%8D%E6%8E%92%E7%AC%A6%E5%90%88kindle/" class="article-date">
-  <time class="dt-published" datetime="2018-06-23T22:06:06.000Z" itemprop="datePublished">2018-06-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/06/24/pdf%E9%87%8D%E6%8E%92%E7%AC%A6%E5%90%88kindle/">pdf重排符合kindle</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="http://www.willus.com/k2pdfopt/download/">http://www.willus.com/k2pdfopt/download/</a></p>
-<p>下载之后直接打开即可。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-f4f6eedddb5c31ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="推荐配置"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/06/24/pdf%E9%87%8D%E6%8E%92%E7%AC%A6%E5%90%88kindle/" data-id="ckqkjgman00e9x4c4e0cy2dyf" data-title="pdf重排符合kindle" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-php-时区问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/06/08/php-%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2018-06-07T22:06:06.000Z" itemprop="datePublished">2018-06-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/06/08/php-%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98/">php-时区问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>在用php和mysql时，发现mysql的时区是东八区，而php的时区是+0.<br>因此在php里面获取时间戳要<code>time()+8.3600</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/06/08/php-%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98/" data-id="ckqkjgmap00eex4c43sd91eow" data-title="php-时区问题" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Appimage-文件运行" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/06/06/Appimage-%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C/" class="article-date">
-  <time class="dt-published" datetime="2018-06-05T22:06:06.000Z" itemprop="datePublished">2018-06-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/06/06/Appimage-%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C/">Appimage-文件运行</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>这类文件不需要安装，直接修改属性-&gt;权限 –&gt; 允许作为程序执行文件</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/06/06/Appimage-%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C/" data-id="ckqkjgm6j000jx4c42cmmerte" data-title="Appimage-文件运行" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Ubuntu-pip换源加速" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/06/06/Ubuntu-pip%E6%8D%A2%E6%BA%90%E5%8A%A0%E9%80%9F/" class="article-date">
-  <time class="dt-published" datetime="2018-06-05T22:06:06.000Z" itemprop="datePublished">2018-06-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/06/06/Ubuntu-pip%E6%8D%A2%E6%BA%90%E5%8A%A0%E9%80%9F/">Ubuntu-pip换源加速</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="http://topmanopensource.iteye.com/blog/2004853">http://topmanopensource.iteye.com/blog/2004853</a></p>
-<p>如：pip3 install tensorflow-gpu  -i <a target="_blank" rel="noopener" href="http://pypi.tuna.tsinghua.edu.cn/simple">http://pypi.tuna.tsinghua.edu.cn/simple</a> –trusted-host pypi.tuna.tsinghua.edu.cn<br>（注：豆瓣源不完整，会导致安装tensorflow-gpu失败）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/06/06/Ubuntu-pip%E6%8D%A2%E6%BA%90%E5%8A%A0%E9%80%9F/" data-id="ckqkjgm8u0089x4c4dci857cq" data-title="Ubuntu-pip换源加速" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Ubuntu-添加启动项" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/06/06/Ubuntu-%E6%B7%BB%E5%8A%A0%E5%90%AF%E5%8A%A8%E9%A1%B9/" class="article-date">
-  <time class="dt-published" datetime="2018-06-05T22:06:06.000Z" itemprop="datePublished">2018-06-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/06/06/Ubuntu-%E6%B7%BB%E5%8A%A0%E5%90%AF%E5%8A%A8%E9%A1%B9/">Ubuntu-添加启动项</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>见<a target="_blank" rel="noopener" href="https://blog.csdn.net/hunanchenxingyu/article/details/43972495">https://blog.csdn.net/hunanchenxingyu/article/details/43972495</a></p>
-<p>在终端中执行gnome-session-properties</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/06/06/Ubuntu-%E6%B7%BB%E5%8A%A0%E5%90%AF%E5%8A%A8%E9%A1%B9/" data-id="ckqkjgm8v008bx4c440uz0ign" data-title="Ubuntu-添加启动项" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/08/05/Numpy/" data-id="ckqkkayzt006lbcc4hpyka0gu" data-title="Numpy" class="article-share-link">Share</a>
       
       
       
@@ -521,7 +915,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/30/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/32/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/30/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/32/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -542,7 +936,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -552,7 +946,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -561,7 +955,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -578,19 +972,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

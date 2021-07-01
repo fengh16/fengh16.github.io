@@ -73,14 +73,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-MVC模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-飞行堡垒系统安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/1970/01/01/MVC%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+    <a href="/2018/03/02/%E9%A3%9E%E8%A1%8C%E5%A0%A1%E5%9E%92%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/" class="article-date">
+  <time class="dt-published" datetime="2018-03-01T22:06:06.000Z" itemprop="datePublished">2018-03-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">领域—软件工程</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
   </div>
 
   </div>
@@ -91,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/MVC%E6%A8%A1%E5%BC%8F/">MVC模式</a>
+      <a class="p-name article-title" href="/2018/03/02/%E9%A3%9E%E8%A1%8C%E5%A0%A1%E5%9E%92%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/">飞行堡垒系统安装</a>
     </h1>
   
 
@@ -99,38 +99,43 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h2><p>MVC 模式代表 Model-View-Controller（模型-视图-控制器） 模式。这种模式用于应用程序的分层开发。</p>
-<ul>
-<li>Model（模型） - 模型代表一个存取数据的对象。它也可以带有逻辑，在数据变化时更新控制器。</li>
-<li>View（视图） - 视图代表模型包含的数据的可视化。</li>
-<li>Controller（控制器） - 控制器作用于模型和视图上。它控制数据流向模型对象，并在数据变化时更新视图。它使视图与模型分离开。</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8004cf4f4dd5d31f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MVC示例"></p>
-<p>MVC框架模式的优点</p>
-<ol>
-<li>开发人员可以只关注整个结构中的其中某一层；</li>
-<li>可以很容易的用新的实现来替换原有层次的实现；</li>
-<li>可以降低层与层之间的依赖；</li>
-<li>有利于标准化；</li>
-<li>利于各层逻辑的复用。</li>
-</ol>
-<p>MVC框架模式的缺点</p>
-<ol>
-<li>增加了系统结构和实现的复杂性。对于简单的界面，严格遵循MVC，使模型、视图与控制器分离，会增加结构的复杂性，并可能产生过多的更新操作，降低运行效率。 </li>
-<li> 视图与控制器间的过于紧密的连接。视图与控制器是相互分离，但确实联系紧密的部件，视图没有控制器的存在，其应用是很有限的，反之亦然，这样就妨碍了他们的独立重用。 </li>
-<li>视图对模型数据的低效率访问。依据模型操作接口的不同，视图可能需要多次调用才能获得足够的显示数据。对未变化数据的不必要的频繁访问，也将损害操作性能。</li>
-</ol>
-<h2 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h2><p>在MVC的基础上，又出现了MVP即Model-View-Presenter，Model提供数据，View负责显示，Controller/Presenter负责逻辑的处理。</p>
-<p>MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数据，View负责显示。作为一种新的模式，MVP与MVC有着一个重大的区别：在MVP中View并不直接使用Model，它们之间的通信是通过Presenter (MVC中的Controller)来进行的，所有的交互都发生在Presenter内部，而在MVC中View会从直接Model中读取数据而不是通过 Controller。</p>
-<p>在MVC里，View是可以直接访问Model的，从而，View里会包含Model信息，不可避免的还要包括一些业务逻辑。 在MVC模型里，Model不变时会有多个View。在MVC模型里，Model不依赖于View，但是View是依赖于Model的。不仅如此，因为有一些业务逻辑在View里实现了，导致要更改View也是比较困难的，至少那些业务逻辑是无法重用的。</p>
-<p>在MVP里，Presenter完全把Model和View进行了分离，主要的程序逻辑在Presenter里实现。而且，Presenter与具体的View是没有直接关联的，而是通过定义好的接口进行交互，从而使得在变更View时候可以保持Presenter的不变.</p>
-<hr>
-<p>参考资料：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25827845/article/details/53292312">https://blog.csdn.net/qq_25827845/article/details/53292312</a><br><a target="_blank" rel="noopener" href="http://www.runoob.com/design-pattern/mvc-pattern.html">http://www.runoob.com/design-pattern/mvc-pattern.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011225629/article/details/47857979">https://blog.csdn.net/u011225629/article/details/47857979</a><br><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/MVP/3714550">https://baike.baidu.com/item/MVP/3714550</a></p>
+        <h1 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h1><p>昨日忽然死机，强制重启后引导至蓝色Windows旗子标志后直接蓝屏重启，反复几次便无法找到引导，之后进入BIOS发现找不到自己的SSD盘。因为系统安装在<code>台电SSD</code>中，而机械硬盘上并无系统，所以折腾着试图找回SSD，使用网上声称有效的“<code>30分钟大法</code>”，但无效。尝试多次重新启动后进入BIOS挂机，未见成效。因此计划在机械硬盘上重装系统。顺便记录配置环境的过程等内容。</p>
+<h1 id="BIOS无法识别的SSD"><a href="#BIOS无法识别的SSD" class="headerlink" title="BIOS无法识别的SSD"></a>BIOS无法识别的SSD</h1><p>进入一个基于安卓的U盘系统Phoenix OS后发现SSD盘符数据仍然可以读取，但是BIOS不认，因此试图直接由U盘启动安装系统。因为支持EFI，所以直接将Win10安装盘解压到了U盘之中，但重启进入引导极慢，因此重装未遂。后来拆除了SSD之后U盘启动、安装速度正常，因此<code>进入win10系统安装过程极慢</code>这个问题就是<code>SSD导致的</code>。</p>
+<p>后记：在拆卸SSD安装好系统之后，发现机械硬盘上的Windows系统无法进入，Fedora系统可以进入但发现SSD为只读模式。</p>
+<h1 id="N卡linux问题"><a href="#N卡linux问题" class="headerlink" title="N卡linux问题"></a>N卡linux问题</h1><p><strong>更新：后来我居然安好了驱动（见<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/22983df3dbef%EF%BC%89%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%E4%BD%A9%E6%9C%8D%E6%88%91%E8%87%AA%E5%B7%B1%E7%9A%84%E8%80%90%E5%BF%83%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%E9%A1%BA%E4%BE%BF%E9%AA%82%E4%B8%80%E7%99%BE%E4%B8%87%E9%81%8D%E9%A3%9E%E8%A1%8C%E5%A0%A1%E5%9E%92%E5%9E%83%E5%9C%BE%E7%94%B5%E8%84%91%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81">https://www.jianshu.com/p/22983df3dbef）！！！！！！！！！！！！！佩服我自己的耐心！！！！！顺便骂一百万遍飞行堡垒垃圾电脑！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！</a></strong></p>
+<p>之前安装Ubuntu即遇到了问题：在使用默认选项（默认的N卡驱动）的时候，无法正常进行引导启动（包括LIVECD模式与安装完系统之后，都是在几个小点的地方卡住），所以需要禁用显卡驱动（进入grub界面后，选择install ubuntu，不要按enter，按e进入编辑模式，找到quiet splash，在后面空格接着输入 $vt_handoff acpi_osi=linux nomodeset，来自<a target="_blank" rel="noopener" href="http://blog.csdn.net/Dlyldxwl/article/details/68957483%EF%BC%8C%E4%BD%86%E5%85%B6%E4%B8%AD%E5%AE%89%E8%A3%85N%E5%8D%A1%E9%A9%B1%E5%8A%A8%E9%83%A8%E5%88%86%E6%88%91%E6%97%A0%E6%B3%95%E5%AE%9E%E7%8E%B0%EF%BC%89%E3%80%82%E5%90%8C%E6%97%B6%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%8A%A8%E5%8D%87%E7%BA%A7%E4%BC%9A%E8%87%AA%E5%B7%B1%E6%8A%8A%E6%94%B9%E6%8E%89%E7%9A%84%E8%BF%99%E4%B8%80%E8%A1%8C%E6%94%B9%E5%9B%9E%E5%8E%BB%E2%80%A6%E2%80%A6%E6%89%80%E4%BB%A5%E8%A6%81%E7%BB%8F%E5%B8%B8%E6%94%B9%E2%80%A6%E2%80%A6%E5%BF%83%E7%B4%AF%E2%80%A6%E2%80%A6">http://blog.csdn.net/Dlyldxwl/article/details/68957483，但其中安装N卡驱动部分我无法实现）。同时系统自动升级会自己把改掉的这一行改回去……所以要经常改……心累……</a></p>
+<p>这一次尝试使用Debian，启动之后依然无法进入图形界面。安装图形界面软件之后仍然不行，所以放弃。</p>
+<h1 id="安装与环境配置"><a href="#安装与环境配置" class="headerlink" title="安装与环境配置"></a>安装与环境配置</h1><h2 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h2><p>直接使用之前安装Ubuntu的系统盘全盘格式化安装的Windows，备份之后划分一片空间用于安装<code>Fedora</code>。<code>Fedora</code>分区时需要选择<code>efi</code>分区挂载到<code>/boot/efi</code>。</p>
+<h2 id="驱动安装"><a href="#驱动安装" class="headerlink" title="驱动安装"></a>驱动安装</h2><p>Windows中需要安装驱动，到<a target="_blank" rel="noopener" href="https://www.asus.com/supportonly/ZX50VX/HelpDesk_Download/%E9%87%8C%E9%9D%A2%E6%89%BE%E5%8D%B3%E5%8F%AF%E3%80%82%E4%B8%BB%E8%A6%81%E6%98%AF%E8%A7%A6%E6%91%B8%E6%9D%BF%E9%A9%B1%E5%8A%A8%E5%92%8CATK%EF%BC%88%E7%94%A8%E4%BA%8E%E6%8E%A7%E5%88%B6%E9%94%AE%E7%9B%98%E7%81%AF%EF%BC%89%EF%BC%8C%E5%85%B6%E4%BB%96%E9%A9%B1%E5%8A%A8%E7%B3%BB%E7%BB%9F%E5%BA%94%E8%AF%A5%E4%BC%9A%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85%E3%80%82">https://www.asus.com/supportonly/ZX50VX/HelpDesk_Download/里面找即可。主要是触摸板驱动和ATK（用于控制键盘灯），其他驱动系统应该会自动安装。</a></p>
+<h2 id="代码环境"><a href="#代码环境" class="headerlink" title="代码环境"></a>代码环境</h2><p>安装VS Code、VS，安装wox（并且wpm install Youdao Translator安装有道翻译工具，可以yd + 单词直接翻译）、everything，安装TexStudio（以及<a target="_blank" rel="noopener" href="https://miktex.org/%EF%BC%89%E3%80%81Office%E3%80%81Acrobat%EF%BC%88https://helpx.adobe.com/cn/acrobat/kb/acrobat-downloads.html%EF%BC%89%EF%BC%8C%E5%AE%89%E8%A3%85putty%E3%80%81winscp%EF%BC%88https://winscp.net/download/WinSCP-5.13-Setup.exe%EF%BC%89%EF%BC%8C%E5%AE%89%E8%A3%85%E7%BA%B8%E9%A3%9E%E6%9C%BA%EF%BC%88%E5%AE%98%E7%BD%91%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%90%8D%E5%AD%97.org%EF%BC%89%EF%BC%8C%E5%AE%89%E8%A3%85Github">https://miktex.org/）、Office、Acrobat（https://helpx.adobe.com/cn/acrobat/kb/acrobat-downloads.html），安装putty、winscp（https://winscp.net/download/WinSCP-5.13-Setup.exe），安装纸飞机（官网，直接名字.org），安装Github</a> Desktop（<a target="_blank" rel="noopener" href="https://desktop.github.com/%EF%BC%89%EF%BC%8C%E5%AE%89%E8%A3%85Typora%EF%BC%88https://typora.io/#windows%EF%BC%89">https://desktop.github.com/），安装Typora（https://typora.io/#windows）</a></p>
+<h3 id="安装Python"><a href="#安装Python" class="headerlink" title="安装Python"></a>安装Python</h3><p>到<a target="_blank" rel="noopener" href="https://www.python.org/%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%EF%BC%8C%E9%87%8C%E9%9D%A2%E8%87%AA%E5%B8%A6pip%E3%80%82%E4%B9%8B%E5%90%8E%E5%AE%89%E8%A3%85PyCharm%E3%80%82">https://www.python.org/下载安装，里面自带pip。之后安装PyCharm。</a></p>
+<p>Pycharm的版本管理可以直接使用Github。Settings-Version Control-Github，里面选择password登录方式，之后test过了就行。</p>
+<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><p>因为要使用React Native，所以直接使用nodejs的6.x.x版本的最高，在<a target="_blank" rel="noopener" href="https://nodejs.org/download/release/v6.13.0/%E9%87%8C%E9%9D%A2%E3%80%82">https://nodejs.org/download/release/v6.13.0/里面。</a></p>
+<h3 id="安装go"><a href="#安装go" class="headerlink" title="安装go"></a>安装go</h3><p><a target="_blank" rel="noopener" href="https://golang.org/dl/">https://golang.org/dl/</a></p>
+<h3 id="安装elixir"><a href="#安装elixir" class="headerlink" title="安装elixir"></a>安装elixir</h3><p><a target="_blank" rel="noopener" href="https://elixir-lang.org/">https://elixir-lang.org</a> 里面有教程，下载安装即可。</p>
+<h3 id="Java环境"><a href="#Java环境" class="headerlink" title="Java环境"></a>Java环境</h3><p>下载jdk安装。</p>
+<h3 id="Android-Studio"><a href="#Android-Studio" class="headerlink" title="Android Studio"></a>Android Studio</h3><p>官网下载安装。</p>
+<h1 id="Linux-环境配置"><a href="#Linux-环境配置" class="headerlink" title="Linux 环境配置"></a>Linux 环境配置</h1><h2 id="失败的系统"><a href="#失败的系统" class="headerlink" title="失败的系统"></a>失败的系统</h2><p>Debian安装失败，只能进入命令行，无法进入图形界面，猜测与Ubuntu一样是由于显卡驱动的问题导致。</p>
+<h2 id="Fedora系统"><a href="#Fedora系统" class="headerlink" title="Fedora系统"></a>Fedora系统</h2><p>这个系统感觉很好用，而且我的电脑不用屏蔽显卡就能进去。但是第一次和第三次都卡在了加载页面，所以感觉还是可能和硬件不太兼容。</p>
+<h3 id="安装Chrome"><a href="#安装Chrome" class="headerlink" title="安装Chrome"></a>安装Chrome</h3><p>直接官方选择该版本，下载的时候选择打开即可。</p>
+<h3 id="安装纸飞机"><a href="#安装纸飞机" class="headerlink" title="安装纸飞机"></a>安装纸飞机</h3><p>依旧是上官网，直接可以找到对应版本。或者到<a target="_blank" rel="noopener" href="https://github.com/zhifeiji/zhifeiji-qt5/releases">网站</a>下载appimage直接修改属性运行。</p>
+<h3 id="安装Emacs"><a href="#安装Emacs" class="headerlink" title="安装Emacs"></a>安装Emacs</h3><p>直接su后sudo dnf install emacs。</p>
+<h3 id="安装texstudio"><a href="#安装texstudio" class="headerlink" title="安装texstudio"></a>安装texstudio</h3><p>直接软件中心即可。</p>
+<h3 id="安装typora"><a href="#安装typora" class="headerlink" title="安装typora"></a>安装typora</h3><p>官网有说明</p>
+<h3 id="搜狗拼音"><a href="#搜狗拼音" class="headerlink" title="搜狗拼音"></a>搜狗拼音</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Elaine_jm/article/details/76618912">https://blog.csdn.net/Elaine_jm/article/details/76618912</a></p>
+<h3 id="Cuda"><a href="#Cuda" class="headerlink" title="Cuda"></a>Cuda</h3><p>（在Ubuntu18.04下）<a target="_blank" rel="noopener" href="https://blog.csdn.net/aiolia86/article/details/80342240">https://blog.csdn.net/aiolia86/article/details/80342240</a></p>
+<h3 id="rpm软件安装（atom、-remarkable：无法正常运行-、VSCode（https-code-visualstudio-com-docs-dv-linux64-rpm））"><a href="#rpm软件安装（atom、-remarkable：无法正常运行-、VSCode（https-code-visualstudio-com-docs-dv-linux64-rpm））" class="headerlink" title="rpm软件安装（atom、[remarkable：无法正常运行]、VSCode（https://code.visualstudio.com/docs/?dv=linux64_rpm））"></a>rpm软件安装（atom、<del>[remarkable：无法正常运行]</del>、VSCode（<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/?dv=linux64_rpm%EF%BC%89%EF%BC%89">https://code.visualstudio.com/docs/?dv=linux64_rpm））</a></h3><p>直接双击用软件安装打开。注意当前如果有安装程序正在运行，就不能及时响应。</p>
+<h3 id="失败：MarkMyWords安装"><a href="#失败：MarkMyWords安装" class="headerlink" title="失败：MarkMyWords安装"></a><del>失败：MarkMyWords安装</del></h3><p><del>git clone <a target="_blank" rel="noopener" href="https://github.com/emersion/aur-markmywords.git">https://github.com/emersion/aur-markmywords.git</a></del><br><del>cd aur-markmywords</del><br><del>makepkg</del><br><del>sudo pacman -U markmywords-git-VERSION.pkg.tar.xz</del></p>
+<p><del><a target="_blank" rel="noopener" href="https://github.com/emersion/aur-markmywords">https://github.com/emersion/aur-markmywords</a></del></p>
+<h3 id="安装失败：uberwriter"><a href="#安装失败：uberwriter" class="headerlink" title="安装失败：uberwriter"></a><del>安装失败：uberwriter</del></h3><p><del><a target="_blank" rel="noopener" href="http://uberwriter.wolfvollprecht.de/">http://uberwriter.wolfvollprecht.de/</a></del><br>添加源使用命令<code>dnf config-manager --add-repo ppa:w-vollprecht/ppa</code><br>参考<a target="_blank" rel="noopener" href="https://docs-old.fedoraproject.org/en-US/Fedora/23/html/System_Administrators_Guide/sec-Managing_DNF_Repositories.html">https://docs-old.fedoraproject.org/en-US/Fedora/23/html/System_Administrators_Guide/sec-Managing_DNF_Repositories.html</a></p>
+<p>失败提示：<code>软件仓库 w-vollprecht_ppa 没有设置镜像或者 baseurl。</code></p>
+<p>之后使用<a target="_blank" rel="noopener" href="https://fedora.pkgs.org/26/rpm-sphere/uberwriter-12.11.02-12.1.noarch.rpm.html">https://fedora.pkgs.org/26/rpm-sphere/uberwriter-12.11.02-12.1.noarch.rpm.html</a></p>
+<h1 id="VMware上网"><a href="#VMware上网" class="headerlink" title="VMware上网"></a>VMware上网</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29028632">https://zhuanlan.zhihu.com/p/29028632</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/MVC%E6%A8%A1%E5%BC%8F/" data-id="ckqkjgm7l004fx4c4gei634yg" data-title="MVC模式" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/03/02/%E9%A3%9E%E8%A1%8C%E5%A0%A1%E5%9E%92%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/" data-id="ckqkkaz5c00pfbcc4cgbl24pe" data-title="飞行堡垒系统安装" class="article-share-link">Share</a>
       
       
       
@@ -142,9 +147,9 @@
 
 
   
-    <article id="post-Markdown语法（摘录自github：https---github-com-guodongxiaren-README）-2018-03-" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Android-Studio安装踩坑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/1970/01/01/Markdown%E8%AF%AD%E6%B3%95%EF%BC%88%E6%91%98%E5%BD%95%E8%87%AAgithub%EF%BC%9Ahttps---github-com-guodongxiaren-README%EF%BC%89-2018-03-/" class="article-date">
+    <a href="/1970/01/01/Android-Studio%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/" class="article-date">
   <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
 </a>
     
@@ -160,7 +165,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/Markdown%E8%AF%AD%E6%B3%95%EF%BC%88%E6%91%98%E5%BD%95%E8%87%AAgithub%EF%BC%9Ahttps---github-com-guodongxiaren-README%EF%BC%89-2018-03-/">Markdown语法（摘录自github：https---github-com-guodongxiaren-README）-2018-03-</a>
+      <a class="p-name article-title" href="/1970/01/01/Android-Studio%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/">Android-Studio安装踩坑</a>
     </h1>
   
 
@@ -168,442 +173,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="README"><a href="#README" class="headerlink" title="README"></a>README</h1><p>该文件用来测试和展示书写README的各种markdown语法。GitHub的markdown语法在标准的markdown语法基础上做了扩充，称之为<code>GitHub Flavored Markdown</code>。简称<code>GFM</code>，GFM在GitHub上有广泛应用，除了README文件外，issues和wiki均支持markdown语法。<br>附：这个文章是用来测试一下简书里面的Markdown支持，摘录自<a target="_blank" rel="noopener" href="https://github.com/guodongxiaren/README%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%B0%86%E6%BA%90%E4%BB%A3%E7%A0%81%E5%A4%8D%E5%88%B6%E5%88%B0%E4%BA%86%E8%BF%99%E9%87%8C%EF%BC%8C%E9%87%8C%E9%9D%A2%E6%9C%89%E8%AE%B8%E5%A4%9A%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E7%9A%84%E9%83%A8%E5%88%86%E3%80%82">https://github.com/guodongxiaren/README，直接将源代码复制到了这里，里面有许多无法显示的部分。</a></p>
-<hr>
-<h3 id="Author-果冻虾仁-https-github-com-guodongxiaren-README"><a href="#Author-果冻虾仁-https-github-com-guodongxiaren-README" class="headerlink" title="Author:果冻虾仁  https://github.com/guodongxiaren/README"></a>Author:果冻虾仁  <a target="_blank" rel="noopener" href="https://github.com/guodongxiaren/README">https://github.com/guodongxiaren/README</a></h3><h3 id="E-mail-x4a-x65-108-x6c-x79-46-x4b-46-x57-x61-x6e-103-64-x71-113-46-x63-111-109"><a href="#E-mail-x4a-x65-108-x6c-x79-46-x4b-46-x57-x61-x6e-103-64-x71-113-46-x63-111-109" class="headerlink" title="E-mail:&#x4a;&#x65;&#108;&#x6c;&#x79;&#46;&#x4b;&#46;&#x57;&#x61;&#x6e;&#103;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;"></a>E-mail:<a href="mailto:&#x4a;&#x65;&#108;&#x6c;&#x79;&#46;&#x4b;&#46;&#x57;&#x61;&#x6e;&#103;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;">&#x4a;&#x65;&#108;&#x6c;&#x79;&#46;&#x4b;&#46;&#x57;&#x61;&#x6e;&#103;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;</a></h3><hr>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li><a href="#%E6%A8%AA%E7%BA%BF">横线</a></li>
-<li><a href="#%E6%A0%87%E9%A2%98">标题</a></li>
-<li><a href="#%E6%96%87%E6%9C%AC">文本</a><ul>
-<li>普通文本</li>
-<li>单行文本</li>
-<li>多行文本</li>
-<li>文字高亮</li>
-<li>换行</li>
-<li>斜体</li>
-<li>粗体</li>
-<li>删除线</li>
-</ul>
-</li>
-<li><a href="#%E5%9B%BE%E7%89%87">图片</a><ul>
-<li>来源于网络的图片</li>
-<li>GitHub仓库中的图片</li>
-</ul>
-</li>
-<li><a href="#%E9%93%BE%E6%8E%A5">链接</a> <ul>
-<li>文字超链接<ul>
-<li> 链接外部URL</li>
-<li> 链接本仓库里的URL</li>
-</ul>
-</li>
-<li> 锚点</li>
-<li><a href="#%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5">图片链接</a></li>
-</ul>
-</li>
-<li><a href="#%E5%88%97%E8%A1%A8">列表</a><ul>
-<li>无序列表</li>
-<li>有序列表</li>
-<li>复选框列表</li>
-</ul>
-</li>
-<li><a href="#%E5%9D%97%E5%BC%95%E7%94%A8">块引用</a></li>
-<li><a href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE">代码高亮</a></li>
-<li><a href="#%E8%A1%A8%E6%A0%BC">表格</a> </li>
-<li><a href="#%E8%A1%A8%E6%83%85">表情</a></li>
-<li><a href="#diff%E8%AF%AD%E6%B3%95">diff语法</a></li>
-</ul>
-<h3 id="横线"><a href="#横线" class="headerlink" title="横线"></a>横线</h3><hr>
-<p>***、—、___可以显示横线效果</p>
-<hr>
-<hr>
-<hr>
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h2 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h2><h3 id="普通文本"><a href="#普通文本" class="headerlink" title="普通文本"></a>普通文本</h3><p>这是一段普通的文本</p>
-<h3 id="单行文本"><a href="#单行文本" class="headerlink" title="单行文本"></a>单行文本</h3><pre><code>Hello,大家好，我是果冻虾仁。
-</code></pre>
-<p>在一行开头加入1个Tab或者4个空格。</p>
-<h3 id="文本块"><a href="#文本块" class="headerlink" title="文本块"></a>文本块</h3><h4 id="语法1"><a href="#语法1" class="headerlink" title="语法1"></a>语法1</h4><p>在连续几行的文本开头加入1个Tab或者4个空格。</p>
-<pre><code>欢迎到访
-很高兴见到您
-祝您，早上好，中午好，下午好，晚安
-</code></pre>
-<h4 id="语法2"><a href="#语法2" class="headerlink" title="语法2"></a>语法2</h4><p>使用一对各三个的反引号：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">欢迎到访</span><br><span class="line">我是C++码农</span><br><span class="line">你可以在知乎、CSDN、简书搜索【果冻虾仁】找到我</span><br></pre></td></tr></table></figure>
-<p>该语法也可以实现代码高亮，见<a href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE">代码高亮</a></p>
-<h3 id="文字高亮"><a href="#文字高亮" class="headerlink" title="文字高亮"></a>文字高亮</h3><p>文字高亮功能能使行内部分文字高亮，使用一对反引号。<br>语法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#96;linux&#96; &#96;网络编程&#96; &#96;socket&#96; &#96;epoll&#96; </span><br></pre></td></tr></table></figure>
-<p>效果：<code>linux</code> <code>网络编程</code> <code>socket</code> <code>epoll</code></p>
-<p>也适合做一篇文章的tag</p>
-<h4 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h4><p>直接回车不能换行，<br>可以在上一行文本后面补两个空格，<br>这样下一行的文本就换行了。</p>
-<p>或者就是在两行文本直接加一个空行。</p>
-<p>也能实现换行效果，不过这个行间距有点大。</p>
-<h4 id="斜体、粗体、删除线"><a href="#斜体、粗体、删除线" class="headerlink" title="斜体、粗体、删除线"></a>斜体、粗体、删除线</h4><table>
-<thead>
-<tr>
-<th>语法</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>*斜体1*</code></td>
-<td><em>斜体1</em></td>
-</tr>
-<tr>
-<td><code>_斜体2_</code></td>
-<td><em>斜体2</em></td>
-</tr>
-<tr>
-<td><code>**粗体1**</code></td>
-<td><strong>粗体1</strong></td>
-</tr>
-<tr>
-<td><code>__粗体2__</code></td>
-<td><strong>粗体2</strong></td>
-</tr>
-<tr>
-<td><code>这是一个 ~~删除线~~</code></td>
-<td>这是一个 <del>删除线</del></td>
-</tr>
-<tr>
-<td><code>***斜粗体1***</code></td>
-<td><em><strong>斜粗体1</strong></em></td>
-</tr>
-<tr>
-<td><code>___斜粗体2___</code></td>
-<td><em><strong>斜粗体2</strong></em></td>
-</tr>
-<tr>
-<td><code>***~~斜粗体删除线1~~***</code></td>
-<td><em><strong><del>斜粗体删除线1</del></strong></em></td>
-</tr>
-<tr>
-<td><code>~~***斜粗体删除线2***~~</code></td>
-<td><del><em><strong>斜粗体删除线2</strong></em></del></td>
-</tr>
-</tbody></table>
-<pre><code>斜体、粗体、删除线可混合使用
-</code></pre>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>基本格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![alt](URL title)</span><br></pre></td></tr></table></figure>
-<p>alt和title即对应HTML中的alt和title属性（都可省略）：</p>
-<ul>
-<li>alt表示图片显示失败时的替换文本</li>
-<li>title表示鼠标悬停在图片时的显示文本（注意这里要加引号）</li>
-</ul>
-<p>URL即图片的url地址，如果引用本仓库中的图片，直接使用<strong>相对路径</strong>就可了，如果引用其他github仓库中的图片要注意格式，即：<code>仓库地址/raw/分支名/图片路径</code>，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;guodongxiaren&#x2F;ImageCache&#x2F;raw&#x2F;master&#x2F;Logo&#x2F;foryou.gif</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>语法</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td><code>![baidu](http://upload-images.jianshu.io/upload_images/5060560-3f5641e76b1a7134..gif?imageMogr2/auto-orient/strip &quot;百度logo&quot;)</code></td>
-<td><img src="http://upload-images.jianshu.io/upload_images/5060560-60b6500dfe9d897d..gif?imageMogr2/auto-orient/strip" alt="baidu" title="百度logo"></td>
-</tr>
-<tr>
-<td>2</td>
-<td><code>![][foryou]</code></td>
-<td><img src="https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif"></td>
-</tr>
-</tbody></table>
-<p>注意例2的写法使用了<strong>URL标识符</strong>的形式，在<a href="#%E9%93%BE%E6%8E%A5">链接</a>一节有介绍。</p>
-<blockquote>
-<p>在文末有foryou的定义：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[foryou]:https:&#x2F;&#x2F;github.com&#x2F;guodongxiaren&#x2F;ImageCache&#x2F;raw&#x2F;master&#x2F;Logo&#x2F;foryou.gif</span><br></pre></td></tr></table></figure>
-
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><h3 id="链接外部URL"><a href="#链接外部URL" class="headerlink" title="链接外部URL"></a>链接外部URL</h3><table>
-<thead>
-<tr>
-<th>#</th>
-<th>语法</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td><code>[我的博客](http://blog.csdn.net/guodongxiaren &quot;悬停显示&quot;)</code></td>
-<td><a target="_blank" rel="noopener" href="http://blog.csdn.net/guodongxiaren" title="悬停显示">我的博客</a></td>
-</tr>
-<tr>
-<td>2</td>
-<td><code>[我的知乎][zhihu] </code></td>
-<td><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/jellywong" title="我的知乎，欢迎关注">我的知乎</a></td>
-</tr>
-</tbody></table>
-<p>语法2由两部分组成：</p>
-<ul>
-<li>第一部分使用两个中括号，[ ]里的标识符（本例中zhihu），可以是数字，字母等的组合，标识符上下对应就行了（<strong>姑且称之为URL标识符</strong>）</li>
-<li>第二部分标记实际URL。</li>
-</ul>
-<blockquote>
-<p>使用URL标识符能达到复用的目的，一般把全文所有的URL标识符统一放在文章末尾，这样看起来比较干净。</p>
-<blockquote>
-<p>URL标识符是我起的名字，不知道是否准确。囧。。</p>
-</blockquote>
-</blockquote>
-<h3 id="链接本仓库里的URL"><a href="#链接本仓库里的URL" class="headerlink" title="链接本仓库里的URL"></a>链接本仓库里的URL</h3><table>
-<thead>
-<tr>
-<th>语法</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>[我的简介](/example/profile.md)</code></td>
-<td><a href="/example/profile.md">我的简介</a></td>
-</tr>
-<tr>
-<td><code>[Book](./Book)</code></td>
-<td><a href="/Book">Book</a></td>
-</tr>
-</tbody></table>
-<h3 id="图片链接"><a href="#图片链接" class="headerlink" title="图片链接"></a>图片链接</h3><p>给图片加链接的本质是混合图片显示语法和普通的链接语法。普通的链接中[ ]内部是链接要显示的文本，而图片链接[ ]里面则是要显示的图片。<br>直接混合两种语法当然可以，但是十分啰嗦，为此我们可以使用URL标识符的形式。</p>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>语法</th>
-<th align="center">效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td><code>[[图片上传失败...(image-fb8ed9-1520143277659)]</code></td>
-<td align="center">[[图片上传失败…(image-78d056-1520143277659)]</td>
-</tr>
-<tr>
-<td>2</td>
-<td><code>[[图片上传失败...(image-597209-1520143277659)]][zhihu]</code></td>
-<td align="center"><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/jellywong" title="我的知乎，欢迎关注">[图片上传失败…(image-864ed0-1520143277659)]</a></td>
-</tr>
-<tr>
-<td>3</td>
-<td><code>[![csdn-logo]][csdn]</code></td>
-<td align="center"><a target="_blank" rel="noopener" href="http://blog.csdn.net/guodongxiaren" title="我的博客"><img src="/img/csdn.png" alt="csdn-logo" title="我的CSDN博客"></a></td>
-</tr>
-</tbody></table>
-<p>因为图片本身和链接本身都支持URL标识符的形式，所以图片链接也可以很简洁（见例3）。<br>注意，此时鼠标悬停时显示的文字是图片的title，而非链接本身的title了。</p>
-<blockquote>
-<p>本文URL标识符都放置于文末</p>
-</blockquote>
-<h3 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h3><p>其实呢，每一个标题都是一个锚点，和HTML的锚点（<code>#</code>）类似，比如我们 </p>
-<table>
-<thead>
-<tr>
-<th>语法</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>[回到顶部](#readme)</code></td>
-<td><a href="#readme">回到顶部</a></td>
-</tr>
-</tbody></table>
-<p>不过要注意，标题中的英文字母都被转化为<strong>小写字母</strong>了。</p>
-<blockquote>
-<p>以前GitHub对中文支持的不好，所以中文标题不能正确识别为锚点，但是现在已经没问题啦！</p>
-</blockquote>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><ul>
-<li>昵称：果冻虾仁</li>
-</ul>
-<ul>
-<li>别名：隔壁老王</li>
-</ul>
-<ul>
-<li>英文名：Jelly</li>
-</ul>
-<h3 id="多级无序列表"><a href="#多级无序列表" class="headerlink" title="多级无序列表"></a>多级无序列表</h3><ul>
-<li>编程语言<ul>
-<li>脚本语言<ul>
-<li>Python</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><h4 id="一般效果"><a href="#一般效果" class="headerlink" title="一般效果"></a>一般效果</h4><p>就是在数字后面加一个点，再加一个空格。不过看起来起来可能不够明显。<br>面向对象的三个基本特征：</p>
-<ol>
-<li>封装</li>
-<li>继承</li>
-<li>多态</li>
-</ol>
-<h4 id="有序列表自动排序"><a href="#有序列表自动排序" class="headerlink" title="有序列表自动排序"></a>有序列表自动排序</h4><p>也可以在第一行指定<code>1. </code>，而接下来的几行用星号<code>*</code>（或者继续用数字1. ）就可以了，它会自动显示成2、3、4……。<br>面向对象的七大原则：</p>
-<ol>
-<li>开闭原则</li>
-</ol>
-<ul>
-<li>里氏转换原则</li>
-<li>依赖倒转原则</li>
-<li>接口隔离原则</li>
-<li>组合/聚合复用原则</li>
-<li>“迪米特”法则</li>
-<li>单一职责原则</li>
-</ul>
-<h4 id="多级有序列表"><a href="#多级有序列表" class="headerlink" title="多级有序列表"></a>多级有序列表</h4><p>和无序列表一样，有序列表也有多级结构：  </p>
-<ol>
-<li>这是一级的有序列表，数字1还是1<ol>
-<li>这是二级的有序列表，阿拉伯数字在显示的时候变成了罗马数字<ol>
-<li>这是三级的有序列表，数字在显示的时候变成了英文字母</li>
-<li>四级的有序列表显示效果，就不再变化了，依旧是英文字母</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="复选框列表"><a href="#复选框列表" class="headerlink" title="复选框列表"></a>复选框列表</h3><ul>
-<li><input checked="" disabled="" type="checkbox"> 需求分析</li>
-<li><input checked="" disabled="" type="checkbox"> 系统设计</li>
-<li><input checked="" disabled="" type="checkbox"> 详细设计</li>
-<li><input disabled="" type="checkbox"> 编码</li>
-<li><input disabled="" type="checkbox"> 测试</li>
-<li><input disabled="" type="checkbox"> 交付</li>
-</ul>
-<p>您可以使用这个功能来标注某个项目各项任务的完成情况。</p>
-<blockquote>
-<p>Tip:</p>
-<blockquote>
-<p>在GitHub的<strong>issue</strong>中使用该语法是可以实时点击复选框来勾选或解除勾选的，而无需修改issue原文。</p>
-</blockquote>
-</blockquote>
-<h2 id="块引用"><a href="#块引用" class="headerlink" title="块引用"></a>块引用</h2><h3 id="常用于引用文本"><a href="#常用于引用文本" class="headerlink" title="常用于引用文本"></a>常用于引用文本</h3><h4 id="文本摘自《深入理解计算机系统》P27"><a href="#文本摘自《深入理解计算机系统》P27" class="headerlink" title="文本摘自《深入理解计算机系统》P27"></a>文本摘自《深入理解计算机系统》P27</h4><p>　令人吃惊的是，在哪种字节顺序是合适的这个问题上，人们表现得非常情绪化。实际上术语“little endian”（小端）和“big endian”（大端）出自Jonathan Swift的《格利佛游记》一书，其中交战的两个派别无法就应该从哪一端打开一个半熟的鸡蛋达成一致。因此，争论沦为关于社会政治的争论。只要选择了一种规则并且始终如一的坚持，其实对于哪种字节排序的选择都是任意的。</p>
-<blockquote>
-<p><strong>“端”（endian）的起源</strong><br>以下是Jonathan Swift在1726年关于大小端之争历史的描述：<br>“……下面我要告诉你的是，Lilliput和Blefuscu这两大强国在过去36个月里一直在苦战。战争开始是由于以下的原因：我们大家都认为，吃鸡蛋前，原始的方法是打破鸡蛋较大的一端，可是当今的皇帝的祖父小时候吃鸡蛋，一次按古法打鸡蛋时碰巧将一个手指弄破了，因此他的父亲，当时的皇帝，就下了一道敕令，命令全体臣民吃鸡蛋时打破较小的一端，违令者重罚。”</p>
-</blockquote>
-<h3 id="块引用有多级结构"><a href="#块引用有多级结构" class="headerlink" title="块引用有多级结构"></a>块引用有多级结构</h3><blockquote>
-<p>数据结构</p>
-<blockquote>
-<p>树</p>
-<blockquote>
-<p>二叉树</p>
-<blockquote>
-<p>平衡二叉树</p>
-<blockquote>
-<p>满二叉树</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>在三个反引号后面加上编程语言的名字，另起一行开始写代码，最后一行再加上三个反引号。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;&#125; <span class="comment">//Java</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> <span class="comment">//C</span></span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello GitHub&quot;</span> <span class="comment">#Bash</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;myH1&quot;</span>).innerHTML=<span class="string">&quot;Welcome to my Homepage&quot;</span>; <span class="comment">//javascipt</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string &amp;<span class="keyword">operator</span>+(<span class="keyword">const</span> string&amp; A,<span class="keyword">const</span> string&amp; B) <span class="comment">//cpp</span></span><br></pre></td></tr></table></figure>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><table>
-<thead>
-<tr>
-<th>表头1</th>
-<th>表头2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>表格单元</td>
-<td>表格单元</td>
-</tr>
-<tr>
-<td>表格单元</td>
-<td>表格单元</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>表头1</th>
-<th>表头2</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>表格单元</td>
-<td>表格单元</td>
-</tr>
-<tr>
-<td>表格单元</td>
-<td>表格单元</td>
-</tr>
-</tbody></table>
-<h3 id="对齐"><a href="#对齐" class="headerlink" title="对齐"></a>对齐</h3><p>表格可以指定对齐方式</p>
-<table>
-<thead>
-<tr>
-<th align="left">左对齐</th>
-<th align="center">居中</th>
-<th align="right">右对齐</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">col 3 is</td>
-<td align="center">some wordy text</td>
-<td align="right">$1600</td>
-</tr>
-<tr>
-<td align="left">col 2 is</td>
-<td align="center">centered</td>
-<td align="right">$12</td>
-</tr>
-<tr>
-<td align="left">zebra stripes</td>
-<td align="center">are neat</td>
-<td align="right">$1</td>
-</tr>
-</tbody></table>
-<h3 id="混合其他语法"><a href="#混合其他语法" class="headerlink" title="混合其他语法"></a>混合其他语法</h3><p>表格单元中的内容可以和其他大多数GFM语法配合使用，如：  </p>
-<h4 id="使用普通文本的删除线，斜体等效果"><a href="#使用普通文本的删除线，斜体等效果" class="headerlink" title="使用普通文本的删除线，斜体等效果"></a>使用普通文本的删除线，斜体等效果</h4><table>
-<thead>
-<tr>
-<th>名字</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Help</td>
-<td><del>Display the</del> help window.</td>
-</tr>
-<tr>
-<td>Close</td>
-<td><em>Closes</em> a window</td>
-</tr>
-</tbody></table>
-<h4 id="表格中嵌入图片（链接）"><a href="#表格中嵌入图片（链接）" class="headerlink" title="表格中嵌入图片（链接）"></a>表格中嵌入图片（链接）</h4><p>其实前面介绍图片显示、图片链接的时候为了清晰就是放在在表格中显示的。</p>
-<table>
-<thead>
-<tr>
-<th>图片</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://www.baidu.com/img/bdlogo.gif" alt="baidu" title="百度logo"></td>
-<td>百度</td>
-</tr>
-</tbody></table>
-<h2 id="表情"><a href="#表情" class="headerlink" title="表情"></a>表情</h2><p>Github的Markdown语法支持添加emoji表情，输入不同的符号码（两个冒号包围的字符）可以显示出不同的表情。</p>
-<p>比如<code>:blush:</code>，可以显示:blush:。</p>
-<p>具体每一个表情的符号码，可以查询GitHub的官方网页<a target="_blank" rel="noopener" href="http://www.emoji-cheat-sheet.com/">http://www.emoji-cheat-sheet.com</a>。</p>
-<p>但是这个网页每次都打开<strong>奇慢</strong>。。所以我整理到了本repo中，大家可以直接在此查看<a href="./emoji.md">emoji</a>。</p>
-<h2 id="diff语法"><a href="#diff语法" class="headerlink" title="diff语法"></a>diff语法</h2><p>版本控制的系统中都少不了diff的功能，即展示一个文件内容的增加与删除。<br>GFM中可以显示的展示diff效果。使用绿色表示新增，红色表示删除。</p>
-<p>其语法与代码高亮类似，只是在三个反引号后面写diff，<br>并且其内容中，以 <code>+ </code>开头表示新增，<code>- </code>开头表示删除。</p>
-<p>效果如下：</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+ 鸟宿池边树，僧敲月下门</span></span><br><span class="line"><span class="deletion">- 鸟宿池边树，僧推月下门</span></span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h1 id="公众号推荐"><a href="#公众号推荐" class="headerlink" title="公众号推荐"></a>公众号推荐</h1><p>推荐一波自己的公众号：五道口的程序狐</p>
-<p>里面有一个聊天机器人，抚慰你的心灵</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ac8a0f00b9f836b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="mp"></p>
-<p>如有需要，联系<code>contact@fhao.top</code></p>
-
+        <h1 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h1><p>Android Studio 3.0</p>
+<h1 id="SS设置代理"><a href="#SS设置代理" class="headerlink" title="SS设置代理"></a>SS设置代理</h1><p>在 设置-HTTP 里面选择下面的http选项（不是socks）</p>
+<h1 id="SDK设置代理"><a href="#SDK设置代理" class="headerlink" title="SDK设置代理"></a>SDK设置代理</h1>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Markdown%E8%AF%AD%E6%B3%95%EF%BC%88%E6%91%98%E5%BD%95%E8%87%AAgithub%EF%BC%9Ahttps---github-com-guodongxiaren-README%EF%BC%89-2018-03-/" data-id="ckqkjgm7z005tx4c45yfx4x5b" data-title="Markdown语法（摘录自github：https---github-com-guodongxiaren-README）-2018-03-" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Android-Studio%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/" data-id="ckqkkayxo000abcc456r23jjx" data-title="Android-Studio安装踩坑" class="article-share-link">Share</a>
       
       
       
@@ -615,9 +191,361 @@
 
 
   
-    <article id="post-Python单元测试&amp;文档测试" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-BSD-Socket" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/1970/01/01/Python%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95&%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95/" class="article-date">
+    <a href="/1970/01/01/BSD-Socket/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94FTP%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">领域—FTP计算机网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/BSD-Socket/">BSD-Socket</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/blueman2012/article/details/6693605">https://blog.csdn.net/blueman2012/article/details/6693605</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/BSD-Socket/" data-id="ckqkkayxz000obcc40u1a83xk" data-title="BSD-Socket" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言多进程编程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/C%E8%AF%AD%E8%A8%80%E5%A4%9A%E8%BF%9B%E7%A8%8B%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%9A%E8%BF%9B%E7%A8%8B/">使用—编程模式—多进程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/C%E8%AF%AD%E8%A8%80%E5%A4%9A%E8%BF%9B%E7%A8%8B%E7%BC%96%E7%A8%8B/">C语言多进程编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangyezi19930928/article/details/13022451">https://blog.csdn.net/wangyezi19930928/article/details/13022451</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/C%E8%AF%AD%E8%A8%80%E5%A4%9A%E8%BF%9B%E7%A8%8B%E7%BC%96%E7%A8%8B/" data-id="ckqkkayyc001wbcc487x8gbcn" data-title="C语言多进程编程" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Docker-Web应用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/Docker-Web%E5%BA%94%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/Docker-Web%E5%BA%94%E7%94%A8/">Docker-Web应用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
+<h3 id="Web应用实例"><a href="#Web应用实例" class="headerlink" title="Web应用实例"></a>Web应用实例</h3><p>docker pull training/webapp</p>
+<h3 id="运行参数-amp-端口绑定："><a href="#运行参数-amp-端口绑定：" class="headerlink" title="运行参数&amp;端口绑定："></a>运行参数&amp;端口绑定：</h3><p>-d：后台运行；-P：端口映射到主机上面（随机到高端口）</p>
+<p>web类型的程序运行之后ps可以看到对应端口信息：比如<br><img src="https://upload-images.jianshu.io/upload_images/5060560-9dac947da97ccd78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>就是说明把本机的32768端口映射到了docker容器的5000端口。<br>直接访问：<a target="_blank" rel="noopener" href="http://localhost:32768/%E5%8D%B3%E5%8F%AF%E3%80%82">http://localhost:32768/即可。</a></p>
+<p>默认是tcp端口，如果绑定udp端口，在端口后面加上/udp</p>
+<p>可以绑定端口：run的时候直接加上<br>-p 80:5000<br>就能把容器的5000端口绑定在服务器的80上面。</p>
+<p>可以指定容器绑定的网络地址，比如绑定127.0.0.1 ：<br>docker run -d -p 127.0.0.1:5001:5000 training/webapp python app.py</p>
+<p>查看端口绑定：在ps里面或者直接用port即可（跟上容器的id）</p>
+<p>之后直接使用docker进行正常的操作就可以了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/Docker-Web%E5%BA%94%E7%94%A8/" data-id="ckqkkayye0024bcc4g0iwflnw" data-title="Docker-Web应用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Docker-与主机共享数据" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/Docker-%E4%B8%8E%E4%B8%BB%E6%9C%BA%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/Docker-%E4%B8%8E%E4%B8%BB%E6%9C%BA%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE/">Docker-与主机共享数据</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
+<h3 id="Docker镜像中添加本地文件"><a href="#Docker镜像中添加本地文件" class="headerlink" title="Docker镜像中添加本地文件"></a>Docker镜像中添加本地文件</h3><p>在Dockerfile里面直接使用<code>COPY</code>或者<code>ADD</code>即可</p>
+<h3 id="Docker目录挂载到本地目录"><a href="#Docker目录挂载到本地目录" class="headerlink" title="Docker目录挂载到本地目录"></a>Docker目录挂载到本地目录</h3><p>使用<code>run</code>的参数<code>-v</code>（即volume）</p>
+<p>顺序是<code>本地目录:docker目录</code>。如：<code>docker run -v /my:/docker_folder -i -t image-id bash</code>代表的是本机的<code>/my</code>目录与docker的<code>/docker_folder</code>目录，如果这两目录中某一个不存在会自动创建空白目录。</p>
+<h3 id="标准输出中读取"><a href="#标准输出中读取" class="headerlink" title="标准输出中读取"></a>标准输出中读取</h3><p>docker的标准输出可以通过<code>logs</code>命令查看，而且可以分条显示。</p>
+<h3 id="直接通过端口服务传递数据"><a href="#直接通过端口服务传递数据" class="headerlink" title="直接通过端口服务传递数据"></a>直接通过端口服务传递数据</h3><p>与普通的端口服务没有区别。可以使用<a target="_blank" rel="noopener" href="https://github.com/apocas/dockerode/">dockerode</a>进行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/Docker-%E4%B8%8E%E4%B8%BB%E6%9C%BA%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE/" data-id="ckqkkayyf0028bcc4gnh8gerl" data-title="Docker-与主机共享数据" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Docker-基本操作&amp;HelloWorld" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/Docker-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C&HelloWorld/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/Docker-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C&HelloWorld/">Docker-基本操作&amp;HelloWorld</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
+<p>来源：<br><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04</a><br><a target="_blank" rel="noopener" href="http://www.runoob.com/docker/docker-hello-world.html">http://www.runoob.com/docker/docker-hello-world.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012002805/article/details/80767814">https://blog.csdn.net/u012002805/article/details/80767814</a></p>
+<h3 id="docker用户组"><a href="#docker用户组" class="headerlink" title="docker用户组"></a>docker用户组</h3><p>docker 命令需要使用sudo 权限来运行。每次都输入sudo很不方便。讲当前用户加入 docker 用户组就不用这么麻烦了。</p>
+<p>$ sudo usermod -aG docker ${USER}</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>使用：docker run hello-world<br><img src="https://upload-images.jianshu.io/upload_images/5060560-4b18b30526896b33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="成功示例"></p>
+<p>则安装成功。</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p>查找：docker search ubuntu 来查找ubuntu镜像</p>
+<p>下载：docker pull ubuntu</p>
+<p>运行：（如果没有下载就先下载）docker run ubuntu</p>
+<p>查看已经下载的镜像：docker images</p>
+<p>运行：docker run -it ubuntu<br>The combination of the -i and -t switches gives you interactive shell access into the container： -it 代表着和容器可以有交互式命令行操作。之后会变成 root@d9b100f2f636:/# 的输出。之后正常使用即可。<br>-t:在新容器内指定一个伪终端或终端。<br>-i:允许你对容器内的标准输入 (STDIN) 进行交互。<br>–name 后面可以跟上名字：如：docker run -d -P –name runoob training/webapp python app.py</p>
+<p>docker的id就是@后面的东西，如上述的d9b100f2f636<br>需要输入docker的id 可以只输入前几个字母/数字</p>
+<p>退出：在docker命令行之中直接exit</p>
+<p>删除：使用docker rm （之后跟着id，如d9b100f2f636）</p>
+<p>保存镜像：docker commit -m “What did you do to the image” -a “Author Name” container-id repository/new_image_name<br>也就是说 docker commit -m “备注” -a “作者名称” 刚才显示的id repository名称/image名称。<br>之后就可以在docker images里面找到了。他是保存在本地的。</p>
+<p>删除镜像：docker rmi （后面是id）</p>
+<p>显示所有运行的docker：docker ps</p>
+<p>显示最后创建的docker：docker ps -l （l 是 lastest）</p>
+<p>显示全部docker：docker ps -a （a 是 all）</p>
+<p>停止docker：docker stop container-id 比如：docker stop d9b100f2f636</p>
+<p>启动docker：docker start d9b100f2f636（可以加上-i）</p>
+<p>Docker Hub上传：<a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a><br>docker login -u docker-registry-username<br>docker push docker-registry-username/docker-image-name （作者id/repository名字）<br>如果需要下载：docker pull repository（比如docker pull fengh16/fh）</p>
+<p>查看标准输出：docker logs（ + id或者name）<br>加上-f之后能够</p>
+<p>查看运行的程序：docker top</p>
+<p>显示docker底层信息：docker inspect</p>
+<p>加标签：docker tag （可以通过这个来修改repository，如docker tag 2a4cc fengh16/aaa:v1，直接添加另一个标签，然后把它的repository设置为fengh16/aaa并且tag是v1。如果重复操作，不会重复创建）</p>
+<p>docker保存container：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/95bafb2c14bc">https://www.jianshu.com/p/95bafb2c14bc</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/Docker-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C&HelloWorld/" data-id="ckqkkayyg0029bcc436qk4pmc" data-title="Docker-基本操作&amp;HelloWorld" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Dockerfile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/Dockerfile/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/Dockerfile/">Dockerfile</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
+<h3 id="Dockerfile-使用"><a href="#Dockerfile-使用" class="headerlink" title="Dockerfile 使用"></a>Dockerfile 使用</h3><p>docker build<br>如：docker build -t runoob/centos:6.7</p>
+<h3 id="Dockerfile示例"><a href="#Dockerfile示例" class="headerlink" title="Dockerfile示例"></a>Dockerfile示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FROM    centos:6.7</span><br><span class="line">MAINTAINER      Fisher &quot;fisher@sudops.com&quot;</span><br><span class="line"></span><br><span class="line">RUN     &#x2F;bin&#x2F;echo &#39;root:123456&#39; |chpasswd</span><br><span class="line">RUN     useradd abcdef</span><br><span class="line">RUN     &#x2F;bin&#x2F;echo &#39;abcdef:123456&#39; |chpasswd</span><br><span class="line">RUN     &#x2F;bin&#x2F;echo -e &quot;LANG&#x3D;\&quot;en_US.UTF-8\&quot;&quot; &gt;&#x2F;etc&#x2F;default&#x2F;local</span><br><span class="line">EXPOSE  22</span><br><span class="line">EXPOSE  80</span><br><span class="line">CMD     &#x2F;usr&#x2F;sbin&#x2F;sshd -D</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/Dockerfile/" data-id="ckqkkayyh002dbcc41lkx8j7h" data-title="Dockerfile" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Docker安装配置（ubuntu服务器上）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/Docker%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/1970/01/01/Docker%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%EF%BC%89/">Docker安装配置（ubuntu服务器上）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
+<p>网上安装教程：<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04</a></p>
+<ol>
+<li>curl -fsSL <a target="_blank" rel="noopener" href="https://download.docker.com/linux/ubuntu/gpg">https://download.docker.com/linux/ubuntu/gpg</a> | sudo apt-key add -</li>
+<li>sudo add-apt-repository “deb [arch=amd64] <a target="_blank" rel="noopener" href="https://download.docker.com/linux/ubuntu">https://download.docker.com/linux/ubuntu</a> $(lsb_release -cs) stable”</li>
+<li>sudo apt-get update</li>
+<li>apt-cache policy docker-ce</li>
+<li>sudo apt-get install -y docker-ce</li>
+<li>安装完成</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/1970/01/01/Docker%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%EF%BC%89/" data-id="ckqkkayyi002ebcc4air2hya3" data-title="Docker安装配置（ubuntu服务器上）" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Google-test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/1970/01/01/Google-test/" class="article-date">
   <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
 </a>
     
@@ -633,7 +561,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/Python%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95&%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95/">Python单元测试&amp;文档测试</a>
+      <a class="p-name article-title" href="/1970/01/01/Google-test/">Google-test</a>
     </h1>
   
 
@@ -642,375 +570,23 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>测试系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30319209">https://www.jianshu.com/nb/30319209</a></p>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>需要引入<code>unittest</code>模块，并使用<code>unittest.TestCase</code>作为基类进行继承。</p>
-<p>比如：已有自己的Dict类，import之后可以用以下方式验证：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> mydict <span class="keyword">import</span> <span class="type">Dict</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestDict</span>(<span class="params">unittest.TestCase</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_init</span>(<span class="params">self</span>):</span></span><br><span class="line">        d = <span class="type">Dict</span>(a=<span class="number">1</span>, b=<span class="string">&#x27;test&#x27;</span>)</span><br><span class="line">        self.assertEquals(d.a, <span class="number">1</span>)</span><br><span class="line">        self.assertEquals(d.b, <span class="string">&#x27;test&#x27;</span>)</span><br><span class="line">        self.assertTrue(<span class="built_in">isinstance</span>(d, <span class="built_in">dict</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_key</span>(<span class="params">self</span>):</span></span><br><span class="line">        d = <span class="type">Dict</span>()</span><br><span class="line">        d[<span class="string">&#x27;key&#x27;</span>] = <span class="string">&#x27;value&#x27;</span></span><br><span class="line">        self.assertEquals(d.key, <span class="string">&#x27;value&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_attr</span>(<span class="params">self</span>):</span></span><br><span class="line">        d = <span class="type">Dict</span>()</span><br><span class="line">        d.key = <span class="string">&#x27;value&#x27;</span></span><br><span class="line">        self.assertTrue(<span class="string">&#x27;key&#x27;</span> <span class="keyword">in</span> d)</span><br><span class="line">        self.assertEquals(d[<span class="string">&#x27;key&#x27;</span>], <span class="string">&#x27;value&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_keyerror</span>(<span class="params">self</span>):</span></span><br><span class="line">        d = <span class="type">Dict</span>()</span><br><span class="line">        <span class="keyword">with</span> self.assertRaises(KeyError):</span><br><span class="line">            value = d[<span class="string">&#x27;empty&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_attrerror</span>(<span class="params">self</span>):</span></span><br><span class="line">        d = <span class="type">Dict</span>()</span><br><span class="line">        <span class="keyword">with</span> self.assertRaises(AttributeError):</span><br><span class="line">            value = d.empty</span><br></pre></td></tr></table></figure>
-
-<p>之后可以用<code>python -m unittest mydict_test</code>来测试mydict_test文件中的所有测试内容。</p>
-<p>在类中还可以使用<code>setUp</code>和<code>tearDown</code>两个类函数来指定在测试前后要执行的操作。每一个测试方法前后都会分别执行这两个函数。</p>
-<h2 id="文档测试"><a href="#文档测试" class="headerlink" title="文档测试"></a>文档测试</h2><p>在编写注释的时候，写上类似这样的注释：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">abs</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Function to get absolute value of number.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Example:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; abs(1)</span></span><br><span class="line"><span class="string">    1</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; abs(-1)</span></span><br><span class="line"><span class="string">    1</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; abs(0)</span></span><br><span class="line"><span class="string">    0</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> n <span class="keyword">if</span> n &gt;= <span class="number">0</span> <span class="keyword">else</span> (-n)</span><br></pre></td></tr></table></figure>
-<p>在模块被导入的时候，不会有影响；但是如果直接用python 执行该文件，就会自动进行测试，如果有错误就会显示出来，没有错误不会显示。</p>
-<hr>
-<p>参考资料：<br><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/00140137128705556022982cfd844b38d050add8565dcb9000">https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/00140137128705556022982cfd844b38d050add8565dcb9000</a><br><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/00140137398003434356a2635da4a98b4d00670e8aadb2f000">https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/00140137398003434356a2635da4a98b4d00670e8aadb2f000</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Python%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95&%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95/" data-id="ckqkjgm8g0074x4c42yul9bct" data-title="Python单元测试&amp;文档测试" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-React-Native开发-2018-03" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/1970/01/01/React-Native%E5%BC%80%E5%8F%91-2018-03/" class="article-date">
-  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/React-Native%E5%BC%80%E5%8F%91-2018-03/">React-Native开发-2018-03</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h1><p>一个使用React的方法编写App应用的工具，由FaceBook开发并且用于Instagram中，随后开源。由于仍在开发过程中，网上找到的很多示例代码以及教程都是基于旧的版本编写的，并不适用。</p>
-<h1 id="Nodejs安装与选择"><a href="#Nodejs安装与选择" class="headerlink" title="Nodejs安装与选择"></a>Nodejs安装与选择</h1><p>Nodejs需要安装6.x.x或者7.x.x的版本（过低不支持，过高的话自带的npm版本不支持）</p>
-<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a> 里面直接下载安装即可，没有什么可说的。</p>
-<h1 id="Android开发"><a href="#Android开发" class="headerlink" title="Android开发"></a>Android开发</h1><p>需要Android Studio，同时需要提前安装配置好Java环境</p>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>直接按照官网（<a target="_blank" rel="noopener" href="https://facebook.github.io/react-native/docs/getting-started.html%EF%BC%89%E4%B8%8A%E7%9A%84%E6%AD%A5%E9%AA%A4%E9%85%8D%E7%BD%AE%E5%8D%B3%E5%8F%AF%E3%80%82%E9%9C%80%E8%A6%81%E8%AE%A9%E7%94%B5%E8%84%91%E5%92%8C%E6%89%8B%E6%9C%BA%E5%9C%A8%E5%90%8C%E4%B8%80%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%EF%BC%88%E7%9B%B4%E6%8E%A5%E8%BF%9E%E6%8E%A5%E5%90%8C%E4%B8%80%E4%B8%AAWifi%E5%8D%B3%E5%8F%AF%EF%BC%89%EF%BC%8C%E5%90%8C%E6%97%B6%E6%B3%A8%E6%84%8F%E4%BD%BF%E7%94%A8VPN%E6%88%96%E8%80%85ss%E7%9A%84%E8%AF%9D%E8%AF%B7%E7%BB%95%E8%BF%87%E5%AF%B9%E5%BA%94IP%E5%9C%B0%E5%9D%80%E3%80%82">https://facebook.github.io/react-native/docs/getting-started.html）上的步骤配置即可。需要让电脑和手机在同一局域网内（直接连接同一个Wifi即可），同时注意使用VPN或者ss的话请绕过对应IP地址。</a></p>
-<p>如果安装了adb工具并且连接了手机，会在android手机上自动安装上Expo，之后可以通过Expo进行应用的调试。但是默认选择的链接方式不一定是你所在的局域网（比如：如果有VMware的服务会使用VMWare的虚拟网络，所以需要停用这些网络）。</p>
-<p>打开自己编写的React Native应用后，摇晃手机可以弹出菜单（注意要允许悬浮窗权限）</p>
-<h1 id="控件使用，React事件相应等"><a href="#控件使用，React事件相应等" class="headerlink" title="控件使用，React事件相应等"></a>控件使用，React事件相应等</h1><p>直接看React和React Native的官方教程即可。</p>
-<h1 id="UI设计以及第三方控件"><a href="#UI设计以及第三方控件" class="headerlink" title="UI设计以及第三方控件"></a>UI设计以及第三方控件</h1><p>为了使得开发更高效，可以选用第三方库：</p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/53ff78168acc">https://www.jianshu.com/p/53ff78168acc</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/rilyu/teaset/blob/master/docs/cn/NavigationBar.md">https://github.com/rilyu/teaset/blob/master/docs/cn/NavigationBar.md</a></p>
-<h1 id="Step-by-step"><a href="#Step-by-step" class="headerlink" title="Step by step"></a>Step by step</h1><p>打开cmd（管理员模式）。需要先安装好nodejs、Android Studio，下载android sdk。</p>
-<ol>
-<li><p>cd命令到自己想要创建项目的目录下；</p>
-</li>
-<li><p>输入<code>create-react-native-app mytest</code>回车（这里的mytest是项目名称）</p>
-</li>
-<li><p>输入<code>cd mytest</code>进入刚才创建的项目目录中</p>
-</li>
-<li><p>（可选，采用第三方库<a target="_blank" rel="noopener" href="https://github.com/rilyu/teaset/%EF%BC%89%E8%BE%93%E5%85%A5%60npm">https://github.com/rilyu/teaset/）输入`npm</a> install –save teaset`</p>
-</li>
-<li><p>运行：将安卓手机连接电脑，确保手机电脑在同一局域网内并且该局域网是输入ipconfig之后显示的第一个网络连接（不是的话直接设置网络，将其他不用的网络禁用就好），输入<code>npm run android</code>就可以了。也可以不连接电脑，下载完Expo后在里面的搜索框中输入控制台显示的exp:\地址即可（扫描二维码的方式对我的手机无效）。</p>
-</li>
-<li><p>如果可以运行显示出来三行文字，就说明环境配置工具安装什么的都没有问题。打开<code>App.js</code>文件，</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/React-Native%E5%BC%80%E5%8F%91-2018-03/" data-id="ckqkjgm8n007nx4c48ht61a3i" data-title="React-Native开发-2018-03" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-React-Native踩坑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/1970/01/01/React-Native%E8%B8%A9%E5%9D%91/" class="article-date">
-  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/React-Native%E8%B8%A9%E5%9D%91/">React-Native踩坑</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Nodejs版本选择："><a href="#Nodejs版本选择：" class="headerlink" title="Nodejs版本选择："></a>Nodejs版本选择：</h1><p>因为现在需要的Node版本需要&gt;=6，而且npm版本不能超过4（5.x.x有兼容性问题不能用），所以可以下载安装7.x.x的node（8+的node自带的npm版本为5）</p>
-<h1 id="局域网搭建："><a href="#局域网搭建：" class="headerlink" title="局域网搭建："></a>局域网搭建：</h1><p>按照官方教程开始搭建后，如果安装了adb工具会在android手机上自动安装上Expo，之后可以通过Expo进行应用的调试。但是默认选择的链接方式不一定是你所在的局域网（比如：如果有VMware的服务会使用VMWare的虚拟网络，所以需要停用这些网络）</p>
-<p>切记如果使用VPN或者ss要绕过局域网网段！</p>
-<h1 id="第三方UI设计组件等内容："><a href="#第三方UI设计组件等内容：" class="headerlink" title="第三方UI设计组件等内容："></a>第三方UI设计组件等内容：</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/53ff78168acc">https://www.jianshu.com/p/53ff78168acc</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/rilyu/teaset/blob/master/docs/cn/NavigationBar.md">https://github.com/rilyu/teaset/blob/master/docs/cn/NavigationBar.md</a></p>
-<h1 id="使用教程http-www-jcodecraeer-com-a-anzhuokaifa-androidkaifa-2016-1112-6766-html时："><a href="#使用教程http-www-jcodecraeer-com-a-anzhuokaifa-androidkaifa-2016-1112-6766-html时：" class="headerlink" title="使用教程http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/1112/6766.html时："></a>使用教程<a target="_blank" rel="noopener" href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/1112/6766.html%E6%97%B6%EF%BC%9A">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/1112/6766.html时：</a></h1><p>react-native run-android命令需要：cmd中设置代理set HTTP_PROXY=<a target="_blank" rel="noopener" href="http://127.0.0.1:1080/">http://127.0.0.1:1080/</a></p>
-<p>设置环境变量ANDROID_HOME，path之中添加%JAVA_HOME%\bin</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/React-Native%E8%B8%A9%E5%9D%91/" data-id="ckqkjgm8p007ux4c4cfx7cyyi" data-title="React-Native踩坑" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Wecode-docker相关测试环境安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/1970/01/01/Wecode-docker%E7%9B%B8%E5%85%B3%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" class="article-date">
-  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/Wecode-docker%E7%9B%B8%E5%85%B3%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/">Wecode-docker相关测试环境安装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>docker<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/rickey17/article/details/72809384">https://blog.csdn.net/rickey17/article/details/72809384</a><br>mysql<br><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/fec7a1e5f8d3201190b4e782.html">https://jingyan.baidu.com/article/fec7a1e5f8d3201190b4e782.html</a><br>docker中访问外部网络：<br>sudo docker pull ubuntu<br>sudo docker run -it -p 3206:3206 –name fh ubuntu<br>可以与外部进行链接<br>安装mysql<br>apt install mysql-client<br>把一个以f7开头的container保存成wecode，标签为v1：<br>sudo docker commit f7 wecode:v1<br>可以共享文件夹：<br>docker run -v /home/wecode/test_share:/dockerfolder -it –name fh3 wecode:v1</p>
-<h2 id="docker链接外部服务器mysql"><a href="#docker链接外部服务器mysql" class="headerlink" title="docker链接外部服务器mysql"></a>docker链接外部服务器mysql</h2><p>sudo apt install docker.io<br>docker pull ubuntu<br>docker run -it –name fh ubuntu<br>docker ps -a<br>docker commit ad wecode:v1<br>docker run –rm -it –network=host wecode:v1 mysql -h 127.0.0.1 -uroot -p</p>
-<h2 id="docker删除镜像"><a href="#docker删除镜像" class="headerlink" title="docker删除镜像"></a>docker删除镜像</h2><p>images查看镜像<br>先ps -a看所有用到这个镜像的，之后rm id删掉<br>rmi imagename</p>
-<h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><p>sudo docker pull node</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Wecode-docker%E7%9B%B8%E5%85%B3%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" data-id="ckqkjgm930091x4c41udh1eba" data-title="Wecode-docker相关测试环境安装" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-django-test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/1970/01/01/django-test/" class="article-date">
-  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%B5%8B%E8%AF%95/">领域—测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/django-test/">django-test</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>测试系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30319209">https://www.jianshu.com/nb/30319209</a></p>
-<h2 id="django-test"><a href="#django-test" class="headerlink" title="django test"></a>django test</h2><p>django的测试是使用python的单元测试unittest（可以看<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1f4bf3e92f5a%EF%BC%89%E3%80%82">https://www.jianshu.com/p/1f4bf3e92f5a）。</a></p>
-<p>使用：</p>
+<h2 id="gtest-clion"><a href="#gtest-clion" class="headerlink" title="gtest+clion"></a>gtest+clion</h2><p>gtest是Google的C++单元测试框架，在clion中使用的方式可以看JetBrains官方文档<a target="_blank" rel="noopener" href="https://www.jetbrains.com/help/clion/creating-google-test-run-debug-configuration-for-test.html%EF%BC%8C%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%9A">https://www.jetbrains.com/help/clion/creating-google-test-run-debug-configuration-for-test.html，如下所示：</a></p>
 <ul>
-<li><code>python manage.py test</code>可以直接测试所有以<code>test</code>开头的文件中查找所有的test cases(inittest.TestCase的子类),自动建立测试集然后运行测试。</li>
-<li><code>python  manage.py testanimals.tests</code>：执行animals项目下tests包（testanimals）里的测试。</li>
-<li><code>python manage.py testanimals</code>：执行animals项目里的test测试。</li>
-<li><code>python manage.py testanimals.tests.AnimalTestCase</code>：单独执行某个test case</li>
-<li><code>python manage.py testanimals.tests.AnimalTestCase.test_animals_can_speak</code>：单独执行某个测试方法</li>
-<li><code>python manage.py testanimals/</code>：为测试文件提供路径</li>
-<li><code>python manage.py test--pattern=&quot;tests_*.py&quot;</code>：通配测试文件名</li>
-<li><code>python -Wall manage.py test</code>：启用warnings提醒</li>
+<li>下载Google Test</li>
+<li>配置CMakeLists.txt<br><img src="https://upload-images.jianshu.io/upload_images/5060560-80d26649f660c018.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CMakeLists"></li>
 </ul>
+<h2 id="自动化下载gtest文件的google-test-clion配置"><a href="#自动化下载gtest文件的google-test-clion配置" class="headerlink" title="自动化下载gtest文件的google test + clion配置"></a>自动化下载gtest文件的google test + clion配置</h2><ul>
+<li>安装CLion（略）</li>
+<li>目录结构：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+ project_home</span><br><span class="line">  + ext &#x2F;&#x2F; external library</span><br><span class="line">    + gtest &#x2F;&#x2F; google test framework</span><br><span class="line">      - CMakeLists.txt</span><br><span class="line">  + include &#x2F;&#x2F; project headers</span><br><span class="line">  + src &#x2F;&#x2F; project source files</span><br><span class="line">  + test &#x2F;&#x2F; test files</span><br><span class="line">  - CMakeLists.txt</span><br></pre></td></tr></table></figure></li>
+<li>配置<code>ext/gtest/CMakeLists.txt</code>&amp;<code>CMakeLists.txt</code>（在<a target="_blank" rel="noopener" href="http://twistoy.com/post/gtest-in-clion/%E5%86%85%EF%BC%89">http://twistoy.com/post/gtest-in-clion/内）</a></li>
+</ul>
+<hr>
+<p>参考资料：<br><a target="_blank" rel="noopener" href="http://twistoy.com/post/gtest-in-clion/">http://twistoy.com/post/gtest-in-clion/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/django-test/" data-id="ckqkjgm9h00ahx4c47nhm8sal" data-title="django-test" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-docker-del-images-at-once" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/1970/01/01/docker-del-images-at-once/" class="article-date">
-  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/docker-del-images-at-once/">docker-del-images-at-once</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>use <code>docker images &quot;node&quot; -aq</code> to show all dockers named “node”</p>
-<p>use </p>
-<blockquote>
-<p>docker rmi <code>docker images &quot;ubuntu&quot; -aq</code></p>
-</blockquote>
-<p>to del all ubuntu images</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/docker-del-images-at-once/" data-id="ckqkjgm9l00apx4c41dv27ggi" data-title="docker-del-images-at-once" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-docker-node-npm安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/1970/01/01/docker-node-npm%E5%AE%89%E8%A3%85/" class="article-date">
-  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/docker-node-npm%E5%AE%89%E8%A3%85/">docker-node-npm安装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>docker启动的时候指定执行的指令为：<code>npm install ...</code></p>
-<p>等待完成后，<code>docker ps -a</code>找到刚才安装的那一个container，用start启动即可</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/docker-node-npm%E5%AE%89%E8%A3%85/" data-id="ckqkjgm9l00arx4c422jf4swm" data-title="docker-node-npm安装" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-docker-快速删除" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/1970/01/01/docker-%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4/" class="article-date">
-  <time class="dt-published" datetime="1969-12-31T22:06:06.000Z" itemprop="datePublished">1970-01-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/1970/01/01/docker-%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4/">docker-快速删除</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jeikerxiao/article/details/78476925">https://blog.csdn.net/jeikerxiao/article/details/78476925</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/docker-%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4/" data-id="ckqkjgm9m00avx4c41vgh02ar" data-title="docker-快速删除" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Google-test/" data-id="ckqkkayyt003dbcc43cau0hu4" data-title="Google-test" class="article-share-link">Share</a>
       
       
       
@@ -1026,7 +602,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/36/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/38/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/36/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><a class="page-number" href="/page/39/">39</a><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/38/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1047,7 +623,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -1057,7 +633,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -1066,7 +642,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -1083,19 +659,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

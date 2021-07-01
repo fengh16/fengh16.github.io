@@ -73,14 +73,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-django+nginx+uwsgi" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Viterbi" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/10/15/django+nginx+uwsgi/" class="article-date">
-  <time class="dt-published" datetime="2018-10-14T22:06:06.000Z" itemprop="datePublished">2018-10-15</time>
+    <a href="/2019/01/16/Viterbi/" class="article-date">
+  <time class="dt-published" datetime="2019-01-15T22:06:06.000Z" itemprop="datePublished">2019-01-16</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
   </div>
 
   </div>
@@ -91,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/15/django+nginx+uwsgi/">django+nginx+uwsgi</a>
+      <a class="p-name article-title" href="/2019/01/16/Viterbi/">Viterbi</a>
     </h1>
   
 
@@ -99,39 +99,38 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <ul>
-<li>nginx uwsgi<ul>
-<li>  见<a target="_blank" rel="noopener" href="http://www.cnblogs.com/jhao/p/6071790.html">http://www.cnblogs.com/jhao/p/6071790.html</a></li>
-<li>  <code>sudo apt-get install python-dev nginx</code></li>
-<li>  <code>sudo pip install uwsgi --upgrade</code></li>
-<li>测试nginx：<ul>
-<li>  直接访问80端口</li>
+        <p>转载自：</p>
+<p>作者：Kiwee<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20136144/answer/239971177">https://www.zhihu.com/question/20136144/answer/239971177</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>最高票的回答结果是正确的，但是并没有把viterbi算法讲明白，尤其是其中的dp思想。可以用相同的例子来解释：</p>
+<p><strong>1.题目背景：</strong></p>
+<p>从前有个村儿，村里的人的身体情况只有两种可能：健康或者发烧。<br>假设这个村儿的人没有体温计或者百度这种神奇东西，他唯一判断他身体情况的途径就是到村头我的偶像金正月的小诊所询问。<br>月儿通过询问村民的感觉，判断她的病情，再假设村民只会回答正常、头晕或冷。<br>有一天村里奥巴驴就去月儿那去询问了。<br>第一天她告诉月儿她感觉正常。<br>第二天她告诉月儿感觉有点冷。<br>第三天她告诉月儿感觉有点头晕。<br>那么问题来了，月儿如何根据阿驴的描述的情况，推断出这三天中阿驴的一个身体状态呢?<br>为此月儿上百度搜 google ，一番狂搜，发现维特比算法正好能解决这个问题。月儿乐了。</p>
+<p><strong>2.已知情况：</strong></p>
+<p>隐含的身体状态 = { 健康 , 发烧 }</p>
+<p>可观察的感觉状态 = { 正常 , 冷 , 头晕 }</p>
+<p>月儿预判的阿驴身体状态的概率分布 = { 健康：0.6 , 发烧： 0.4 }<br><strong>这就是初始状态序列。</strong></p>
+<p>月儿认为的阿驴身体健康状态的转换概率分布 = {<br>健康-&gt;健康： 0.7 ,<br>健康-&gt;发烧： 0.3 ,<br>发烧-&gt;健康：0.4 ,<br>发烧-&gt;发烧： 0.6<br>}</p>
+<p><strong>这样就可以列出相应的状态转移矩阵。</strong>（人懒。。不想编辑公式了）</p>
+<p>月儿认为的在相应健康状况条件下，阿驴的感觉的概率分布 = {<br>健康，正常：0.5 ，冷 ：0.4 ，头晕： 0.1 ；<br>发烧，正常：0.1 ，冷 ：0.3 ，头晕： 0.6<br>}</p>
+<p><strong>这样就可以列出相应的观测矩阵。</strong></p>
+<p>由上面我们可以发现，HMM的三要素都齐备了，下面就是解决问题了。<br>阿驴连续三天的身体感觉依次是： 正常、冷、头晕 。</p>
+<p><strong>3.题目：</strong></p>
+<p>已知如上，求：阿驴这三天的身体健康状态变化的过程是怎么样的？<strong>即已知观测序列和HMM模型的情况下，求状态序列。</strong><br><strong>4.过程：</strong></p>
+<ul>
+<li>  初始化。第一天的时候，对每一个状态（健康或者发烧），分别求出第一天身体感觉正常的概率：P(第一天健康) = P(正常|健康)*P(健康|初始情况) = 0.5 * 0.6 = <strong>0.3</strong> P(第一天发烧) = P(正常|发烧)*P(发烧|初始情况) = 0.1 * 0.4 = <strong>0.04</strong></li>
+<li>  第二天的时候，对每个状态，分别求在第一天状态为健康或者发烧情况下观察到冷的最大概率。在维特比算法中，我们先要求得路径的单个路径的最大概率，然后再乘上观测概率。P(第二天健康) = max{0.3<em>0.7, 0.04</em>0.4}<em>0.4=0.3</em>0.7<em>0.4=0.084 此时我们需要记录概率最大的<strong>路径的前一个状态</strong>，即0.084路径的前一个状态，我们在小本本上记下，第一天健康。 P(第二天发烧)=max{0.3</em>0.3, 0.04*0.6}*0.3=0.027, 同样的在0.027这个路径上，第一天也是健康的。</li>
+<li>  第三天的时候，跟第二天一样。P(第三天健康)=max{0.084<em>0.7, 0.027</em>0.4}<em>0.1=0.00588，在这条路径上，第二天是健康的。P(第三天发烧)=max{0.084</em>0.3, 0.027*0.6}*0.6=0.01512,在这条路径上，第二天是健康的。</li>
+<li>  最后一天的状态概率分布即为最优路径的概率，即P(最优)=0.01512，这样我们可以得到最优路径的终点，是发烧</li>
+<li>  由最优路径开始<strong>回溯</strong>。请看我们的小本本，在求得第三天发烧概率的时候，我们的小本本上面写的是第二天健康，好了，第二天就应该是健康的状态，然后在第二天健康的情况下，我们记录的第一天是健康的。这样，我们的状态序列逆推出来了。即为：<strong>健康，健康，发烧</strong>。</li>
+<li>  简略的画个图吧：</li>
 </ul>
-</li>
-<li>测试uwsgi：<ul>
-<li>  如果还是使用80端口，就先把占80端口的nginx关掉……<code>sudo pkill -9 nginx</code></li>
-<li>创建<code>test.py</code>：<ul>
-<li><pre><code class="python"># test.py
-def application(env, start_response):
-    start_response(&#39;200 OK&#39;, [(&#39;Content-Type&#39;,&#39;text/html&#39;)])
-    return [b&quot;Hello World&quot;] 
-</code></pre>
-</li>
-</ul>
-</li>
-<li>  <code>sudo uwsgi --http :80 --plugin python --wsgi-file test.py</code></li>
-<li>  出现<code>Hello World</code>即可</li>
-<li>  删除<code>test.py</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/5060560-abc17ba7d661a59d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-0e8ad92c61c40a9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>这儿的箭头指向就是一个回溯查询小本本的过程，我们在编写算法的时候，其实也得注意，每一个概率最大的<strong>单条路径</strong>上都要把前一个状态记录下来。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/15/django+nginx+uwsgi/" data-id="ckqkjgm9f00aax4c413wo0658" data-title="django+nginx+uwsgi" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/01/16/Viterbi/" data-id="ckqkkaz0l0096bcc4eom97yb0" data-title="Viterbi" class="article-share-link">Share</a>
       
       
       
@@ -143,10 +142,137 @@ def application(env, start_response):
 
 
   
-    <article id="post-持续集成-travis-ci-org" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Antlr4+python3-visitor使用（四则运算解析）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/10/15/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90-travis-ci-org/" class="article-date">
-  <time class="dt-published" datetime="2018-10-14T22:06:06.000Z" itemprop="datePublished">2018-10-15</time>
+    <a href="/2018/12/21/Antlr4+python3-visitor%E4%BD%BF%E7%94%A8%EF%BC%88%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E8%A7%A3%E6%9E%90%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2018-12-20T22:06:06.000Z" itemprop="datePublished">2018-12-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/12/21/Antlr4+python3-visitor%E4%BD%BF%E7%94%A8%EF%BC%88%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E8%A7%A3%E6%9E%90%EF%BC%89/">Antlr4+python3-visitor使用（四则运算解析）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Antlr系列（配合Python3）文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/32570686">https://www.jianshu.com/nb/32570686</a></p>
+<h2 id="Visitor实现四则运算的计算"><a href="#Visitor实现四则运算的计算" class="headerlink" title="Visitor实现四则运算的计算"></a>Visitor实现四则运算的计算</h2><p>文法规则文件<code>Expr.g4</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">grammar Expr;		</span><br><span class="line">prog:	expr NEWLINE            # printExpr;</span><br><span class="line">expr:	left&#x3D;expr op&#x3D;(&#39;*&#39;|&#39;&#x2F;&#39;) right&#x3D;expr   # mulDiv    &#x2F;&#x2F; 用来确定优先级，在上面的优先级高</span><br><span class="line">    |	left&#x3D;expr op&#x3D;(&#39;+&#39;|&#39;-&#39;) right&#x3D;expr   # addSub</span><br><span class="line">    |	INT                     # int</span><br><span class="line">    |	&#39;(&#39; expr &#39;)&#39;            # brackets</span><br><span class="line">    ;</span><br><span class="line">NEWLINE : [\r\n]+ ;</span><br><span class="line">INT     : [0-9]+ ;</span><br><span class="line"></span><br><span class="line">MUL     : &#39;*&#39; ;  &#x2F;&#x2F; 用来便于当作常量引用</span><br><span class="line">DIV     : &#39;&#x2F;&#39; ;</span><br><span class="line">ADD     : &#39;+&#39; ;</span><br><span class="line">SUB     : &#39;-&#39; ;</span><br></pre></td></tr></table></figure>
+
+<p>在执行antlr4的时候需要指明<code>-no-listener</code>和<code>-visitor</code>，因此执行<code>antlr4 -no-listener -visitor -Dlanguage=Python3 Expr.g4</code></p>
+<p>创建文件<code>Expr.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> antlr4 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> ExprLexer <span class="keyword">import</span> ExprLexer</span><br><span class="line"><span class="keyword">from</span> ExprParser <span class="keyword">import</span> ExprParser</span><br><span class="line"><span class="keyword">from</span> ExprVisitor <span class="keyword">import</span> ExprVisitor</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExprCalculateVisitor</span>(<span class="params">ExprVisitor</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitPrintExpr</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="comment"># 函数名enterR的R指的是非终结符r</span></span><br><span class="line">        val = self.visit(ctx.expr())</span><br><span class="line">        <span class="built_in">print</span>(val)</span><br><span class="line">        <span class="keyword">return</span> val</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitBrackets</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.visit(ctx.expr())</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitAddSub</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="keyword">if</span> ctx.op.<span class="built_in">type</span> == ExprParser.ADD:</span><br><span class="line">            <span class="keyword">return</span> self.visit(ctx.left) + self.visit(ctx.right)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.visit(ctx.left) - self.visit(ctx.right)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitMulDiv</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="keyword">if</span> ctx.op.<span class="built_in">type</span> == ExprParser.MUL:</span><br><span class="line">            <span class="keyword">return</span> self.visit(ctx.left) * self.visit(ctx.right)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.visit(ctx.left) / self.visit(ctx.right)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">visitInt</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(ctx.getText())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    lexer = ExprLexer(StdinStream())</span><br><span class="line">    stream = CommonTokenStream(lexer)</span><br><span class="line">    parser = ExprParser(stream)</span><br><span class="line">    tree = parser.prog()</span><br><span class="line">    calculator = ExprCalculateVisitor()</span><br><span class="line">    calculator.visitPrintExpr(tree)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>这里的visitXXX的XXX部分都是上面#后的内容；如果不写#后的东西，就会是visitProg之类的</p>
+<p>之后仍然是运行并且输入后回车输入EOF（Ctrl-D/Ctrl-Z）即可看到结果输出</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/12/21/Antlr4+python3-visitor%E4%BD%BF%E7%94%A8%EF%BC%88%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E8%A7%A3%E6%9E%90%EF%BC%89/" data-id="ckqkkayxp000dbcc49nv37077" data-title="Antlr4+python3-visitor使用（四则运算解析）" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Antlr4+python3安装&amp;示例程序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/12/21/Antlr4+python3%E5%AE%89%E8%A3%85&%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2018-12-20T22:06:06.000Z" itemprop="datePublished">2018-12-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Antlr4/">使用—软件—Antlr4</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/12/21/Antlr4+python3%E5%AE%89%E8%A3%85&%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F/">Antlr4+python3安装&amp;示例程序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Antlr系列（配合Python3）文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/32570686">https://www.jianshu.com/nb/32570686</a></p>
+<h2 id="Ubuntu安装"><a href="#Ubuntu安装" class="headerlink" title="Ubuntu安装"></a>Ubuntu安装</h2><p>安装方法：（来自官网首页，Quick Start）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/lib</span><br><span class="line">$ wget https://www.antlr.org/download/antlr-4.7.2-complete.jar</span><br><span class="line">$ <span class="built_in">export</span> CLASSPATH=<span class="string">&quot;.:/usr/local/lib/antlr-4.7.2-complete.jar:<span class="variable">$CLASSPATH</span>&quot;</span></span><br><span class="line">$ <span class="built_in">alias</span> antlr4=<span class="string">&#x27;java -jar /usr/local/lib/antlr-4.7.2-complete.jar&#x27;</span></span><br><span class="line">$ <span class="built_in">alias</span> grun=<span class="string">&#x27;java org.antlr.v4.gui.TestRig&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>直接运行<code>antlr4</code>和<code>grun</code>出现帮助信息就说明成功。</p>
+<p>第二步下载的时候如果权限不够，就<code>sudo</code>下载并且之后<code>sudo chmod 777 antlr-4.7.2-complete.jar</code></p>
+<p>然后为方便使用，在<code>.bashrc</code>里面添加后三行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CLASSPATH=<span class="string">&quot;.:/usr/local/lib/antlr-4.7.2-complete.jar:<span class="variable">$CLASSPATH</span>&quot;</span></span><br><span class="line"><span class="built_in">alias</span> antlr4=<span class="string">&#x27;java -jar /usr/local/lib/antlr-4.7.2-complete.jar&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> grun=<span class="string">&#x27;java org.antlr.v4.gui.TestRig&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>一定要注意这里的classpath里面要有<code>.</code></strong></p>
+<h2 id="Windows安装"><a href="#Windows安装" class="headerlink" title="Windows安装"></a>Windows安装</h2><p>添加下载的jar文件与<code>.</code>添加到CLASSPATH中，同时在Path内的路径里面建立两个bat文件：</p>
+<p><code>antlr4.bat</code></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java org.antlr.v4.Tool %*</span><br></pre></td></tr></table></figure>
+
+<p><code>grun.bat</code></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java org.antlr.v4.gui.TestRig %*</span><br></pre></td></tr></table></figure>
+
+<p><strong>要特别注意，<code>.</code>一定要添加到CLASSPATH中！！！！！！！</strong></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>（官方GetStarted：<a target="_blank" rel="noopener" href="https://github.com/antlr/antlr4/blob/master/doc/getting-started.md">https://github.com/antlr/antlr4/blob/master/doc/getting-started.md</a></p>
+<p>创建文件<code>Hello.g4</code>，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grammar Hello;</span><br><span class="line">r  : &#39;hello&#39; ID ;         &#x2F;&#x2F; match keyword hello followed by an identifier</span><br><span class="line">ID : [a-z]+ ;             &#x2F;&#x2F; match lower-case identifiers</span><br><span class="line">WS : [ \t\r\n]+ -&gt; skip ; &#x2F;&#x2F; skip spaces, tabs, newlines</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>antlr4 Hello.g4</code>和<code>javac Hello*.java</code></p>
+<p>之后<code>grun Hello r -tree</code>或者<code>grun Hello r -gui</code>，输入某一个输入串（如<code>hello pjio</code>）后回车并按下<code>Ctrl-D</code>（Windows下为<code>Ctrl-Z</code>），就可以看到解析结果。</p>
+<p>这里的<code>r</code>表示的是第二行的起始符号<code>r</code></p>
+<h2 id="python部分"><a href="#python部分" class="headerlink" title="python部分"></a>python部分</h2><p>（官方说明：<a target="_blank" rel="noopener" href="https://github.com/antlr/antlr4/blob/master/doc/python-target.md">https://github.com/antlr/antlr4/blob/master/doc/python-target.md</a></p>
+<p>准备python库：</p>
+<p><code>pip install antlr4-python3-runtime</code></p>
+<p>执行antlr4，其中需要声明<code>Dlanguage</code>：<code>antlr4 -Dlanguage=Python3 Hello.g4</code> （注意是<strong>P</strong>ython3，P要大写！）</p>
+<p>之后在那个执行antlr4的目录下，创建以下程序并运行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> antlr4 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> HelloLexer <span class="keyword">import</span> HelloLexer</span><br><span class="line"><span class="keyword">from</span> HelloParser <span class="keyword">import</span> HelloParser</span><br><span class="line"><span class="keyword">from</span> HelloListener <span class="keyword">import</span> HelloListener</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloPrintListener</span>(<span class="params">HelloListener</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enterR</span>(<span class="params">self, ctx</span>):</span></span><br><span class="line">        <span class="comment"># 函数名enterR的R指的是非终结符r</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Hello: %s&quot;</span> % ctx.ID())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    lexer = HelloLexer(StdinStream())</span><br><span class="line">    stream = CommonTokenStream(lexer)</span><br><span class="line">    parser = HelloParser(stream)</span><br><span class="line">    tree = parser.r()</span><br><span class="line">    printer = HelloPrintListener()</span><br><span class="line">    walker = ParseTreeWalker()</span><br><span class="line">    walker.walk(printer, tree)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>还是直接启动后输入<code>hello wjgoiwejgoiw</code>并且回车，输入<code>Ctrl-D</code>或者<code>Ctrl-Z</code>（Windows）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/12/21/Antlr4+python3%E5%AE%89%E8%A3%85&%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F/" data-id="ckqkkayxq000ebcc440jp95iq" data-title="Antlr4+python3安装&amp;示例程序" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Test分类与区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/12/03/Test%E5%88%86%E7%B1%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time class="dt-published" datetime="2018-12-02T22:06:06.000Z" itemprop="datePublished">2018-12-03</time>
 </a>
     
   <div class="article-category">
@@ -161,7 +287,7 @@ def application(env, start_response):
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/15/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90-travis-ci-org/">持续集成-travis-ci-org</a>
+      <a class="p-name article-title" href="/2018/12/03/Test%E5%88%86%E7%B1%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/">Test分类与区别</a>
     </h1>
   
 
@@ -169,11 +295,12 @@ def application(env, start_response):
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/rickenwang/article/details/78033575">https://blog.csdn.net/rickenwang/article/details/78033575</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/15/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90-travis-ci-org/" data-id="ckqkjgmc100j4x4c45063a49o" data-title="持续集成-travis-ci-org" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/12/03/Test%E5%88%86%E7%B1%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" data-id="ckqkkaz0f008jbcc41lvzgj8e" data-title="Test分类与区别" class="article-share-link">Share</a>
       
       
       
@@ -185,10 +312,142 @@ def application(env, start_response):
 
 
   
-    <article id="post-WebStorm-commit卡死" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-服务器selenium截图中文问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/10/12/WebStorm-commit%E5%8D%A1%E6%AD%BB/" class="article-date">
-  <time class="dt-published" datetime="2018-10-11T22:06:06.000Z" itemprop="datePublished">2018-10-12</time>
+    <a href="/2018/11/09/%E6%9C%8D%E5%8A%A1%E5%99%A8selenium%E6%88%AA%E5%9B%BE%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2018-11-08T22:06:06.000Z" itemprop="datePublished">2018-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/11/09/%E6%9C%8D%E5%8A%A1%E5%99%A8selenium%E6%88%AA%E5%9B%BE%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/">服务器selenium截图中文问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39792252/article/details/80415550">https://blog.csdn.net/weixin_39792252/article/details/80415550</a></p>
+<p>sudo apt-get install fonts-droid-fallback ttf-wqy-zenhei ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/11/09/%E6%9C%8D%E5%8A%A1%E5%99%A8selenium%E6%88%AA%E5%9B%BE%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" data-id="ckqkkaz3w00kfbcc4ff86gijh" data-title="服务器selenium截图中文问题" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-apt-get-problem-with-merge-list" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/11/08/apt-get-problem-with-merge-list/" class="article-date">
+  <time class="dt-published" datetime="2018-11-07T22:06:06.000Z" itemprop="datePublished">2018-11-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/11/08/apt-get-problem-with-merge-list/">apt-get-problem-with-merge-list</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/30072/how-do-i-fix-a-problem-with-mergelist-or-status-file-could-not-be-parsed-err">https://askubuntu.com/questions/30072/how-do-i-fix-a-problem-with-mergelist-or-status-file-could-not-be-parsed-err</a></p>
+<p><code>sudo rm -vf /var/lib/apt/lists/*</code></p>
+<p><code>sudo apt-get update</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/11/08/apt-get-problem-with-merge-list/" data-id="ckqkkaz0t009zbcc40mds4y7i" data-title="apt-get-problem-with-merge-list" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-printf不显示" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/10/23/printf%E4%B8%8D%E6%98%BE%E7%A4%BA/" class="article-date">
+  <time class="dt-published" datetime="2018-10-22T22:06:06.000Z" itemprop="datePublished">2018-10-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94C/">语言—C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/10/23/printf%E4%B8%8D%E6%98%BE%E7%A4%BA/">printf不显示</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>需要缓冲区满或者scanf或者fflush(stdout);或者有\n才显示。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2018/10/23/printf%E4%B8%8D%E6%98%BE%E7%A4%BA/" data-id="ckqkkaz2900ezbcc49gq25gte" data-title="printf不显示" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-django-rander导致网址被转义" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/10/17/django-rander%E5%AF%BC%E8%87%B4%E7%BD%91%E5%9D%80%E8%A2%AB%E8%BD%AC%E4%B9%89/" class="article-date">
+  <time class="dt-published" datetime="2018-10-16T22:06:06.000Z" itemprop="datePublished">2018-10-17</time>
 </a>
     
   <div class="article-category">
@@ -203,7 +462,7 @@ def application(env, start_response):
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/12/WebStorm-commit%E5%8D%A1%E6%AD%BB/">WebStorm-commit卡死</a>
+      <a class="p-name article-title" href="/2018/10/17/django-rander%E5%AF%BC%E8%87%B4%E7%BD%91%E5%9D%80%E8%A2%AB%E8%BD%AC%E4%B9%89/">django-rander导致网址被转义</a>
     </h1>
   
 
@@ -211,12 +470,13 @@ def application(env, start_response):
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>这是因为使用了node_modules，导致文件路径过长，无法git add<br>所以需要直接去在gitignore里面添加该目录</p>
+        <p>网址中具有的&amp;符号可能被django转义。</p>
+<p>解决：可以把改为</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/12/WebStorm-commit%E5%8D%A1%E6%AD%BB/" data-id="ckqkjgm91008xx4c4d0e75cip" data-title="WebStorm-commit卡死" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/10/17/django-rander%E5%AF%BC%E8%87%B4%E7%BD%91%E5%9D%80%E8%A2%AB%E8%BD%AC%E4%B9%89/" data-id="ckqkkaz1100aubcc4050hcy3u" data-title="django-rander导致网址被转义" class="article-share-link">Share</a>
       
       
       
@@ -228,10 +488,10 @@ def application(env, start_response):
 
 
   
-    <article id="post-WebStorm-es6配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Pycharm-search-in-path-快捷键冲突" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/10/11/WebStorm-es6%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time class="dt-published" datetime="2018-10-10T22:06:06.000Z" itemprop="datePublished">2018-10-11</time>
+    <a href="/2018/10/16/Pycharm-search-in-path-%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%86%B2%E7%AA%81/" class="article-date">
+  <time class="dt-published" datetime="2018-10-15T22:06:06.000Z" itemprop="datePublished">2018-10-16</time>
 </a>
     
   <div class="article-category">
@@ -246,7 +506,7 @@ def application(env, start_response):
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/11/WebStorm-es6%E9%85%8D%E7%BD%AE/">WebStorm-es6配置</a>
+      <a class="p-name article-title" href="/2018/10/16/Pycharm-search-in-path-%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%86%B2%E7%AA%81/">Pycharm-search-in-path-快捷键冲突</a>
     </h1>
   
 
@@ -254,12 +514,12 @@ def application(env, start_response):
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/lanleiming/p/7491531.html">http://www.cnblogs.com/lanleiming/p/7491531.html</a></p>
+        <p>Ctrl-Alt-F快捷键在Win10自带中文输入法下是切换繁体简体的，但是该快捷键同时也是Pycharm等的search in path快捷键</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/11/WebStorm-es6%E9%85%8D%E7%BD%AE/" data-id="ckqkjgm92008zx4c40bfr6x45" data-title="WebStorm-es6配置" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/10/16/Pycharm-search-in-path-%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%86%B2%E7%AA%81/" data-id="ckqkkayzz0070bcc47nhu5p6n" data-title="Pycharm-search-in-path-快捷键冲突" class="article-share-link">Share</a>
       
       
       
@@ -271,14 +531,14 @@ def application(env, start_response):
 
 
   
-    <article id="post-一些用到的汇编库&amp;函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Win32-编程添加控件及监听" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/10/11/%E4%B8%80%E4%BA%9B%E7%94%A8%E5%88%B0%E7%9A%84%E6%B1%87%E7%BC%96%E5%BA%93&%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2018-10-10T22:06:06.000Z" itemprop="datePublished">2018-10-11</time>
+    <a href="/2018/10/16/Win32-%E7%BC%96%E7%A8%8B%E6%B7%BB%E5%8A%A0%E6%8E%A7%E4%BB%B6%E5%8F%8A%E7%9B%91%E5%90%AC/" class="article-date">
+  <time class="dt-published" datetime="2018-10-15T22:06:06.000Z" itemprop="datePublished">2018-10-16</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94Win32%E6%A1%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F/">领域—Win32桌面程序</a>
   </div>
 
   </div>
@@ -289,7 +549,7 @@ def application(env, start_response):
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/11/%E4%B8%80%E4%BA%9B%E7%94%A8%E5%88%B0%E7%9A%84%E6%B1%87%E7%BC%96%E5%BA%93&%E5%87%BD%E6%95%B0/">一些用到的汇编库&amp;函数</a>
+      <a class="p-name article-title" href="/2018/10/16/Win32-%E7%BC%96%E7%A8%8B%E6%B7%BB%E5%8A%A0%E6%8E%A7%E4%BB%B6%E5%8F%8A%E7%9B%91%E5%90%AC/">Win32-编程添加控件及监听</a>
     </h1>
   
 
@@ -297,430 +557,21 @@ def application(env, start_response):
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>汇编系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/29822876">https://www.jianshu.com/nb/29822876</a></p>
-<p>可以直接到<a target="_blank" rel="noopener" href="http://programming.msjc.edu/asm/help/%E4%B8%8A%E9%9D%A2%E6%90%9C%E7%B4%A2%E9%9C%80%E8%A6%81%E7%9A%84%E5%87%BD%E6%95%B0%E3%80%82">http://programming.msjc.edu/asm/help/上面搜索需要的函数。</a></p>
-<p>库：<br>SmallWin.inc</p>
+        <p>Win32编程系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30332818">https://www.jianshu.com/nb/30332818</a></p>
+<h2 id="添加控件"><a href="#添加控件" class="headerlink" title="添加控件"></a>添加控件</h2><p>在Hello World基础上，添加：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://cs.fit.edu/~mmahoney/cse3101/examples/Lib32/SmallWin.inc">https://cs.fit.edu/~mmahoney/cse3101/examples/Lib32/SmallWin.inc</a></li>
+<li><code>wWinMain</code>内部创建变量，使用的是如下的方法：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建静态文本控件</span></span><br><span class="line">HWND hStatic = <span class="built_in">CreateWindow</span>(</span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;static&quot;</span>),  <span class="comment">//静态文本框的类名</span></span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;hahaha&quot;</span>),  <span class="comment">//控件的文本</span></span><br><span class="line">	WS_CHILD <span class="comment">/*子窗口*/</span> | WS_VISIBLE <span class="comment">/*创建时显示*/</span> | WS_BORDER <span class="comment">/*带边框*/</span>,</span><br><span class="line">	<span class="number">120</span> <span class="comment">/*X坐标*/</span>, <span class="number">20</span><span class="comment">/*Y坐标*/</span>, <span class="number">150</span><span class="comment">/*宽度*/</span>, <span class="number">80</span><span class="comment">/*高度*/</span>, hwnd<span class="comment">/*父窗口句柄*/</span>,</span><br><span class="line">	(HMENU)<span class="number">1</span>,  <span class="comment">//为控件指定一个唯一标识符</span></span><br><span class="line">	hInstance,  <span class="comment">//当前实例句柄</span></span><br><span class="line">	<span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+<li>类似可以创建按钮、输入框等，如下：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面一行代码创建输入框</span></span><br><span class="line"><span class="built_in">CreateWindow</span>(<span class="string">L&quot;EDIT&quot;</span>, <span class="number">0</span>, WS_BORDER | WS_CHILD | WS_VISIBLE, <span class="number">56</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">18</span>, hwnd, <span class="number">0</span>, hInstance, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面一行代码创建按钮</span></span><br><span class="line">my_button = <span class="built_in">CreateWindow</span>(<span class="string">L&quot;BUTTON&quot;</span>, <span class="string">L&quot;一个按钮&quot;</span>, WS_CHILD | WS_VISIBLE, <span class="number">70</span>, <span class="number">70</span>, <span class="number">80</span>, <span class="number">25</span>, hwnd, (HMENU)<span class="number">8</span>, hInstance, <span class="number">0</span>);</span><br></pre></td></tr></table></figure></li>
+<li>创建下拉框的时候会比较麻烦，需要绑定数据，如下所示：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">TCHAR Planets[<span class="number">9</span>][<span class="number">10</span>] =</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;Mercury&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Venus&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Terra&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Mars&quot;</span>),</span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;Jupiter&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Saturn&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Uranus&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Neptune&quot;</span>),</span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;Pluto??&quot;</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> xpos = <span class="number">100</span>;            <span class="comment">// Horizontal position of the window.</span></span><br><span class="line"><span class="keyword">int</span> ypos = <span class="number">100</span>;            <span class="comment">// Vertical position of the window.</span></span><br><span class="line"><span class="keyword">int</span> nwidth = <span class="number">200</span>;          <span class="comment">// Width of the window</span></span><br><span class="line"><span class="keyword">int</span> nheight = <span class="number">200</span>;         <span class="comment">// Height of the window</span></span><br><span class="line">HWND hwndParent = hwnd; <span class="comment">// Handle to the parent window</span></span><br><span class="line"></span><br><span class="line">HWND hWndComboBox = <span class="built_in">CreateWindow</span>(<span class="string">L&quot;COMBOBOX&quot;</span>, <span class="built_in">TEXT</span>(<span class="string">&quot;&quot;</span>),</span><br><span class="line">	CBS_DROPDOWN | CBS_HASSTRINGS | WS_CHILD | WS_OVERLAPPED | WS_VISIBLE,</span><br><span class="line">	xpos, ypos, nwidth, nheight, hwndParent, <span class="literal">NULL</span>, hInstance,</span><br><span class="line">	<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">TCHAR A[<span class="number">16</span>];</span><br><span class="line"><span class="keyword">int</span>  k = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(&amp;A, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(A));</span><br><span class="line"><span class="keyword">for</span> (k = <span class="number">0</span>; k &lt;= <span class="number">8</span>; k += <span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">wcscpy_s</span>(A, <span class="built_in"><span class="keyword">sizeof</span></span>(A) / <span class="built_in"><span class="keyword">sizeof</span></span>(TCHAR), (TCHAR*)Planets[k]);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Add string to combobox.</span></span><br><span class="line">	<span class="built_in">SendMessage</span>(hWndComboBox, (UINT)CB_ADDSTRING, (WPARAM)<span class="number">0</span>, (LPARAM)A);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Send the CB_SETCURSEL message to display an initial item </span></span><br><span class="line"><span class="comment">//  in the selection field  </span></span><br><span class="line"><span class="built_in">SendMessage</span>(hWndComboBox, CB_SETCURSEL, (WPARAM)<span class="number">2</span>, (LPARAM)<span class="number">0</span>);</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>Irvine32.inc</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://cs.fit.edu/~mmahoney/cse3101/examples/Lib32/Irvine32.inc">https://cs.fit.edu/~mmahoney/cse3101/examples/Lib32/Irvine32.inc</a></li>
-</ul>
-<p><code>SetTextColor</code></p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="http://programming.msjc.edu/asm/help/source/irvinelib/settextcolor.htm">http://programming.msjc.edu/asm/help/source/irvinelib/settextcolor.htm</a></p>
-</li>
-<li><blockquote>
-<p>Call args:  EAX = Bits 0-3 = foreground color</p>
-<pre><code>            Bits 4-7 = background color
-</code></pre>
-<p>Return arg: None</p>
-</blockquote>
-</li>
-<li><p>Example: Set for yellow text on blue background</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INCLUDE Irvine32.inc ;for color definitions</span><br><span class="line"></span><br><span class="line">    mov  eax,yellow+(blue*16)</span><br><span class="line">    call SetTextColor</span><br></pre></td></tr></table></figure></li>
-<li><p>Note: The colors defined in Irvine32.inc are:<br><code>black, white, brown, yellow, blue, green, cyan, red, magenta, gray, lightBlue, lightGreen, lightCyan, lightRed, lightMagenta, and lightGray</code>.</p>
-</li>
+<h2 id="绑定事件"><a href="#绑定事件" class="headerlink" title="绑定事件"></a>绑定事件</h2><ul>
+<li>在<code>WindowProc</code>里面添加对应的switch-case，如下：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wchar_t</span> a[<span class="number">6</span>] = <span class="built_in">TEXT</span>(<span class="string">&quot;Dian0&quot;</span>);</span><br><span class="line"><span class="keyword">int</span> wmId = <span class="built_in">LOWORD</span>(wParam);</span><br><span class="line"><span class="keyword">int</span> wmEvent = <span class="built_in">HIWORD</span>(wParam);</span><br><span class="line"><span class="built_in"><span class="keyword">switch</span></span> (uMsg)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> WM_CLOSE:</span><br><span class="line">	<span class="built_in">DestroyWindow</span>(hwnd);</span><br><span class="line">	<span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">	<span class="built_in">PostQuitMessage</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> WM_COMMAND:</span><br><span class="line">	<span class="keyword">if</span> (wmEvent == BN_CLICKED) &#123;</span><br><span class="line">		a[<span class="number">4</span>] = <span class="string">L&#x27;0&#x27;</span> + (a[<span class="number">4</span>] - <span class="string">L&#x27;0&#x27;</span> + <span class="number">1</span>) % <span class="number">10</span>;</span><br><span class="line">		<span class="built_in">SetWindowText</span>(my_button, a);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (wmEvent == CBN_SELCHANGE)</span><br><span class="line">		<span class="comment">// If the user makes a selection from the list:</span></span><br><span class="line">		<span class="comment">//   Send CB_GETCURSEL message to get the index of the selected list item.</span></span><br><span class="line">		<span class="comment">//   Send CB_GETLBTEXT message to get the item.</span></span><br><span class="line">		<span class="comment">//   Display the item in a messagebox.</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> ItemIndex = <span class="built_in">SendMessage</span>((HWND)lParam, (UINT)CB_GETCURSEL,</span><br><span class="line">			(WPARAM)<span class="number">0</span>, (LPARAM)<span class="number">0</span>);</span><br><span class="line">		TCHAR  ListItem[<span class="number">256</span>];</span><br><span class="line">		(TCHAR)<span class="built_in">SendMessage</span>((HWND)lParam, (UINT)CB_GETLBTEXT,</span><br><span class="line">			(WPARAM)ItemIndex, (LPARAM)ListItem);</span><br><span class="line">		<span class="built_in">MessageBox</span>(hwnd, (LPCWSTR)ListItem, <span class="built_in">TEXT</span>(<span class="string">&quot;Item Selected&quot;</span>), MB_OK);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Here don&#x27;t write break on purpose!</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">DefWindowProc</span>(hwnd, msg, wParam, lParam);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 还是得要去处理default的事件</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/11/%E4%B8%80%E4%BA%9B%E7%94%A8%E5%88%B0%E7%9A%84%E6%B1%87%E7%BC%96%E5%BA%93&%E5%87%BD%E6%95%B0/" data-id="ckqkjgmba00gix4c4aqbsbrdv" data-title="一些用到的汇编库&amp;函数" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-汇编结构&amp;宏" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/10/10/%E6%B1%87%E7%BC%96%E7%BB%93%E6%9E%84&%E5%AE%8F/" class="article-date">
-  <time class="dt-published" datetime="2018-10-09T22:06:06.000Z" itemprop="datePublished">2018-10-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/10/%E6%B1%87%E7%BC%96%E7%BB%93%E6%9E%84&%E5%AE%8F/">汇编结构&amp;宏</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>汇编系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/29822876">https://www.jianshu.com/nb/29822876</a></p>
-<h3 id="Structure"><a href="#Structure" class="headerlink" title="Structure"></a>Structure</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name STRUCT</span><br><span class="line">  field-declarations</span><br><span class="line">name ENDS</span><br></pre></td></tr></table></figure>
-<p>也可以嵌套定义</p>
-<h4 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h4><ul>
-<li><code>&lt;...&gt;</code>里面写上对应的初始化参数，逗号隔开；<code>&lt;&gt;</code>表示默认的</li>
-<li><code>varname structname &lt;a,b,c&gt;</code></li>
-<li>可以嵌套，声明时可以用尖括号和大括号</li>
-</ul>
-<h4 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a>使用变量</h4><ul>
-<li>访问结构内变量直接用<code>.</code></li>
-<li>但是不能直接使用储存地址的寄存器寻址后用<code>.</code></li>
-</ul>
-<h3 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name UNION</span><br><span class="line">  union-field-declarations</span><br><span class="line">name ENDS</span><br></pre></td></tr></table></figure>
-
-<h3 id="Macro"><a href="#Macro" class="headerlink" title="Macro"></a>Macro</h3><ul>
-<li>有预处理器进行处理</li>
-<li>形式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">macroname MACRO [parameter 1, 2...]</span><br><span class="line">  statement-list</span><br><span class="line">ENDM</span><br></pre></td></tr></table></figure></li>
-<li>避免缺少参数<ul>
-<li><code>IFB &lt;row&gt;</code>：<code>if blank</code>，检查是否row是空；之后用<code>ENDIF</code></li>
-<li>缺省值：在param部分使用<code>:=&lt;...&gt;</code></li>
-</ul>
-</li>
-<li>使用IF、ELSE、ENDIF、LT（less than）、GT、EQ、等内容</li>
-<li>IFIDNI可以比较输入和预设值，不带I表示区分大小写</li>
-<li>强制替换&amp;，强制计算%，组合形成一个参数&lt;&gt;，转义!</li>
-<li>EXITM返回内容</li>
-<li>WHILE</li>
-<li>REPEAT 次数</li>
-<li>FOR color, &lt;a,b&gt;表示for color in [a, b]</li>
-<li>FORC迭代字符串，FORC color, <JIOGE> 表示for color in ‘JIOGE’</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/10/%E6%B1%87%E7%BC%96%E7%BB%93%E6%9E%84&%E5%AE%8F/" data-id="ckqkjgmcr00lkx4c41l23fpo0" data-title="汇编结构&amp;宏" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-汇编String&amp;Array" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/10/09/%E6%B1%87%E7%BC%96String&Array/" class="article-date">
-  <time class="dt-published" datetime="2018-10-08T22:06:06.000Z" itemprop="datePublished">2018-10-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/09/%E6%B1%87%E7%BC%96String&Array/">汇编String&amp;Array</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>汇编系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/29822876">https://www.jianshu.com/nb/29822876</a></p>
-<h3 id="Primitive-instructions"><a href="#Primitive-instructions" class="headerlink" title="Primitive instructions"></a>Primitive instructions</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOVSB、MOVSW、MOVSD</span><br><span class="line">CMP...</span><br><span class="line">SCA... （scan）</span><br><span class="line">STO... （store）</span><br><span class="line">LOD... （load）</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>MOVSD</code>之前给ESI、EDI赋值（target在edi），之后ESI、EDI会自动加/减4（MOVSB自动加/减1）<ul>
-<li>DF用于控制方向，有CLD（clear）和STD（set），0为加</li>
-<li>重复使用<code>rep movsd</code>，前面给ecx赋值</li>
-</ul>
-</li>
-<li><code>CMPSD</code><ul>
-<li><code>REPE/REPZ</code>、<code>REPNE/REPNZ</code>，配合DF和ecx</li>
-<li>之后使用<code>ja</code>、<code>jb</code>等</li>
-</ul>
-</li>
-<li><code>SCA..</code><ul>
-<li>类似TEST，可以使用<code>je</code>、<code>jne</code>等</li>
-</ul>
-</li>
-<li><code>STO..</code><ul>
-<li>EDI中的偏移量表示一个地址，可以把AL/AX/EAX的内容写进EDI中存储的偏移量代表的内存位置中（D为destination），同时EDI会递增/递减</li>
-</ul>
-</li>
-<li><code>LOD..</code><ul>
-<li>从ESI指向的内存地址加载到AL/AX/EAX，S为source，ESI会递增/递减</li>
-</ul>
-</li>
-</ul>
-<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><ul>
-<li>用基址变址操作数<code>[base+index]</code>、基址变址偏移量操作数<code>[base+index+displacement]</code>或者<code>displacement[base+index]</code></li>
-<li>使用的是<code>ebx, esi</code>，64位用<code>rbx, rsi</code>。<code>ebx</code>是行首地址</li>
-<li><code>STRUCT</code>, <code>ENDS</code>定义结构体</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/09/%E6%B1%87%E7%BC%96String&Array/" data-id="ckqkjgmcp00lcx4c4ax2y9eic" data-title="汇编String&amp;Array" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-汇编选择&amp;循环结构" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/10/04/%E6%B1%87%E7%BC%96%E9%80%89%E6%8B%A9&%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/" class="article-date">
-  <time class="dt-published" datetime="2018-10-03T22:06:06.000Z" itemprop="datePublished">2018-10-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/04/%E6%B1%87%E7%BC%96%E9%80%89%E6%8B%A9&%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/">汇编选择&amp;循环结构</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>汇编系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/29822876">https://www.jianshu.com/nb/29822876</a></p>
-<h3 id="Status-flags"><a href="#Status-flags" class="headerlink" title="Status flags"></a>Status flags</h3><ul>
-<li>Zero、Carry（无符号溢出）、Sign（负数）、Overflow（有符号溢出）、Parity（低字节偶数个1）、Auxiliary Carry（第3bit到第4有进位）</li>
-</ul>
-<h3 id="逻辑操作"><a href="#逻辑操作" class="headerlink" title="逻辑操作"></a>逻辑操作</h3><ul>
-<li>AND、OR、XOR、NOT</li>
-<li>可以与Bit-Mapped sets一起进行交集并集等操作</li>
-<li>TEST：只进行and的检查，不改变操作数但会改变Zero flag。配合jz和jnz使用</li>
-</ul>
-<h3 id="CMP"><a href="#CMP" class="headerlink" title="CMP"></a>CMP</h3><ul>
-<li>只改变flag，ZF、CF、OF等</li>
-<li>通过这些flag的改变。用Jcondition来跳转，包括：<ul>
-<li>JB、JC（b表示below，c表示carry flag）</li>
-<li>JE、JZ（e表示equal，z表示zero flag）</li>
-<li>JS（s表示sign）</li>
-<li>JNE、JNZ（n为not）</li>
-<li>JECXZ（表示ecx为zero）</li>
-</ul>
-</li>
-<li>JA、JB、JBE、JNA分别表示<strong>Unsigned</strong>的大于（above）、小于、小于等于、不大于</li>
-<li>JG、JL、JNGE分别表示<strong>Signed</strong>的大于、小于、不大于等于（即小于）</li>
-<li>Jcondition的操作数是代码label，对应机器码是EIP需要增大的数。由于在当前这一句时，EIP是在下一句，所以需要用目标label的地址减去下一句的地址</li>
-</ul>
-<h3 id="BT"><a href="#BT" class="headerlink" title="BT"></a>BT</h3><ul>
-<li><code>BT bitBase, n</code>是把<code>bitBase</code>的第n位放到Carry Flag里面</li>
-<li>之后可以用jc来跳转</li>
-</ul>
-<h3 id="LOOPZ-amp-LOOPE"><a href="#LOOPZ-amp-LOOPE" class="headerlink" title="LOOPZ&amp;LOOPE"></a>LOOPZ&amp;LOOPE</h3><ul>
-<li>依然有ECX的判断，但是必须ZF=1才能跳转</li>
-<li>同理有LOOPNE和LOOPNZ</li>
-</ul>
-<h3 id="伪指令"><a href="#伪指令" class="headerlink" title="伪指令"></a>伪指令</h3><ul>
-<li>可以使用.IF .ELSE .ENDIF .ELSEIF这几个指令（后面没有冒号）</li>
-<li>可以使用.REPEAT .UNTIL或者.WHILE .ENDW</li>
-<li>条件里面可以用与或非大小比较按位与的符号，以及CARRY?OVERFLOW?PARITY?SIGN?ZERO?，但是要注意顺序，不能写.IF 2 &gt; eax之类的</li>
-<li>SIGNED和UNSINGED的判断是通过数据label声明得到的，如果是寄存器默认认为UNSIGNED但是可以用SDWORD PTR来说明是signed</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/04/%E6%B1%87%E7%BC%96%E9%80%89%E6%8B%A9&%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/" data-id="ckqkjgmcs00lox4c476ad79p0" data-title="汇编选择&amp;循环结构" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-汇编过程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/10/03/%E6%B1%87%E7%BC%96%E8%BF%87%E7%A8%8B/" class="article-date">
-  <time class="dt-published" datetime="2018-10-02T22:06:06.000Z" itemprop="datePublished">2018-10-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/10/03/%E6%B1%87%E7%BC%96%E8%BF%87%E7%A8%8B/">汇编过程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>汇编系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/29822876">https://www.jianshu.com/nb/29822876</a></p>
-<h3 id="stack的使用"><a href="#stack的使用" class="headerlink" title="stack的使用"></a>stack的使用</h3><ul>
-<li>使用SS和ESP进行寻址，每一次push和pop都是对栈顶操作，栈顶在低地址，同时是指向顶部存储的内容。如PUSH后，会先移动后再push进去东西。</li>
-<li>PUSH、POP都是只有一个操作数，因为只有一个栈。</li>
-<li>注意由于后进先出，PUSH和POP的操作对象顺序相反。</li>
-<li>PUSHFD、POPFD：用于EFLAGS寄存器</li>
-<li>PUSHAD、POPAD：所有32位通用寄存器，顺序：<code>EAX、ECX、EDX、EBX、ESP、EBP、ESI、EDI</code></li>
-<li>PUSHA、POPA用于16位</li>
-</ul>
-<h3 id="过程procedure定义："><a href="#过程procedure定义：" class="headerlink" title="过程procedure定义："></a>过程procedure定义：</h3><ul>
-<li>输入输出可以使用寄存器</li>
-<li>使用PROC和ENDP定义，里面使用ret，直接用call调用</li>
-<li>ret用来进行EIP赋值，继续执行调用前的下一条的指令</li>
-<li>USES操作符：在PROC之后加上USES esi ecx可以让编译器自动在PROC内部加上两个寄存器的push和pop操作</li>
-</ul>
-<h3 id="LINK-library"><a href="#LINK-library" class="headerlink" title="LINK library"></a>LINK library</h3><ul>
-<li>用机器码编译出来的procedures</li>
-<li>自己生成lib时需要先把每一个asm编译成obj然后把他们添加在lib文件中</li>
-<li>使用include来声明函数原型</li>
-</ul>
-<h3 id="64位"><a href="#64位" class="headerlink" title="64位"></a>64位</h3><ul>
-<li>用PROTO，使用的栈指针是RSP，每次减8；</li>
-<li>前四个参数必须放在RCX、RDX、R8、R9里</li>
-<li>必须在stack中预留至少32bytes，子过程调用时栈指针在16-byte边界上对齐</li>
-</ul>
-<h3 id="Stack-Frames栈帧"><a href="#Stack-Frames栈帧" class="headerlink" title="Stack Frames栈帧"></a>Stack Frames栈帧</h3><ul>
-<li>也叫做activation record，用于记录调用过程传递的参数、返回地址、保存的寄存器及局部变量的值</li>
-<li>调用的时候参数入栈，调用过程，被调用的过程将EBP推入栈中，在函数调用时把原来的栈顶esp变成被调用函数的栈底ebp。如果需要局部变量，会在esp上减小常数以存放。<ul>
-<li>子过程中，<code>push ebp</code>、<code>mov ebp, esp</code>，最后<code>pop ebp</code></li>
-</ul>
-</li>
-<li>stack parameters：比用寄存器传递参数更方便，直接把参数倒序入栈。<ul>
-<li>值传递时，为了保证栈对齐，保护模式中只使用32位值作为参数，返回值放在EAX里面，如果被调用过程没有把参数清除就自己清除这个栈。</li>
-<li>引用传递时，传递offset</li>
-</ul>
-</li>
-<li>栈传参数&amp;清除<ul>
-<li>在call之前push，如push两个参数，在子过程中可以使用[esp + 8]、[esp + 12]获取参数</li>
-<li>最后可以由子过程ret 8来清除参数（相当于让esp移动），或者在caller中进行（让esp移动）</li>
-</ul>
-</li>
-<li>局部变量<ul>
-<li>如函数中，<code>int x = 10</code>，就在改变ebp、esp之后<code>sub esp 4</code>，并且把局部变量存进去。</li>
-<li>高到低：参数、return地址、ebp、局部变量</li>
-</ul>
-</li>
-<li>ENTER：为被调用过程保留栈帧（<code>push ebp</code>、<code>mov ebp esp</code>、<code>sub esp, n</code>）</li>
-<li>LEAVE：<code>mov esp ebp</code>、<code>pop ebp</code></li>
-<li>LOCAL伪指令：<code>local var1:BYTE, var2:DWORD</code>这样声明</li>
-<li>LEA：获取栈帧中内容或者局部变量的offset，而OFFSET只能获取常offsets</li>
-</ul>
-<h3 id="INVOKE"><a href="#INVOKE" class="headerlink" title="INVOKE"></a>INVOKE</h3><ul>
-<li><code>INVOKE</code>后跟PROC、参数列表</li>
-<li>64位不可用</li>
-</ul>
-<h3 id="PROC"><a href="#PROC" class="headerlink" title="PROC"></a>PROC</h3><ul>
-<li><code>label PROC [attributes] [USES list], params</code></li>
-</ul>
-<h3 id="PROTO"><a href="#PROTO" class="headerlink" title="PROTO"></a>PROTO</h3><ul>
-<li><code>label PROTO paramslist</code></li>
-</ul>
-<h3 id="参数类型"><a href="#参数类型" class="headerlink" title="参数类型"></a>参数类型</h3><ul>
-<li>输入参数、输出参数、输入输出参数</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/03/%E6%B1%87%E7%BC%96%E8%BF%87%E7%A8%8B/" data-id="ckqkjgmcs00lmx4c41u38h39j" data-title="汇编过程" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-汇编hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/09/27/%E6%B1%87%E7%BC%96hello-world/" class="article-date">
-  <time class="dt-published" datetime="2018-09-26T22:06:06.000Z" itemprop="datePublished">2018-09-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94%E6%B1%87%E7%BC%96/">语言—汇编</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/09/27/%E6%B1%87%E7%BC%96hello-world/">汇编hello-world</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>汇编系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/29822876">https://www.jianshu.com/nb/29822876</a></p>
-<p>来源：</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/del/archive/2010/04/03/1703689.html">https://www.cnblogs.com/del/archive/2010/04/03/1703689.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011770174/article/details/77914375">https://blog.csdn.net/u011770174/article/details/77914375</a><br><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/390495916">https://bbs.csdn.net/topics/390495916</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22095837">https://www.zhihu.com/question/22095837</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yshblog/p/3379663.html">https://www.cnblogs.com/yshblog/p/3379663.html</a></p>
-<p>首先放上一段代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">option casemap:none</span><br><span class="line"></span><br><span class="line">include masm32.inc</span><br><span class="line">include kernel32.inc</span><br><span class="line">includelib masm32.lib</span><br><span class="line">includelib kernel32.lib</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">    szText db &quot;Hello World!&quot;, 0</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">start:</span><br><span class="line">    invoke StdOut, addr szText</span><br><span class="line">    ret</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
-
-<p>对程序中内容进行逐一解释：</p>
-<ul>
-<li>.386表明使用的指令集</li>
-<li>.model flat, stdcall 表示平坦内存模式，API调用时右边的参数先入栈</li>
-<li>option casemap:none 表示大小写敏感</li>
-<li>include的.inc文件与.h类似，若没有就需要进行类似<code>StdOut  PROTO STDCALL:DWORD</code>的声明</li>
-<li>includelib指定使用的库文件</li>
-<li>.data与.code分别指定数据与代码</li>
-<li>invoke伪指令用于函数调用</li>
-<li>ret 是用于子程序返回的指令, 这里用它代替 ExitProcess(在没有生成 Win32 窗口时是可以的)</li>
-<li>end start让汇编程序结束汇编并且指明程序开始地址，汇编程序看到这个后就会结束并且找到start标签作为起始位置</li>
-</ul>
-<p>但是这样输出变量（内存地址上的值）就不方便，可以使用printf函数（这里是<code>crt_printf</code>），如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line"></span><br><span class="line">include msvcrt.inc</span><br><span class="line">includelib msvcrt.lib</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">    szFmt db &#39;Hello world! No %d&#39;, 0</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">start:</span><br><span class="line">    mov eax, 11</span><br><span class="line">    invoke crt_printf, addr szFmt, eax</span><br><span class="line">    ret</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/09/27/%E6%B1%87%E7%BC%96hello-world/" data-id="ckqkjgmcp00lex4c46wud8vab" data-title="汇编hello-world" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/10/16/Win32-%E7%BC%96%E7%A8%8B%E6%B7%BB%E5%8A%A0%E6%8E%A7%E4%BB%B6%E5%8F%8A%E7%9B%91%E5%90%AC/" data-id="ckqkkaz0o009ibcc4ed5fh6dr" data-title="Win32-编程添加控件及监听" class="article-share-link">Share</a>
       
       
       
@@ -736,7 +587,7 @@ def application(env, start_response):
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/28/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/30/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/28/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/30/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -757,7 +608,7 @@ def application(env, start_response):
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -767,7 +618,7 @@ def application(env, start_response):
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -776,7 +627,7 @@ def application(env, start_response):
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -793,19 +644,19 @@ def application(env, start_response):
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

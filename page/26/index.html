@@ -73,14 +73,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-准备考研机试做的Leetcode题目" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-oracle安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2019/08/10/%E5%87%86%E5%A4%87%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E5%81%9A%E7%9A%84Leetcode%E9%A2%98%E7%9B%AE/" class="article-date">
-  <time class="dt-published" datetime="2019-08-09T22:06:06.000Z" itemprop="datePublished">2019-08-10</time>
+    <a href="/2019/10/27/oracle%E5%AE%89%E8%A3%85/" class="article-date">
+  <time class="dt-published" datetime="2019-10-26T22:06:06.000Z" itemprop="datePublished">2019-10-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
   </div>
 
   </div>
@@ -91,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/08/10/%E5%87%86%E5%A4%87%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E5%81%9A%E7%9A%84Leetcode%E9%A2%98%E7%9B%AE/">准备考研机试做的Leetcode题目</a>
+      <a class="p-name article-title" href="/2019/10/27/oracle%E5%AE%89%E8%A3%85/">oracle安装</a>
     </h1>
   
 
@@ -99,77 +99,32 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>string：size方法，substr（第一个，长度）<br>vector：size, push_back, pop_back方法，front、back函数是返回引用<br>stack: size, empty, top, pop, push<br>map：map&lt;string, int&gt;，之后可以用find，如果查找不到得到的就是end<br>stack：push、size、top、pop</p>
-<h1 id="73-zeros"><a href="#73-zeros" class="headerlink" title="73 zeros"></a>73 zeros</h1><p>矩阵中0的同行同列设置成0：常数空间：直接用第一行记录这一行/列是否为0，再记录一下第一行和第一列需不需要为0</p>
-<h1 id="74-Search-a-2D-Matrix"><a href="#74-Search-a-2D-Matrix" class="headerlink" title="74 Search a 2D Matrix"></a>74 Search a 2D Matrix</h1><p>在一个全部排序好的数组中寻找元素，返回是否在：直接二分</p>
-<h1 id="75-Sort-Colors"><a href="#75-Sort-Colors" class="headerlink" title="75 Sort Colors"></a>75 Sort Colors</h1><p>排序一个只有0、1、2的数组：一遍扫描：</p>
+        <p>linux无图形界面不太行（有一个教程<a target="_blank" rel="noopener" href="https://blog.csdn.net/whbing1471/article/details/52087130">https://blog.csdn.net/whbing1471/article/details/52087130</a> 看起来还可以）</p>
+<hr>
+<p>下载oracle包（百度网盘上有），两个zip用<code>unzip</code>命令解压</p>
+<p>安装的时候用户不能是root，需要先创建用户oracle。之后<code>sudo  usermod -aG sudo oracle </code>添加到sudo权限的。</p>
 <ul>
-<li>三个指针分别指向当前的、0后面的一位、2前方的一位</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i_0 = <span class="number">0</span>, i, i_2 = nums.<span class="built_in">size</span>() - <span class="number">1</span>;  <span class="comment">// i是遍历的，i_0是连续的0后面的，i_2是连续的2前面的</span></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= i_2; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) &#123;  <span class="comment">// 这时i_0肯定&lt;=i，所以不会有换掉后的问题</span></span><br><span class="line">                nums[i] = nums[i_0];</span><br><span class="line">                nums[i_0++] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] == <span class="number">2</span>) &#123;</span><br><span class="line">                nums[i--] = nums[i_2];  <span class="comment">// 因为可能有[1,2,0]这样交换的情况，换过来的有可能是小于1的数，如果不加上i--会有问题</span></span><br><span class="line">                nums[i_2--] = <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="76-Minimum-Window-Substring"><a href="#76-Minimum-Window-Substring" class="headerlink" title="76. Minimum Window Substring"></a>76. Minimum Window Substring</h1><p>找到包含有某些指定字母的最小字符串，直接双指针判断，注意substr的用法。用数组记录下来所有的元素需要多少个、已有多少个即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">minWindow</span><span class="params">(string s, string t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, min_length = s.<span class="built_in">size</span>(), start = <span class="number">0</span>, end = <span class="number">-1</span>, len = s.<span class="built_in">size</span>(), t_len = t.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (t_len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> times[<span class="number">128</span>] = &#123;&#125;, need[<span class="number">128</span>] = &#123;&#125;, need_cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; t_len; k++) &#123;</span><br><span class="line">            need_cnt += <span class="number">1</span>;</span><br><span class="line">            need[<span class="built_in"><span class="keyword">int</span></span>(t[k])] += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (j &lt; len) &#123;</span><br><span class="line">            <span class="keyword">if</span> (need[<span class="built_in"><span class="keyword">int</span></span>(s[j])]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (times[<span class="built_in"><span class="keyword">int</span></span>(s[j])] &lt; need[<span class="built_in"><span class="keyword">int</span></span>(s[j])]) &#123;</span><br><span class="line">                    need_cnt -= <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                times[<span class="built_in"><span class="keyword">int</span></span>(s[j])] += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (need_cnt &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 发现所有的字母了！</span></span><br><span class="line">                <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!need[<span class="built_in"><span class="keyword">int</span></span>(s[i])]) &#123;</span><br><span class="line">                        i++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (times[<span class="built_in"><span class="keyword">int</span></span>(s[i])] &gt; need[<span class="built_in"><span class="keyword">int</span></span>(s[i])]) &#123;</span><br><span class="line">                        times[<span class="built_in"><span class="keyword">int</span></span>(s[i++])] -= <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (j - i &lt; min_length) &#123;</span><br><span class="line">                    min_length = j - i;</span><br><span class="line">                    start = i;</span><br><span class="line">                    end = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.<span class="built_in">substr</span>(start, end - start + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="77-Combinations"><a href="#77-Combinations" class="headerlink" title="77. Combinations"></a>77. Combinations</h1><p>找到长度为k的在1-n中的所有组合，直接回溯或者用栈。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">combine</span>(<span class="keyword">int</span> n, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; nums;</span><br><span class="line">        <span class="keyword">int</span> now_index = <span class="number">0</span>, now_number = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (k - now_index &lt;= n - now_number + <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (now_index == k) &#123;</span><br><span class="line">                    <span class="comment">// ok</span></span><br><span class="line">                    ans.<span class="built_in">push_back</span>(nums);</span><br><span class="line">                    nums.<span class="built_in">pop_back</span>();</span><br><span class="line">                    now_index -= <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    nums.<span class="built_in">push_back</span>(now_number);</span><br><span class="line">                    now_index += <span class="number">1</span>;</span><br><span class="line">                    now_number += <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// try to pop</span></span><br><span class="line">                <span class="keyword">if</span> (nums.<span class="built_in">size</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    nums.<span class="built_in">pop_back</span>();</span><br><span class="line">                    now_index -= <span class="number">1</span>;</span><br><span class="line">                    now_number = nums[now_index] + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="78-subsets"><a href="#78-subsets" class="headerlink" title="78 subsets"></a>78 subsets</h1><p>直接用每一个元素在不在集合中判断就行，用幂集对应的性质，用数字控制</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">subsets</span>(vector&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> nums_all = <span class="number">1</span> &lt;&lt; nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums_all; i++) &#123;</span><br><span class="line">            vector&lt;<span class="keyword">int</span>&gt; temp;</span><br><span class="line">            <span class="keyword">int</span> i_s = i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; i_s; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i_s % <span class="number">2</span>) &#123;</span><br><span class="line">                    temp.<span class="built_in">push_back</span>(nums[j]);</span><br><span class="line">                &#125;</span><br><span class="line">                i_s /= <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>或者直接递归</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> len2;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">get</span>(<span class="keyword">int</span> i, vector&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= nums.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;(&#123;vector&lt;<span class="keyword">int</span>&gt;(&#123;&#125;)&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; ans = <span class="built_in">get</span>(i + <span class="number">1</span>, nums);</span><br><span class="line">        <span class="keyword">int</span> len = ans.<span class="built_in">size</span>(), len2 = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">            <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">temp</span><span class="params">(ans[j])</span></span>;</span><br><span class="line">            temp.<span class="built_in">push_back</span>(nums[len2 - i - <span class="number">1</span>]);</span><br><span class="line">            ans.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">subsets</span>(vector&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        len2 = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">get</span>(<span class="number">0</span>, nums);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="79-word-search"><a href="#79-word-search" class="headerlink" title="79 word search"></a>79 word search</h1><p>直接递归</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> board_h, board_w, w_len;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, string word, <span class="keyword">int</span> now_i, <span class="keyword">int</span> now_j, vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt;&amp; record, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; w_len) &#123;</span><br><span class="line">            <span class="keyword">char</span> w_now = word[index];</span><br><span class="line">            <span class="keyword">if</span> (now_i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// try left</span></span><br><span class="line">                <span class="keyword">if</span> (!record[now_i - <span class="number">1</span>][now_j] &amp;&amp; board[now_i - <span class="number">1</span>][now_j] == w_now) &#123;</span><br><span class="line">                    record[now_i - <span class="number">1</span>][now_j] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(board, word, now_i - <span class="number">1</span>, now_j, record, index + <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    record[now_i - <span class="number">1</span>][now_j] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (now_i &lt; board_h - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="comment">// try right</span></span><br><span class="line">                <span class="keyword">if</span> (!record[now_i + <span class="number">1</span>][now_j] &amp;&amp; board[now_i + <span class="number">1</span>][now_j] == w_now) &#123;</span><br><span class="line">                    record[now_i + <span class="number">1</span>][now_j] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(board, word, now_i + <span class="number">1</span>, now_j, record, index + <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    record[now_i + <span class="number">1</span>][now_j] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (now_j &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// try left</span></span><br><span class="line">                <span class="keyword">if</span> (!record[now_i][now_j - <span class="number">1</span>] &amp;&amp; board[now_i][now_j - <span class="number">1</span>] == w_now) &#123;</span><br><span class="line">                    record[now_i][now_j - <span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(board, word, now_i, now_j - <span class="number">1</span>, record, index + <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    record[now_i][now_j - <span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (now_j &lt; board_w - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="comment">// try left</span></span><br><span class="line">                <span class="keyword">if</span> (!record[now_i][now_j + <span class="number">1</span>] &amp;&amp; board[now_i][now_j + <span class="number">1</span>] == w_now) &#123;</span><br><span class="line">                    record[now_i][now_j + <span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(board, word, now_i, now_j + <span class="number">1</span>, record, index + <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    record[now_i][now_j + <span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">exist</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, string word)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// search first letter</span></span><br><span class="line">        <span class="keyword">char</span> w0 = word[<span class="number">0</span>];</span><br><span class="line">        board_h = board.<span class="built_in">size</span>();</span><br><span class="line">        board_w = board[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        w_len = word.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt; record;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i2 = <span class="number">0</span>; i2 &lt; board_h; i2++) &#123;</span><br><span class="line">            vector&lt;<span class="keyword">bool</span>&gt; temp;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j2 = <span class="number">0</span>; j2 &lt; board_w; j2++) &#123;</span><br><span class="line">                temp.<span class="built_in">push_back</span>(<span class="literal">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            record.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board_h; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board_w; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (board[i][j] == w0) &#123;</span><br><span class="line">                    <span class="comment">// 从这里开始</span></span><br><span class="line">                    record[i][j] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(board, word, i, j, record, <span class="number">1</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    record[i][j] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="80-Remove-Duplicates-from-Sorted-Array-II"><a href="#80-Remove-Duplicates-from-Sorted-Array-II" class="headerlink" title="80. Remove Duplicates from Sorted Array II"></a>80. Remove Duplicates from Sorted Array II</h1><p>双指针</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, now_cnt = <span class="number">0</span>, len = nums.<span class="built_in">size</span>(), last_num = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == last_num) &#123;</span><br><span class="line">                now_cnt ++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                last_num = nums[i];</span><br><span class="line">                now_cnt = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (now_cnt &lt; <span class="number">3</span>) &#123;</span><br><span class="line">                nums[j++] = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="81-search-in-rotated-sorted-array-II"><a href="#81-search-in-rotated-sorted-array-II" class="headerlink" title="81 search in rotated sorted array II"></a>81 search in rotated sorted array II</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">search2</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">bool</span> ordered)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left &gt; right) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ordered) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">search2</span>(nums, target, mid + <span class="number">1</span>, right, ordered);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">search2</span>(nums, target, left, mid - <span class="number">1</span>, ordered);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">search2</span>(nums, target, left, mid - <span class="number">1</span>, nums[mid] &gt; nums[left]) || <span class="built_in">search2</span>(nums, target, mid + <span class="number">1</span>, right, nums[mid] &lt; nums[right]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (right &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">search2</span>(nums, target, left, right, nums[left] &lt; nums[right]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="82-remove-duplicates-from-sorted-list-II"><a href="#82-remove-duplicates-from-sorted-list-II" class="headerlink" title="82 remove duplicates from sorted list II"></a>82 remove duplicates from sorted list II</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">deleteDuplicates</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="function">ListNode <span class="title">new_head</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">        ListNode* now = &amp;new_head;</span><br><span class="line">        <span class="comment">// ListNode* check = head;</span></span><br><span class="line">        <span class="keyword">while</span> (head) &#123;</span><br><span class="line">            <span class="keyword">if</span> (head-&gt;next &amp;&amp; head-&gt;next-&gt;val == head-&gt;val) &#123;</span><br><span class="line">                <span class="comment">// move</span></span><br><span class="line">                <span class="keyword">int</span> now = head-&gt;val;</span><br><span class="line">                head = head-&gt;next;</span><br><span class="line">                <span class="keyword">while</span> (head) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (head-&gt;val == now) &#123;</span><br><span class="line">                        head = head-&gt;next;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                now-&gt;next = head;</span><br><span class="line">                now = head;</span><br><span class="line">                head = head-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        now-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">return</span> new_head.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="84-Largest-Rectangle-in-Histogram"><a href="#84-Largest-Rectangle-in-Histogram" class="headerlink" title="84. Largest Rectangle in Histogram"></a>84. Largest Rectangle in Histogram</h1><p>直方图中最大的长方形：</p>
-<p>一种方法：可以观察到，只需要判断比后面一个大的位置，将它作为右边界即可。因为如果一个的右边界比他右边的低，就可以把他右边的这个带上。</p>
-<p>但是每一个右边界对应的位置，他左边所有可能的情况都要找一遍。</p>
-<p>另一种方法：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lichen782/p/leetcode_Largest_Rectangle_in_Histogram.html">https://www.cnblogs.com/lichen782/p/leetcode_Largest_Rectangle_in_Histogram.html</a></p>
-<p>只储存递增的，因为每一次只需要找它左侧比他低的东西。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; heights)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; increase_index, increase_data;</span><br><span class="line">        heights.<span class="built_in">push_back</span>(<span class="number">0</span>);</span><br><span class="line">        increase_data.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">        increase_index.<span class="built_in">push</span>(<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">int</span> now_highest = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> len = heights.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (heights[i] &gt; now_highest) &#123;</span><br><span class="line">                now_highest = heights[i];</span><br><span class="line">                increase_data.<span class="built_in">push</span>(now_highest);</span><br><span class="line">                increase_index.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (heights[i] &lt; now_highest) &#123;</span><br><span class="line">                now_highest = heights[i];</span><br><span class="line">                <span class="comment">// check!</span></span><br><span class="line">                <span class="keyword">while</span> (increase_data.<span class="built_in">top</span>() &gt;= now_highest) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (now_highest == <span class="number">0</span> &amp;&amp; increase_data.<span class="built_in">top</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    increase_index.<span class="built_in">pop</span>();</span><br><span class="line">                    <span class="keyword">int</span> data = increase_data.<span class="built_in">top</span>();</span><br><span class="line">                    increase_data.<span class="built_in">pop</span>();</span><br><span class="line">                    <span class="keyword">int</span> index = increase_index.<span class="built_in">top</span>();</span><br><span class="line">                    <span class="keyword">int</span> temp = (i - index - <span class="number">1</span>) * data;</span><br><span class="line">                    <span class="keyword">if</span> (ans &lt; temp) &#123;</span><br><span class="line">                        ans = temp;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                increase_data.<span class="built_in">push</span>(now_highest);</span><br><span class="line">                increase_index.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                increase_index.<span class="built_in">pop</span>();</span><br><span class="line">                increase_index.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="85-Maximal-Rectangle"><a href="#85-Maximal-Rectangle" class="headerlink" title="85. Maximal Rectangle"></a>85. Maximal Rectangle</h1><p>每行分别作为一个直方图考虑，看它上面的有多少个连续的1就是直方图这个位置有多少个1</p>
-<h1 id="86-Partition-List"><a href="#86-Partition-List" class="headerlink" title="86. Partition List"></a>86. Partition List</h1><p>可以选择进行交换，或者是直接新建一个列表来储存小于x的元素。</p>
-<p>交换的时候记得换到的位置和要换走的位置前后都要注意考虑！</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">partition</span><span class="params">(ListNode* head, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="function">ListNode <span class="title">newHead</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">        newHead.next = head;</span><br><span class="line">        ListNode *lastSmaller = &amp;newHead, *nowNode = head, *temp, *temp2, *lastNode = &amp;newHead;</span><br><span class="line">        <span class="keyword">while</span> (nowNode) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nowNode-&gt;val &lt; x) &#123;</span><br><span class="line">                lastSmaller = nowNode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (nowNode-&gt;val &gt;= x) &#123;</span><br><span class="line">                lastNode = nowNode;</span><br><span class="line">                nowNode = nowNode-&gt;next;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            lastNode = nowNode;</span><br><span class="line">            nowNode = nowNode-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (nowNode) &#123;</span><br><span class="line">            temp2 = nowNode-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (nowNode-&gt;val &lt; x) &#123;</span><br><span class="line">                temp = lastSmaller-&gt;next;</span><br><span class="line">                lastSmaller-&gt;next = nowNode;</span><br><span class="line">                lastSmaller = nowNode;</span><br><span class="line">                lastSmaller-&gt;next = temp;</span><br><span class="line">                lastNode-&gt;next = temp2;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                lastNode = nowNode;</span><br><span class="line">            &#125;</span><br><span class="line">            nowNode = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="87-Scramble-String"><a href="#87-Scramble-String" class="headerlink" title="87. Scramble String"></a>87. Scramble String</h1><p>分治。记得要先判断排序后是不是相同的字符串！这样可以减少很多</p>
-<h1 id="89-Gray-Code"><a href="#89-Gray-Code" class="headerlink" title="89. Gray Code"></a>89. Gray Code</h1><p>每个数字和前一个只差二进制的一位，给了二进制表示时候一共n位</p>
-<p>其实就是从0开始，先把第n位保持不变，对后面的进行操作（变成了n-1的问题），之后改变第n位，对后面的n-1位进行操作</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">checkPositionN</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; ans, <span class="keyword">int</span> N, <span class="keyword">int</span>&amp; nowNum)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// do N-1</span></span><br><span class="line">        <span class="comment">// change</span></span><br><span class="line">        <span class="comment">// do N-1</span></span><br><span class="line">        <span class="keyword">if</span> (N &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(nowNum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">checkPositionN</span>(ans, N - <span class="number">1</span>, nowNum);</span><br><span class="line">            nowNum = nowNum ^ (<span class="number">1</span> &lt;&lt; N);</span><br><span class="line">            <span class="built_in">checkPositionN</span>(ans, N - <span class="number">1</span>, nowNum);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">grayCode</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="comment">// Each time, reverse one</span></span><br><span class="line">        <span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">checkPositionN</span>(ans, n - <span class="number">1</span>, now);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="300-Longest-Increasing-Subsequence"><a href="#300-Longest-Increasing-Subsequence" class="headerlink" title="300. Longest Increasing Subsequence"></a>300. Longest Increasing Subsequence</h2><p>动态规划，记录下来长度为n的数组的最后一位，如果发现新的一位的大小小于最后一位的大小，就把最后一位更新为这个</p>
-<p>比如长度为2: 1, 3；长度为3: 1, 3, 5；长度为4: 1, 3, 5, 7：</p>
+<li><p>swap 处理</p>
 <ul>
-<li>来了一个4，就把长度为3的最后一位更新为4</li>
+<li><pre><code>dd if=/dev/zero of=/.swap bs=1k count=1024000     创建文件 
+chmod 600 /.swap                               设置权限 
+mkswap /.swap                                  设定文件 
+swapon /.swap                                  生效文件
+</code></pre>
+</li>
 </ul>
-<h2 id="376-Wiggle-Subsequence"><a href="#376-Wiggle-Subsequence" class="headerlink" title="376. Wiggle Subsequence"></a>376. Wiggle Subsequence</h2><p>摆动子序列只需要观察一位和之前一位的关系即可，不用记录之前的数会是多少。</p>
-<p>第5位比第4位小，那把前4位组成的最后一次是增的摆动数列调整一下可以让最后一位变成第四位，从而使得前5位变成最后一次是减少的摆动数列。</p>
-<h2 id="最长公共子数列"><a href="#最长公共子数列" class="headerlink" title="最长公共子数列"></a>最长公共子数列</h2><p>只需要记录A数组最后一位是第i位和B数组最后一位是第j位的最长公共子序列的长度。</p>
-<h2 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="0-1背包问题"></a>0-1背包问题</h2><p>按照顺序依次判断放不放，放的话更新当前的空位和价值。数组以<strong>物品和空位</strong>为下标，a[i][j]记录体积加起来不超过j的物品在判断到i的时候的价值。也可以只保留下标j，因为物品是按照顺序放的。</p>
-<p>但是要循环的顺序<strong>反过来</strong>！！！</p>
-<h2 id="416-Partition-Equal-Subset-Sum"><a href="#416-Partition-Equal-Subset-Sum" class="headerlink" title="416. Partition Equal Subset Sum"></a>416. Partition Equal Subset Sum</h2><p>直接用动态规划，记录和为i的是否可以达到</p>
-<h2 id="494-Target-Sum"><a href="#494-Target-Sum" class="headerlink" title="494. Target Sum"></a>494. Target Sum</h2><p>正的*2-所有的和=规定的数，和416一样</p>
-<h2 id="474-Ones-and-Zeroes"><a href="#474-Ones-and-Zeroes" class="headerlink" title="474. Ones and Zeroes"></a>474. Ones and Zeroes</h2><p>用m个0和n个1组成给定数组中尽可能多的字符串，和背包一样。是多重背包，需要有两个下标分别记录0和1的个数。</p>
-<h2 id="找零钱最少硬币数目"><a href="#找零钱最少硬币数目" class="headerlink" title="找零钱最少硬币数目"></a>找零钱最少硬币数目</h2><p>完全背包，需要<strong>正序</strong>遍历！！！</p>
-<h2 id="找零钱硬币数组合的数目"><a href="#找零钱硬币数组合的数目" class="headerlink" title="找零钱硬币数组合的数目"></a>找零钱硬币数组合的数目</h2><p>完全背包，状态转换方程改为+coins[i-adder]而不是+1</p>
-<h2 id="有顺序的完全背包问题"><a href="#有顺序的完全背包问题" class="headerlink" title="有顺序的完全背包问题"></a>有顺序的完全背包问题</h2><p>普通完全背包问题是外层循环放第几个物品，现在是内层循环来循环第几个物品</p>
-<h2 id="股票问题"><a href="#股票问题" class="headerlink" title="股票问题"></a>股票问题</h2><p>记录当前状态，设计状态机。</p>
-<h2 id="删掉字符使得两个字符串相等"><a href="#删掉字符使得两个字符串相等" class="headerlink" title="删掉字符使得两个字符串相等"></a>删掉字符使得两个字符串相等</h2><p>使用最长公共子序列长度</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+</li>
+<li><p>display not set问题解决：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013743980/article/details/44496707">https://blog.csdn.net/u013743980/article/details/44496707</a></li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/08/10/%E5%87%86%E5%A4%87%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E5%81%9A%E7%9A%84Leetcode%E9%A2%98%E7%9B%AE/" data-id="ckqkjgmdq00ovx4c4gxm1cioi" data-title="准备考研机试做的Leetcode题目" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/10/27/oracle%E5%AE%89%E8%A3%85/" data-id="ckqkkaz2400ejbcc45dhn24eb" data-title="oracle安装" class="article-share-link">Share</a>
       
       
       
@@ -181,14 +136,14 @@
 
 
   
-    <article id="post-linux上selenium安装使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-urllib代理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2019/07/24/linux%E4%B8%8Aselenium%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2019-07-23T22:06:06.000Z" itemprop="datePublished">2019-07-24</time>
+    <a href="/2019/10/27/urllib%E4%BB%A3%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2019-10-26T22:06:06.000Z" itemprop="datePublished">2019-10-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Selenium/">使用—软件—Selenium</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
   </div>
 
   </div>
@@ -199,7 +154,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/07/24/linux%E4%B8%8Aselenium%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">linux上selenium安装使用</a>
+      <a class="p-name article-title" href="/2019/10/27/urllib%E4%BB%A3%E7%90%86/">urllib代理</a>
     </h1>
   
 
@@ -207,13 +162,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/longronglang/p/8078898.html">https://www.cnblogs.com/longronglang/p/8078898.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/timezhang/p/9640354.html">https://www.cnblogs.com/timezhang/p/9640354.html</a></p>
+        <p>urllib代理查了好多都没查到……</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">request = Request(url, data=flac_data, headers=&#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;audio/x-flac; rate=&#123;&#125;&quot;</span>.<span class="built_in">format</span>(audio_data.sample_rate)&#125;)</span><br><span class="line">    handler = urllib.request.ProxyHandler(&#123;<span class="string">&quot;http&quot;</span>: <span class="string">&quot;127.0.0.1:1087&quot;</span>&#125;)</span><br><span class="line">    opener = urllib.request.build_opener(handler)</span><br><span class="line">    response = opener.<span class="built_in">open</span>(request, timeout=self.operation_timeout)</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/24/linux%E4%B8%8Aselenium%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" data-id="ckqkjgmac00dbx4c486q8bslb" data-title="linux上selenium安装使用" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/10/27/urllib%E4%BB%A3%E7%90%86/" data-id="ckqkkaz2m00g2bcc48q0s3wbm" data-title="urllib代理" class="article-share-link">Share</a>
       
       
       
@@ -225,10 +180,120 @@
 
 
   
-    <article id="post-获取进程打开的文件句柄" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Mac配语音识别库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2019/07/18/%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84/" class="article-date">
-  <time class="dt-published" datetime="2019-07-17T22:06:06.000Z" itemprop="datePublished">2019-07-18</time>
+    <a href="/2019/10/25/Mac%E9%85%8D%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E5%BA%93/" class="article-date">
+  <time class="dt-published" datetime="2019-10-24T22:06:06.000Z" itemprop="datePublished">2019-10-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/25/Mac%E9%85%8D%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E5%BA%93/">Mac配语音识别库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="pyaudio安装"><a href="#pyaudio安装" class="headerlink" title="pyaudio安装"></a>pyaudio安装</h2><p>Mac和python3.7在一起是不配用pyaudio的！多么痛的领悟！</p>
+<p>所以安装python3.6！</p>
+<p><code>brew install portaudio</code>之后用pip安装pyaudio即可</p>
+<h2 id="swig安装"><a href="#swig安装" class="headerlink" title="swig安装"></a>swig安装</h2><p>官网下载，执行configure、make、make install即可（我下载的是最新版本4.0.1）</p>
+<h2 id="pocketsphinx安装"><a href="#pocketsphinx安装" class="headerlink" title="pocketsphinx安装"></a>pocketsphinx安装</h2><p>直接pip3 install可能报错，所以需要用这个issue里面的方法安装：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/bambocher/pocketsphinx-python/issues/28">https://github.com/bambocher/pocketsphinx-python/issues/28</a></p>
+<p>也就是</p>
+<blockquote>
+<p>Please try the following steps</p>
+<ol>
+<li> git clone –recursive <a target="_blank" rel="noopener" href="https://github.com/bambocher/pocketsphinx-python">https://github.com/bambocher/pocketsphinx-python</a></li>
+<li> cd pocketsphinx-python</li>
+<li> Edit file deps/sphinxbase/src/libsphinxad/ad_openal.c</li>
+<li> Change</li>
+</ol>
+<p><code>#include &lt;al.h&gt;</code><br><code>#include &lt;alc.h&gt;</code></p>
+<p>to</p>
+<p><code>#include &lt;OpenAL/al.h&gt;</code><br><code>#include &lt;OpenAL/alc.h&gt;</code></p>
+<ol start="5">
+<li> python setup.py install</li>
+</ol>
+</blockquote>
+<h2 id="相关使用"><a href="#相关使用" class="headerlink" title="相关使用"></a>相关使用</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/henjay724/p/9576670.html">https://www.cnblogs.com/henjay724/p/9576670.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/10/25/Mac%E9%85%8D%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E5%BA%93/" data-id="ckqkkayzk005tbcc4cy5s6kdt" data-title="Mac配语音识别库" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Markdown-PPT" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/21/Markdown-PPT/" class="article-date">
+  <time class="dt-published" datetime="2019-10-20T22:06:06.000Z" itemprop="datePublished">2019-10-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/21/Markdown-PPT/">Markdown-PPT</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>用reveal-md即可</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/webpro/reveal-md#readme">https://github.com/webpro/reveal-md#readme</a></p>
+<p>其中用的是reveal.js</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/10/21/Markdown-PPT/" data-id="ckqkkayzl005xbcc44h2ac3rn" data-title="Markdown-PPT" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-leetcode-for-vs-code" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/12/leetcode-for-vs-code/" class="article-date">
+  <time class="dt-published" datetime="2019-10-11T22:06:06.000Z" itemprop="datePublished">2019-10-12</time>
 </a>
     
   <div class="article-category">
@@ -243,7 +308,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/07/18/%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84/">获取进程打开的文件句柄</a>
+      <a class="p-name article-title" href="/2019/10/12/leetcode-for-vs-code/">leetcode-for-vs-code</a>
     </h1>
   
 
@@ -251,14 +316,24 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.winhelponline.com/blog/find-process-locked-file-openfiles-utility/">https://www.winhelponline.com/blog/find-process-locked-file-openfiles-utility/</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/howto-linux-get-list-of-open-files/">https://www.cyberciti.biz/faq/howto-linux-get-list-of-open-files/</a></p>
-<p>Mac的lsof</p>
+        <p>直接安装Node js和leetcode这个插件，登录之后选择code now之后选择目录，即可。</p>
+<p>在代码模板中可以准备一个headers.h并且把它的import放到<code>// @lc code=start</code>上面，把main放到<code>// @lc code=end</code>下面</p>
+<p>插件的设置可以在这个位置找到：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-fc66df2d76a28c0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="插件设置位置"></p>
+<p>之后设置launch和tasks选项，我把我的拿过来：</p>
+<p><code>launch.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;(msvc) Launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppvsdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;/build/main.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;msvc build&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>tasks.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;msvc build&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;./build.bat&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [<span class="string">&quot;$&#123;workspaceRoot&#125;&quot;</span>,<span class="string">&quot;$&#123;fileBasename&#125;&quot;</span>,<span class="string">&quot;$&#123;fileBasenameNoExtension&#125;&quot;</span>],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: <span class="string">&quot;$msCompile&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外，<code>build.bat</code>如下</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="keyword">call</span> &quot;C:\Program Files (x86)\Microsoft Visual Studio\<span class="number">2019</span>\Community\VC\Auxiliary\Build\vcvars64.bat&quot;</span><br><span class="line"><span class="built_in">cd</span> /d %<span class="number">1</span></span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">set</span> compilerflags=/Od /Zi /EHsc /Wall /std:c++<span class="number">14</span></span><br><span class="line"><span class="built_in">set</span> linkerflags=/Fe:%<span class="number">1</span>/build/main.exe</span><br><span class="line">cl.exe <span class="variable">%compilerflags%</span> %<span class="number">2</span> <span class="variable">%linkerflags%</span></span><br><span class="line"><span class="built_in">del</span> %<span class="number">3</span>.obj</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/18/%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84/" data-id="ckqkjgmd700n6x4c4g926fszo" data-title="获取进程打开的文件句柄" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/10/12/leetcode-for-vs-code/" data-id="ckqkkaz1w00dobcc4eqzs35gp" data-title="leetcode-for-vs-code" class="article-share-link">Share</a>
       
       
       
@@ -270,10 +345,106 @@
 
 
   
-    <article id="post-venv虚拟环境" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-vs安装后配置vscode-c++" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2019/07/14/venv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" class="article-date">
-  <time class="dt-published" datetime="2019-07-13T22:06:06.000Z" itemprop="datePublished">2019-07-14</time>
+    <a href="/2019/10/12/vs%E5%AE%89%E8%A3%85%E5%90%8E%E9%85%8D%E7%BD%AEvscode-c++/" class="article-date">
+  <time class="dt-published" datetime="2019-10-11T22:06:06.000Z" itemprop="datePublished">2019-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/12/vs%E5%AE%89%E8%A3%85%E5%90%8E%E9%85%8D%E7%BD%AEvscode-c++/">vs安装后配置vscode-c++</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>直接找到cl.exe路径（比如<code>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\bin\Hostx64\x64\cl.exe</code>），在vs code中按下Ctrl+shift+P，打开C/C++ configurations(UI)填写进compiler path里面就好。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/10/12/vs%E5%AE%89%E8%A3%85%E5%90%8E%E9%85%8D%E7%BD%AEvscode-c++/" data-id="ckqkkaz2o00g8bcc433jd7ozy" data-title="vs安装后配置vscode-c++" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-每日leetcode-149" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/11/%E6%AF%8F%E6%97%A5leetcode-149/" class="article-date">
+  <time class="dt-published" datetime="2019-10-10T22:06:06.000Z" itemprop="datePublished">2019-10-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/11/%E6%AF%8F%E6%97%A5leetcode-149/">每日leetcode-149</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.</p>
+<p>Example 1:</p>
+<p>Input: [[1,1],[2,2],[3,3]]<br>Output: 3<br>Explanation:<br>^<br>|<br>|        o<br>|     o<br>|  o<br>+————-&gt;<br>0  1  2  3  4<br>Example 2:</p>
+<p>Input: [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]<br>Output: 4<br>Explanation:<br>^<br>|<br>|  o<br>|     o        o<br>|        o<br>|  o        o<br>+——————-&gt;<br>0  1  2  3  4  5  6<br>NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.</p>
+<p>这道题直接用最简单的$n^3$的遍历就可以做，但是有几点没有注意：</p>
+<ol>
+<li>固定第一个、第二个点，确定其他点是不是共线的时候，需要注意前两个点不能相同！</li>
+<li>可能所有点都是相同的！也就是两个点、三个点的时候，都是相同的点！</li>
+<li>不能在相同的时候直接判断下一个是否相同然后累计连续的相同的点的个数！因为可能会前面也有别的相同的点！所以不要直接用计数变量的方式处理这种情况，要单独写一个记录当前相同点数目的！</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSameLine</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; a, vector&lt;<span class="keyword">int</span>&gt;&amp; b, vector&lt;<span class="keyword">int</span>&gt;&amp; c)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// k = (a[1] - b[1]) / (a[0] - b[0]) = (a[1] - c[1]) / (a[0] - c[0])</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">long</span> <span class="keyword">long</span>)(a[<span class="number">0</span>] - b[<span class="number">0</span>]) * (<span class="keyword">long</span> <span class="keyword">long</span>)(a[<span class="number">1</span>] - c[<span class="number">1</span>]) == (<span class="keyword">long</span> <span class="keyword">long</span>)(a[<span class="number">1</span>] - b[<span class="number">1</span>]) * (<span class="keyword">long</span> <span class="keyword">long</span>)(a[<span class="number">0</span>] - c[<span class="number">0</span>]);</span><br><span class="line">        <span class="comment">// 都不为0时，没有问题；为0时，分别是三个横坐标/纵坐标相等或者两个点重合</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPoints</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = points.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">2</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> same_points = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;  <span class="comment">// 可能有三个点相同的情况</span></span><br><span class="line">                <span class="keyword">if</span> (points[i] == points[j]) &#123;</span><br><span class="line">                    same_points++;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                count = <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = j + <span class="number">1</span>; k &lt; len; k++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">isSameLine</span>(points[i], points[j], points[k])) &#123;</span><br><span class="line">                        count++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (count + same_points &gt; ans) &#123;</span><br><span class="line">                    ans = count + same_points;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">1</span> + same_points &gt; ans) &#123;</span><br><span class="line">                ans = <span class="number">1</span> + same_points;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2019/10/11/%E6%AF%8F%E6%97%A5leetcode-149/" data-id="ckqkkaz4600l5bcc47gw448qv" data-title="每日leetcode-149" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-oh-my-zsh" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/10/oh-my-zsh/" class="article-date">
+  <time class="dt-published" datetime="2019-10-09T22:06:06.000Z" itemprop="datePublished">2019-10-10</time>
 </a>
     
   <div class="article-category">
@@ -288,7 +459,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/07/14/venv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/">venv虚拟环境</a>
+      <a class="p-name article-title" href="/2019/10/10/oh-my-zsh/">oh-my-zsh</a>
     </h1>
   
 
@@ -296,12 +467,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39363022/article/details/87467208">https://blog.csdn.net/qq_39363022/article/details/87467208</a></p>
+        <p>sh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</a></p>
+<p>agnoster需要的字体安装：<a target="_blank" rel="noopener" href="https://github.com/powerline/fonts">https://github.com/powerline/fonts</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/14/venv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" data-id="ckqkjgmb200flx4c4ep0q170r" data-title="venv虚拟环境" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/10/10/oh-my-zsh/" data-id="ckqkkaz2400ehbcc424no98vh" data-title="oh-my-zsh" class="article-share-link">Share</a>
       
       
       
@@ -313,14 +485,14 @@
 
 
   
-    <article id="post-QT下载安装-python版本qt的使用（macos）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-每日leetcode-185" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2019/07/13/QT%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-python%E7%89%88%E6%9C%ACqt%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88macos%EF%BC%89/" class="article-date">
-  <time class="dt-published" datetime="2019-07-12T22:06:06.000Z" itemprop="datePublished">2019-07-13</time>
+    <a href="/2019/10/09/%E6%AF%8F%E6%97%A5leetcode-185/" class="article-date">
+  <time class="dt-published" datetime="2019-10-08T22:06:06.000Z" itemprop="datePublished">2019-10-09</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
   </div>
 
   </div>
@@ -331,7 +503,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/07/13/QT%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-python%E7%89%88%E6%9C%ACqt%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88macos%EF%BC%89/">QT下载安装-python版本qt的使用（macos）</a>
+      <a class="p-name article-title" href="/2019/10/09/%E6%AF%8F%E6%97%A5leetcode-185/">每日leetcode-185</a>
     </h1>
   
 
@@ -339,18 +511,19 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>QT下载地址很难找，可以从这里下载：<a target="_blank" rel="noopener" href="http://download.qt.io/archive/qt/5.13/5.13.0/qt-opensource-mac-x64-5.13.0.dmg">mac-x64-5.13.0.dmg</a></p>
-<p>安装的时候除了creator之外还要安装上qt</p>
-<p>python版本适用：<a target="_blank" rel="noopener" href="https://gavinliu.cn/2016/01/17/Python-Mac%E4%B8%8BPyCharm-PyQt5%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">https://gavinliu.cn/2016/01/17/Python-Mac下PyCharm-PyQt5环境搭建/</a></p>
-<p>pip install pyqt5</p>
-<p>但是pyqt5-tools不支持Mac……</p>
-<p> 遇到问题：qt.qpa.plugin: Could not find the Qt platform plugin “cocoa” in “”</p>
-<p>解决：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/54297627/qt-could-not-find-the-platform-plugin-cocoa%EF%BC%8C%E7%9B%B4%E6%8E%A5%60export">https://stackoverflow.com/questions/54297627/qt-could-not-find-the-platform-plugin-cocoa，直接`export</a> QT_QPA_PLATFORM_PLUGIN_PATH=/Users/xxxx/Qt5.13.0/5.13.0/clang_64/plugins`</p>
+        <h1 id="185-Department-Top-Three-Salaries"><a href="#185-Department-Top-Three-Salaries" class="headerlink" title="185. Department Top Three Salaries"></a>185. Department Top Three Salaries</h1><p>The Employee table holds all employees. Every employee has an Id, and there is also a column for the department Id.</p>
+<p>+—-+——-+——–+————–+<br>| Id | Name  | Salary | DepartmentId |<br>+—-+——-+——–+————–+<br>| 1  | Joe   | 85000  | 1            |<br>| 2  | Henry | 80000  | 2            |<br>| 3  | Sam   | 60000  | 2            |<br>| 4  | Max   | 90000  | 1            |<br>| 5  | Janet | 69000  | 1            |<br>| 6  | Randy | 85000  | 1            |<br>| 7  | Will  | 70000  | 1            |<br>+—-+——-+——–+————–+<br>The Department table holds all departments of the company.</p>
+<p>+—-+———-+<br>| Id | Name     |<br>+—-+———-+<br>| 1  | IT       |<br>| 2  | Sales    |<br>+—-+———-+<br>Write a SQL query to find employees who earn the top three salaries in each of the department. For the above tables, your SQL query should return the following rows (order of rows does not matter).</p>
+<p>+————+———-+——–+<br>| Department | Employee | Salary |<br>+————+———-+——–+<br>| IT         | Max      | 90000  |<br>| IT         | Randy    | 85000  |<br>| IT         | Joe      | 85000  |<br>| IT         | Will     | 70000  |<br>| Sales      | Henry    | 80000  |<br>| Sales      | Sam      | 60000  |<br>+————+———-+——–+<br>Explanation:</p>
+<p>In IT department, Max earns the highest salary, both Randy and Joe earn the second highest salary, and Will earns the third highest salary. There are only two employees in the Sales department, Henry earns the highest salary while Sam earns the second highest salary.</p>
+<p>这个里面最重要的是怎么能够选出满足条件top three salaries in each of the department的。这种前几个的问题就用选择之后count比较的方法就可以，其实就是说每个选中的人，和他同一部门并且比他工资高的工资（要去重）小于3个。</p>
+<p>所以：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Write your MySQL query statement below</span><br><span class="line"><span class="keyword">select</span> t2.Name <span class="keyword">as</span> Department, t1.Name <span class="keyword">as</span> Employee, Salary</span><br><span class="line"><span class="keyword">from</span> Employee t1 <span class="keyword">join</span> Department t2 <span class="keyword">on</span> t1.DepartmentId <span class="operator">=</span> t2.Id</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> e.Salary) <span class="keyword">from</span> Employee e <span class="keyword">where</span> e.Salary <span class="operator">&gt;</span> t1.Salary <span class="keyword">and</span> e.DepartmentId <span class="operator">=</span> t1.DepartmentId) <span class="operator">&lt;</span> <span class="number">3</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> Department, Salary <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/13/QT%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-python%E7%89%88%E6%9C%ACqt%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88macos%EF%BC%89/" data-id="ckqkjgm8k007jx4c4eoi72tcq" data-title="QT下载安装-python版本qt的使用（macos）" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/10/09/%E6%AF%8F%E6%97%A5leetcode-185/" data-id="ckqkkaz4800ldbcc46782fmab" data-title="每日leetcode-185" class="article-share-link">Share</a>
       
       
       
@@ -362,14 +535,14 @@
 
 
   
-    <article id="post-Babel服务器上安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-每日leetcode-174" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2019/07/12/Babel%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85/" class="article-date">
-  <time class="dt-published" datetime="2019-07-11T22:06:06.000Z" itemprop="datePublished">2019-07-12</time>
+    <a href="/2019/10/08/%E6%AF%8F%E6%97%A5leetcode-174/" class="article-date">
+  <time class="dt-published" datetime="2019-10-07T22:06:06.000Z" itemprop="datePublished">2019-10-08</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
   </div>
 
   </div>
@@ -380,7 +553,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/07/12/Babel%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85/">Babel服务器上安装</a>
+      <a class="p-name article-title" href="/2019/10/08/%E6%AF%8F%E6%97%A5leetcode-174/">每日leetcode-174</a>
     </h1>
   
 
@@ -388,212 +561,23 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>apt install nodejs<br>apt install npm</p>
-<p>如果npm install出现权限问题：用<a target="_blank" rel="noopener" href="https://blog.csdn.net/gentlycare/article/details/51279529%E9%87%8C%E9%9D%A2%E7%9A%84%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84%EF%BC%8C%E6%8A%8A%E9%87%8C%E9%9D%A2%E7%9A%84npm">https://blog.csdn.net/gentlycare/article/details/51279529里面的修改默认全局安装路径，把里面的npm</a> config set prefix ‘~/.npm-global’ 的引号换掉</p>
-<p>babel：用babel-cli全局安装，需要用<a target="_blank" rel="noopener" href="https://www.jb51.net/article/105968.htm%E8%BF%99%E9%87%8C%E7%9A%84npm">https://www.jb51.net/article/105968.htm这里的npm</a> install –save-dev babel-preset-es2015和配置.babelrc文件</p>
-<p>使用</p>
+        <h1 id="174-Dungeon-Game"><a href="#174-Dungeon-Game" class="headerlink" title="174. Dungeon Game"></a>174. Dungeon Game</h1><p>The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (K) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.</p>
+<p>The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or below, he dies immediately.</p>
+<p>Some of the rooms are guarded by demons, so the knight loses health (negative integers) upon entering these rooms; other rooms are either empty (0’s) or contain magic orbs that increase the knight’s health (positive integers).</p>
+<p>In order to reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.</p>
+<p>Write a function to determine the knight’s minimum initial health so that he is able to rescue the princess.</p>
+<p>就是从左上到右下，HP会加上格子里面的数，HP不能&lt;=0，求初始HP最少是多少。</p>
+<p>刚开始想要从左上到右下正常dp，记录一下当前的 HP减少量 和 HP最优路径中临界值，但是如果：</p>
+<ul>
+<li>到同一个格子的两条路，一条当前HP减少量最少，另外一条HP最优路径中临界值更少，那应该选哪一条？怎么更新？</li>
+</ul>
+<p>所以看了网上的解释，直接从结果往回走进行dp即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myMin</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a &lt; b ? a : b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myMax</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculateMinimumHP</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; dungeon)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> h = dungeon.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (h == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> w = dungeon[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (w == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">data</span>(h, vector&lt;<span class="keyword">int</span>&gt;(w, <span class="number">0</span>));</span><br><span class="line">        data[h - <span class="number">1</span>][w - <span class="number">1</span>] = <span class="built_in">myMax</span>(<span class="number">1</span>, <span class="number">1</span> - dungeon[h - <span class="number">1</span>][w - <span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">int</span> i, j;</span><br><span class="line">        i = h - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (j = w - <span class="number">2</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            data[i][j] = <span class="built_in">myMax</span>(<span class="number">1</span>, data[i][j + <span class="number">1</span>] - dungeon[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        j = w - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (i = h - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            data[i][j] = <span class="built_in">myMax</span>(<span class="number">1</span>, data[i + <span class="number">1</span>][j] - dungeon[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (i = h - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (j = w - <span class="number">2</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                data[i][j] = <span class="built_in">myMin</span>(<span class="built_in">myMax</span>(<span class="number">1</span>, data[i][j + <span class="number">1</span>] - dungeon[i][j]), <span class="built_in">myMax</span>(<span class="number">1</span>, data[i + <span class="number">1</span>][j] - dungeon[i][j]));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> data[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/12/Babel%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="ckqkjgm6l000qx4c4644qdu9x" data-title="Babel服务器上安装" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-docker-正常使用&amp;push" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/07/10/docker-%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8&push/" class="article-date">
-  <time class="dt-published" datetime="2019-07-09T22:06:06.000Z" itemprop="datePublished">2019-07-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94docker/">使用—软件—docker</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/07/10/docker-%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8&push/">docker-正常使用&amp;push</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>例如用这个的时候：<a target="_blank" rel="noopener" href="https://github.com/fengh16/2019SummerIntern/blob/master/CodeSearch/Readme.md">https://github.com/fengh16/2019SummerIntern/blob/master/CodeSearch/Readme.md</a></p>
-<p>启动：docker run -it name什么的</p>
-<p>之后一定要exit</p>
-<p>之后docker stop再docker commit id imagename</p>
-<p>如果已经退出了，先用docker start id，再用docker exec -it ID bash</p>
-<p>注意：存在挂载盘的问题，如果在挂载盘上进行操作，commit的时候不会被记录进去</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/10/docker-%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8&push/" data-id="ckqkjgm9n00axx4c470ia9h1o" data-title="docker-正常使用&amp;push" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-python-requirement-生成" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/07/05/python-requirement-%E7%94%9F%E6%88%90/" class="article-date">
-  <time class="dt-published" datetime="2019-07-04T22:06:06.000Z" itemprop="datePublished">2019-07-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/07/05/python-requirement-%E7%94%9F%E6%88%90/">python-requirement-生成</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>pip freeze &gt; requirements.txt</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/05/python-requirement-%E7%94%9F%E6%88%90/" data-id="ckqkjgmat00epx4c4224q9ach" data-title="python-requirement-生成" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-查找文件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/06/26/%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6/" class="article-date">
-  <time class="dt-published" datetime="2019-06-25T22:06:06.000Z" itemprop="datePublished">2019-06-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/06/26/%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6/">查找文件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xxmonstor/article/details/80507769">https://blog.csdn.net/xxmonstor/article/details/80507769</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/06/26/%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6/" data-id="ckqkjgmc700jsx4c4b62kabd4" data-title="查找文件" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-RN0-59-9使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/06/25/RN0-59-9%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2019-06-24T22:06:06.000Z" itemprop="datePublished">2019-06-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94RN/">使用—软件—RN</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/06/25/RN0-59-9%E4%BD%BF%E7%94%A8/">RN0-59-9使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>pod换源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shenxiandashu/article/details/80550162">https://blog.csdn.net/shenxiandashu/article/details/80550162</a></p>
-<p>pod install时提示Too many open files in system - sw_vers (Errno::ENFILE)：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b7c3e7904cd0%EF%BC%88%E6%89%A7%E8%A1%8Cpod">https://www.jianshu.com/p/b7c3e7904cd0（执行pod</a> install之前执行sudo ulimit -n 4096）</p>
-<p>安装react native之后安装amap提示找不到-lDoubleConversion：<br>不能打开原来的项目，要打开安装pod后的新的启动文件（pod install的时候，最后的提示信息有说）</p>
-<p>mobx：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32400821/article/details/87887078">https://blog.csdn.net/qq_32400821/article/details/87887078</a></p>
-<p>Support for the experimental syntax ‘decorators-legacy’ isn’t currently enabled：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1cc6d4273445%E3%80%82%E9%87%8C%E9%9D%A2%E8%BF%98%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85babel-preset-react-app">https://www.jianshu.com/p/1cc6d4273445。里面还需要安装babel-preset-react-app</a></p>
-<p>PropTypes现在来自自己npm下载的’prop-types’</p>
-<p>权限申请：<a target="_blank" rel="noopener" href="https://blog.csdn.net/mochiwxtianya/article/details/78545975">https://blog.csdn.net/mochiwxtianya/article/details/78545975</a></p>
-<p>地图定位权限：<a target="_blank" rel="noopener" href="https://lbs.amap.com/api/android-location-sdk/guide/android-location/getlocation">https://lbs.amap.com/api/android-location-sdk/guide/android-location/getlocation</a></p>
-<p>debug模式签名（安卓）：<a target="_blank" rel="noopener" href="https://blog.csdn.net/chengxu_kuangrexintu/article/details/80949884">https://blog.csdn.net/chengxu_kuangrexintu/article/details/80949884</a></p>
-<p>安卓真机调试：到sdk目录（/Users/xxx/Library/Android/sdk/platform-tools）后./adb reverse tcp:8081 tcp:8081</p>
-<p>安卓发布报错：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/72683f7e9488">https://www.jianshu.com/p/72683f7e9488</a></p>
-<p>app下面的build.gradle，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">project.ext.react &#x3D; [</span><br><span class="line">    entryFile: &quot;index.android.js&quot; &#x2F;&#x2F; 原来是&quot;index.js&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>ios发布的时候：’Multiple commands produce’ <a target="_blank" rel="noopener" href="https://github.com/facebook/react-native/issues/20492">https://github.com/facebook/react-native/issues/20492</a></p>
-<p>duplicate symbols可以在build phases里面删掉</p>
-<p>安卓发布<strong>不用</strong>运行bundle-android</p>
-<p>ios发布相关realpath不存在的错误：<br><img src="https://upload-images.jianshu.io/upload_images/5060560-814f58e966d44850.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>安卓9不允许http联网：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b7ee5f412d1e">https://www.jianshu.com/p/b7ee5f412d1e</a></p>
-<p>CameraRoll 找不到的问题：<a target="_blank" rel="noopener" href="https://www.shiqidu.com/p/132">https://www.shiqidu.com/p/132</a></p>
-<p>和汉字等宽空格：<a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/wordpress/2015/01/tips-blank-character-chinese-align/">https://www.zhangxinxu.com/wordpress/2015/01/tips-blank-character-chinese-align/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/06/25/RN0-59-9%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm8m007lx4c4bgkegx0x" data-title="RN0-59-9使用" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/10/08/%E6%AF%8F%E6%97%A5leetcode-174/" data-id="ckqkkaz4700lbbcc4291gc8hx" data-title="每日leetcode-174" class="article-share-link">Share</a>
       
       
       
@@ -609,7 +593,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/25/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/27/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/25/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/27/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -630,7 +614,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -640,7 +624,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -649,7 +633,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -666,19 +650,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

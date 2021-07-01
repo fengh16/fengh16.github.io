@@ -73,14 +73,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-echarts-官方例子" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-python将所有指定文件放到同一个文件夹中再恢复" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/10/echarts-%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90/" class="article-date">
-  <time class="dt-published" datetime="2020-05-09T22:06:06.000Z" itemprop="datePublished">2020-05-10</time>
+    <a href="/2020/06/11/python%E5%B0%86%E6%89%80%E6%9C%89%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E6%94%BE%E5%88%B0%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E5%86%8D%E6%81%A2%E5%A4%8D/" class="article-date">
+  <time class="dt-published" datetime="2020-06-10T22:06:06.000Z" itemprop="datePublished">2020-06-11</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a>
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
   </div>
 
   </div>
@@ -91,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/10/echarts-%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90/">echarts-官方例子</a>
+      <a class="p-name article-title" href="/2020/06/11/python%E5%B0%86%E6%89%80%E6%9C%89%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E6%94%BE%E5%88%B0%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E5%86%8D%E6%81%A2%E5%A4%8D/">python将所有指定文件放到同一个文件夹中再恢复</a>
     </h1>
   
 
@@ -99,12 +99,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://echarts.apache.org/examples/zh/index.html">https://echarts.apache.org/examples/zh/index.html</a></p>
+        <p>今天需要把所有pdf文件加上水印再放回去，但是这些文件不是都在同一个文件夹下面，PDFELEMENT6 PRO添加文件的时候不太方便，所以就把这些东西先放到同一个文件夹下，处理后再放回去。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">base_dir = <span class="string">&#x27;/Users/xxxx/Desktop/Temp/fff/&#x27;</span></span><br><span class="line">target_dir = <span class="string">&#x27;/Users/xxxx/Desktop/Temp/all_files&#x27;</span></span><br><span class="line"></span><br><span class="line">os.makedirs(target_dir, exist_ok=<span class="literal">True</span>)</span><br><span class="line">record = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dir_pdfs</span>(<span class="params">base_dir</span>):</span></span><br><span class="line">    <span class="keyword">global</span> record</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(base_dir):</span><br><span class="line">        dir_name = os.path.join(base_dir, i)</span><br><span class="line">        <span class="keyword">if</span> os.path.isdir(dir_name):</span><br><span class="line">            get_dir_pdfs(dir_name)</span><br><span class="line">        <span class="keyword">elif</span> os.path.isfile(dir_name):</span><br><span class="line">            <span class="keyword">if</span> dir_name.lower().endswith(<span class="string">&quot;.pdf&quot;</span>):</span><br><span class="line">                file_name = dir_name.split(<span class="string">&quot;/&quot;</span>)[-<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> file_name <span class="keyword">in</span> record:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;ERROR&quot;</span>)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    record[file_name] = dir_name</span><br><span class="line">                    shutil.copyfile(dir_name, os.path.join(target_dir, file_name))</span><br><span class="line"></span><br><span class="line">get_dir_pdfs(base_dir)</span><br></pre></td></tr></table></figure>
+
+<p>处理完之后</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">added_watermark = <span class="string">&#x27;/Users/xxxx/Desktop/Temp/added_watermark/Watermark&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> record:</span><br><span class="line">    new_pos = os.path.join(added_watermark, i)</span><br><span class="line">    os.remove(record[i])</span><br><span class="line">    shutil.copyfile(new_pos, record[i])</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/10/echarts-%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90/" data-id="ckqkjgm9p00b7x4c4h9sj2r8c" data-title="echarts-官方例子" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/06/11/python%E5%B0%86%E6%89%80%E6%9C%89%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E6%94%BE%E5%88%B0%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E5%86%8D%E6%81%A2%E5%A4%8D/" data-id="ckqkkaz2d00fabcc4ba3a4b9p" data-title="python将所有指定文件放到同一个文件夹中再恢复" class="article-share-link">Share</a>
       
       
       
@@ -116,14 +120,14 @@
 
 
   
-    <article id="post-echarts在vue中的安装使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-word公式转换成MathType" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/10/echarts%E5%9C%A8vue%E4%B8%AD%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2020-05-09T22:06:06.000Z" itemprop="datePublished">2020-05-10</time>
+    <a href="/2020/06/10/word%E5%85%AC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E6%88%90MathType/" class="article-date">
+  <time class="dt-published" datetime="2020-06-09T22:06:06.000Z" itemprop="datePublished">2020-06-10</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a>
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
   </div>
 
   </div>
@@ -134,7 +138,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/10/echarts%E5%9C%A8vue%E4%B8%AD%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">echarts在vue中的安装使用</a>
+      <a class="p-name article-title" href="/2020/06/10/word%E5%85%AC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E6%88%90MathType/">word公式转换成MathType</a>
     </h1>
   
 
@@ -142,17 +146,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cf0a54374419">https://www.jianshu.com/p/cf0a54374419</a></p>
-<p><code>npm install --save echarts</code></p>
-<p>在main.js中</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> echarts <span class="keyword">from</span> <span class="string">&#x27;echarts&#x27;</span></span><br><span class="line">Vue.prototype.$echarts = echarts</span><br></pre></td></tr></table></figure>
-
-<p>之后就可以用了。</p>
+        <p>MathType现在还不支持macOS10.15，只能降级macOS或者用windows版本的。</p>
+<p>转换的时候会报错，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_38089090/article/details/80794148">https://blog.csdn.net/m0_38089090/article/details/80794148</a> ，我们需要先用管理员模式打开winword.exe，点击转换让他崩一次，之后用普通模式打开winword.exe就行了</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/10/echarts%E5%9C%A8vue%E4%B8%AD%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm9q00b9x4c46meu5err" data-title="echarts在vue中的安装使用" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/06/10/word%E5%85%AC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E6%88%90MathType/" data-id="ckqkkaz2v00gwbcc44alldex5" data-title="word公式转换成MathType" class="article-share-link">Share</a>
       
       
       
@@ -164,14 +164,14 @@
 
 
   
-    <article id="post-hashcat" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-参考文献" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/10/hashcat/" class="article-date">
-  <time class="dt-published" datetime="2020-05-09T22:06:06.000Z" itemprop="datePublished">2020-05-10</time>
+    <a href="/2020/06/05/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE/" class="article-date">
+  <time class="dt-published" datetime="2020-06-04T22:06:06.000Z" itemprop="datePublished">2020-06-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E9%BB%91%E5%AE%A2%E6%8A%80%E6%9C%AF/">领域—黑客技术</a>
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
   </div>
 
   </div>
@@ -182,7 +182,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/10/hashcat/">hashcat</a>
+      <a class="p-name article-title" href="/2020/06/05/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE/">参考文献</a>
     </h1>
   
 
@@ -190,21 +190,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="教学"><a href="#教学" class="headerlink" title="教学"></a>教学</h2><p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/4008">一个例子</a></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>kali里面自带<br>mac上面直接：<code>brew install hashcat</code></p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="https://upload-images.jianshu.io/upload_images/5060560-a50e2aba96713812.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="密文"></p>
-<p><a target="_blank" rel="noopener" href="https://www.cmd5.com/hash.aspx?s=5612325">https://www.cmd5.com/hash.aspx?s=5612325</a></p>
-<p>密文：25c3e88f81b4853f2a8faacad4c871b6</p>
-<p>原文：5612325</p>
-<h2 id="破解"><a href="#破解" class="headerlink" title="破解"></a>破解</h2><p>kali里面使用了这一条：</p>
-<p><code>hashcat -a 3 -m 0 --force 25c3e88f81b4853f2a8faacad4c871b6 ?d?d?d?d?d?d?d</code></p>
-<p>表示是七位数字。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-63e2238d5f408f61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="成功破解"></p>
+        <p>word里面参考文献可以交叉引用，文献可以用endnote</p>
+<p>endnote引入bib在<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34206899/article/details/93293013">https://blog.csdn.net/weixin_34206899/article/details/93293013</a> ，还没有试</p>
+<p>导入的时候，百度学术搜索到，批量引用，导出至enw即可</p>
+<p>gbt7714 <a target="_blank" rel="noopener" href="https://www.endnote.com/style_download/chinese-standard-gb-t7114-author-year/">https://www.endnote.com/style_download/chinese-standard-gb-t7114-author-year/</a></p>
+<p>这里有说明： <a target="_blank" rel="noopener" href="https://www.endnote.com/downloads/styles/?wpv_post_search=gbt&amp;wpv_aux_current_post_id=12829&amp;wpv_view_count=12764-TCPID12829">https://www.endnote.com/downloads/styles/?wpv_post_search=gbt&amp;wpv_aux_current_post_id=12829&amp;wpv_view_count=12764-TCPID12829</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-a36c879e6197f286.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="word里面选择style"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/10/hashcat/" data-id="ckqkjgm9z00c2x4c44vi5ebsr" data-title="hashcat" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/06/05/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE/" data-id="ckqkkaz3800i6bcc49cpl8gck" data-title="参考文献" class="article-share-link">Share</a>
       
       
       
@@ -216,14 +212,14 @@
 
 
   
-    <article id="post-Django-models结果排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-pdf去水印" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/09/Django-models%E7%BB%93%E6%9E%9C%E6%8E%92%E5%BA%8F/" class="article-date">
-  <time class="dt-published" datetime="2020-05-08T22:06:06.000Z" itemprop="datePublished">2020-05-09</time>
+    <a href="/2020/06/04/pdf%E5%8E%BB%E6%B0%B4%E5%8D%B0/" class="article-date">
+  <time class="dt-published" datetime="2020-06-03T22:06:06.000Z" itemprop="datePublished">2020-06-04</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a>
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
   </div>
 
   </div>
@@ -234,7 +230,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/09/Django-models%E7%BB%93%E6%9E%9C%E6%8E%92%E5%BA%8F/">Django-models结果排序</a>
+      <a class="p-name article-title" href="/2020/06/04/pdf%E5%8E%BB%E6%B0%B4%E5%8D%B0/">pdf去水印</a>
     </h1>
   
 
@@ -242,13 +238,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>用order_by(‘-id’)表示按照id倒序</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangyingblock/p/11136691.html">https://www.cnblogs.com/wangyingblock/p/11136691.html</a></p>
+        <p>解密后，直接用pdfelement就行，可以批量去水印，见<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c4917f0a4f1d">https://www.jianshu.com/p/c4917f0a4f1d</a></p>
+<p>也可以使用acrobat <a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/b24f6c82f96bea86bfe5dad4.html">https://jingyan.baidu.com/article/b24f6c82f96bea86bfe5dad4.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/09/Django-models%E7%BB%93%E6%9E%9C%E6%8E%92%E5%BA%8F/" data-id="ckqkjgm6x001yx4c4adcgaurd" data-title="Django-models结果排序" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/06/04/pdf%E5%8E%BB%E6%B0%B4%E5%8D%B0/" data-id="ckqkkaz2500elbcc4hgud3uiz" data-title="pdf去水印" class="article-share-link">Share</a>
       
       
       
@@ -260,147 +256,10 @@
 
 
   
-    <article id="post-Mac-Neo4j安装与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-requests-timeout" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/09/Mac-Neo4j%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2020-05-08T22:06:06.000Z" itemprop="datePublished">2020-05-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/09/Mac-Neo4j%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">Mac-Neo4j安装与使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="关于图数据库的一些介绍"><a href="#关于图数据库的一些介绍" class="headerlink" title="关于图数据库的一些介绍"></a>关于图数据库的一些介绍</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mantoudev/p/10414495.html">https://www.cnblogs.com/mantoudev/p/10414495.html</a></p>
-<p>摘录一下：</p>
-<blockquote>
-<p>图数据很多，图数据库比普通的要更快</p>
-</blockquote>
-<p>neo4j的教程在：<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/neo4j/">https://www.w3cschool.cn/neo4j/</a></p>
-<h1 id="Neo4j安装"><a href="#Neo4j安装" class="headerlink" title="Neo4j安装"></a>Neo4j安装</h1><p>到<a target="_blank" rel="noopener" href="https://neo4j.com/%EF%BC%8C%E7%82%B9%E5%8F%B3%E4%B8%8A%E8%A7%92%E7%9A%84">https://neo4j.com/，点右上角的</a> DOWNLOAD NEO4J就行。之后填一个表（表单加载挺慢的，得等会），就能下载了。会给一个激活密钥。</p>
-<p>我用的Mac，下载链接：<a target="_blank" rel="noopener" href="https://neo4j.com/artifact.php?name=neo4j-desktop-offline-1.2.4.dmg">https://neo4j.com/artifact.php?name=neo4j-desktop-offline-1.2.4.dmg</a></p>
-<p>Activation Key：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCJ9.eyIgSG9sZGluZyBDby4sIEx0ZC4iOiIiLCJjYWxsYmFjayI6IiIsImVtYWlsIjoiaUBodWF3ZWkuY29tIiwiZm9ybWF0IjoianNvbiIsIm9yZyI6Ikh1YXdlaSBJbnZlc3RtZW50ICIsInB1YiI6Im5lbzRqLmNvbSIsInJlZyI6Ikh1YSBXZWkiLCJzdWIiOiJuZW80ai1kZXNrdG9wIiwiZXhwIjoxNjIwNTI4Nzg5LCJ2ZXIiOiIqIiwiaXNzIjoibmVvNGouY29tIiwibmJmIjoxNTg4OTkyNzg5LCJpYXQiOjE1ODg5OTI3ODksImp0aSI6InJHN2RxWmFJYiJ9.pN66t95DNK0rMfcu7D-XnET7gx6IrFgSZg1VmUBciXyTzgnpUzWtlW3MZCaerL0IWO5ZQfmEgX25pAU3Pmq6SlZvW462fZluxgEOw9wfrNhbjCVXSM70bv2tpKoIk9I8xySOaVMOsZ16SZRtlo0QAvaNizaZiMTSy-kdr2t2hzzV4bSgSJ--gBg-nwVBrcPJZfMcEii_zNrOvGkV3LcvRoU8aHRucCLosNxrhmc0Ug-SxnYGU7beJB6pgVAf57TSlU7Cv6rj0aDY_KcWCyCb4r-XvBu-ZVtzxDziYWjF-CWOBotnxEZWA89QM8J-c-DF82CPCUmuzWzj1t4KNDK-9g</span><br></pre></td></tr></table></figure>
-
-<p>直接把dmg文件打开，应用拖到Application里面就行了。之后打开就会自动安装配置，用上面的Activation Key就可以，或者新注册一下。</p>
-<h1 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h1><p><img src="https://upload-images.jianshu.io/upload_images/5060560-80513dd5210397cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="主页选择创建数据库，之后选create local graph"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-b1148a9e8a826e33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建好之后选择启动"></p>
-<p>之后可以点击manage，让它启动后按下open browser打开浏览器进行管理</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-59b2bc221ce71b22.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="浏览器中管理"></p>
-<p>在上面这个地方有写用户名是neo4j，网址和端口也有</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h3><p><code>CREATE (n:Student &#123;name:&#39;张三&#39;&#125;) RETURN n</code></p>
-<p><code>CREATE (n:Teacher &#123;name:&#39;罗翔&#39;&#125;) RETURN n</code></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-f926d3874060505a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建两个节点"></p>
-<p><code>MATCH (n:Teacher &#123;name:&#39;罗翔&#39;&#125;) DELETE n</code></p>
-<p>接下来再新增一个罗老师：<code>CREATE (n:Teacher &#123;name:&#39;罗翔&#39;&#125;) RETURN n</code></p>
-<h3 id="添加边"><a href="#添加边" class="headerlink" title="添加边"></a>添加边</h3><p><code>MATCH (a: Teacher &#123;name:&#39;罗翔&#39;&#125;), (b: Student &#123;name:&#39;张三&#39;&#125;) MERGE (a)-[:审判]-&gt;(b)</code></p>
-<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>查询所有节点</p>
-<p><code>MATCH (n) RETURN n LIMIT 25</code></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-908d71d9d146fe54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="查询结果"></p>
-<p>查询所有边的起始节点</p>
-<p><code>MATCH (a)--&gt;() RETURN a</code></p>
-<p>忽略边的方向，查询所有关系的节点</p>
-<p><code>MATCH (a)--() RETURN a LIMIT 25</code></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6b4fb9974a9bcf97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="边查询结果"></p>
-<p><code>MATCH (a)-[:审判]-() RETURN a LIMIT 25</code></p>
-<p><code>MATCH (a)-[r]-&gt;(b) return a, b, r</code></p>
-<p>注意：选择出来的结果不会做边的筛选</p>
-<p>假如有两个关系，添加一个<code>MATCH (a: Teacher &#123;name:&#39;罗翔&#39;&#125;), (b: Student &#123;name:&#39;张三&#39;&#125;) MERGE (a)-[:教导]-&gt;(b)</code></p>
-<p><code>MATCH (a)-[r:审判]-&gt;(b) RETURN a, b, r</code></p>
-<p>结果直接呈现两个关系</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-9c964d5f3722a444.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="现在有俩关系了"></p>
-<h3 id="删除边"><a href="#删除边" class="headerlink" title="删除边"></a>删除边</h3><p><code>MATCH ()-[r: 教导]-&gt;() DELETE r</code></p>
-<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p><code>MATCH (a:Student &#123;name:&#39;张三&#39;&#125;) SET a.test=&#39;test&#39;</code><br><code>MATCH (a:Student &#123;name:&#39;张三&#39;&#125;) REMOVE a.test</code></p>
-<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p>这里使用和前面的语言一样的操作，不过为了区分这里用的是中文的label</p>
-<p>pip install py2neo</p>
-<p>安装好就可以连接了，<strong>注意协议不是http，是bolt</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> py2neo <span class="keyword">import</span> Graph,Node,Relationship</span><br><span class="line"></span><br><span class="line">graph = Graph(<span class="string">&#x27;bolt://localhost:7687&#x27;</span>,username=<span class="string">&#x27;neo4j&#x27;</span>,password=<span class="string">&#x27;123456&#x27;</span>)</span><br><span class="line">a = Node(<span class="string">&#x27;学生&#x27;</span>, name=<span class="string">&#x27;张三&#x27;</span>)</span><br><span class="line">b = Node(<span class="string">&#x27;教师&#x27;</span>, name=<span class="string">&#x27;罗翔&#x27;</span>)</span><br><span class="line">graph.create(a)</span><br><span class="line">graph.create(b)</span><br></pre></td></tr></table></figure>
-
-<p>这时我们在数据库里面可以看到：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-3b228dd08744c38f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="用Python创建后"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r = Relationship(b,<span class="string">&#x27;审判&#x27;</span>,a)</span><br><span class="line">graph.create(r)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> py2neo <span class="keyword">import</span> NodeMatcher</span><br><span class="line">luo = NodeMatcher(graph).match(<span class="string">&#x27;教师&#x27;</span>,name=<span class="string">&#x27;罗翔&#x27;</span>)  <span class="comment"># 相当于graph.nodes.match(&#x27;教师&#x27;,name=&#x27;罗翔&#x27;)</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(luo))</span><br><span class="line"><span class="comment"># 不能用luo[0]</span></span><br><span class="line"><span class="built_in">print</span>(luo.first())</span><br><span class="line"><span class="built_in">print</span>(luo.first().__name__)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> luo:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="built_in">print</span>(i[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(luo.graph.nodes)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> luo.graph.relationships:</span><br><span class="line">    <span class="built_in">print</span>(i)  <span class="comment"># 这里会有bug，一些已经删除过的边会仍然留在里面，导致这里报错</span></span><br><span class="line">graph.delete(luo.graph.relationships[<span class="number">0</span>])  <span class="comment"># 注意这里的0不是下标！是边的ID</span></span><br><span class="line"><span class="comment"># 搜索边</span></span><br><span class="line">ans = graph.match(nodes=<span class="literal">None</span>, r_type=<span class="string">&#x27;审判&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="built_in">print</span>(i.identity)  <span class="comment"># 这里是ID</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/09/Mac-Neo4j%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="ckqkjgm7n004lx4c42t4idcmd" data-title="Mac-Neo4j安装与使用" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-PyCharm里面配置Django" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/05/09/PyCharm%E9%87%8C%E9%9D%A2%E9%85%8D%E7%BD%AEDjango/" class="article-date">
-  <time class="dt-published" datetime="2020-05-08T22:06:06.000Z" itemprop="datePublished">2020-05-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/09/PyCharm%E9%87%8C%E9%9D%A2%E9%85%8D%E7%BD%AEDjango/">PyCharm里面配置Django</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>如果不是通过PyCharm创建的django，有可能PyCharm不认。</p>
-<p>比如提示：unresolved attribute reference objects</p>
-<p>我们可以<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39148947/article/details/82594824">https://blog.csdn.net/qq_39148947/article/details/82594824</a> ，在设置里面打开django支持。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/09/PyCharm%E9%87%8C%E9%9D%A2%E9%85%8D%E7%BD%AEDjango/" data-id="ckqkjgm88006kx4c46etxc5md" data-title="PyCharm里面配置Django" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Python通过字符串找到函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/05/08/Python%E9%80%9A%E8%BF%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%BE%E5%88%B0%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2020-05-07T22:06:06.000Z" itemprop="datePublished">2020-05-08</time>
+    <a href="/2020/06/02/requests-timeout/" class="article-date">
+  <time class="dt-published" datetime="2020-06-01T22:06:06.000Z" itemprop="datePublished">2020-06-02</time>
 </a>
     
   <div class="article-category">
@@ -415,7 +274,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/08/Python%E9%80%9A%E8%BF%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%BE%E5%88%B0%E5%87%BD%E6%95%B0/">Python通过字符串找到函数</a>
+      <a class="p-name article-title" href="/2020/06/02/requests-timeout/">requests-timeout</a>
     </h1>
   
 
@@ -423,13 +282,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>用getattr(a, ‘add_node’)就可以找到a.add_node函数</p>
-<p><a target="_blank" rel="noopener" href="https://www.php.cn/python-tutorials-420336.html">https://www.php.cn/python-tutorials-420336.html</a></p>
+        <p>requests.get里面的参数有一个timeout，如果设置成(3,7)表示连接timeout是3，传输timeout是7</p>
+<p>来自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/NRlovestudy/article/details/88311814">https://blog.csdn.net/NRlovestudy/article/details/88311814</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/08/Python%E9%80%9A%E8%BF%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%BE%E5%88%B0%E5%87%BD%E6%95%B0/" data-id="ckqkjgm8i007dx4c4ez6o9tuu" data-title="Python通过字符串找到函数" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/06/02/requests-timeout/" data-id="ckqkkaz2f00fgbcc4gtfe4tom" data-title="requests-timeout" class="article-share-link">Share</a>
       
       
       
@@ -441,14 +300,14 @@
 
 
   
-    <article id="post-django跨域" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-pdf密码破解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/07/django%E8%B7%A8%E5%9F%9F/" class="article-date">
-  <time class="dt-published" datetime="2020-05-06T22:06:06.000Z" itemprop="datePublished">2020-05-07</time>
+    <a href="/2020/05/29/pdf%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2020-05-28T22:06:06.000Z" itemprop="datePublished">2020-05-29</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a>
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
   </div>
 
   </div>
@@ -459,7 +318,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/07/django%E8%B7%A8%E5%9F%9F/">django跨域</a>
+      <a class="p-name article-title" href="/2020/05/29/pdf%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/">pdf密码破解</a>
     </h1>
   
 
@@ -467,20 +326,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/randomlee/p/9752705.html">django中配置允许跨域请求</a></p>
-<h2 id="以下内容为摘录："><a href="#以下内容为摘录：" class="headerlink" title="以下内容为摘录："></a>以下内容为摘录：</h2><p>安装django-cors-headers，<a target="_blank" rel="noopener" href="https://github.com/ottoyiu/django-cors-headers">详情请看官方文档</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-cors-headers</span><br></pre></td></tr></table></figure>
-
-<p>配置settings.py文件</p>
-<p>a.在INSTALLED_APPS里添加“corsheaders”</p>
-<p>b.在MIDDLEWARE_CLASSES添加 ‘corsheaders.middleware.CorsMiddleware’, ‘django.middleware.common.CommonMiddleware’</p>
-<p>c.在sitting.py底部添加</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 跨域增加忽略</span></span><br><span class="line">CORS_ALLOW_CREDENTIALS = <span class="literal">True</span></span><br><span class="line">CORS_ORIGIN_ALLOW_ALL = <span class="literal">True</span></span><br><span class="line">CORS_ORIGIN_WHITELIST = ()</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_METHODS = (</span><br><span class="line">    <span class="string">&#x27;DELETE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;OPTIONS&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;PATCH&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;PUT&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;VIEW&#x27;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_HEADERS = (</span><br><span class="line">    <span class="string">&#x27;accept&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;accept-encoding&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;authorization&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;content-type&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;dnt&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;origin&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user-agent&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;x-csrftoken&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;x-requested-with&#x27;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+        <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/fd1117b88b43">https://www.jianshu.com/p/fd1117b88b43</a>  这里提到了一个qpdf，挺好用的，mac下面直接brew install qpdf就行，用的时候qpdf –decrypt input.pdf output.pdf</p>
+<p>在Python下面有一个叫做PyPDF2的库，也挺好用，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61969807">https://zhuanlan.zhihu.com/p/61969807</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/07/django%E8%B7%A8%E5%9F%9F/" data-id="ckqkjgm9l00anx4c48hzm927j" data-title="django跨域" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/29/pdf%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" data-id="ckqkkaz2500enbcc42b3rgy4m" data-title="pdf密码破解" class="article-share-link">Share</a>
       
       
       
@@ -492,14 +344,14 @@
 
 
   
-    <article id="post-el-table-tree自定义格式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-时序temporal图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/07/el-table-tree%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F/" class="article-date">
-  <time class="dt-published" datetime="2020-05-06T22:06:06.000Z" itemprop="datePublished">2020-05-07</time>
+    <a href="/2020/05/26/%E6%97%B6%E5%BA%8Ftemporal%E5%9B%BE/" class="article-date">
+  <time class="dt-published" datetime="2020-05-25T22:06:06.000Z" itemprop="datePublished">2020-05-26</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
   </div>
 
   </div>
@@ -510,7 +362,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/07/el-table-tree%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F/">el-table-tree自定义格式</a>
+      <a class="p-name article-title" href="/2020/05/26/%E6%97%B6%E5%BA%8Ftemporal%E5%9B%BE/">时序temporal图</a>
     </h1>
   
 
@@ -518,13 +370,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>使用一个<template slot-scope="scope">，在里面就可以用scope.row.xxxxx访问自己的东西了</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">      :data=<span class="string">&quot;tableData&quot;</span></span><br><span class="line">      style=<span class="string">&quot;width: 100%&quot;</span></span><br><span class="line">      :row-<span class="class"><span class="keyword">class</span>-<span class="title">name</span></span>=<span class="string">&quot;tableRowClassName&quot;</span>&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        label=<span class="string">&quot;配置信息&quot;</span>&gt;</span><br><span class="line">        &lt;template slot-scope=<span class="string">&quot;scope&quot;</span>&gt;</span><br><span class="line">          &lt;el-button type=<span class="string">&quot;text&quot;</span> @click=<span class="string">&quot;open(scope.row.config_str)&quot;</span>&gt;显示配置信息<span class="built_in">JSON</span>&lt;/el-button&gt;</span><br><span class="line">        &lt;/template&gt;</span><br><span class="line">      &lt;/el-table-column&gt;</span><br><span class="line">    &lt;/el-table&gt;</span><br></pre></td></tr></table></figure>
+        <p>ANSI SQL 2011 standard for temporal databases</p>
+<p>Allen’s interval algebra</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/07/el-table-tree%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F/" data-id="ckqkjgm9s00bcx4c46d9eaf3s" data-title="el-table-tree自定义格式" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/26/%E6%97%B6%E5%BA%8Ftemporal%E5%9B%BE/" data-id="ckqkkaz3v00kbbcc4ei0gaevu" data-title="时序temporal图" class="article-share-link">Share</a>
       
       
       
@@ -536,14 +388,14 @@
 
 
   
-    <article id="post-vuejs-http请求" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-国际学术会议" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/05/07/vuejs-http%E8%AF%B7%E6%B1%82/" class="article-date">
-  <time class="dt-published" datetime="2020-05-06T22:06:06.000Z" itemprop="datePublished">2020-05-07</time>
+    <a href="/2020/05/24/%E5%9B%BD%E9%99%85%E5%AD%A6%E6%9C%AF%E4%BC%9A%E8%AE%AE/" class="article-date">
+  <time class="dt-published" datetime="2020-05-23T22:06:06.000Z" itemprop="datePublished">2020-05-24</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E5%89%8D%E7%AB%AF/">领域—前端</a>
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
   </div>
 
   </div>
@@ -554,7 +406,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/05/07/vuejs-http%E8%AF%B7%E6%B1%82/">vuejs-http请求</a>
+      <a class="p-name article-title" href="/2020/05/24/%E5%9B%BD%E9%99%85%E5%AD%A6%E6%9C%AF%E4%BC%9A%E8%AE%AE/">国际学术会议</a>
     </h1>
   
 
@@ -562,27 +414,101 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>我们可以用jquery+ajax进行http请求，但是已经用了vuejs，没必要专门搞一个jquery，所以就用vue-resource里面带着的http就行。</p>
-<p>这里有说明：<a target="_blank" rel="noopener" href="https://blog.csdn.net/vbirdbest/article/details/85290157">https://blog.csdn.net/vbirdbest/article/details/85290157</a></p>
-<p>步骤：</p>
-<ul>
-<li>安装：<code> npm install --save vue-resource</code></li>
-<li>加入：加上：<ul>
-<li><code>import VueResource from &#39;vue-resource&#39;;</code></li>
-<li><code>Vue.use(VueResource);</code></li>
-</ul>
-</li>
-<li>使用：直接用$http.get就能实现和ajax一样的功能了：<ul>
-<li><code>this.$http.get(&#39;/someUrl&#39;, [options]).then(successCallback, errorCallback);</code></li>
-<li><code>this.$http.post(&#39;/someUrl&#39;, [body], [options]).then(successCallback, errorCallback);</code></li>
-</ul>
-</li>
-</ul>
+        <p>CCF： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/guolei/p/3576366.html">https://www.cnblogs.com/guolei/p/3576366.html</a></p>
+<p>还有一个小程序叫做“会议之眼”</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/07/vuejs-http%E8%AF%B7%E6%B1%82/" data-id="ckqkjgmb300ftx4c48i9q8r6n" data-title="vuejs-http请求" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/24/%E5%9B%BD%E9%99%85%E5%AD%A6%E6%9C%AF%E4%BC%9A%E8%AE%AE/" data-id="ckqkkaz3b00iibcc49qhz1oiv" data-title="国际学术会议" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Mac-PHP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/18/Mac-PHP/" class="article-date">
+  <time class="dt-published" datetime="2020-05-17T22:06:06.000Z" itemprop="datePublished">2020-05-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94PHP/">语言—PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/18/Mac-PHP/">Mac-php</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>按照这里的进行配置：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/613e775dab22">https://www.jianshu.com/p/613e775dab22</a></p>
+<p>最关键的就是启动sudo apachectl restart，并且要删除/Library/WebServer/Documents里面的html的文件，加上php的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/05/18/Mac-PHP/" data-id="ckqkkayza004ubcc4dxkf87ta" data-title="Mac-php" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-RNN" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/17/RNN/" class="article-date">
+  <time class="dt-published" datetime="2020-05-16T22:06:06.000Z" itemprop="datePublished">2020-05-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/17/RNN/">RNN</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2018-12-14-4">https://www.jiqizhixin.com/articles/2018-12-14-4</a></p>
+<p>介绍了不同种类的RNN，里面的Attention可视化很有意思</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/05/17/RNN/" data-id="ckqkkaz09007ybcc4hkebeg36" data-title="RNN" class="article-share-link">Share</a>
       
       
       
@@ -598,7 +524,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -619,7 +545,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -629,7 +555,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -638,7 +564,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -655,19 +581,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>

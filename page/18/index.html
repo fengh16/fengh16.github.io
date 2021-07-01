@@ -73,286 +73,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-阿里云Windows服务器22端口相关问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-图像PSNR-SSIM" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/03/31/%E9%98%BF%E9%87%8C%E4%BA%91Windows%E6%9C%8D%E5%8A%A1%E5%99%A822%E7%AB%AF%E5%8F%A3%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2020-03-30T22:06:06.000Z" itemprop="datePublished">2020-03-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/31/%E9%98%BF%E9%87%8C%E4%BA%91Windows%E6%9C%8D%E5%8A%A1%E5%99%A822%E7%AB%AF%E5%8F%A3%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">阿里云Windows服务器22端口相关问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>阿里云Windows服务器配置的文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f41fd6212f37">https://www.jianshu.com/p/f41fd6212f37</a></p>
-<h4 id="（一般不用）允许22端口的连接"><a href="#（一般不用）允许22端口的连接" class="headerlink" title="（一般不用）允许22端口的连接"></a>（一般不用）允许22端口的连接</h4><p>以防万一，把允许22端口连接的步骤写在下面（【一般不需要这么做】）：</p>
-<p>打开组策略（按下win键，输入【组策略】就可以找到了）</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-a253ca6f4eb9b82b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打开组策略"></p>
-<p>接下来打开IP安全策略：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-b3e9d3090d08b654.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IP安全策略的位置"></p>
-<p>菜单栏中点击【操作】——创建IP安全策略——一路下一步，到【新IP安全策略 属性】窗口进行配置。</p>
-<p>点击添加——一直下一步到【IP筛选器】的界面</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-453260e7b454b2b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击【添加】之后的样子"></p>
-<p>IP筛选器这里选择【添加】，弹出来的界面一路下一步到【IP协议类型】，选择【TCP】，下一页是【到此端口】里面输入【22】</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-d6217d96b4867f25.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="就是这"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ae95038c6fdf77c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择22端口"></p>
-<p>完成后回到【IP筛选器列表】里面，【确定】即可。</p>
-<p>这里选择上刚才创建的【新IP筛选器列表】，下一步：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-02d8d8a411af565a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选上这个新IP筛选器列表"></p>
-<p>【筛选器操作】这里点【添加】，选择【许可】就行。这一步完成后选上刚才的新筛选器操作，就可以了。</p>
-<p>都做完后，右键点击——点击【分配】。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-86395b6665257f10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择【分配】"></p>
-<h4 id="（一般不用）开启阿里云22端口"><a href="#（一般不用）开启阿里云22端口" class="headerlink" title="（一般不用）开启阿里云22端口"></a>（一般不用）开启阿里云22端口</h4><p><strong>如果还有问题</strong>，那可能是22端口在阿里云这里禁用了（【默认是启用的】），可以这样：</p>
-<p>回到阿里云，点击【右上角的控制台】-【左侧云服务器ECS】-找到自己的服务器实例进去。点左侧【安全组】-点【配置规则】，加上22端口的访问权限。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-4312d1caeffdb9a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="左侧云服务器ECS"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-73c8d586ff419223.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="允许22端口之后的样子"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/31/%E9%98%BF%E9%87%8C%E4%BA%91Windows%E6%9C%8D%E5%8A%A1%E5%99%A822%E7%AB%AF%E5%8F%A3%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" data-id="ckqkjgmdd00nqx4c4c9aqbaxx" data-title="阿里云Windows服务器22端口相关问题" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-阿里云windows服务器配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/03/31/%E9%98%BF%E9%87%8C%E4%BA%91windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time class="dt-published" datetime="2020-03-30T22:06:06.000Z" itemprop="datePublished">2020-03-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/31/%E9%98%BF%E9%87%8C%E4%BA%91windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/">阿里云windows服务器配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="购买"><a href="#购买" class="headerlink" title="购买"></a>购买</h2><p>首先到阿里云去购买服务器：</p>
-<ul>
-<li>新用户74元/年的云服务器：<a target="_blank" rel="noopener" href="https://www.aliyun.com/minisite/goods?userCode=vp1ifil7&share_source=copy_link">阿里云</a></li>
-<li>学生机，10元/月的云服务器：<a target="_blank" rel="noopener" href="https://promotion.aliyun.com/ntms/act/campus2018.html?spm=5176.13727575.J_7116760870.3.f0c03b5aQY7iQj&aly_as=15uW4Mp6B&userCode=vp1ifil7&tag=share_component&share_source=copy_link">阿里云学生机</a></li>
-</ul>
-<p>选择的时候选Windows Server 2019版即可：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-7ce51d289d0d8bb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择配置界面"></p>
-<p>之后到控制台，去设置密码（控制台——云服务器ECS——找到服务器实例点进去——密码密钥——重置实例密码）</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-da5d35d85f455e8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="重制实例密码"></p>
-<p>修改之后就可以用用户名：administrator ；密码：刚才设置的密码 进行登陆了。</p>
-<h2 id="登陆"><a href="#登陆" class="headerlink" title="登陆"></a>登陆</h2><p>点击远程连接，即可登陆。</p>
-<p>Windows系统下，可以用自带的远程连接（<a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/67662997adb46a54d51b84bd.html">https://jingyan.baidu.com/article/67662997adb46a54d51b84bd.html</a> ）</p>
-<p>在Mac下面，可以下载一个Microsoft Remote Desktop来进行连接。</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="打开80端口以进行网络访问"><a href="#打开80端口以进行网络访问" class="headerlink" title="打开80端口以进行网络访问"></a>打开80端口以进行网络访问</h3><p>回到阿里云，点击【右上角的控制台】-【左侧云服务器ECS】-找到自己的服务器实例进去。点左侧【安全组】-点【配置规则】，加上80端口的访问权限。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-4312d1caeffdb9a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="左侧云服务器ECS"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-0d2bfa824e90c065.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打开80端口"></p>
-<h3 id="增强安全配置"><a href="#增强安全配置" class="headerlink" title="增强安全配置"></a>增强安全配置</h3><p>用浏览器的时候，会提示：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8d8080c9676ab4cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="增强安全配置正在阻止"></p>
-<p>解决：打开【服务器管理器】，点左侧的【本地服务器】，找到右边的【IE增强的安全配置】，点击右边的【启用】，弹出的窗口选择两个【关闭】，确认即可。之后再打开的网页就不会有这样的提示了。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-1981452d9e981619.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="右侧中间就是"></p>
-<h3 id="Python安装"><a href="#Python安装" class="headerlink" title="Python安装"></a>Python安装</h3><p>到 <a target="_blank" rel="noopener" href="https://www.python.org/">https://www.python.org/</a> 下载Python即可。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-329242731baf4178.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击这里的Python X.X.X就可以跳转到下一个页面"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e43e97b081bcd21d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击这里的Windows x86-64 executable installer就可以下载了"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-804cbaa53bfe5b04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="直接点击【运行】"></p>
-<p>记得【一定】要选上【Add to path】！</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6ed486b081bcd217.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="【选上】！选上！选上！！！！！！！！！"></p>
-<p>然后直接点Install Now就行。后面一路next。</p>
-<h4 id="pip使用"><a href="#pip使用" class="headerlink" title="pip使用"></a>pip使用</h4><p>修改源：<a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/750265?spm=a2c4e.11155472.0.0.40116748F1Aw2k">https://yq.aliyun.com/articles/750265?spm=a2c4e.11155472.0.0.40116748F1Aw2k</a></p>
-<p>(1) <code>pip -v config list</code>找到配置文件的位置</p>
-<p>(2) 到这些路径（如果没有的话就要新建）下，创建<code>pip.ini</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;</span><br><span class="line">[install]</span><br><span class="line">trusted-host&#x3D;mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-
-<p><em>注意：如果有venv环境，优先级最高的可能是venv目录下的<code>pip.ini</code>（默认没有，需要创建）</em></p>
-<h4 id="Python环境"><a href="#Python环境" class="headerlink" title="Python环境"></a>Python环境</h4><p>每一个单独的环境都用venv创建。<code>python -m venv .\venv</code>，之后<code>.\venv\Scripts\activate</code></p>
-<h3 id="MySQL安装"><a href="#MySQL安装" class="headerlink" title="MySQL安装"></a>MySQL安装</h3><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">https://dev.mysql.com/downloads/mysql/</a></p>
-<p>直接点Recommended Download下面的图就可以下载了。下载直接选比较大的那个离线安装包，中间提示注册登录的时候可以点下方隐藏的小字不注册直接下载。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-6c9ece782d8013e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="直接下载"></p>
-<p>在这个界面，点击【Next】就可以安装默认的内容：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-dbbafddb093d0d11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="点击next"></p>
-<p>在Check Requirements页面，需要选择【execute】而不是【next】</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-120fc5dbe0ec8a6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="如果直接点next会出现这样的界面，需要点击No然后选择execute"></p>
-<p>execute点击后，会出现【Microsoft Visual C++ 2019 Redistribute】的安装和Visual Studio 2010 Tools for Office的安装，直接默认安装就行。</p>
-<p>接下来会剩下一些mannual的内容，包括excel的连接、VS的连接、Python的连接，之后如果要用python连mysql的话直接pip安装就行，所以不用管直接next。如果后面还要安装别的东西，可以再次打开下载的msi文件添加。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-059e32a8c5af8a07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这时直接点No就行"></p>
-<p>安装好之后，到配置的时候，保持默认一直到Authorization method的地方，选择传统方法的认证模式。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ce0a963c1605969c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="传统认证模式"></p>
-<p>接下来下一步是创建用户。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-03cc5c9a60367a43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建用户"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-c6651a56d16e8f87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Add User点击后的界面"></p>
-<p>sample和example安装的时候，需要输入刚才创建的root的密码</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-0175ba7424e952f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="输入root的密码"></p>
-<p>接下来点check和next，execute完就可以了。</p>
-<p>安装完成之后会自动打开：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-475fa27498c287b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MySQL Workbench"></p>
-<h3 id="VSCode安装"><a href="#VSCode安装" class="headerlink" title="VSCode安装"></a>VSCode安装</h3><p>如果需要在服务器上写代码，还是建议搞个VSCode。</p>
-<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a> 官网上直接点击下载就可以。</p>
-<p>接下来安装就很常规了。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-30fdce2c37f907fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里选择确定"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-22e1a067277d0c81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="最好把这几个框都选上"></p>
-<h3 id="ssh登陆"><a href="#ssh登陆" class="headerlink" title="ssh登陆"></a>ssh登陆</h3><p>如果用的是Linux服务器的话，我们可以直接用ssh登陆。</p>
-<p>Windows服务器如果实现了ssh登陆的话，就可以用VSCode remote在本地修改服务器上的代码，比较方便。</p>
-<p>这篇文章里面有详细的介绍： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qishine/article/details/101061647">https://blog.csdn.net/qishine/article/details/101061647</a></p>
-<p>官方教程在：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview">https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview</a> 或者 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-server/administration/openssh/openssh_install_firstuse">https://docs.microsoft.com/zh-cn/windows-server/administration/openssh/openssh_install_firstuse</a></p>
-<p>根据测试（在服务器里面打开powershell，输入ssh），发现其实里面已经装了ssh的客户端（连接别的服务器），但是没有服务器端（不能用别的电脑来ssh连接自己）。</p>
-<p>我们也可以直接在powershell里面输入<code>Get-WindowsCapability -Online | ? Name -Like &#39;*SSH*&#39;</code>来搜索对应的服务。结果如下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-c6858ed02278c8d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="搜索服务的结果"></p>
-<p>（这样就是说明服务端没有装，客户端装了</p>
-<p>根据上面的名字，可以安装，直接在powershell里面输入<code>Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0</code>回车就行：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ccf696c7b02d554e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="安装结束后的样子"></p>
-<p>之后打开服务（按下win键，输入service，就可以看到服务）：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-a5c43a57914e711f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打开【服务】"></p>
-<p>找到OpenSSH的两个服务：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-706dc9333eff27cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="就是他俩"></p>
-<p>右键——属性——启动类型选择【自动】，然后右键——【启动】，打开这两个服务。</p>
-<p>然后就可以连接了！</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-e17806060dde9a2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="连接成功"></p>
-<h4 id="打开通过密钥登陆ssh"><a href="#打开通过密钥登陆ssh" class="headerlink" title="打开通过密钥登陆ssh"></a>打开通过密钥登陆ssh</h4><p>自己电脑上生成密钥的过程参见：</p>
-<ul>
-<li>Windows系统：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2790a860f151">https://www.jianshu.com/p/2790a860f151</a></li>
-<li>Mac系统：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/windyet/articles/8005067.html">https://www.cnblogs.com/windyet/articles/8005067.html</a></li>
-<li>Linux系统：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/powpoia/p/8953106.html">https://www.cnblogs.com/powpoia/p/8953106.html</a></li>
-</ul>
-<p>接下来，服务器上打开<code>C:\ProgramData\ssh</code>，编辑sshd_config，去掉PubkeyAuthentication yes（第34行）前面的注释。<strong>【并且注释掉最后两行】</strong>（那篇教程上没写，<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34007886/article/details/86364850">https://blog.csdn.net/weixin_34007886/article/details/86364850</a> 有提到，亲测必须得注释掉最后两行）</p>
-<p>然后在C:\Users\Administrator下建立文件夹.ssh（做法：在powershell里面输入<code>mkdir C:\Users\Administrator\.ssh</code>）：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-704320a4a404eae6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="建立文件夹.ssh"></p>
-<p>将公钥文件复制过去，重命名成<code>authorized_keys</code>（没有后缀！）。</p>
-<p>最后重新启动两个OpenSSH的服务。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-706dc9333eff27cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="就是他俩"></p>
-<h4 id="【在mac上尝试失败了】本地电脑上进行VSCode配置"><a href="#【在mac上尝试失败了】本地电脑上进行VSCode配置" class="headerlink" title="【在mac上尝试失败了】本地电脑上进行VSCode配置"></a>【在mac上尝试失败了】本地电脑上进行VSCode配置</h4><p>参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/tinywan/p/11107397.html">https://www.cnblogs.com/tinywan/p/11107397.html</a> ，但是因为连的是windows服务器，所以有坑。</p>
-<p>在【自己的】电脑上，打开VSCode，安装插件<code>Remote Development</code>，然后在左下角就会有一个连接服务器的图标，点它！</p>
-<ul>
-<li>因为我的是mac，有一些问题（具体看 <a target="_blank" rel="noopener" href="https://github.com/microsoft/vscode-remote-release/issues/25">https://github.com/microsoft/vscode-remote-release/issues/25</a><br>），连接windows的时候需要VSCode 【insider】（必须是insider才行，可以到 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/insiders/">https://code.visualstudio.com/insiders/</a> 下载），安装插件Remote - SSH (Nightly) 并且删除原来的Remote - SSH。</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-c7c2d09acef1aa85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="左下角的图标！"></p>
-<p>出来的窗口选择第一项，然后输入<code>administrator@你的服务器IP</code></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-ad3f06102c824029.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="选择第一项"></p>
-<p>然后就会告诉你失败了！这时候点击【more actions】——【open settings】，往下拉最后有一个Windows remotes</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-f2dc0a99773c86a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="windows remotes"></p>
-<p>点击add item，把服务器的ip放进去。之后重新连接一次。</p>
-<h4 id="22端口打开"><a href="#22端口打开" class="headerlink" title="22端口打开"></a>22端口打开</h4><p>默认阿里云和这个服务器上已经打开了22端口，如果没有的话，可以到<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e0d9fb8ada93">https://www.jianshu.com/p/e0d9fb8ada93</a> 看一下。</p>
-<h3 id="压缩-amp-解压"><a href="#压缩-amp-解压" class="headerlink" title="压缩&amp;解压"></a>压缩&amp;解压</h3><p>直接用7zip：<a target="_blank" rel="noopener" href="https://www.7-zip.org/">https://www.7-zip.org/</a></p>
-<h3 id="Oracle安装"><a href="#Oracle安装" class="headerlink" title="Oracle安装"></a>Oracle安装</h3><p>oracle账号：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39917347/article/details/81707106">https://blog.csdn.net/weixin_39917347/article/details/81707106</a> ，<a href="mailto:&#50;&#x36;&#x39;&#54;&#x36;&#55;&#x31;&#x32;&#x38;&#x35;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;">&#50;&#x36;&#x39;&#54;&#x36;&#55;&#x31;&#x32;&#x38;&#x35;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#109;</a> ，密码：Oracle123</p>
-<p>可以到官网下载（但是可能连不上）。<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44841225/article/details/100782269">https://blog.csdn.net/weixin_44841225/article/details/100782269</a> 给了官网和百度网盘两个地址。并且里面也有安装的详细介绍。</p>
-<ul>
-<li>指定用户的时候，不能用现有Windows的administrator账户，需要新建一个：<ul>
-<li><img src="https://upload-images.jianshu.io/upload_images/5060560-2aa0798234eac2a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="密码可以与管理员的密码相同"></li>
-</ul>
-</li>
-<li>字符集保持unicode就挺好</li>
-</ul>
-<h3 id="keras数据集的位置"><a href="#keras数据集的位置" class="headerlink" title="keras数据集的位置"></a>keras数据集的位置</h3><p>实测是在：C:\Users\Administrator.keras\datasets</p>
-<p>直接把数据集放上去就行。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8825e9ed1a5d7bd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="keras数据集位置，注意npz文件直接放，多个文件的放到文件夹里面"></p>
-<p>数据集分享在这里：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1odWcfP4FABYFX8-YFdaqUg">https://pan.baidu.com/s/1odWcfP4FABYFX8-YFdaqUg</a>  密码:ci4i</p>
-<h3 id="django部署"><a href="#django部署" class="headerlink" title="django部署"></a>django部署</h3><p>见<a target="_blank" rel="noopener" href="https://www.bbsmax.com/A/ke5jRj3g5r/">https://www.bbsmax.com/A/ke5jRj3g5r/</a></p>
-<p>因为现在uwsgi不支持windows（直接pip install会报错，但是网上也有修改使得它可用的文章），所以使用mod_wsgi</p>
-<h4 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h4><p>如果想要一个服务器绑定多个域名，以及配置https的话，就可以用nginx</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011418717/article/details/52776090">https://blog.csdn.net/u011418717/article/details/52776090</a> 这里有教程</p>
-<ul>
-<li>用连接：<a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.16.1.zip">http://nginx.org/download/nginx-1.16.1.zip</a> 下载</li>
-<li>解压后运行里面的<code>nginx.exe</code>，就打开了，没有什么一直显示的窗口</li>
-<li>打开conf文件夹里面的<code>nginx.conf</code>，就可以配置了。</li>
-</ul>
-<h3 id="设置显示扩展名复选框隐藏"><a href="#设置显示扩展名复选框隐藏" class="headerlink" title="设置显示扩展名复选框隐藏"></a>设置显示扩展名复选框隐藏</h3><p><img src="https://upload-images.jianshu.io/upload_images/5060560-936a5250ab8c1dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打开一个文件夹，选择这里就行"></p>
-<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><p><a target="_blank" rel="noopener" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a> 这里下载就行</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/31/%E9%98%BF%E9%87%8C%E4%BA%91windows%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" data-id="ckqkjgmdd00nsx4c41icrckge" data-title="阿里云windows服务器配置" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-django+oracle11的问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/03/30/django+oracle11%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2020-03-29T22:06:06.000Z" itemprop="datePublished">2020-03-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94Django/">使用—软件—Django</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/30/django+oracle11%E7%9A%84%E9%97%AE%E9%A2%98/">django+oracle11的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://code.djangoproject.com/ticket/24096">https://code.djangoproject.com/ticket/24096</a></p>
-<p>ORA-00932: inconsistent datatypes: expected - got NCLOB</p>
-<p>这个其实是因为用了annotate，结果就崩了。只要把annotate都删掉就行</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/30/django+oracle11%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="ckqkjgm9f00adx4c4arfogamc" data-title="django+oracle11的问题" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-中文词向量" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/03/30/%E4%B8%AD%E6%96%87%E8%AF%8D%E5%90%91%E9%87%8F/" class="article-date">
-  <time class="dt-published" datetime="2020-03-29T22:06:06.000Z" itemprop="datePublished">2020-03-30</time>
+    <a href="/2020/04/02/%E5%9B%BE%E5%83%8FPSNR-SSIM/" class="article-date">
+  <time class="dt-published" datetime="2020-04-01T22:06:06.000Z" itemprop="datePublished">2020-04-02</time>
 </a>
     
   <div class="article-category">
@@ -367,7 +91,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/30/%E4%B8%AD%E6%96%87%E8%AF%8D%E5%90%91%E9%87%8F/">中文词向量</a>
+      <a class="p-name article-title" href="/2020/04/02/%E5%9B%BE%E5%83%8FPSNR-SSIM/">图像PSNR-SSIM</a>
     </h1>
   
 
@@ -375,15 +99,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>一个训练的模型：</p>
-<p><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2018-05-15-10">https://www.jiqizhixin.com/articles/2018-05-15-10</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/Embedding/Chinese-Word-Vectors">https://github.com/Embedding/Chinese-Word-Vectors</a></p>
-<p>一个对于word embedding的介绍：<a target="_blank" rel="noopener" href="https://medium.com/life-of-small-data-engineer/%E8%83%BD%E8%A2%AB%E9%9B%BB%E8%85%A6%E7%90%86%E8%A7%A3%E7%9A%84%E6%96%87%E5%AD%97-nlp-%E4%B8%80-word-embedding-4146267019cb">https://medium.com/life-of-small-data-engineer/%E8%83%BD%E8%A2%AB%E9%9B%BB%E8%85%A6%E7%90%86%E8%A7%A3%E7%9A%84%E6%96%87%E5%AD%97-nlp-%E4%B8%80-word-embedding-4146267019cb</a></p>
+        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/seniusen/p/10012656.html">https://www.cnblogs.com/seniusen/p/10012656.html</a></p>
+<p>PSNR：用信噪比的倒数的log来评估，信噪比用均方误差来算</p>
+<p>SSIM结构相似性：亮度 (luminance)、对比度 (contrast) 和结构 (structure)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/30/%E4%B8%AD%E6%96%87%E8%AF%8D%E5%90%91%E9%87%8F/" data-id="ckqkjgmbb00gkx4c4emi2anxb" data-title="中文词向量" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/02/%E5%9B%BE%E5%83%8FPSNR-SSIM/" data-id="ckqkkaz3b00ikbcc46savbw9l" data-title="图像PSNR-SSIM" class="article-share-link">Share</a>
       
       
       
@@ -395,14 +118,14 @@
 
 
   
-    <article id="post--x开头的编码转汉字" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-图神经网络专题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/03/28/-x%E5%BC%80%E5%A4%B4%E7%9A%84%E7%BC%96%E7%A0%81%E8%BD%AC%E6%B1%89%E5%AD%97/" class="article-date">
-  <time class="dt-published" datetime="2020-03-27T22:06:06.000Z" itemprop="datePublished">2020-03-28</time>
+    <a href="/2020/04/02/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%93%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2020-04-01T22:06:06.000Z" itemprop="datePublished">2020-04-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
   </div>
 
   </div>
@@ -413,7 +136,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/28/-x%E5%BC%80%E5%A4%B4%E7%9A%84%E7%BC%96%E7%A0%81%E8%BD%AC%E6%B1%89%E5%AD%97/">-x开头的编码转汉字</a>
+      <a class="p-name article-title" href="/2020/04/02/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%93%E9%A2%98/">图神经网络专题</a>
     </h1>
   
 
@@ -421,16 +144,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>直接在Python3里面，用.decode()函数就可以。</p>
-<p>例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a =<span class="string">b&quot;\xe6\x93\x8d\xe4\xbd\x9c\xe6\x88\x90\xe5\x8a\x9f&quot;</span></span><br><span class="line"><span class="built_in">print</span>(a.decode())</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jiaoyang77/p/10429485.html">https://www.cnblogs.com/jiaoyang77/p/10429485.html</a></p>
+        <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/c_1137752441008410624">https://zhuanlan.zhihu.com/c_1137752441008410624</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/28/-x%E5%BC%80%E5%A4%B4%E7%9A%84%E7%BC%96%E7%A0%81%E8%BD%AC%E6%B1%89%E5%AD%97/" data-id="ckqkjgm6c0009x4c46e9dfeeh" data-title="-x开头的编码转汉字" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/02/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%93%E9%A2%98/" data-id="ckqkkaz3d00iqbcc48yv53fd7" data-title="图神经网络专题" class="article-share-link">Share</a>
       
       
       
@@ -442,14 +161,14 @@
 
 
   
-    <article id="post-Mac挂载NTFS-免费软件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-端到端神经网络" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/03/28/Mac%E6%8C%82%E8%BD%BDNTFS-%E5%85%8D%E8%B4%B9%E8%BD%AF%E4%BB%B6/" class="article-date">
-  <time class="dt-published" datetime="2020-03-27T22:06:06.000Z" itemprop="datePublished">2020-03-28</time>
+    <a href="/2020/04/02/%E7%AB%AF%E5%88%B0%E7%AB%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="article-date">
+  <time class="dt-published" datetime="2020-04-01T22:06:06.000Z" itemprop="datePublished">2020-04-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%97%A5%E5%B8%B8%E7%B3%BB%E7%BB%9F/">使用—日常系统</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
   </div>
 
   </div>
@@ -460,7 +179,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/28/Mac%E6%8C%82%E8%BD%BDNTFS-%E5%85%8D%E8%B4%B9%E8%BD%AF%E4%BB%B6/">Mac挂载NTFS-免费软件</a>
+      <a class="p-name article-title" href="/2020/04/02/%E7%AB%AF%E5%88%B0%E7%AB%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">端到端神经网络</a>
     </h1>
   
 
@@ -468,12 +187,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://mounty.app/">https://mounty.app</a></p>
+        <p>什么是 end-to-end 神经网络？ - 张旭的回答 - 知乎<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/51435499/answer/129379006">https://www.zhihu.com/question/51435499/answer/129379006</a></p>
+<p>其实就是直接从输入到输出，中间不用专门设计提取什么特征啊啥的</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/28/Mac%E6%8C%82%E8%BD%BDNTFS-%E5%85%8D%E8%B4%B9%E8%BD%AF%E4%BB%B6/" data-id="ckqkjgm7w005gx4c4fexl6n4i" data-title="Mac挂载NTFS-免费软件" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/02/%E7%AB%AF%E5%88%B0%E7%AB%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" data-id="ckqkkaz4s00n9bcc4hc7iet23" data-title="端到端神经网络" class="article-share-link">Share</a>
       
       
       
@@ -485,14 +205,14 @@
 
 
   
-    <article id="post-Mac-qt安装位置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Label-Smoothing" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/03/27/Mac-qt%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/" class="article-date">
-  <time class="dt-published" datetime="2020-03-26T22:06:06.000Z" itemprop="datePublished">2020-03-27</time>
+    <a href="/2020/04/01/Label-Smoothing/" class="article-date">
+  <time class="dt-published" datetime="2020-03-31T22:06:06.000Z" itemprop="datePublished">2020-04-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">领域—人工智能神经网络</a>
   </div>
 
   </div>
@@ -503,7 +223,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/27/Mac-qt%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/">Mac-qt安装位置</a>
+      <a class="p-name article-title" href="/2020/04/01/Label-Smoothing/">Label-Smoothing</a>
     </h1>
   
 
@@ -511,12 +231,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>在 用户文件夹下/Qt5.13.0</p>
+        <p><a target="_blank" rel="noopener" href="https://www.datalearner.com/blog/1051561454844661">https://www.datalearner.com/blog/1051561454844661</a></p>
+<p>标注数据不准确的时候，用交叉熵不太好。训练数据不会覆盖所有的情况，也不会全部都是准确的，所以使用交叉熵其实并不好。</p>
+<p>其实是把原来的标注做一些修改，比如把[0,1]改为[0.05,0.95]</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/101553787">https://zhuanlan.zhihu.com/p/101553787</a></p>
+<p>神经网络被训练得对自己的答案不那么自信。标签平滑强制对分类进行更紧密的分组，同时强制在聚类之间进行更等距的间隔。</p>
+<p>以前的研究(Guo et al)表明，神经网络常常过于自信，相对于它们的真实准确性校准得很差。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/27/Mac-qt%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE/" data-id="ckqkjgm7q004rx4c49b158wi2" data-title="Mac-qt安装位置" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/01/Label-Smoothing/" data-id="ckqkkayz20043bcc44s892cm9" data-title="Label-Smoothing" class="article-share-link">Share</a>
       
       
       
@@ -528,62 +253,10 @@
 
 
   
-    <article id="post-Mac-qt-安装组件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-NP-NPC-NP-hard" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/03/27/Mac-qt-%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6/" class="article-date">
-  <time class="dt-published" datetime="2020-03-26T22:06:06.000Z" itemprop="datePublished">2020-03-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E8%BD%AF%E4%BB%B6%E2%80%94%E5%85%B6%E4%BB%96/">使用—软件—其他</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/27/Mac-qt-%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6/">Mac-qt-安装组件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>必须要<strong>首先</strong>升级Qt版本（直接下载安装新版）！否则后面搞完一堆之后会告诉你要升级才能用……</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-8de6b2c43da6219e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="到后面升级的提示"></p>
-<p>首先要找到安装位置：用户目录/Qt5.13.0</p>
-<p>之后要打开MaintenanceTool.app，并且登陆进去</p>
-<p>为了解决【要继续此操作，至少需要一个有效且已启用的储存库】这个问题，要到设置里面添加临时档案库，一个可用的网址是：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/qt/online/qtsdkrepository/mac_x64/root/qt/">https://mirrors.tuna.tsinghua.edu.cn/qt/online/qtsdkrepository/mac_x64/root/qt/</a></p>
-<ul>
-<li>具体档案库在哪里找，可以看这篇文章：<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_8564b95d0102ybpz.html">http://blog.sina.com.cn/s/blog_8564b95d0102ybpz.html</a></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-93a0d3a313633f96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置-资料档案库-临时资料档案库-添加"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5060560-56dfc4e5fc03133b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="到这里之后先选更新组件！"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/27/Mac-qt-%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6/" data-id="ckqkjgm7q004ux4c45ndah9dh" data-title="Mac-qt-安装组件" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-每日leetcode-面试题51" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/03/21/%E6%AF%8F%E6%97%A5leetcode-%E9%9D%A2%E8%AF%95%E9%A2%9851/" class="article-date">
-  <time class="dt-published" datetime="2020-03-20T22:06:06.000Z" itemprop="datePublished">2020-03-21</time>
+    <a href="/2020/04/01/NP-NPC-NP-hard/" class="article-date">
+  <time class="dt-published" datetime="2020-03-31T22:06:06.000Z" itemprop="datePublished">2020-04-01</time>
 </a>
     
   <div class="article-category">
@@ -598,7 +271,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/21/%E6%AF%8F%E6%97%A5leetcode-%E9%9D%A2%E8%AF%95%E9%A2%9851/">每日leetcode-面试题51</a>
+      <a class="p-name article-title" href="/2020/04/01/NP-NPC-NP-hard/">NP-NPC-NP-hard</a>
     </h1>
   
 
@@ -606,41 +279,28 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="面试题51-数组中的逆序对"><a href="#面试题51-数组中的逆序对" class="headerlink" title="面试题51. 数组中的逆序对"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/">面试题51. 数组中的逆序对</a></h2><p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
-<p><strong>示例 1:</strong></p>
-<p><strong>输入</strong>: [7,5,6,4]<br><strong>输出</strong>: 5</p>
-<p><strong>限制：</strong></p>
-<p><code>0 &lt;= 数组长度 &lt;= 50000</code></p>
-<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>（已经发布在了中文leetcode网站</p>
-<p>和官方解答里面一样，使用了归并排序的方法，在这个过程中添加了对应的逆序对的个数。</p>
-<ul>
-<li>用归并排序</li>
-<li>归并的时候，我们可以检测逆序对有多少个</li>
-<li>比如现在要归并【1,3,6,19】和【2,9,10,20】<ul>
-<li>那么我们可以看到逆序数是：</li>
-<li>3和2，6和2，19和2,9,10</li>
-<li>如果是有两个指针，前一个指针需要移动的时候需要记录一下上一个数字。</li>
-<li>下面用一个例子说明，两个数字分别代表两个指针指向的数：<ul>
-<li>1 2，之后移动了第一个指针，第二个指针的index是0（也就是1比后面几个大）</li>
-<li>3 2，之后移动第二个</li>
-<li>3 9，之后移动第一个，第二个指针的index是1（也就是3比后面几个大）</li>
-<li>6 9，之后移动第一个，第二个指针的index是1（也就是6比后面几个大）</li>
-<li>19 9，移动第二个</li>
-<li>19 10，移动第二个</li>
-<li>19 20，移动第一个，第二个指针的index是3（也就是19比后面几个大）</li>
-</ul>
-</li>
-<li>这样我们把这几个数字对应的逆序对的个数都找到了！加起来就好了！</li>
-</ul>
-</li>
-<li>如果是【1,3,6,19,90】和【2,9,10,20,30】，这时候到最后会发现两个指针分别指向90和结束的位置，这时候把第一个数组后面的元素加进来，一直加上第二个指针的index（5，这时候指向空）就可以了。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">merge_sort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, vector&lt;<span class="keyword">int</span>&gt;&amp; aux, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (start &gt;= end) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = (end + start) / <span class="number">2</span>;</span><br><span class="line">        ans += <span class="built_in">merge_sort</span>(nums, aux, start, mid);</span><br><span class="line">        ans += <span class="built_in">merge_sort</span>(nums, aux, mid + <span class="number">1</span>, end);</span><br><span class="line">        <span class="comment">// merge</span></span><br><span class="line">        <span class="keyword">int</span> index1 = start;</span><br><span class="line">        <span class="keyword">int</span> index2 = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> tar = start;</span><br><span class="line">        <span class="keyword">while</span> (index1 &lt;= mid &amp;&amp; index2 &lt;= end) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[index1] &lt;= nums[index2]) &#123;</span><br><span class="line">                <span class="comment">// 移动第一个指针，这时候记录一下第二个指针指向的数字</span></span><br><span class="line">                ans += index2 - mid - <span class="number">1</span>;</span><br><span class="line">                aux[tar++] = nums[index1++];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                aux[tar++] = nums[index2++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (index1 &lt;= mid) &#123;</span><br><span class="line">            ans += index2 - mid - <span class="number">1</span>;</span><br><span class="line">            aux[tar++] = nums[index1++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (index2 &lt;= end) &#123;</span><br><span class="line">            aux[tar++] = nums[index2++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt;= end; i++) &#123;</span><br><span class="line">            nums[i] = aux[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">reversePairs</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 用归并排序</span></span><br><span class="line">        <span class="comment">// 归并的时候，我们可以检测逆序对有多少个</span></span><br><span class="line">        <span class="comment">// 比如现在要归并【1,3,6,19】和【2,9,10,20】</span></span><br><span class="line">        <span class="comment">// 那么我们可以看到逆序数是：</span></span><br><span class="line">        <span class="comment">// 3和2，6和2，19和2,9,10</span></span><br><span class="line">        <span class="comment">// 如果是有两个指针，前一个指针需要移动的时候需要记录一下上一个数字。</span></span><br><span class="line">        <span class="comment">// 下面用一个例子说明，两个数字分别代表两个指针指向的数：</span></span><br><span class="line">          <span class="comment">// 1 2，之后移动了第一个指针，第二个指针的index是0（也就是1比后面几个大）</span></span><br><span class="line">          <span class="comment">// 3 2，之后移动第二个</span></span><br><span class="line">          <span class="comment">// 3 9，之后移动第一个，第二个指针的index是1（也就是3比后面几个大）</span></span><br><span class="line">          <span class="comment">// 6 9，之后移动第一个，第二个指针的index是1（也就是6比后面几个大）</span></span><br><span class="line">          <span class="comment">// 19 9，移动第二个</span></span><br><span class="line">          <span class="comment">// 19 10，移动第二个</span></span><br><span class="line">          <span class="comment">// 19 20，移动第一个，第二个指针的index是3（也就是19比后面几个大）</span></span><br><span class="line">        <span class="comment">// 这样我们把这几个数字对应的逆序对的个数都找到了！加起来就好了！</span></span><br><span class="line">        <span class="comment">// 如果是【1,3,6,19,90】和【2,9,10,20,30】，这时候到最后会发现两个指针分别指向90和结束的位置，这时候把第一个数组后面的元素加进来，一直加上第二个指针的index（5，这时候指向空）就可以了。</span></span><br><span class="line">        <span class="keyword">int</span> len = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">aux</span><span class="params">(len, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">merge_sort</span>(nums, aux, <span class="number">0</span>, len - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p>P问题：指的是能在多项式时间内解决的问题。<br>NP问题：指的是能在多项式时间内验证的问题。在此，我们可以看出所有的P问题都属于NP问题，但是P是否等于NP呢，至今还未得到验证，即既证明不了P=NP，也证明不了P≠NP。<br>NPC问题（NP完全问题）：是指NP问题中最难的一类问题。证明一个问题是否是NPC问题：（1）先证明此问题是NP问题；（2）此问题可以通过一个已知是NPC的问题规约得到。由证明可知，必须得先定义第一个NPC问题，即电路可满足性问题。<br>NP-hard问题：这类问题至少比NP问题难。</p>
+<p>————————————————<br>版权声明：本文为CSDN博主「Louis_lan」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liu14lang/article/details/84898516">https://blog.csdn.net/liu14lang/article/details/84898516</a></p>
+<p>=====</p>
+<p>NP-hard：比所有的NP问题都难的问题</p>
+<p>怎么理解 P 问题和 NP 问题？ - 王宇的回答 - 知乎<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27039635/answer/101730260">https://www.zhihu.com/question/27039635/answer/101730260</a></p>
+<p>=======</p>
+<p>NP问题有很多种，但若所有的NP问题都能多项式归约到问题X，X为NP hard</p>
+<p>这里又要说道归约上了。如果A能用多项式次的B解决，称A能多项式归约到B。比如说现在问题A为判定二年级是否有人刷知乎, 那我可以把这个问题规约到问题B:判定每个班级是否有人刷知乎。 只要对二年级所有的班级做一边问题B，就能得到A的结果，如果这个次数是输入规模的多项式级别，我们认为A可以多项式规约到B。</p>
+<p>作者：武翔宇<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27039635/answer/49977321">https://www.zhihu.com/question/27039635/answer/49977321</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>=====</p>
+<p>例子：k-clique问题：</p>
+<p>problem： Prove that the following problem is NP-complete:given an undirected graph G=(V,E) and an integer k,<br>return a clique of size k as well as an independent set of size k,provided both exist.</p>
+<p>首先，独立集和团是两个相对的概念，找K个元素的独立集和团是可以等价的。</p>
+<p>对于任意一个有k个项的3SAT表达式，我们对于每个项构造一个三点三边呈现三角形的子图，（共有k个三角形）</p>
+<p>对于每个变量，两种相反的形式（每隔变量取非）之间连一条边，如果能够找到k个元素的独立集，必然k个点分布在k个三角形，即选择了k个变量，使得表达式满足。</p>
+<p>于是，当我们有多项式时间算法解决k独立集问题时，我们就一定有多项式时间算法解决3SAT问题，所以k独立集问题是NP-complete problem.</p>
+<p>同样的，k独立集的等价命题 k-clique问题也是NP-complete的。<br>————————————————<br>版权声明：本文为CSDN博主「cryqqqcy」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cryqqqcy/article/details/75118779">https://blog.csdn.net/cryqqqcy/article/details/75118779</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/21/%E6%AF%8F%E6%97%A5leetcode-%E9%9D%A2%E8%AF%95%E9%A2%9851/" data-id="ckqkjgmco00lax4c498gg5mnq" data-title="每日leetcode-面试题51" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/01/NP-NPC-NP-hard/" data-id="ckqkkayzr006ebcc4bpz8h5pe" data-title="NP-NPC-NP-hard" class="article-share-link">Share</a>
       
       
       
@@ -652,14 +312,14 @@
 
 
   
-    <article id="post-虚类虚函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-graph-learning" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/03/20/%E8%99%9A%E7%B1%BB%E8%99%9A%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2020-03-19T22:06:06.000Z" itemprop="datePublished">2020-03-20</time>
+    <a href="/2020/04/01/graph-learning/" class="article-date">
+  <time class="dt-published" datetime="2020-03-31T22:06:06.000Z" itemprop="datePublished">2020-04-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E2%80%94Python/">语言—Python</a>
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
   </div>
 
   </div>
@@ -670,7 +330,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/03/20/%E8%99%9A%E7%B1%BB%E8%99%9A%E5%87%BD%E6%95%B0/">虚类虚函数</a>
+      <a class="p-name article-title" href="/2020/04/01/graph-learning/">graph-learning</a>
     </h1>
   
 
@@ -678,14 +338,228 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>用<code>from abc import ABC, abstractmethod</code></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/idontknowthisperson/p/10090012.html">https://www.cnblogs.com/idontknowthisperson/p/10090012.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/LaoYuanPython/article/details/92840491">https://blog.csdn.net/LaoYuanPython/article/details/92840491</a></p>
+        <h2 id="图传播算法（上）："><a href="#图传播算法（上）：" class="headerlink" title="图传播算法（上）："></a>图传播算法（上）：</h2><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI2MDE5MTQxNg==&amp;mid=2649687693&amp;idx=1&amp;sn=1dc186d11b7c802ef518b32785c78e4a&amp;chksm=f276c35ac5014a4cfb7d8fa6eb636ba011c99f519f6079512370fbfcc2cd5a37a739de72a7f2&amp;scene=21#wechat_redirect">https://mp.weixin.qq.com/s?__biz=MzI2MDE5MTQxNg==&amp;mid=2649687693&amp;idx=1&amp;sn=1dc186d11b7c802ef518b32785c78e4a&amp;chksm=f276c35ac5014a4cfb7d8fa6eb636ba011c99f519f6079512370fbfcc2cd5a37a739de72a7f2&amp;scene=21#wechat_redirect</a></p>
+<p>不断更新函数</p>
+<h3 id="PageRank"><a href="#PageRank" class="headerlink" title="PageRank"></a>PageRank</h3><p>被更多网页链接到的网页更重要；有更少外链的网页将会传递更高的权重</p>
+<h2 id="图传播算法（下）"><a href="#图传播算法（下）" class="headerlink" title="图传播算法（下）"></a>图传播算法（下）</h2><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?src=11&amp;timestamp=1585742506&amp;ver=2252&amp;signature=-p016dG11Ls4lF6y2CFtc9MoFBxPNWIRivL9mZqPEgo32c3r4u20xW8EBfK1EmKiaQ4bfR77kUYz3X0Z5CabGJ*L9B1MntleaAGGAwrsTyHtQ7eVhXydbGpHCi1wvfit&amp;new=1">https://mp.weixin.qq.com/s?src=11&amp;timestamp=1585742506&amp;ver=2252&amp;signature=-p016dG11Ls4lF6y2CFtc9MoFBxPNWIRivL9mZqPEgo32c3r4u20xW8EBfK1EmKiaQ4bfR77kUYz3X0Z5CabGJ*L9B1MntleaAGGAwrsTyHtQ7eVhXydbGpHCi1wvfit&amp;new=1</a></p>
+<h3 id="HITS"><a href="#HITS" class="headerlink" title="HITS"></a>HITS</h3><ul>
+<li>Authority：可理解为权威页面，一般包含高质量内容。</li>
+<li>hub：可理解为导航页面，指向很多Authority页面。</li>
+</ul>
+<p>其经验假设为：</p>
+<ul>
+<li>被越多的hub页面所指向的页面，内容质量越高。</li>
+<li>一个hub页面会尽可能地指向更高质量的内容页面。</li>
+</ul>
+<h3 id="Weisfeiler-Lehman"><a href="#Weisfeiler-Lehman" class="headerlink" title="Weisfeiler-Lehman"></a>Weisfeiler-Lehman</h3><p>解决图的相似性问题，虽然算法要解决的问题聚焦在Graph层面上，但是其立足点还是在节点上，如果我们能够找到一种衡量节点独立性（unique）的方法，那么我们就可以将图视作一个包含这些独立性节点的集合，两张图的相似性可以转化为两个集合的Jaccard相似度。</p>
+<ul>
+<li>Jaccard系数：相同的 除以 总共的，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Jaccard%E7%B3%BB%E6%95%B0/6784913?fr=aladdin">https://baike.baidu.com/item/Jaccard系数/6784913?fr=aladdin</a></li>
+</ul>
+<p>在节点邻居信息的基础上，加上哈希函数。</p>
+<h3 id="RVE2"><a href="#RVE2" class="headerlink" title="RVE2"></a>RVE2</h3><p>解决恶意评分场景下问题。</p>
+<p>给定一个有向的，带有权重的二部图Bipartite Graph G=（U,R,P）。其中，U代表用户集合，P代表商品集合，R表示所有边的集合，边（μ,p）表示用户μ对商品p的一次评分操作，设评分为score(μ,p)，score(μ,p)∈[-1,1]。</p>
+<p>分别对用户、商品、评分设计了衡量指标。</p>
+<p>刻画了上述三个指标之后，可以总结出下面5条经验假设：</p>
+<ul>
+<li>质量好的商品得到更高的评分</li>
+<li>质量好的商品得到更多可靠的正面评分</li>
+<li>可靠的评分在数值上更接近商品的质量</li>
+<li>可靠的评分来自公正用户</li>
+<li>给出越可靠评分的用户公正度越高</li>
+</ul>
+<p>更新公式会趋向于忽略低可靠度的评分，而加大高可靠度评分的权重。也可证明，更新公式全部符合上述五条经验假设。</p>
+<h2 id="图卷积神经网络"><a href="#图卷积神经网络" class="headerlink" title="图卷积神经网络"></a>图卷积神经网络</h2><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI2MDE5MTQxNg==&amp;mid=2649687812&amp;idx=2&amp;sn=c287f48f04b4755577da8ce46c487582&amp;chksm=f276c2d3c5014bc57aaa25c7c50d87ba6d46762d79e1aa5761325bed25955be578253811ff60&amp;scene=21#wechat_redirect">https://mp.weixin.qq.com/s?__biz=MzI2MDE5MTQxNg==&amp;mid=2649687812&amp;idx=2&amp;sn=c287f48f04b4755577da8ce46c487582&amp;chksm=f276c2d3c5014bc57aaa25c7c50d87ba6d46762d79e1aa5761325bed25955be578253811ff60&amp;scene=21#wechat_redirect</a></p>
+<p>卷积神经网络很好，但是它研究的对象还是限制在Euclidean domains的数据。什么是Euclidean data？   Euclidean data最显著的特征就是有规则的空间结构，比如图片是规则的正方形栅格，比如语音是规则的一维序列。而这些数据结构能够用一维、二维的矩阵表示，卷积神经网络处理起来很高效。</p>
+<p>但是，我们的现实生活中有很多数据并不具备规则的空间结构，称为Non Euclidean data。比如推荐系统、电子交易、计算几何、脑信号、分子结构等抽象出的图谱。这些图谱结构每个节点连接都不尽相同，有的节点有三个连接，有的节点有两个连接，是不规则的数据结构。</p>
+<p>图卷积算子：发射消息、接收消息、变换</p>
+<p>局部参数共享，感受域正比于层数</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/03/20/%E8%99%9A%E7%B1%BB%E8%99%9A%E5%87%BD%E6%95%B0/" data-id="ckqkjgmd800n8x4c4guk05rkn" data-title="虚类虚函数" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/01/graph-learning/" data-id="ckqkkaz1l00cfbcc487r6alhk" data-title="graph-learning" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hypergraph" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/01/hypergraph/" class="article-date">
+  <time class="dt-published" datetime="2020-03-31T22:06:06.000Z" itemprop="datePublished">2020-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/01/hypergraph/">hypergraph</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>边变成了一个若干节点的集合，里面点之间的距离平均被认为是边权重</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32797059/article/details/93031052">https://blog.csdn.net/qq_32797059/article/details/93031052</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/04/01/hypergraph/" data-id="ckqkkaz1m00cmbcc4gij9a4rs" data-title="hypergraph" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-jupyter在root公网80使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/01/jupyter%E5%9C%A8root%E5%85%AC%E7%BD%9180%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2020-03-31T22:06:06.000Z" itemprop="datePublished">2020-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BD%BF%E7%94%A8%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用—服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/01/jupyter%E5%9C%A8root%E5%85%AC%E7%BD%9180%E4%BD%BF%E7%94%A8/">jupyter在root公网80使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>如果没有啥安全性需要，直接在root情况下使用，并且要外网80端口访问的话，指令是：</p>
+<p><code>jupyter notebook --port 80 --ip 0.0.0.0 --no-browser --allow-root</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/04/01/jupyter%E5%9C%A8root%E5%85%AC%E7%BD%9180%E4%BD%BF%E7%94%A8/" data-id="ckqkkaz1t00ddbcc4fu7qdjzh" data-title="jupyter在root公网80使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-图的拉普拉斯矩阵&amp;拉普拉斯算子" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/01/%E5%9B%BE%E7%9A%84%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%9F%A9%E9%98%B5&%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90/" class="article-date">
+  <time class="dt-published" datetime="2020-03-31T22:06:06.000Z" itemprop="datePublished">2020-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">领域—社交网络推荐系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/01/%E5%9B%BE%E7%9A%84%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%9F%A9%E9%98%B5&%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90/">图的拉普拉斯矩阵&amp;拉普拉斯算子</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/85287578">https://zhuanlan.zhihu.com/p/85287578</a></p>
+<p>拉普拉斯算子其实就是对每个变量分别求个二阶导，然后再加起来。如果用离散的方法来写的话就可以感觉是周围点与中心点的梯度差，或者说四个方向相邻的减去四个中心的。当中心点受到扰动之后，其可能变为相邻的周围点之一，拉普拉斯算子得到的是对该点进行微小扰动后可能获得的总增益 （或者说是总变化）。</p>
+<p>图的拉普拉斯，周围点就相当于是这里的邻居节点，中心点就相当于图的要研究的那个节点，所以按照之前的算法，这里就等于他的 邻居节点的信息加起来 减去 邻居个数乘上自己的信息。所以用权重矩阵$W$的话，他的相反数就是：$\Delta f_{i}=\sum_{j \in N} W_{i j}\left(f_{i}-f_{j}\right)$（刚才拉普拉斯这里是周围减去中间，现在是中间减去周围，所以说相反数），这里$i$的信号就用$f_i$表示，如果不相邻，这里的$W_{ij}$就是0，所以算出来的结果就是相邻的所有节点和自己的差的和。</p>
+<p>每一个算出来的$\Delta f_{i}$组合成一个列向量，如果把他们分解成 一个矩阵 乘 所有$f_i$的行向量 的话，就可以发现这个矩阵就是$D-W$。</p>
+<p>半正定的证明：<a target="_blank" rel="noopener" href="https://blog.csdn.net/beiyangdashu/article/details/49300479?utm_source=blogxgwz7">https://blog.csdn.net/beiyangdashu/article/details/49300479?utm_source=blogxgwz7</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/04/01/%E5%9B%BE%E7%9A%84%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%9F%A9%E9%98%B5&%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90/" data-id="ckqkkaz3d00iobcc41d6s6co7" data-title="图的拉普拉斯矩阵&amp;拉普拉斯算子" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-子模性-Submodularity" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/01/%E5%AD%90%E6%A8%A1%E6%80%A7-Submodularity/" class="article-date">
+  <time class="dt-published" datetime="2020-03-31T22:06:06.000Z" itemprop="datePublished">2020-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A2%86%E5%9F%9F%E2%80%94%E6%95%B0%E5%AD%A6/">领域—数学</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/01/%E5%AD%90%E6%A8%A1%E6%80%A7-Submodularity/">子模性-Submodularity</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在小的上面添加比在大的上面添加同样的东西，改进要更加明显</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/52512602">https://zhuanlan.zhihu.com/p/52512602</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5060560-7f71993e49312bf0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Submodularity"></p>
+<p>在雷达覆盖范围比较小的时候加入一个雷达(左图)，它的效果肯定比在雷达覆盖范围比较大的时候加一个雷达的效果要好(右图)。</p>
+<p>$f(A)-f(A \cap B) \geq f(A \cup B)-f(B)$<br>$f({A \cap B} \cup{A})-f(A \cap B) \geq f(B \cup A)-f(B)$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fengh16.github.io/2020/04/01/%E5%AD%90%E6%A8%A1%E6%80%A7-Submodularity/" data-id="ckqkkaz3i00j7bcc4eh3v3we5" data-title="子模性-Submodularity" class="article-share-link">Share</a>
       
       
       
@@ -701,7 +575,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/17/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/19/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/17/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/19/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -722,7 +596,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CLion/" rel="tag">CLion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kaggle/" rel="tag">Kaggle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PyCharm/" rel="tag">PyCharm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/" rel="tag">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag">数据集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" rel="tag">服务器开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" rel="tag">社交网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" rel="tag">社区划分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" rel="tag">系统使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag">软件使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9C%E7%A8%8B/" rel="tag">远程</a></li></ul>
     </div>
   </div>
 
@@ -732,7 +606,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 17.5px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
+      <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CLion/" style="font-size: 10px;">CLion</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/GNN/" style="font-size: 12.5px;">GNN</a> <a href="/tags/Kaggle/" style="font-size: 10px;">Kaggle</a> <a href="/tags/PyCharm/" style="font-size: 10px;">PyCharm</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 12.5px;">数据集</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 15px;">服务器</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/" style="font-size: 15px;">服务器开发</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">社交网络</a> <a href="/tags/%E7%A4%BE%E5%8C%BA%E5%88%92%E5%88%86/" style="font-size: 12.5px;">社区划分</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">神经网络</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">系统使用</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 17.5px;">转载</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">软件使用</a> <a href="/tags/%E8%BF%9C%E7%A8%8B/" style="font-size: 15px;">远程</a>
     </div>
   </div>
 
@@ -741,7 +615,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">January 1970</a></li></ul>
     </div>
   </div>
 
@@ -758,19 +632,19 @@
           </li>
         
           <li>
-            <a href="/2021/05/28/windows-gcc/">windows-gcc</a>
+            <a href="/2021/06/29/Windows-%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">Windows-修改远程桌面</a>
           </li>
         
           <li>
-            <a href="/2021/05/18/nginx-centos/">nginx-centos</a>
+            <a href="/2021/06/28/switch%E6%A8%A1%E6%8B%9F%E5%99%A8/">switch模拟器</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%E8%B8%A9%E5%9D%91/">cuda安装报错信息踩坑</a>
+            <a href="/2021/06/27/latex-label%E4%B8%8D%E5%AF%B9/">latex-label不对</a>
           </li>
         
           <li>
-            <a href="/2021/05/08/cuda%E6%B8%85%E5%8D%8E%E6%BA%90/">cuda清华源</a>
+            <a href="/2021/06/27/latex-%E6%8E%92%E7%89%88/">latex-排版</a>
           </li>
         
       </ul>
