@@ -99,13 +99,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>使用一个<template slot-scope="scope">，在里面就可以用scope.row.xxxxx访问自己的东西了</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>使用一个<template slot-scope="scope">，在里面就可以用scope.row.xxxxx访问自己的东西了</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">      :data=<span class="string">&quot;tableData&quot;</span></span><br><span class="line">      style=<span class="string">&quot;width: 100%&quot;</span></span><br><span class="line">      :row-<span class="class"><span class="keyword">class</span>-<span class="title">name</span></span>=<span class="string">&quot;tableRowClassName&quot;</span>&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        label=<span class="string">&quot;配置信息&quot;</span>&gt;</span><br><span class="line">        &lt;template slot-scope=<span class="string">&quot;scope&quot;</span>&gt;</span><br><span class="line">          &lt;el-button type=<span class="string">&quot;text&quot;</span> @click=<span class="string">&quot;open(scope.row.config_str)&quot;</span>&gt;显示配置信息<span class="built_in">JSON</span>&lt;/el-button&gt;</span><br><span class="line">        &lt;/template&gt;</span><br><span class="line">      &lt;/el-table-column&gt;</span><br><span class="line">    &lt;/el-table&gt;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/07/el-table-tree%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F/" data-id="ckqkkaz1e00brbcc47w9sb3s8" data-title="el-table-tree自定义格式" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/07/el-table-tree%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F/" data-id="ckqlzg1t900bqwkc45d8dbdwo" data-title="el-table-tree自定义格式" class="article-share-link">Share</a>
       
       
       
@@ -143,7 +145,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>我们可以用jquery+ajax进行http请求，但是已经用了vuejs，没必要专门搞一个jquery，所以就用vue-resource里面带着的http就行。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>我们可以用jquery+ajax进行http请求，但是已经用了vuejs，没必要专门搞一个jquery，所以就用vue-resource里面带着的http就行。</p>
 <p>这里有说明：<a target="_blank" rel="noopener" href="https://blog.csdn.net/vbirdbest/article/details/85290157">https://blog.csdn.net/vbirdbest/article/details/85290157</a></p>
 <p>步骤：</p>
 <ul>
@@ -163,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/07/vuejs-http%E8%AF%B7%E6%B1%82/" data-id="ckqkkaz2q00gebcc4hgkp730q" data-title="vuejs-http请求" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/07/vuejs-http%E8%AF%B7%E6%B1%82/" data-id="ckqlzg1ut00gdwkc46b0h9avg" data-title="vuejs-http请求" class="article-share-link">Share</a>
       
       
       
@@ -201,7 +205,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="假设检验"><a href="#假设检验" class="headerlink" title="假设检验"></a>假设检验</h2><p>碰巧有机会回顾了一下统计学的东西，就把一些统计检验相关的放在这了～</p>
+        <meta name="referrer" content="no-referrer" />
+
+<h2 id="假设检验"><a href="#假设检验" class="headerlink" title="假设检验"></a>假设检验</h2><p>碰巧有机会回顾了一下统计学的东西，就把一些统计检验相关的放在这了～</p>
 <p><a target="_blank" rel="noopener" href="https://bookdown.org/hezhijian/book/test.html#section-63">第 3 章 假设检验 | 数理统计讲义</a>远离 这里有一些假设检验的基本内容。</p>
 <p>我们要做假设检验，是通过一系列样本来分析总体的分布。我们需要做的是提出原假设和备择假设，H0称为原假设/零假设(Null Hypothesis)，H1称为备选假设/对立假设/备择假设(Alternative Hypothesis)。</p>
 <h2 id="两类错误"><a href="#两类错误" class="headerlink" title="两类错误"></a>两类错误</h2><p><img src="https://upload-images.jianshu.io/upload_images/5060560-8f63022b62e164b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="两类错误"></p>
@@ -243,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/07/%E7%BB%9F%E8%AE%A1%E6%A3%80%E9%AA%8C/" data-id="ckqkkaz4u00njbcc4clba2rs7" data-title="统计检验" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/07/%E7%BB%9F%E8%AE%A1%E6%A3%80%E9%AA%8C/" data-id="ckqlzg1wv00niwkc4g9lnhnvo" data-title="统计检验" class="article-share-link">Share</a>
       
       
       
@@ -281,13 +287,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="django中配置允许跨域请求"><a href="#django中配置允许跨域请求" class="headerlink" title="django中配置允许跨域请求"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/randomlee/p/9752705.html">django中配置允许跨域请求</a></h1><hr>
+        <meta name="referrer" content="no-referrer" />
+
+<h1 id="django中配置允许跨域请求"><a href="#django中配置允许跨域请求" class="headerlink" title="django中配置允许跨域请求"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/randomlee/p/9752705.html">django中配置允许跨域请求</a></h1><hr>
 <p>前端请求头的一个：<a target="_blank" rel="noopener" href="https://blog.csdn.net/spfLinux/article/details/79280105?utm_source=blogxgwz8">https://blog.csdn.net/spfLinux/article/details/79280105?utm_source=blogxgwz8</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/07/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%EF%BC%88%E5%9C%A8%E5%90%8E%E7%AB%AF-%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82%E5%A4%B4%EF%BC%89/" data-id="ckqkkaz5100o7bcc4b90qhm2i" data-title="跨域解决（在后端-前端请求头）" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/07/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%EF%BC%88%E5%9C%A8%E5%90%8E%E7%AB%AF-%E5%89%8D%E7%AB%AF%E8%AF%B7%E6%B1%82%E5%A4%B4%EF%BC%89/" data-id="ckqlzg1x200o6wkc4fi349209" data-title="跨域解决（在后端-前端请求头）" class="article-share-link">Share</a>
       
       
       
@@ -325,7 +333,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>三角分布是分布函数呈现三角形的分布。参数有最小值、最大值、众数。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>三角分布是分布函数呈现三角形的分布。参数有最小值、最大值、众数。</p>
 <p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Triangular_distribution">三角分布wiki英文网页</a></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5060560-8d0d10945eab6eaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="三角分布"></p>
 <p>下面是一个例子：</p>
@@ -336,7 +346,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/06/Python%E4%B8%AD%E7%9A%84%E4%B8%89%E8%A7%92%E5%88%86%E5%B8%83%E5%92%8C%E6%A2%AF%E5%BD%A2%E5%88%86%E5%B8%83/" data-id="ckqkkaz02007cbcc449uk6em8" data-title="Python中的三角分布和梯形分布" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/06/Python%E4%B8%AD%E7%9A%84%E4%B8%89%E8%A7%92%E5%88%86%E5%B8%83%E5%92%8C%E6%A2%AF%E5%BD%A2%E5%88%86%E5%B8%83/" data-id="ckqlzg1rt0078wkc4drlfe8ue" data-title="Python中的三角分布和梯形分布" class="article-share-link">Share</a>
       
       
       
@@ -374,13 +384,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>可以进行逐个元素的判断，判断这些东西有没有在给定的数组中。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>可以进行逐个元素的判断，判断这些东西有没有在给定的数组中。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.isin(np.array([1,2,3]), [1,2])</span><br><span class="line">array([ True,  True, False])</span><br><span class="line">&gt;&gt;&gt; np.array([1,2,3]) in [1,2]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/06/numpy-isin-%E7%AD%9B%E9%80%89%E6%89%80%E6%9C%89%E5%9C%A8%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84/" data-id="ckqkkaz2300edbcc4282x8eua" data-title="numpy-isin-筛选所有在范围内的" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/06/numpy-isin-%E7%AD%9B%E9%80%89%E6%89%80%E6%9C%89%E5%9C%A8%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84/" data-id="ckqlzg1u700ecwkc41hi925hr" data-title="numpy-isin-筛选所有在范围内的" class="article-share-link">Share</a>
       
       
       
@@ -418,12 +430,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://github.com/choury/baidudisk">https://github.com/choury/baidudisk</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://github.com/choury/baidudisk">https://github.com/choury/baidudisk</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/06/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E6%8C%82%E8%BD%BD/" data-id="ckqkkaz4n00mrbcc44yfjb5av" data-title="百度网盘挂载" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/06/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E6%8C%82%E8%BD%BD/" data-id="ckqlzg1wo00mqwkc4hn908xhp" data-title="百度网盘挂载" class="article-share-link">Share</a>
       
       
       
@@ -461,7 +475,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>float_power会强行转成float，但是原来如果是int64的话可能精度有损失</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>float_power会强行转成float，但是原来如果是int64的话可能精度有损失</p>
 <blockquote>
 <p>NumPy float_power（）函数与幂函数的区别在于这些整数，float16和float32被提升为float64的最小精度的float，因此结果始终是不精确的。对于负幂，float_power（）函数将返回良好的结果，而对于+ ve幂，很少会溢出。</p>
 </blockquote>
@@ -472,7 +488,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/05/numpy%E7%9A%84power%E5%92%8Cfloat_power%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckqkkaz2300efbcc428u97e1p" data-title="numpy的power和float_power的区别" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/05/numpy%E7%9A%84power%E5%92%8Cfloat_power%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckqlzg1u800eewkc441db3lsq" data-title="numpy的power和float_power的区别" class="article-share-link">Share</a>
       
       
       
@@ -510,14 +526,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>random.randint(0,0) 可以得到0</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>random.randint(0,0) 可以得到0</p>
 <p>但是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.random.randint(0,0)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">  File &quot;mtrand.pyx&quot;, line 747, in numpy.random.mtrand.RandomState.randint</span><br><span class="line">  File &quot;_bounded_integers.pyx&quot;, line 1270, in numpy.random._bounded_integers._rand_int64</span><br><span class="line">ValueError: low &gt;&#x3D; high</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/05/random-randint%E5%92%8Cnumpy%E4%B8%AD%E7%9A%84%E5%90%8C%E5%90%8D%E5%87%BD%E6%95%B0%E4%B8%8D%E5%90%8C/" data-id="ckqkkaz2e00febcc478w05gcr" data-title="random-randint和numpy中的同名函数不同" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/05/random-randint%E5%92%8Cnumpy%E4%B8%AD%E7%9A%84%E5%90%8C%E5%90%8D%E5%87%BD%E6%95%B0%E4%B8%8D%E5%90%8C/" data-id="ckqlzg1ui00fdwkc46djmggav" data-title="random-randint和numpy中的同名函数不同" class="article-share-link">Share</a>
       
       
       
@@ -555,14 +573,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>在这个答案对应的【问题】中选择三个小圆点，之后就有这个选项了。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>在这个答案对应的【问题】中选择三个小圆点，之后就有这个选项了。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5060560-94b8bbfa134da71f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="匿名与否的位置"></p>
 <p>知乎为什么能把匿名回答改成实名却不能把实名回答改成匿名？ - 文西湖里的回答 - 知乎<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20945537/answer/140519834">https://www.zhihu.com/question/20945537/answer/140519834</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/05/%E7%9F%A5%E4%B9%8E%E5%8C%BF%E5%90%8D%E4%B8%8E%E5%8F%96%E6%B6%88/" data-id="ckqkkaz4o00mtbcc4gw4c52zt" data-title="知乎匿名与取消" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/05/%E7%9F%A5%E4%B9%8E%E5%8C%BF%E5%90%8D%E4%B8%8E%E5%8F%96%E6%B6%88/" data-id="ckqlzg1wp00mswkc42b1pg452" data-title="知乎匿名与取消" class="article-share-link">Share</a>
       
       
       

@@ -6,15 +6,15 @@
   
   <title>Python多线程 | Henry Fox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;fnng&#x2F;p&#x2F;3670789.html 做一下摘录（包括评论区里面指出的问题）： 123456789101112131415161718192021222324252627282930313233343536import threadingfrom time import ctime, sleepdef music(func):    for i i">
+  <meta name="description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;fnng&#x2F;p&#x2F;3670789.html 做一下摘录（包括评论区里面指出的问题）： 123456789101112131415161718192021222324252627282930313233343536import threadingfrom time import ctime, sleepdef music(func):    for i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python多线程">
 <meta property="og:url" content="https://fengh16.github.io/2020/04/30/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Henry Fox">
-<meta property="og:description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;fnng&#x2F;p&#x2F;3670789.html 做一下摘录（包括评论区里面指出的问题）： 123456789101112131415161718192021222324252627282930313233343536import threadingfrom time import ctime, sleepdef music(func):    for i i">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;fnng&#x2F;p&#x2F;3670789.html 做一下摘录（包括评论区里面指出的问题）： 123456789101112131415161718192021222324252627282930313233343536import threadingfrom time import ctime, sleepdef music(func):    for i">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-29T22:06:06.000Z">
-<meta property="article:modified_time" content="2021-05-28T13:04:47.750Z">
+<meta property="article:modified_time" content="2021-07-02T06:50:13.692Z">
 <meta property="article:author" content="Henry Fox">
 <meta name="twitter:card" content="summary">
   
@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fnng/p/3670789.html">https://www.cnblogs.com/fnng/p/3670789.html</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fnng/p/3670789.html">https://www.cnblogs.com/fnng/p/3670789.html</a></p>
 <p>做一下摘录（包括评论区里面指出的问题）：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> ctime, sleep</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">music</span>(<span class="params">func</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;I started listening to %s. %s&quot;</span> % (func, ctime()))</span><br><span class="line">        sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;I finished listening to %s. %s&quot;</span> % (func, ctime()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">movie</span>(<span class="params">func</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;I started to watch %s! %s&quot;</span> % (func, ctime()))</span><br><span class="line">        sleep(<span class="number">5</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;I finished watching %s! %s&quot;</span> % (func, ctime()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">threads = []</span><br><span class="line">t1 = threading.Thread(target=music, args=(<span class="string">&#x27;爱情买卖&#x27;</span>,))</span><br><span class="line">threads.append(t1)</span><br><span class="line">t2 = threading.Thread(target=movie, args=(<span class="string">&#x27;阿凡达&#x27;</span>,))</span><br><span class="line">threads.append(t2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">        s(<span class="literal">True</span>)  <span class="comment"># 守护线程，需要在start之前设置；守护线程的意思就是，被守护的挂掉了他也就走了，比如背景音乐</span></span><br><span class="line">        t.start()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">        t.join()</span><br><span class="line">        <span class="comment"># 为什么要写在另一个循环里面呢？</span></span><br><span class="line">        <span class="comment"># 这两个线程中，如果第一个比第二个快，那就是先在第一个线程中阻塞，第二个线程来了再继续阻塞；</span></span><br><span class="line">        <span class="comment"># 如果第二个比第一个快，那就是第一个线程中直接阻塞到头了，第二个线程执行join的时候已经做完了，不用阻塞了</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;all over %s&quot;</span> % ctime())</span><br></pre></td></tr></table></figure>
 
@@ -115,7 +117,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/04/30/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-id="ckqkkaz04007ibcc4b4rxgtkp" data-title="Python多线程" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/04/30/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-id="ckqlzg1rv007hwkc4fk4w4hjl" data-title="Python多线程" class="article-share-link">Share</a>
       
       
       

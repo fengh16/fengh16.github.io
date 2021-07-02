@@ -6,15 +6,15 @@
   
   <title>缓存的最远将来算法-贪心 | Henry Fox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="&#x2F;&#x2F; 来自算法设计一书94页开始。 算法描述已知缓存的大小以及访问元素的顺序，每次需要放入新的并且缓存已经满的情况（即缺失）下从缓存中去除下一个相同元素在最远的将来被访问到的元素。 证明要证明算法的最优，需要说明不存在以下情况：其他方法回收在某一步的元素比上述算法在相同步骤回收的元素更远。但是可以证明，如果这种情况发生，会有别的位置的元素比这个算法更近，总的效果不会更好。 定义简化的调度为：只有在">
+  <meta name="description" content="&#x2F;&#x2F; 来自算法设计一书94页开始。 算法描述已知缓存的大小以及访问元素的顺序，每次需要放入新的并且缓存已经满的情况（即缺失）下从缓存中去除下一个相同元素在最远的将来被访问到的元素。 证明要证明算法的最优，需要说明不存在以下情况：其他方法回收在某一步的元素比上述算法在相同步骤回收的元素更远。但是可以证明，如果这种情况发生，会有别的位置的元素比这个算法更近，总的效果不会更好。 定义简化的调度为：只">
 <meta property="og:type" content="article">
 <meta property="og:title" content="缓存的最远将来算法-贪心">
 <meta property="og:url" content="https://fengh16.github.io/2018/03/25/%E7%BC%93%E5%AD%98%E7%9A%84%E6%9C%80%E8%BF%9C%E5%B0%86%E6%9D%A5%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83/index.html">
 <meta property="og:site_name" content="Henry Fox">
-<meta property="og:description" content="&#x2F;&#x2F; 来自算法设计一书94页开始。 算法描述已知缓存的大小以及访问元素的顺序，每次需要放入新的并且缓存已经满的情况（即缺失）下从缓存中去除下一个相同元素在最远的将来被访问到的元素。 证明要证明算法的最优，需要说明不存在以下情况：其他方法回收在某一步的元素比上述算法在相同步骤回收的元素更远。但是可以证明，如果这种情况发生，会有别的位置的元素比这个算法更近，总的效果不会更好。 定义简化的调度为：只有在">
+<meta property="og:description" content="&#x2F;&#x2F; 来自算法设计一书94页开始。 算法描述已知缓存的大小以及访问元素的顺序，每次需要放入新的并且缓存已经满的情况（即缺失）下从缓存中去除下一个相同元素在最远的将来被访问到的元素。 证明要证明算法的最优，需要说明不存在以下情况：其他方法回收在某一步的元素比上述算法在相同步骤回收的元素更远。但是可以证明，如果这种情况发生，会有别的位置的元素比这个算法更近，总的效果不会更好。 定义简化的调度为：只">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-03-24T22:06:06.000Z">
-<meta property="article:modified_time" content="2021-05-28T13:04:47.745Z">
+<meta property="article:modified_time" content="2021-07-02T06:50:18.316Z">
 <meta property="article:author" content="Henry Fox">
 <meta name="twitter:card" content="summary">
   
@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>// 来自算法设计一书94页开始。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>// 来自算法设计一书94页开始。</p>
 <h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p>已知缓存的大小以及访问元素的顺序，每次需要放入新的并且缓存已经满的情况（即缺失）下从缓存中去除<code>下一个相同元素在最远的将来被访问到</code>的元素。</p>
 <h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><p>要证明算法的最优，需要说明不存在以下情况：其他方法回收在某一步的元素比上述算法在相同步骤回收的元素更远。但是可以证明，如果这种情况发生，会有别的位置的元素比这个算法更近，总的效果不会更好。</p>
 <p>定义简化的调度为：只有在需要某个元素的时候才把这个元素放入缓存中。可以说明每一个非简化的调度都有对应的简化的调度（把放入元素的时机推后到该元素被使用即可）并且不会使得总的缺失次数变多。并且简化调度放入的项数就是缺失次数（不包含刚开始缓存没有满的时候放入的）</p>
@@ -123,7 +125,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/03/25/%E7%BC%93%E5%AD%98%E7%9A%84%E6%9C%80%E8%BF%9C%E5%B0%86%E6%9D%A5%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83/" data-id="ckqkkaz4v00nmbcc461uodzke" data-title="缓存的最远将来算法-贪心" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/03/25/%E7%BC%93%E5%AD%98%E7%9A%84%E6%9C%80%E8%BF%9C%E5%B0%86%E6%9D%A5%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83/" data-id="ckqlzg1ww00nlwkc4ez6hfhl0" data-title="缓存的最远将来算法-贪心" class="article-share-link">Share</a>
       
       
       

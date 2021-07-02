@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>今天需要把所有pdf文件加上水印再放回去，但是这些文件不是都在同一个文件夹下面，PDFELEMENT6 PRO添加文件的时候不太方便，所以就把这些东西先放到同一个文件夹下，处理后再放回去。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>今天需要把所有pdf文件加上水印再放回去，但是这些文件不是都在同一个文件夹下面，PDFELEMENT6 PRO添加文件的时候不太方便，所以就把这些东西先放到同一个文件夹下，处理后再放回去。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">base_dir = <span class="string">&#x27;/Users/xxxx/Desktop/Temp/fff/&#x27;</span></span><br><span class="line">target_dir = <span class="string">&#x27;/Users/xxxx/Desktop/Temp/all_files&#x27;</span></span><br><span class="line"></span><br><span class="line">os.makedirs(target_dir, exist_ok=<span class="literal">True</span>)</span><br><span class="line">record = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dir_pdfs</span>(<span class="params">base_dir</span>):</span></span><br><span class="line">    <span class="keyword">global</span> record</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(base_dir):</span><br><span class="line">        dir_name = os.path.join(base_dir, i)</span><br><span class="line">        <span class="keyword">if</span> os.path.isdir(dir_name):</span><br><span class="line">            get_dir_pdfs(dir_name)</span><br><span class="line">        <span class="keyword">elif</span> os.path.isfile(dir_name):</span><br><span class="line">            <span class="keyword">if</span> dir_name.lower().endswith(<span class="string">&quot;.pdf&quot;</span>):</span><br><span class="line">                file_name = dir_name.split(<span class="string">&quot;/&quot;</span>)[-<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> file_name <span class="keyword">in</span> record:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;ERROR&quot;</span>)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    record[file_name] = dir_name</span><br><span class="line">                    shutil.copyfile(dir_name, os.path.join(target_dir, file_name))</span><br><span class="line"></span><br><span class="line">get_dir_pdfs(base_dir)</span><br></pre></td></tr></table></figure>
 
 <p>处理完之后</p>
@@ -108,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/06/11/python%E5%B0%86%E6%89%80%E6%9C%89%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E6%94%BE%E5%88%B0%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E5%86%8D%E6%81%A2%E5%A4%8D/" data-id="ckqkkaz2d00fabcc4ba3a4b9p" data-title="python将所有指定文件放到同一个文件夹中再恢复" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/06/11/python%E5%B0%86%E6%89%80%E6%9C%89%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E6%94%BE%E5%88%B0%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E5%86%8D%E6%81%A2%E5%A4%8D/" data-id="ckqlzg1uh00f9wkc44b4k83hd" data-title="python将所有指定文件放到同一个文件夹中再恢复" class="article-share-link">Share</a>
       
       
       
@@ -146,13 +148,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>MathType现在还不支持macOS10.15，只能降级macOS或者用windows版本的。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>MathType现在还不支持macOS10.15，只能降级macOS或者用windows版本的。</p>
 <p>转换的时候会报错，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_38089090/article/details/80794148">https://blog.csdn.net/m0_38089090/article/details/80794148</a> ，我们需要先用管理员模式打开winword.exe，点击转换让他崩一次，之后用普通模式打开winword.exe就行了</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/06/10/word%E5%85%AC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E6%88%90MathType/" data-id="ckqkkaz2v00gwbcc44alldex5" data-title="word公式转换成MathType" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/06/10/word%E5%85%AC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E6%88%90MathType/" data-id="ckqlzg1ux00gtwkc46zb77klp" data-title="word公式转换成MathType" class="article-share-link">Share</a>
       
       
       
@@ -190,7 +194,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>word里面参考文献可以交叉引用，文献可以用endnote</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>word里面参考文献可以交叉引用，文献可以用endnote</p>
 <p>endnote引入bib在<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34206899/article/details/93293013">https://blog.csdn.net/weixin_34206899/article/details/93293013</a> ，还没有试</p>
 <p>导入的时候，百度学术搜索到，批量引用，导出至enw即可</p>
 <p>gbt7714 <a target="_blank" rel="noopener" href="https://www.endnote.com/style_download/chinese-standard-gb-t7114-author-year/">https://www.endnote.com/style_download/chinese-standard-gb-t7114-author-year/</a></p>
@@ -200,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/06/05/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE/" data-id="ckqkkaz3800i6bcc49cpl8gck" data-title="参考文献" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/06/05/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE/" data-id="ckqlzg1va00i5wkc46xnhgsje" data-title="参考文献" class="article-share-link">Share</a>
       
       
       
@@ -238,13 +244,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>解密后，直接用pdfelement就行，可以批量去水印，见<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c4917f0a4f1d">https://www.jianshu.com/p/c4917f0a4f1d</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>解密后，直接用pdfelement就行，可以批量去水印，见<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c4917f0a4f1d">https://www.jianshu.com/p/c4917f0a4f1d</a></p>
 <p>也可以使用acrobat <a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/b24f6c82f96bea86bfe5dad4.html">https://jingyan.baidu.com/article/b24f6c82f96bea86bfe5dad4.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/06/04/pdf%E5%8E%BB%E6%B0%B4%E5%8D%B0/" data-id="ckqkkaz2500elbcc4hgud3uiz" data-title="pdf去水印" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/06/04/pdf%E5%8E%BB%E6%B0%B4%E5%8D%B0/" data-id="ckqlzg1ua00ekwkc434wu78jt" data-title="pdf去水印" class="article-share-link">Share</a>
       
       
       
@@ -282,13 +290,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>requests.get里面的参数有一个timeout，如果设置成(3,7)表示连接timeout是3，传输timeout是7</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>requests.get里面的参数有一个timeout，如果设置成(3,7)表示连接timeout是3，传输timeout是7</p>
 <p>来自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/NRlovestudy/article/details/88311814">https://blog.csdn.net/NRlovestudy/article/details/88311814</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/06/02/requests-timeout/" data-id="ckqkkaz2f00fgbcc4gtfe4tom" data-title="requests-timeout" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/06/02/requests-timeout/" data-id="ckqlzg1ui00ffwkc46ksp0bf1" data-title="requests-timeout" class="article-share-link">Share</a>
       
       
       
@@ -326,13 +336,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/fd1117b88b43">https://www.jianshu.com/p/fd1117b88b43</a>  这里提到了一个qpdf，挺好用的，mac下面直接brew install qpdf就行，用的时候qpdf –decrypt input.pdf output.pdf</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/fd1117b88b43">https://www.jianshu.com/p/fd1117b88b43</a>  这里提到了一个qpdf，挺好用的，mac下面直接brew install qpdf就行，用的时候qpdf –decrypt input.pdf output.pdf</p>
 <p>在Python下面有一个叫做PyPDF2的库，也挺好用，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61969807">https://zhuanlan.zhihu.com/p/61969807</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/29/pdf%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" data-id="ckqkkaz2500enbcc42b3rgy4m" data-title="pdf密码破解" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/29/pdf%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" data-id="ckqlzg1ub00emwkc4gv1433so" data-title="pdf密码破解" class="article-share-link">Share</a>
       
       
       
@@ -370,13 +382,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>ANSI SQL 2011 standard for temporal databases</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>ANSI SQL 2011 standard for temporal databases</p>
 <p>Allen’s interval algebra</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/26/%E6%97%B6%E5%BA%8Ftemporal%E5%9B%BE/" data-id="ckqkkaz3v00kbbcc4ei0gaevu" data-title="时序temporal图" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/26/%E6%97%B6%E5%BA%8Ftemporal%E5%9B%BE/" data-id="ckqlzg1vy00kawkc48mltd0rz" data-title="时序temporal图" class="article-share-link">Share</a>
       
       
       
@@ -414,13 +428,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>CCF： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/guolei/p/3576366.html">https://www.cnblogs.com/guolei/p/3576366.html</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>CCF： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/guolei/p/3576366.html">https://www.cnblogs.com/guolei/p/3576366.html</a></p>
 <p>还有一个小程序叫做“会议之眼”</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/24/%E5%9B%BD%E9%99%85%E5%AD%A6%E6%9C%AF%E4%BC%9A%E8%AE%AE/" data-id="ckqkkaz3b00iibcc49qhz1oiv" data-title="国际学术会议" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/24/%E5%9B%BD%E9%99%85%E5%AD%A6%E6%9C%AF%E4%BC%9A%E8%AE%AE/" data-id="ckqlzg1vf00ihwkc4aac0f6o2" data-title="国际学术会议" class="article-share-link">Share</a>
       
       
       
@@ -458,13 +474,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>按照这里的进行配置：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/613e775dab22">https://www.jianshu.com/p/613e775dab22</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>按照这里的进行配置：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/613e775dab22">https://www.jianshu.com/p/613e775dab22</a></p>
 <p>最关键的就是启动sudo apachectl restart，并且要删除/Library/WebServer/Documents里面的html的文件，加上php的</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/18/Mac-PHP/" data-id="ckqkkayza004ubcc4dxkf87ta" data-title="Mac-php" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/18/Mac-PHP/" data-id="ckqlzg1qz004qwkc4e4pmhskx" data-title="Mac-php" class="article-share-link">Share</a>
       
       
       
@@ -502,13 +520,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2018-12-14-4">https://www.jiqizhixin.com/articles/2018-12-14-4</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2018-12-14-4">https://www.jiqizhixin.com/articles/2018-12-14-4</a></p>
 <p>介绍了不同种类的RNN，里面的Attention可视化很有意思</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/17/RNN/" data-id="ckqkkaz09007ybcc4hkebeg36" data-title="RNN" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/17/RNN/" data-id="ckqlzg1s1007xwkc4243xg80r" data-title="RNN" class="article-share-link">Share</a>
       
       
       

@@ -6,15 +6,15 @@
   
   <title>每日leetcode-115 | Henry Fox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Given a string S and a string T, count the number of distinct subsequences of S which equals T. A subsequence of a string is a new string which is formed from the original string by deleting some (can">
+  <meta name="description" content="Given a string S and a string T, count the number of distinct subsequences of S which equals T. A subsequence of a string is a new string which is formed from the original string by deleting some (c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日leetcode-115">
 <meta property="og:url" content="https://fengh16.github.io/2019/11/25/%E6%AF%8F%E6%97%A5leetcode-115/index.html">
 <meta property="og:site_name" content="Henry Fox">
-<meta property="og:description" content="Given a string S and a string T, count the number of distinct subsequences of S which equals T. A subsequence of a string is a new string which is formed from the original string by deleting some (can">
+<meta property="og:description" content="Given a string S and a string T, count the number of distinct subsequences of S which equals T. A subsequence of a string is a new string which is formed from the original string by deleting some (c">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-11-24T22:06:06.000Z">
-<meta property="article:modified_time" content="2021-05-28T13:04:47.738Z">
+<meta property="article:modified_time" content="2021-07-02T06:50:16.294Z">
 <meta property="article:author" content="Henry Fox">
 <meta name="twitter:card" content="summary">
   
@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Given a string S and a string T, count the number of distinct subsequences of S which equals T.</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>Given a string S and a string T, count the number of distinct subsequences of S which equals T.</p>
 <p>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, “ACE” is a subsequence of “ABCDE” while “AEC” is not).</p>
 <p>一个简单的动态规划即可。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numDistinct</span><span class="params">(string s, string t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lens = s.<span class="built_in">size</span>(), lent = t.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">dp</span>(lens + <span class="number">1</span>, vector&lt;<span class="keyword">int</span>&gt;(lent + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= lens; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= lens; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i &amp;&amp; j &lt;= lent; j++) &#123;</span><br><span class="line">                dp[i][j] = (<span class="keyword">int</span>)((<span class="keyword">long</span> <span class="keyword">long</span>)(s[i - <span class="number">1</span>] == t[j - <span class="number">1</span>] ? dp[i - <span class="number">1</span>][j - <span class="number">1</span>] : <span class="number">0</span>) + dp[i - <span class="number">1</span>][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[lens][lent];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -107,7 +109,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/11/25/%E6%AF%8F%E6%97%A5leetcode-115/" data-id="ckqkkaz3z00knbcc41uop1wam" data-title="每日leetcode-115" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/11/25/%E6%AF%8F%E6%97%A5leetcode-115/" data-id="ckqlzg1w100kmwkc4c31chv56" data-title="每日leetcode-115" class="article-share-link">Share</a>
       
       
       

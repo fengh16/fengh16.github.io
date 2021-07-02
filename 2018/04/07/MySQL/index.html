@@ -6,15 +6,15 @@
   
   <title>MySQL | Henry Fox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="写在前面下列内容摘录自 http:&#x2F;&#x2F;www.runoob.com&#x2F;mysql&#x2F; （菜鸟教程）其实就是把里面讲的东西搬过来了，非常感谢菜鸟教程的整理现在就是在php里面使用，把所有可能用到的代码（放在注释里面）放在了github上面：https:&#x2F;&#x2F;github.com&#x2F;fengh16&#x2F;Web-Learning&#x2F;tree&#x2F;master&#x2F;sqlLearing 可视化工具https:&#x2F;&#x2F;dev.mys">
+  <meta name="description" content="写在前面下列内容摘录自 http:&#x2F;&#x2F;www.runoob.com&#x2F;mysql&#x2F; （菜鸟教程）其实就是把里面讲的东西搬过来了，非常感谢菜鸟教程的整理现在就是在php里面使用，把所有可能用到的代码（放在注释里面）放在了github上面：https:&#x2F;&#x2F;github.com&#x2F;fengh16&#x2F;Web-Learning&#x2F;tree&#x2F;master&#x2F;sqlLearing 可视化工具https:&#x2F;&#x2F;dev.m">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL">
 <meta property="og:url" content="https://fengh16.github.io/2018/04/07/MySQL/index.html">
 <meta property="og:site_name" content="Henry Fox">
-<meta property="og:description" content="写在前面下列内容摘录自 http:&#x2F;&#x2F;www.runoob.com&#x2F;mysql&#x2F; （菜鸟教程）其实就是把里面讲的东西搬过来了，非常感谢菜鸟教程的整理现在就是在php里面使用，把所有可能用到的代码（放在注释里面）放在了github上面：https:&#x2F;&#x2F;github.com&#x2F;fengh16&#x2F;Web-Learning&#x2F;tree&#x2F;master&#x2F;sqlLearing 可视化工具https:&#x2F;&#x2F;dev.mys">
+<meta property="og:description" content="写在前面下列内容摘录自 http:&#x2F;&#x2F;www.runoob.com&#x2F;mysql&#x2F; （菜鸟教程）其实就是把里面讲的东西搬过来了，非常感谢菜鸟教程的整理现在就是在php里面使用，把所有可能用到的代码（放在注释里面）放在了github上面：https:&#x2F;&#x2F;github.com&#x2F;fengh16&#x2F;Web-Learning&#x2F;tree&#x2F;master&#x2F;sqlLearing 可视化工具https:&#x2F;&#x2F;dev.m">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-04-06T22:06:06.000Z">
-<meta property="article:modified_time" content="2021-05-28T13:04:47.686Z">
+<meta property="article:modified_time" content="2021-07-02T06:50:13.015Z">
 <meta property="article:author" content="Henry Fox">
 <meta name="twitter:card" content="summary">
   
@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>下列内容摘录自 <a target="_blank" rel="noopener" href="http://www.runoob.com/mysql/">http://www.runoob.com/mysql/</a> （菜鸟教程）<br>其实就是把里面讲的东西搬过来了，非常感谢菜鸟教程的整理<br>现在就是在php里面使用，把所有可能用到的代码（放在注释里面）放在了github上面：<a target="_blank" rel="noopener" href="https://github.com/fengh16/Web-Learning/tree/master/sqlLearing">https://github.com/fengh16/Web-Learning/tree/master/sqlLearing</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>下列内容摘录自 <a target="_blank" rel="noopener" href="http://www.runoob.com/mysql/">http://www.runoob.com/mysql/</a> （菜鸟教程）<br>其实就是把里面讲的东西搬过来了，非常感谢菜鸟教程的整理<br>现在就是在php里面使用，把所有可能用到的代码（放在注释里面）放在了github上面：<a target="_blank" rel="noopener" href="https://github.com/fengh16/Web-Learning/tree/master/sqlLearing">https://github.com/fengh16/Web-Learning/tree/master/sqlLearing</a></p>
 <h1 id="可视化工具"><a href="#可视化工具" class="headerlink" title="可视化工具"></a>可视化工具</h1><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/file/?id=474210">https://dev.mysql.com/downloads/file/?id=474210</a></p>
 <h1 id="数据库的连接"><a href="#数据库的连接" class="headerlink" title="数据库的连接"></a>数据库的连接</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$dbhost</span> = <span class="variable">$_ENV</span>[<span class="string">&#x27;MYSQL_HOST&#x27;</span>] . <span class="string">&quot;:&quot;</span> . <span class="variable">$_ENV</span>[<span class="string">&#x27;MYSQL_PORT&#x27;</span>];  <span class="comment">// mysql服务器主机地址</span></span><br><span class="line"><span class="variable">$dbuser</span> = <span class="variable">$_ENV</span>[<span class="string">&#x27;MYSQL_USERNAME&#x27;</span>];            <span class="comment">// mysql用户名</span></span><br><span class="line"><span class="variable">$dbpass</span> = <span class="variable">$_ENV</span>[<span class="string">&#x27;MYSQL_PASSWORD&#x27;</span>];          <span class="comment">// mysql用户名密码</span></span><br><span class="line"><span class="variable">$conn</span> = mysqli_connect(<span class="variable">$dbhost</span>, <span class="variable">$dbuser</span>, <span class="variable">$dbpass</span>);</span><br><span class="line"><span class="keyword">if</span>(! <span class="variable">$conn</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Could not connect: &#x27;</span> . mysqli_error());</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;数据库连接成功！&#x27;</span>;</span><br><span class="line">mysqli_close(<span class="variable">$conn</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>以下添加的内容均放在<code>mysqli_close($conn);</code>之前</p>
@@ -159,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/04/07/MySQL/" data-id="ckqkkayzo0064bcc41fgog5ru" data-title="MySQL" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/04/07/MySQL/" data-id="ckqlzg1rb005ywkc4hm396qed" data-title="MySQL" class="article-share-link">Share</a>
       
       
       

@@ -6,18 +6,18 @@
   
   <title>xv6-boot部分 | Henry Fox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="注：这部分代码是使用typora写的，里面嵌套的一些内容可能在简书里面显示不出来，所以如有格式问题，建议下载typora复制粘贴查看。 另：这些内容基本都是从网上各个网站找的资料，印象比较深刻的有以下几个： https:&#x2F;&#x2F;blog.csdn.net&#x2F;vally1989&#x2F;article&#x2F;details&#x2F;71796482http:&#x2F;&#x2F;leenjewel.github.io&#x2F;blog&#x2F;2015&#x2F;11&#x2F;">
+  <meta name="description" content="注：这部分代码是使用typora写的，里面嵌套的一些内容可能在简书里面显示不出来，所以如有格式问题，建议下载typora复制粘贴查看。 另：这些内容基本都是从网上各个网站找的资料，印象比较深刻的有以下几个： https:&#x2F;&#x2F;blog.csdn.net&#x2F;vally1989&#x2F;article&#x2F;details&#x2F;71796482http:&#x2F;&#x2F;leenjewel.github.io&#x2F;blog&#x2F;2015&#x2F;1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xv6-boot部分">
 <meta property="og:url" content="https://fengh16.github.io/2018/04/19/xv6-boot%E9%83%A8%E5%88%86/index.html">
 <meta property="og:site_name" content="Henry Fox">
-<meta property="og:description" content="注：这部分代码是使用typora写的，里面嵌套的一些内容可能在简书里面显示不出来，所以如有格式问题，建议下载typora复制粘贴查看。 另：这些内容基本都是从网上各个网站找的资料，印象比较深刻的有以下几个： https:&#x2F;&#x2F;blog.csdn.net&#x2F;vally1989&#x2F;article&#x2F;details&#x2F;71796482http:&#x2F;&#x2F;leenjewel.github.io&#x2F;blog&#x2F;2015&#x2F;11&#x2F;">
+<meta property="og:description" content="注：这部分代码是使用typora写的，里面嵌套的一些内容可能在简书里面显示不出来，所以如有格式问题，建议下载typora复制粘贴查看。 另：这些内容基本都是从网上各个网站找的资料，印象比较深刻的有以下几个： https:&#x2F;&#x2F;blog.csdn.net&#x2F;vally1989&#x2F;article&#x2F;details&#x2F;71796482http:&#x2F;&#x2F;leenjewel.github.io&#x2F;blog&#x2F;2015&#x2F;1">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-b313f504880fd9b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-559076ccc9c082ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5060560-b141e1d747135768.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="article:published_time" content="2018-04-18T22:06:06.000Z">
-<meta property="article:modified_time" content="2021-05-28T13:04:47.766Z">
+<meta property="article:modified_time" content="2021-07-02T06:50:15.122Z">
 <meta property="article:author" content="Henry Fox">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5060560-b313f504880fd9b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -103,7 +103,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h1><p>这部分代码是使用typora写的，里面嵌套的一些内容可能在简书里面显示不出来，所以如有格式问题，建议下载typora复制粘贴查看。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<h1 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h1><p>这部分代码是使用typora写的，里面嵌套的一些内容可能在简书里面显示不出来，所以如有格式问题，建议下载typora复制粘贴查看。</p>
 <p>另：这些内容基本都是从网上各个网站找的资料，印象比较深刻的有以下几个：</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/vally1989/article/details/71796482">https://blog.csdn.net/vally1989/article/details/71796482</a><br><a target="_blank" rel="noopener" href="http://leenjewel.github.io/blog/2015/11/11/%5B%28xue-xi-xv6%29%5D-nei-he-gai-lan/">http://leenjewel.github.io/blog/2015/11/11/%5B%28xue-xi-xv6%29%5D-nei-he-gai-lan/</a><br><a target="_blank" rel="noopener" href="http://leenjewel.github.io/blog/2015/05/26/%5B%28xue-xi-xv6%29%5D-jia-zai-bing-yun-xing-nei-he/">http://leenjewel.github.io/blog/2015/05/26/%5B%28xue-xi-xv6%29%5D-jia-zai-bing-yun-xing-nei-he/</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25426415/article/details/54583835">https://blog.csdn.net/qq_25426415/article/details/54583835</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25426415/article/details/54619488">https://blog.csdn.net/qq_25426415/article/details/54619488</a></p>
 <p>感谢上述各个文章。</p>
@@ -593,7 +595,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/04/19/xv6-boot%E9%83%A8%E5%88%86/" data-id="ckqkkaz5h00pubcc4258j76ry" data-title="xv6-boot部分" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/04/19/xv6-boot%E9%83%A8%E5%88%86/" data-id="ckqlzg1xi00pxwkc48ipe6prz" data-title="xv6-boot部分" class="article-share-link">Share</a>
       
       
       

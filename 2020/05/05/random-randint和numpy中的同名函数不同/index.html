@@ -6,15 +6,15 @@
   
   <title>random-randint和numpy中的同名函数不同 | Henry Fox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="random.randint(0,0) 可以得到0 但是： 123456&gt;&gt;&gt; np.random.randint(0,0)Traceback (most recent call last):  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;  File &quot;mtrand.pyx&quot;, line">
+  <meta name="description" content="random.randint(0,0) 可以得到0 但是： 123456&gt;&gt;&gt; np.random.randint(0,0)Traceback (most recent call last):  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;  File &quot;mtrand.pyx&quot;, lin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="random-randint和numpy中的同名函数不同">
 <meta property="og:url" content="https://fengh16.github.io/2020/05/05/random-randint%E5%92%8Cnumpy%E4%B8%AD%E7%9A%84%E5%90%8C%E5%90%8D%E5%87%BD%E6%95%B0%E4%B8%8D%E5%90%8C/index.html">
 <meta property="og:site_name" content="Henry Fox">
-<meta property="og:description" content="random.randint(0,0) 可以得到0 但是： 123456&gt;&gt;&gt; np.random.randint(0,0)Traceback (most recent call last):  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;  File &quot;mtrand.pyx&quot;, line">
+<meta property="og:description" content="random.randint(0,0) 可以得到0 但是： 123456&gt;&gt;&gt; np.random.randint(0,0)Traceback (most recent call last):  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;  File &quot;mtrand.pyx&quot;, lin">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-04T22:06:06.000Z">
-<meta property="article:modified_time" content="2021-05-28T13:04:47.750Z">
+<meta property="article:modified_time" content="2021-07-02T06:50:13.796Z">
 <meta property="article:author" content="Henry Fox">
 <meta name="twitter:card" content="summary">
   
@@ -99,14 +99,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>random.randint(0,0) 可以得到0</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>random.randint(0,0) 可以得到0</p>
 <p>但是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; np.random.randint(0,0)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">  File &quot;mtrand.pyx&quot;, line 747, in numpy.random.mtrand.RandomState.randint</span><br><span class="line">  File &quot;_bounded_integers.pyx&quot;, line 1270, in numpy.random._bounded_integers._rand_int64</span><br><span class="line">ValueError: low &gt;&#x3D; high</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/05/05/random-randint%E5%92%8Cnumpy%E4%B8%AD%E7%9A%84%E5%90%8C%E5%90%8D%E5%87%BD%E6%95%B0%E4%B8%8D%E5%90%8C/" data-id="ckqkkaz2e00febcc478w05gcr" data-title="random-randint和numpy中的同名函数不同" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/05/05/random-randint%E5%92%8Cnumpy%E4%B8%AD%E7%9A%84%E5%90%8C%E5%90%8D%E5%87%BD%E6%95%B0%E4%B8%8D%E5%90%8C/" data-id="ckqlzg1ui00fdwkc46djmggav" data-title="random-randint和numpy中的同名函数不同" class="article-share-link">Share</a>
       
       
       

@@ -6,15 +6,15 @@
   
   <title>构造函数返回值指针问题 | Henry Fox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="今天遇到了这样的一个坑：  release模式下，将一个构造函数构造出来的东西的指针直接传递到别的地方，其中的内容会出错  向大佬请教后意识到：  因为构造函数构造的内容在之后并没有再次被用到，可能被编译器优化掉了（因为在debug模式下没有问题），所以传递的指针里面根本就没有构造  解决：  使用new语句，或者直接在外面定义，再把指针传递进去  代码： 12345678&#x2F;&#x2F; Since tha">
+  <meta name="description" content="今天遇到了这样的一个坑：  release模式下，将一个构造函数构造出来的东西的指针直接传递到别的地方，其中的内容会出错  向大佬请教后意识到：  因为构造函数构造的内容在之后并没有再次被用到，可能被编译器优化掉了（因为在debug模式下没有问题），所以传递的指针里面根本就没有构造  解决：  使用new语句，或者直接在外面定义，再把指针传递进去  代码： 12345678&#x2F;&#x2F; Since t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="构造函数返回值指针问题">
 <meta property="og:url" content="https://fengh16.github.io/2018/05/26/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC%E6%8C%87%E9%92%88%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Henry Fox">
-<meta property="og:description" content="今天遇到了这样的一个坑：  release模式下，将一个构造函数构造出来的东西的指针直接传递到别的地方，其中的内容会出错  向大佬请教后意识到：  因为构造函数构造的内容在之后并没有再次被用到，可能被编译器优化掉了（因为在debug模式下没有问题），所以传递的指针里面根本就没有构造  解决：  使用new语句，或者直接在外面定义，再把指针传递进去  代码： 12345678&#x2F;&#x2F; Since tha">
+<meta property="og:description" content="今天遇到了这样的一个坑：  release模式下，将一个构造函数构造出来的东西的指针直接传递到别的地方，其中的内容会出错  向大佬请教后意识到：  因为构造函数构造的内容在之后并没有再次被用到，可能被编译器优化掉了（因为在debug模式下没有问题），所以传递的指针里面根本就没有构造  解决：  使用new语句，或者直接在外面定义，再把指针传递进去  代码： 12345678&#x2F;&#x2F; Since t">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-05-25T22:06:06.000Z">
-<meta property="article:modified_time" content="2021-05-28T13:04:47.746Z">
+<meta property="article:modified_time" content="2021-07-02T06:50:16.226Z">
 <meta property="article:author" content="Henry Fox">
 <meta name="twitter:card" content="summary">
   
@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>今天遇到了这样的一个坑：</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>今天遇到了这样的一个坑：</p>
 <ul>
 <li>release模式下，将一个构造函数构造出来的东西的指针直接传递到别的地方，其中的内容会出错</li>
 </ul>
@@ -117,7 +119,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/05/26/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC%E6%8C%87%E9%92%88%E9%97%AE%E9%A2%98/" data-id="ckqkkaz3x00khbcc4dezy7tqz" data-title="构造函数返回值指针问题" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/05/26/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC%E6%8C%87%E9%92%88%E9%97%AE%E9%A2%98/" data-id="ckqlzg1vz00kgwkc4b6p35kt4" data-title="构造函数返回值指针问题" class="article-share-link">Share</a>
       
       
       

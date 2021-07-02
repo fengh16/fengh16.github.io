@@ -6,15 +6,15 @@
   
   <title>GCN | Henry Fox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="GCN介绍来自https:&#x2F;&#x2F;www.chainnews.com&#x2F;articles&#x2F;216961050590.htm 每个节点有自己的特征，假如$N$个节点，每个节点特征维度为$D$，特征矩阵（$X$）的形状就是$N\times D$。同时有一个邻接矩阵$A$，形状是$N\times N$。 层之间的传播方式是：$H^{(l+1)}&#x3D;\sigma\left(\tilde{D}^{-\frac{1}">
+  <meta name="description" content="GCN介绍来自https:&#x2F;&#x2F;www.chainnews.com&#x2F;articles&#x2F;216961050590.htm 每个节点有自己的特征，假如$N$个节点，每个节点特征维度为$D$，特征矩阵（$X$）的形状就是$N\times D$。同时有一个邻接矩阵$A$，形状是$N\times N$。 层之间的传播方式是：$H^{(l+1)}&#x3D;\sigma\left(\tilde{D}^{-\frac{">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCN">
 <meta property="og:url" content="https://fengh16.github.io/2020/08/14/GCN/index.html">
 <meta property="og:site_name" content="Henry Fox">
-<meta property="og:description" content="GCN介绍来自https:&#x2F;&#x2F;www.chainnews.com&#x2F;articles&#x2F;216961050590.htm 每个节点有自己的特征，假如$N$个节点，每个节点特征维度为$D$，特征矩阵（$X$）的形状就是$N\times D$。同时有一个邻接矩阵$A$，形状是$N\times N$。 层之间的传播方式是：$H^{(l+1)}&#x3D;\sigma\left(\tilde{D}^{-\frac{1}">
+<meta property="og:description" content="GCN介绍来自https:&#x2F;&#x2F;www.chainnews.com&#x2F;articles&#x2F;216961050590.htm 每个节点有自己的特征，假如$N$个节点，每个节点特征维度为$D$，特征矩阵（$X$）的形状就是$N\times D$。同时有一个邻接矩阵$A$，形状是$N\times N$。 层之间的传播方式是：$H^{(l+1)}&#x3D;\sigma\left(\tilde{D}^{-\frac{">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-14T06:53:33.000Z">
-<meta property="article:modified_time" content="2020-08-23T22:02:39.000Z">
+<meta property="article:modified_time" content="2021-07-02T06:50:11.384Z">
 <meta property="article:author" content="Henry Fox">
 <meta property="article:tag" content="神经网络">
 <meta property="article:tag" content="GNN">
@@ -103,7 +103,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="GCN介绍"><a href="#GCN介绍" class="headerlink" title="GCN介绍"></a>GCN介绍</h3><p>来自<a target="_blank" rel="noopener" href="https://www.chainnews.com/articles/216961050590.htm">https://www.chainnews.com/articles/216961050590.htm</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<h3 id="GCN介绍"><a href="#GCN介绍" class="headerlink" title="GCN介绍"></a>GCN介绍</h3><p>来自<a target="_blank" rel="noopener" href="https://www.chainnews.com/articles/216961050590.htm">https://www.chainnews.com/articles/216961050590.htm</a></p>
 <p>每个节点有自己的特征，假如$N$个节点，每个节点特征维度为$D$，特征矩阵（$X$）的形状就是$N\times D$。同时有一个邻接矩阵$A$，形状是$N\times N$。</p>
 <p>层之间的传播方式是：$H^{(l+1)}=\sigma\left(\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}} H^{(l)} W^{(l)}\right)$</p>
 <ul>
@@ -120,12 +122,19 @@
 <li>Spectral domain（谱的）借助于图的拉普拉斯矩阵的特征值和特征向量来研究图的性质<ul>
 <li>可能是$L=D-A$，$L^{sys}=D^{-\frac{1}{2}}LD^{-\frac{1}{2}}$，$L^{rw}=D^{-1}L$</li>
 <li>拉普拉斯矩阵是对称矩阵，可以进行特征分解（谱分解）；拉普拉斯矩阵只在中心顶点和一阶相连的顶点上（1-hop neighbor）有非0元素，其余之处均为0；与拉普拉斯算子可以进行类比（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/85287578">https://zhuanlan.zhihu.com/p/85287578</a> ）<ul>
-<li>拉普拉斯算子可以从传播的角度考虑。节点$i$受到的影响其实是 所有邻居与它的差 的综合，所以是$\Delta f_{i}=\sum_{j \in N_{i}} W_{i j}\left(f_{i}-f_{j}\right)$，进而写成$d_if_i-w_i\cdotf$。 拉普拉斯矩阵中的第$i$行实际上反应了第$i$个节点在对其他所有节点产生扰动时所产生的增益累积</li>
+<li>拉普拉斯算子可以从传播的角度考虑。节点$i$受到的影响其实是 所有邻居与它的差 的综合，所以是$\Delta f_{i}=\sum_{j \in N_{i}} W_{i j}\left(f_{i}-f_{j}\right)$，进而写成$d_if_i-w_i\cdot f$。 拉普拉斯矩阵中的第$i$行实际上反应了第$i$个节点在对其他所有节点产生扰动时所产生的增益累积</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<h3 id="理解GCN"><a href="#理解GCN" class="headerlink" title="理解GCN"></a>理解GCN</h3><p>如何理解 Graph Convolutional Network（GCN）？ - superbrother的回答 - 知乎<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/54504471/answer/332657604">https://www.zhihu.com/question/54504471/answer/332657604</a></p>
+<p>离散卷积本质上就是加权求和。</p>
+<p>Spectral graph theory：借助于图的拉普拉斯矩阵的特征值和特征向量来研究图的性质</p>
+<p>常用的拉普拉斯矩阵实际有三种</p>
+<p>(1)拉普拉斯矩阵是对称矩阵，可以进行特征分解（谱分解），这就和GCN的spectral domain对应上了</p>
+<p>(2)拉普拉斯矩阵只在中心顶点和一阶相连的顶点上（1-hop neighbor）有非0元素，其余之处均为0</p>
+<p>(3)通过拉普拉斯算子与拉普拉斯矩阵进行类比（详见第6节）</p>
 <h3 id="系列文章GNN-algorithms"><a href="#系列文章GNN-algorithms" class="headerlink" title="系列文章GNN-algorithms"></a>系列文章GNN-algorithms</h3><p><a target="_blank" rel="noopener" href="https://github.com/wangyouze/GNN-algorithms">https://github.com/wangyouze/GNN-algorithms</a></p>
 <ul>
 <li>GCN原理解析：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/35212baf6671">https://www.jianshu.com/p/35212baf6671</a></li>
@@ -138,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2020/08/14/GCN/" data-id="ckqkkayyo002wbcc4e99c9iqb" data-title="GCN" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2020/08/14/GCN/" data-id="ckqlzg1qf002uwkc49th54c62" data-title="GCN" class="article-share-link">Share</a>
       
       
       

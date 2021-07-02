@@ -6,15 +6,15 @@
   
   <title>Wecode-docker相关测试环境安装 | Henry Fox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="dockerhttps:&#x2F;&#x2F;blog.csdn.net&#x2F;rickey17&#x2F;article&#x2F;details&#x2F;72809384mysqlhttps:&#x2F;&#x2F;jingyan.baidu.com&#x2F;article&#x2F;fec7a1e5f8d3201190b4e782.htmldocker中访问外部网络：sudo docker pull ubuntusudo docker run -it -p 3206:3206 –">
+  <meta name="description" content="dockerhttps:&#x2F;&#x2F;blog.csdn.net&#x2F;rickey17&#x2F;article&#x2F;details&#x2F;72809384mysqlhttps:&#x2F;&#x2F;jingyan.baidu.com&#x2F;article&#x2F;fec7a1e5f8d3201190b4e782.htmldocker中访问外部网络：sudo docker pull ubuntusudo docker run -it -p 3206:3206">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Wecode-docker相关测试环境安装">
 <meta property="og:url" content="https://fengh16.github.io/1970/01/01/Wecode-docker%E7%9B%B8%E5%85%B3%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="Henry Fox">
-<meta property="og:description" content="dockerhttps:&#x2F;&#x2F;blog.csdn.net&#x2F;rickey17&#x2F;article&#x2F;details&#x2F;72809384mysqlhttps:&#x2F;&#x2F;jingyan.baidu.com&#x2F;article&#x2F;fec7a1e5f8d3201190b4e782.htmldocker中访问外部网络：sudo docker pull ubuntusudo docker run -it -p 3206:3206 –">
+<meta property="og:description" content="dockerhttps:&#x2F;&#x2F;blog.csdn.net&#x2F;rickey17&#x2F;article&#x2F;details&#x2F;72809384mysqlhttps:&#x2F;&#x2F;jingyan.baidu.com&#x2F;article&#x2F;fec7a1e5f8d3201190b4e782.htmldocker中访问外部网络：sudo docker pull ubuntusudo docker run -it -p 3206:3206">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="1969-12-31T22:06:06.000Z">
-<meta property="article:modified_time" content="2021-05-28T13:04:47.698Z">
+<meta property="article:modified_time" content="2021-07-02T06:50:14.701Z">
 <meta property="article:author" content="Henry Fox">
 <meta name="twitter:card" content="summary">
   
@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>docker<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/rickey17/article/details/72809384">https://blog.csdn.net/rickey17/article/details/72809384</a><br>mysql<br><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/fec7a1e5f8d3201190b4e782.html">https://jingyan.baidu.com/article/fec7a1e5f8d3201190b4e782.html</a><br>docker中访问外部网络：<br>sudo docker pull ubuntu<br>sudo docker run -it -p 3206:3206 –name fh ubuntu<br>可以与外部进行链接<br>安装mysql<br>apt install mysql-client<br>把一个以f7开头的container保存成wecode，标签为v1：<br>sudo docker commit f7 wecode:v1<br>可以共享文件夹：<br>docker run -v /home/wecode/test_share:/dockerfolder -it –name fh3 wecode:v1</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>docker<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/rickey17/article/details/72809384">https://blog.csdn.net/rickey17/article/details/72809384</a><br>mysql<br><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/fec7a1e5f8d3201190b4e782.html">https://jingyan.baidu.com/article/fec7a1e5f8d3201190b4e782.html</a><br>docker中访问外部网络：<br>sudo docker pull ubuntu<br>sudo docker run -it -p 3206:3206 –name fh ubuntu<br>可以与外部进行链接<br>安装mysql<br>apt install mysql-client<br>把一个以f7开头的container保存成wecode，标签为v1：<br>sudo docker commit f7 wecode:v1<br>可以共享文件夹：<br>docker run -v /home/wecode/test_share:/dockerfolder -it –name fh3 wecode:v1</p>
 <h2 id="docker链接外部服务器mysql"><a href="#docker链接外部服务器mysql" class="headerlink" title="docker链接外部服务器mysql"></a>docker链接外部服务器mysql</h2><p>sudo apt install docker.io<br>docker pull ubuntu<br>docker run -it –name fh ubuntu<br>docker ps -a<br>docker commit ad wecode:v1<br>docker run –rm -it –network=host wecode:v1 mysql -h 127.0.0.1 -uroot -p</p>
 <h2 id="docker删除镜像"><a href="#docker删除镜像" class="headerlink" title="docker删除镜像"></a>docker删除镜像</h2><p>images查看镜像<br>先ps -a看所有用到这个镜像的，之后rm id删掉<br>rmi imagename</p>
 <h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><p>sudo docker pull node</p>
@@ -107,7 +109,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Wecode-docker%E7%9B%B8%E5%85%B3%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" data-id="ckqkkaz0n009ebcc46u999y4r" data-title="Wecode-docker相关测试环境安装" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Wecode-docker%E7%9B%B8%E5%85%B3%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" data-id="ckqlzg1se009dwkc484j0866r" data-title="Wecode-docker相关测试环境安装" class="article-share-link">Share</a>
       
       
       

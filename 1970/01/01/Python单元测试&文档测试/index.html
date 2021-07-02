@@ -6,15 +6,15 @@
   
   <title>Python单元测试&amp;文档测试 | Henry Fox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="测试系列文章：https:&#x2F;&#x2F;www.jianshu.com&#x2F;nb&#x2F;30319209 单元测试需要引入unittest模块，并使用unittest.TestCase作为基类进行继承。 比如：已有自己的Dict类，import之后可以用以下方式验证： 1234567891011121314151617181920212223242526272829303132import unittestfrom">
+  <meta name="description" content="测试系列文章：https:&#x2F;&#x2F;www.jianshu.com&#x2F;nb&#x2F;30319209 单元测试需要引入unittest模块，并使用unittest.TestCase作为基类进行继承。 比如：已有自己的Dict类，import之后可以用以下方式验证： 1234567891011121314151617181920212223242526272829303132import unittestfro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python单元测试&amp;文档测试">
 <meta property="og:url" content="https://fengh16.github.io/1970/01/01/Python%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95&%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="Henry Fox">
-<meta property="og:description" content="测试系列文章：https:&#x2F;&#x2F;www.jianshu.com&#x2F;nb&#x2F;30319209 单元测试需要引入unittest模块，并使用unittest.TestCase作为基类进行继承。 比如：已有自己的Dict类，import之后可以用以下方式验证： 1234567891011121314151617181920212223242526272829303132import unittestfrom">
+<meta property="og:description" content="测试系列文章：https:&#x2F;&#x2F;www.jianshu.com&#x2F;nb&#x2F;30319209 单元测试需要引入unittest模块，并使用unittest.TestCase作为基类进行继承。 比如：已有自己的Dict类，import之后可以用以下方式验证： 1234567891011121314151617181920212223242526272829303132import unittestfro">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="1969-12-31T22:06:06.000Z">
-<meta property="article:modified_time" content="2021-05-28T13:04:47.770Z">
+<meta property="article:modified_time" content="2021-07-02T06:50:13.651Z">
 <meta property="article:author" content="Henry Fox">
 <meta name="twitter:card" content="summary">
   
@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>测试系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30319209">https://www.jianshu.com/nb/30319209</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>测试系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30319209">https://www.jianshu.com/nb/30319209</a></p>
 <h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>需要引入<code>unittest</code>模块，并使用<code>unittest.TestCase</code>作为基类进行继承。</p>
 <p>比如：已有自己的Dict类，import之后可以用以下方式验证：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> mydict <span class="keyword">import</span> <span class="type">Dict</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestDict</span>(<span class="params">unittest.TestCase</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_init</span>(<span class="params">self</span>):</span></span><br><span class="line">        d = <span class="type">Dict</span>(a=<span class="number">1</span>, b=<span class="string">&#x27;test&#x27;</span>)</span><br><span class="line">        self.assertEquals(d.a, <span class="number">1</span>)</span><br><span class="line">        self.assertEquals(d.b, <span class="string">&#x27;test&#x27;</span>)</span><br><span class="line">        self.assertTrue(<span class="built_in">isinstance</span>(d, <span class="built_in">dict</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_key</span>(<span class="params">self</span>):</span></span><br><span class="line">        d = <span class="type">Dict</span>()</span><br><span class="line">        d[<span class="string">&#x27;key&#x27;</span>] = <span class="string">&#x27;value&#x27;</span></span><br><span class="line">        self.assertEquals(d.key, <span class="string">&#x27;value&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_attr</span>(<span class="params">self</span>):</span></span><br><span class="line">        d = <span class="type">Dict</span>()</span><br><span class="line">        d.key = <span class="string">&#x27;value&#x27;</span></span><br><span class="line">        self.assertTrue(<span class="string">&#x27;key&#x27;</span> <span class="keyword">in</span> d)</span><br><span class="line">        self.assertEquals(d[<span class="string">&#x27;key&#x27;</span>], <span class="string">&#x27;value&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_keyerror</span>(<span class="params">self</span>):</span></span><br><span class="line">        d = <span class="type">Dict</span>()</span><br><span class="line">        <span class="keyword">with</span> self.assertRaises(KeyError):</span><br><span class="line">            value = d[<span class="string">&#x27;empty&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_attrerror</span>(<span class="params">self</span>):</span></span><br><span class="line">        d = <span class="type">Dict</span>()</span><br><span class="line">        <span class="keyword">with</span> self.assertRaises(AttributeError):</span><br><span class="line">            value = d.empty</span><br></pre></td></tr></table></figure>
@@ -115,7 +117,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Python%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95&%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95/" data-id="ckqkkaz03007fbcc4940f5nqr" data-title="Python单元测试&amp;文档测试" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Python%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95&%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95/" data-id="ckqlzg1ru007ewkc478v5bb8t" data-title="Python单元测试&amp;文档测试" class="article-share-link">Share</a>
       
       
       
@@ -125,11 +127,11 @@
     
 <nav id="article-nav">
   
-    <a href="/1970/01/01/Markdown%E8%AF%AD%E6%B3%95%EF%BC%88%E6%91%98%E5%BD%95%E8%87%AAgithub%EF%BC%9Ahttps---github-com-guodongxiaren-README%EF%BC%89-2018-03-/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/1970/01/01/MVC%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Markdown语法（摘录自github：https---github-com-guodongxiaren-README）-2018-03-
+          MVC模式
         
       </div>
     </a>

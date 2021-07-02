@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>转载自：</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>转载自：</p>
 <p>作者：Kiwee<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20136144/answer/239971177">https://www.zhihu.com/question/20136144/answer/239971177</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 <p>最高票的回答结果是正确的，但是并没有把viterbi算法讲明白，尤其是其中的dp思想。可以用相同的例子来解释：</p>
 <p><strong>1.题目背景：</strong></p>
@@ -130,7 +132,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/01/16/Viterbi/" data-id="ckqkkaz0l0096bcc4eom97yb0" data-title="Viterbi" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/01/16/Viterbi/" data-id="ckqlzg1sc0095wkc4477c5at8" data-title="Viterbi" class="article-share-link">Share</a>
       
       
       
@@ -168,7 +170,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Antlr系列（配合Python3）文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/32570686">https://www.jianshu.com/nb/32570686</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>Antlr系列（配合Python3）文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/32570686">https://www.jianshu.com/nb/32570686</a></p>
 <h2 id="Visitor实现四则运算的计算"><a href="#Visitor实现四则运算的计算" class="headerlink" title="Visitor实现四则运算的计算"></a>Visitor实现四则运算的计算</h2><p>文法规则文件<code>Expr.g4</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">grammar Expr;		</span><br><span class="line">prog:	expr NEWLINE            # printExpr;</span><br><span class="line">expr:	left&#x3D;expr op&#x3D;(&#39;*&#39;|&#39;&#x2F;&#39;) right&#x3D;expr   # mulDiv    &#x2F;&#x2F; 用来确定优先级，在上面的优先级高</span><br><span class="line">    |	left&#x3D;expr op&#x3D;(&#39;+&#39;|&#39;-&#39;) right&#x3D;expr   # addSub</span><br><span class="line">    |	INT                     # int</span><br><span class="line">    |	&#39;(&#39; expr &#39;)&#39;            # brackets</span><br><span class="line">    ;</span><br><span class="line">NEWLINE : [\r\n]+ ;</span><br><span class="line">INT     : [0-9]+ ;</span><br><span class="line"></span><br><span class="line">MUL     : &#39;*&#39; ;  &#x2F;&#x2F; 用来便于当作常量引用</span><br><span class="line">DIV     : &#39;&#x2F;&#39; ;</span><br><span class="line">ADD     : &#39;+&#39; ;</span><br><span class="line">SUB     : &#39;-&#39; ;</span><br></pre></td></tr></table></figure>
 
@@ -182,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/12/21/Antlr4+python3-visitor%E4%BD%BF%E7%94%A8%EF%BC%88%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E8%A7%A3%E6%9E%90%EF%BC%89/" data-id="ckqkkayxp000dbcc49nv37077" data-title="Antlr4+python3-visitor使用（四则运算解析）" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/12/21/Antlr4+python3-visitor%E4%BD%BF%E7%94%A8%EF%BC%88%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E8%A7%A3%E6%9E%90%EF%BC%89/" data-id="ckqlzg1pj000dwkc4bwbk5nex" data-title="Antlr4+python3-visitor使用（四则运算解析）" class="article-share-link">Share</a>
       
       
       
@@ -220,7 +224,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Antlr系列（配合Python3）文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/32570686">https://www.jianshu.com/nb/32570686</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>Antlr系列（配合Python3）文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/32570686">https://www.jianshu.com/nb/32570686</a></p>
 <h2 id="Ubuntu安装"><a href="#Ubuntu安装" class="headerlink" title="Ubuntu安装"></a>Ubuntu安装</h2><p>安装方法：（来自官网首页，Quick Start）</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/lib</span><br><span class="line">$ wget https://www.antlr.org/download/antlr-4.7.2-complete.jar</span><br><span class="line">$ <span class="built_in">export</span> CLASSPATH=<span class="string">&quot;.:/usr/local/lib/antlr-4.7.2-complete.jar:<span class="variable">$CLASSPATH</span>&quot;</span></span><br><span class="line">$ <span class="built_in">alias</span> antlr4=<span class="string">&#x27;java -jar /usr/local/lib/antlr-4.7.2-complete.jar&#x27;</span></span><br><span class="line">$ <span class="built_in">alias</span> grun=<span class="string">&#x27;java org.antlr.v4.gui.TestRig&#x27;</span></span><br></pre></td></tr></table></figure>
 
@@ -257,7 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/12/21/Antlr4+python3%E5%AE%89%E8%A3%85&%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F/" data-id="ckqkkayxq000ebcc440jp95iq" data-title="Antlr4+python3安装&amp;示例程序" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/12/21/Antlr4+python3%E5%AE%89%E8%A3%85&%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F/" data-id="ckqlzg1pn000ewkc45iab2vww" data-title="Antlr4+python3安装&amp;示例程序" class="article-share-link">Share</a>
       
       
       
@@ -295,12 +301,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/rickenwang/article/details/78033575">https://blog.csdn.net/rickenwang/article/details/78033575</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/rickenwang/article/details/78033575">https://blog.csdn.net/rickenwang/article/details/78033575</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/12/03/Test%E5%88%86%E7%B1%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" data-id="ckqkkaz0f008jbcc41lvzgj8e" data-title="Test分类与区别" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/12/03/Test%E5%88%86%E7%B1%BB%E4%B8%8E%E5%8C%BA%E5%88%AB/" data-id="ckqlzg1s6008iwkc4d1u4hzwv" data-title="Test分类与区别" class="article-share-link">Share</a>
       
       
       
@@ -338,13 +346,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39792252/article/details/80415550">https://blog.csdn.net/weixin_39792252/article/details/80415550</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39792252/article/details/80415550">https://blog.csdn.net/weixin_39792252/article/details/80415550</a></p>
 <p>sudo apt-get install fonts-droid-fallback ttf-wqy-zenhei ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/11/09/%E6%9C%8D%E5%8A%A1%E5%99%A8selenium%E6%88%AA%E5%9B%BE%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" data-id="ckqkkaz3w00kfbcc4ff86gijh" data-title="服务器selenium截图中文问题" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/11/09/%E6%9C%8D%E5%8A%A1%E5%99%A8selenium%E6%88%AA%E5%9B%BE%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" data-id="ckqlzg1vz00kewkc4cqdnaaga" data-title="服务器selenium截图中文问题" class="article-share-link">Share</a>
       
       
       
@@ -382,14 +392,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/30072/how-do-i-fix-a-problem-with-mergelist-or-status-file-could-not-be-parsed-err">https://askubuntu.com/questions/30072/how-do-i-fix-a-problem-with-mergelist-or-status-file-could-not-be-parsed-err</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/30072/how-do-i-fix-a-problem-with-mergelist-or-status-file-could-not-be-parsed-err">https://askubuntu.com/questions/30072/how-do-i-fix-a-problem-with-mergelist-or-status-file-could-not-be-parsed-err</a></p>
 <p><code>sudo rm -vf /var/lib/apt/lists/*</code></p>
 <p><code>sudo apt-get update</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/11/08/apt-get-problem-with-merge-list/" data-id="ckqkkaz0t009zbcc40mds4y7i" data-title="apt-get-problem-with-merge-list" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/11/08/apt-get-problem-with-merge-list/" data-id="ckqlzg1sn00a0wkc4fadrghee" data-title="apt-get-problem-with-merge-list" class="article-share-link">Share</a>
       
       
       
@@ -427,12 +439,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>需要缓冲区满或者scanf或者fflush(stdout);或者有\n才显示。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>需要缓冲区满或者scanf或者fflush(stdout);或者有\n才显示。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/23/printf%E4%B8%8D%E6%98%BE%E7%A4%BA/" data-id="ckqkkaz2900ezbcc49gq25gte" data-title="printf不显示" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/10/23/printf%E4%B8%8D%E6%98%BE%E7%A4%BA/" data-id="ckqlzg1ue00eywkc48z4f5we8" data-title="printf不显示" class="article-share-link">Share</a>
       
       
       
@@ -470,13 +484,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>网址中具有的&amp;符号可能被django转义。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>网址中具有的&amp;符号可能被django转义。</p>
 <p>解决：可以把改为</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/17/django-rander%E5%AF%BC%E8%87%B4%E7%BD%91%E5%9D%80%E8%A2%AB%E8%BD%AC%E4%B9%89/" data-id="ckqkkaz1100aubcc4050hcy3u" data-title="django-rander导致网址被转义" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/10/17/django-rander%E5%AF%BC%E8%87%B4%E7%BD%91%E5%9D%80%E8%A2%AB%E8%BD%AC%E4%B9%89/" data-id="ckqlzg1sz00atwkc49xxg035b" data-title="django-rander导致网址被转义" class="article-share-link">Share</a>
       
       
       
@@ -514,12 +530,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Ctrl-Alt-F快捷键在Win10自带中文输入法下是切换繁体简体的，但是该快捷键同时也是Pycharm等的search in path快捷键</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>Ctrl-Alt-F快捷键在Win10自带中文输入法下是切换繁体简体的，但是该快捷键同时也是Pycharm等的search in path快捷键</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/16/Pycharm-search-in-path-%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%86%B2%E7%AA%81/" data-id="ckqkkayzz0070bcc47nhu5p6n" data-title="Pycharm-search-in-path-快捷键冲突" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/10/16/Pycharm-search-in-path-%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%86%B2%E7%AA%81/" data-id="ckqlzg1rp006xwkc45l4i2f29" data-title="Pycharm-search-in-path-快捷键冲突" class="article-share-link">Share</a>
       
       
       
@@ -557,7 +575,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Win32编程系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30332818">https://www.jianshu.com/nb/30332818</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>Win32编程系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30332818">https://www.jianshu.com/nb/30332818</a></p>
 <h2 id="添加控件"><a href="#添加控件" class="headerlink" title="添加控件"></a>添加控件</h2><p>在Hello World基础上，添加：</p>
 <ul>
 <li><code>wWinMain</code>内部创建变量，使用的是如下的方法：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建静态文本控件</span></span><br><span class="line">HWND hStatic = <span class="built_in">CreateWindow</span>(</span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;static&quot;</span>),  <span class="comment">//静态文本框的类名</span></span><br><span class="line">	<span class="built_in">TEXT</span>(<span class="string">&quot;hahaha&quot;</span>),  <span class="comment">//控件的文本</span></span><br><span class="line">	WS_CHILD <span class="comment">/*子窗口*/</span> | WS_VISIBLE <span class="comment">/*创建时显示*/</span> | WS_BORDER <span class="comment">/*带边框*/</span>,</span><br><span class="line">	<span class="number">120</span> <span class="comment">/*X坐标*/</span>, <span class="number">20</span><span class="comment">/*Y坐标*/</span>, <span class="number">150</span><span class="comment">/*宽度*/</span>, <span class="number">80</span><span class="comment">/*高度*/</span>, hwnd<span class="comment">/*父窗口句柄*/</span>,</span><br><span class="line">	(HMENU)<span class="number">1</span>,  <span class="comment">//为控件指定一个唯一标识符</span></span><br><span class="line">	hInstance,  <span class="comment">//当前实例句柄</span></span><br><span class="line">	<span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
@@ -571,7 +591,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/10/16/Win32-%E7%BC%96%E7%A8%8B%E6%B7%BB%E5%8A%A0%E6%8E%A7%E4%BB%B6%E5%8F%8A%E7%9B%91%E5%90%AC/" data-id="ckqkkaz0o009ibcc4ed5fh6dr" data-title="Win32-编程添加控件及监听" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/10/16/Win32-%E7%BC%96%E7%A8%8B%E6%B7%BB%E5%8A%A0%E6%8E%A7%E4%BB%B6%E5%8F%8A%E7%9B%91%E5%90%AC/" data-id="ckqlzg1sf009hwkc4e8e8fv3x" data-title="Win32-编程添加控件及监听" class="article-share-link">Share</a>
       
       
       

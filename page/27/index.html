@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="143-Reorder-List"><a href="#143-Reorder-List" class="headerlink" title="143. Reorder List"></a>143. Reorder List</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reorder-list/">https://leetcode.com/problems/reorder-list</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<h1 id="143-Reorder-List"><a href="#143-Reorder-List" class="headerlink" title="143. Reorder List"></a>143. Reorder List</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reorder-list/">https://leetcode.com/problems/reorder-list</a></p>
 <p>最简单的算法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!head || !(head-&gt;next)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *last = head-&gt;next, *last_pre = head;</span><br><span class="line">        <span class="keyword">if</span> (!last-&gt;next) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (last-&gt;next) &#123;</span><br><span class="line">            last_pre = last;</span><br><span class="line">            last = last-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        last-&gt;next = head-&gt;next;</span><br><span class="line">        head-&gt;next = last;</span><br><span class="line">        last_pre-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">reorderList</span>(last-&gt;next);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -115,7 +117,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/09/24/%E6%AF%8F%E6%97%A5leetcode-143/" data-id="ckqkkaz4400l1bcc4c98xcuez" data-title="每日leetcode-143" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/09/24/%E6%AF%8F%E6%97%A5leetcode-143/" data-id="ckqlzg1w700l0wkc45oyrfdvr" data-title="每日leetcode-143" class="article-share-link">Share</a>
       
       
       
@@ -153,13 +155,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>lua是在安装torch的时候直接安装上去的，但是没有找到th指令。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>lua是在安装torch的时候直接安装上去的，但是没有找到th指令。</p>
 <p>可以使用：export PATH=$PATH:$HOME/torch/install/bin 来处理这个问题</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/09/03/lua%E5%AE%89%E8%A3%85&th%E6%B2%A1%E6%9C%89%E6%89%BE%E5%88%B0/" data-id="ckqkkaz1z00e1bcc4h1ii1ql4" data-title="lua安装&amp;th没有找到" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/09/03/lua%E5%AE%89%E8%A3%85&th%E6%B2%A1%E6%9C%89%E6%89%BE%E5%88%B0/" data-id="ckqlzg1u200e0wkc48ywffwu3" data-title="lua安装&amp;th没有找到" class="article-share-link">Share</a>
       
       
       
@@ -197,7 +201,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>string：size方法，substr（第一个，长度）<br>vector：size, push_back, pop_back方法，front、back函数是返回引用<br>stack: size, empty, top, pop, push<br>map：map&lt;string, int&gt;，之后可以用find，如果查找不到得到的就是end<br>stack：push、size、top、pop</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>string：size方法，substr（第一个，长度）<br>vector：size, push_back, pop_back方法，front、back函数是返回引用<br>stack: size, empty, top, pop, push<br>map：map&lt;string, int&gt;，之后可以用find，如果查找不到得到的就是end<br>stack：push、size、top、pop</p>
 <h1 id="73-zeros"><a href="#73-zeros" class="headerlink" title="73 zeros"></a>73 zeros</h1><p>矩阵中0的同行同列设置成0：常数空间：直接用第一行记录这一行/列是否为0，再记录一下第一行和第一列需不需要为0</p>
 <h1 id="74-Search-a-2D-Matrix"><a href="#74-Search-a-2D-Matrix" class="headerlink" title="74 Search a 2D Matrix"></a>74 Search a 2D Matrix</h1><p>在一个全部排序好的数组中寻找元素，返回是否在：直接二分</p>
 <h1 id="75-Sort-Colors"><a href="#75-Sort-Colors" class="headerlink" title="75 Sort Colors"></a>75 Sort Colors</h1><p>排序一个只有0、1、2的数组：一遍扫描：</p>
@@ -267,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/08/10/%E5%87%86%E5%A4%87%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E5%81%9A%E7%9A%84Leetcode%E9%A2%98%E7%9B%AE/" data-id="ckqkkaz5f00plbcc4bhldaoqw" data-title="准备考研机试做的Leetcode题目" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/08/10/%E5%87%86%E5%A4%87%E8%80%83%E7%A0%94%E6%9C%BA%E8%AF%95%E5%81%9A%E7%9A%84Leetcode%E9%A2%98%E7%9B%AE/" data-id="ckqlzg1xf00powkc46m4n4lam" data-title="准备考研机试做的Leetcode题目" class="article-share-link">Share</a>
       
       
       
@@ -305,13 +311,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/longronglang/p/8078898.html">https://www.cnblogs.com/longronglang/p/8078898.html</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/longronglang/p/8078898.html">https://www.cnblogs.com/longronglang/p/8078898.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/timezhang/p/9640354.html">https://www.cnblogs.com/timezhang/p/9640354.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/24/linux%E4%B8%8Aselenium%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" data-id="ckqkkaz1x00dubcc4bytmev1p" data-title="linux上selenium安装使用" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/07/24/linux%E4%B8%8Aselenium%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" data-id="ckqlzg1u000dtwkc4300w6we9" data-title="linux上selenium安装使用" class="article-share-link">Share</a>
       
       
       
@@ -349,14 +357,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://www.winhelponline.com/blog/find-process-locked-file-openfiles-utility/">https://www.winhelponline.com/blog/find-process-locked-file-openfiles-utility/</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://www.winhelponline.com/blog/find-process-locked-file-openfiles-utility/">https://www.winhelponline.com/blog/find-process-locked-file-openfiles-utility/</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/howto-linux-get-list-of-open-files/">https://www.cyberciti.biz/faq/howto-linux-get-list-of-open-files/</a></p>
 <p>Mac的lsof</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/18/%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84/" data-id="ckqkkaz4x00nxbcc4hu5s9e6w" data-title="获取进程打开的文件句柄" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/07/18/%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E5%8F%A5%E6%9F%84/" data-id="ckqlzg1wz00nwwkc4g6xca9w6" data-title="获取进程打开的文件句柄" class="article-share-link">Share</a>
       
       
       
@@ -394,12 +404,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39363022/article/details/87467208">https://blog.csdn.net/qq_39363022/article/details/87467208</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39363022/article/details/87467208">https://blog.csdn.net/qq_39363022/article/details/87467208</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/14/venv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" data-id="ckqkkaz2n00g6bcc47kid4lrz" data-title="venv虚拟环境" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/07/14/venv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" data-id="ckqlzg1uq00g5wkc40y6016ld" data-title="venv虚拟环境" class="article-share-link">Share</a>
       
       
       
@@ -437,7 +449,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>QT下载地址很难找，可以从这里下载：<a target="_blank" rel="noopener" href="http://download.qt.io/archive/qt/5.13/5.13.0/qt-opensource-mac-x64-5.13.0.dmg">mac-x64-5.13.0.dmg</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>QT下载地址很难找，可以从这里下载：<a target="_blank" rel="noopener" href="http://download.qt.io/archive/qt/5.13/5.13.0/qt-opensource-mac-x64-5.13.0.dmg">mac-x64-5.13.0.dmg</a></p>
 <p>安装的时候除了creator之外还要安装上qt</p>
 <p>python版本适用：<a target="_blank" rel="noopener" href="https://gavinliu.cn/2016/01/17/Python-Mac%E4%B8%8BPyCharm-PyQt5%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">https://gavinliu.cn/2016/01/17/Python-Mac下PyCharm-PyQt5环境搭建/</a></p>
 <p>pip install pyqt5</p>
@@ -448,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/13/QT%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-python%E7%89%88%E6%9C%ACqt%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88macos%EF%BC%89/" data-id="ckqkkaz08007ubcc4gyy86z45" data-title="QT下载安装-python版本qt的使用（macos）" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/07/13/QT%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-python%E7%89%88%E6%9C%ACqt%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88macos%EF%BC%89/" data-id="ckqlzg1s0007twkc40nqf674h" data-title="QT下载安装-python版本qt的使用（macos）" class="article-share-link">Share</a>
       
       
       
@@ -486,7 +500,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>apt install nodejs<br>apt install npm</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>apt install nodejs<br>apt install npm</p>
 <p>如果npm install出现权限问题：用<a target="_blank" rel="noopener" href="https://blog.csdn.net/gentlycare/article/details/51279529%E9%87%8C%E9%9D%A2%E7%9A%84%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84%EF%BC%8C%E6%8A%8A%E9%87%8C%E9%9D%A2%E7%9A%84npm">https://blog.csdn.net/gentlycare/article/details/51279529里面的修改默认全局安装路径，把里面的npm</a> config set prefix ‘~/.npm-global’ 的引号换掉</p>
 <p>babel：用babel-cli全局安装，需要用<a target="_blank" rel="noopener" href="https://www.jb51.net/article/105968.htm%E8%BF%99%E9%87%8C%E7%9A%84npm">https://www.jb51.net/article/105968.htm这里的npm</a> install –save-dev babel-preset-es2015和配置.babelrc文件</p>
 <p>使用</p>
@@ -494,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/12/Babel%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="ckqkkayy0000qbcc48dnahtpx" data-title="Babel服务器上安装" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/07/12/Babel%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="ckqlzg1ps000owkc4gsrm5mkx" data-title="Babel服务器上安装" class="article-share-link">Share</a>
       
       
       
@@ -532,7 +548,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>例如用这个的时候：<a target="_blank" rel="noopener" href="https://github.com/fengh16/2019SummerIntern/blob/master/CodeSearch/Readme.md">https://github.com/fengh16/2019SummerIntern/blob/master/CodeSearch/Readme.md</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>例如用这个的时候：<a target="_blank" rel="noopener" href="https://github.com/fengh16/2019SummerIntern/blob/master/CodeSearch/Readme.md">https://github.com/fengh16/2019SummerIntern/blob/master/CodeSearch/Readme.md</a></p>
 <p>启动：docker run -it name什么的</p>
 <p>之后一定要exit</p>
 <p>之后docker stop再docker commit id imagename</p>
@@ -542,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/10/docker-%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8&push/" data-id="ckqkkaz1800bcbcc4fbcr4w6p" data-title="docker-正常使用&amp;push" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/07/10/docker-%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8&push/" data-id="ckqlzg1t400bbwkc426ly9hwp" data-title="docker-正常使用&amp;push" class="article-share-link">Share</a>
       
       
       
@@ -580,12 +598,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>pip freeze &gt; requirements.txt</p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>pip freeze &gt; requirements.txt</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2019/07/05/python-requirement-%E7%94%9F%E6%88%90/" data-id="ckqkkaz2c00f8bcc49ndq910e" data-title="python-requirement-生成" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2019/07/05/python-requirement-%E7%94%9F%E6%88%90/" data-id="ckqlzg1ug00f7wkc4751r9im5" data-title="python-requirement-生成" class="article-share-link">Share</a>
       
       
       

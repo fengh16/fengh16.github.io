@@ -99,7 +99,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h1><p>昨日忽然死机，强制重启后引导至蓝色Windows旗子标志后直接蓝屏重启，反复几次便无法找到引导，之后进入BIOS发现找不到自己的SSD盘。因为系统安装在<code>台电SSD</code>中，而机械硬盘上并无系统，所以折腾着试图找回SSD，使用网上声称有效的“<code>30分钟大法</code>”，但无效。尝试多次重新启动后进入BIOS挂机，未见成效。因此计划在机械硬盘上重装系统。顺便记录配置环境的过程等内容。</p>
+        <meta name="referrer" content="no-referrer" />
+
+<h1 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h1><p>昨日忽然死机，强制重启后引导至蓝色Windows旗子标志后直接蓝屏重启，反复几次便无法找到引导，之后进入BIOS发现找不到自己的SSD盘。因为系统安装在<code>台电SSD</code>中，而机械硬盘上并无系统，所以折腾着试图找回SSD，使用网上声称有效的“<code>30分钟大法</code>”，但无效。尝试多次重新启动后进入BIOS挂机，未见成效。因此计划在机械硬盘上重装系统。顺便记录配置环境的过程等内容。</p>
 <h1 id="BIOS无法识别的SSD"><a href="#BIOS无法识别的SSD" class="headerlink" title="BIOS无法识别的SSD"></a>BIOS无法识别的SSD</h1><p>进入一个基于安卓的U盘系统Phoenix OS后发现SSD盘符数据仍然可以读取，但是BIOS不认，因此试图直接由U盘启动安装系统。因为支持EFI，所以直接将Win10安装盘解压到了U盘之中，但重启进入引导极慢，因此重装未遂。后来拆除了SSD之后U盘启动、安装速度正常，因此<code>进入win10系统安装过程极慢</code>这个问题就是<code>SSD导致的</code>。</p>
 <p>后记：在拆卸SSD安装好系统之后，发现机械硬盘上的Windows系统无法进入，Fedora系统可以进入但发现SSD为只读模式。</p>
 <h1 id="N卡linux问题"><a href="#N卡linux问题" class="headerlink" title="N卡linux问题"></a>N卡linux问题</h1><p><strong>更新：后来我居然安好了驱动（见<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/22983df3dbef%EF%BC%89%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%E4%BD%A9%E6%9C%8D%E6%88%91%E8%87%AA%E5%B7%B1%E7%9A%84%E8%80%90%E5%BF%83%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%E9%A1%BA%E4%BE%BF%E9%AA%82%E4%B8%80%E7%99%BE%E4%B8%87%E9%81%8D%E9%A3%9E%E8%A1%8C%E5%A0%A1%E5%9E%92%E5%9E%83%E5%9C%BE%E7%94%B5%E8%84%91%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81">https://www.jianshu.com/p/22983df3dbef）！！！！！！！！！！！！！佩服我自己的耐心！！！！！顺便骂一百万遍飞行堡垒垃圾电脑！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！</a></strong></p>
@@ -135,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/2018/03/02/%E9%A3%9E%E8%A1%8C%E5%A0%A1%E5%9E%92%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/" data-id="ckqkkaz5c00pfbcc4cgbl24pe" data-title="飞行堡垒系统安装" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/2018/03/02/%E9%A3%9E%E8%A1%8C%E5%A0%A1%E5%9E%92%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/" data-id="ckqlzg1xd00pfwkc4bigxh01c" data-title="飞行堡垒系统安装" class="article-share-link">Share</a>
       
       
       
@@ -173,13 +175,15 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h1><p>Android Studio 3.0</p>
+        <meta name="referrer" content="no-referrer" />
+
+<h1 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h1><p>Android Studio 3.0</p>
 <h1 id="SS设置代理"><a href="#SS设置代理" class="headerlink" title="SS设置代理"></a>SS设置代理</h1><p>在 设置-HTTP 里面选择下面的http选项（不是socks）</p>
 <h1 id="SDK设置代理"><a href="#SDK设置代理" class="headerlink" title="SDK设置代理"></a>SDK设置代理</h1>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Android-Studio%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/" data-id="ckqkkayxo000abcc456r23jjx" data-title="Android-Studio安装踩坑" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Android-Studio%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/" data-id="ckqlzg1ph0006wkc48vzr0i41" data-title="Android-Studio安装踩坑" class="article-share-link">Share</a>
       
       
       
@@ -217,12 +221,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/blueman2012/article/details/6693605">https://blog.csdn.net/blueman2012/article/details/6693605</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/blueman2012/article/details/6693605">https://blog.csdn.net/blueman2012/article/details/6693605</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/BSD-Socket/" data-id="ckqkkayxz000obcc40u1a83xk" data-title="BSD-Socket" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/BSD-Socket/" data-id="ckqlzg1ps000qwkc4b2l94irz" data-title="BSD-Socket" class="article-share-link">Share</a>
       
       
       
@@ -260,12 +266,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangyezi19930928/article/details/13022451">https://blog.csdn.net/wangyezi19930928/article/details/13022451</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangyezi19930928/article/details/13022451">https://blog.csdn.net/wangyezi19930928/article/details/13022451</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/C%E8%AF%AD%E8%A8%80%E5%A4%9A%E8%BF%9B%E7%A8%8B%E7%BC%96%E7%A8%8B/" data-id="ckqkkayyc001wbcc487x8gbcn" data-title="C语言多进程编程" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/C%E8%AF%AD%E8%A8%80%E5%A4%9A%E8%BF%9B%E7%A8%8B%E7%BC%96%E7%A8%8B/" data-id="ckqlzg1q3001twkc4cd1xe2tr" data-title="C语言多进程编程" class="article-share-link">Share</a>
       
       
       
@@ -303,7 +311,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
 <h3 id="Web应用实例"><a href="#Web应用实例" class="headerlink" title="Web应用实例"></a>Web应用实例</h3><p>docker pull training/webapp</p>
 <h3 id="运行参数-amp-端口绑定："><a href="#运行参数-amp-端口绑定：" class="headerlink" title="运行参数&amp;端口绑定："></a>运行参数&amp;端口绑定：</h3><p>-d：后台运行；-P：端口映射到主机上面（随机到高端口）</p>
 <p>web类型的程序运行之后ps可以看到对应端口信息：比如<br><img src="https://upload-images.jianshu.io/upload_images/5060560-9dac947da97ccd78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
@@ -317,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Docker-Web%E5%BA%94%E7%94%A8/" data-id="ckqkkayye0024bcc4g0iwflnw" data-title="Docker-Web应用" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Docker-Web%E5%BA%94%E7%94%A8/" data-id="ckqlzg1q60021wkc48pooaaw4" data-title="Docker-Web应用" class="article-share-link">Share</a>
       
       
       
@@ -355,7 +365,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
 <h3 id="Docker镜像中添加本地文件"><a href="#Docker镜像中添加本地文件" class="headerlink" title="Docker镜像中添加本地文件"></a>Docker镜像中添加本地文件</h3><p>在Dockerfile里面直接使用<code>COPY</code>或者<code>ADD</code>即可</p>
 <h3 id="Docker目录挂载到本地目录"><a href="#Docker目录挂载到本地目录" class="headerlink" title="Docker目录挂载到本地目录"></a>Docker目录挂载到本地目录</h3><p>使用<code>run</code>的参数<code>-v</code>（即volume）</p>
 <p>顺序是<code>本地目录:docker目录</code>。如：<code>docker run -v /my:/docker_folder -i -t image-id bash</code>代表的是本机的<code>/my</code>目录与docker的<code>/docker_folder</code>目录，如果这两目录中某一个不存在会自动创建空白目录。</p>
@@ -365,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Docker-%E4%B8%8E%E4%B8%BB%E6%9C%BA%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE/" data-id="ckqkkayyf0028bcc4gnh8gerl" data-title="Docker-与主机共享数据" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Docker-%E4%B8%8E%E4%B8%BB%E6%9C%BA%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE/" data-id="ckqlzg1q70025wkc45xou0yto" data-title="Docker-与主机共享数据" class="article-share-link">Share</a>
       
       
       
@@ -403,7 +415,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
 <p>来源：<br><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04</a><br><a target="_blank" rel="noopener" href="http://www.runoob.com/docker/docker-hello-world.html">http://www.runoob.com/docker/docker-hello-world.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012002805/article/details/80767814">https://blog.csdn.net/u012002805/article/details/80767814</a></p>
 <h3 id="docker用户组"><a href="#docker用户组" class="headerlink" title="docker用户组"></a>docker用户组</h3><p>docker 命令需要使用sudo 权限来运行。每次都输入sudo很不方便。讲当前用户加入 docker 用户组就不用这么麻烦了。</p>
 <p>$ sudo usermod -aG docker ${USER}</p>
@@ -434,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Docker-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C&HelloWorld/" data-id="ckqkkayyg0029bcc436qk4pmc" data-title="Docker-基本操作&amp;HelloWorld" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Docker-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C&HelloWorld/" data-id="ckqlzg1q70027wkc42l84g0n4" data-title="Docker-基本操作&amp;HelloWorld" class="article-share-link">Share</a>
       
       
       
@@ -472,14 +486,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
 <h3 id="Dockerfile-使用"><a href="#Dockerfile-使用" class="headerlink" title="Dockerfile 使用"></a>Dockerfile 使用</h3><p>docker build<br>如：docker build -t runoob/centos:6.7</p>
 <h3 id="Dockerfile示例"><a href="#Dockerfile示例" class="headerlink" title="Dockerfile示例"></a>Dockerfile示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FROM    centos:6.7</span><br><span class="line">MAINTAINER      Fisher &quot;fisher@sudops.com&quot;</span><br><span class="line"></span><br><span class="line">RUN     &#x2F;bin&#x2F;echo &#39;root:123456&#39; |chpasswd</span><br><span class="line">RUN     useradd abcdef</span><br><span class="line">RUN     &#x2F;bin&#x2F;echo &#39;abcdef:123456&#39; |chpasswd</span><br><span class="line">RUN     &#x2F;bin&#x2F;echo -e &quot;LANG&#x3D;\&quot;en_US.UTF-8\&quot;&quot; &gt;&#x2F;etc&#x2F;default&#x2F;local</span><br><span class="line">EXPOSE  22</span><br><span class="line">EXPOSE  80</span><br><span class="line">CMD     &#x2F;usr&#x2F;sbin&#x2F;sshd -D</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Dockerfile/" data-id="ckqkkayyh002dbcc41lkx8j7h" data-title="Dockerfile" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Dockerfile/" data-id="ckqlzg1q8002bwkc417k79557" data-title="Dockerfile" class="article-share-link">Share</a>
       
       
       
@@ -517,7 +533,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>docker系列文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30096674">https://www.jianshu.com/nb/30096674</a></p>
 <p>网上安装教程：<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04</a></p>
 <ol>
 <li>curl -fsSL <a target="_blank" rel="noopener" href="https://download.docker.com/linux/ubuntu/gpg">https://download.docker.com/linux/ubuntu/gpg</a> | sudo apt-key add -</li>
@@ -531,7 +549,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Docker%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%EF%BC%89/" data-id="ckqkkayyi002ebcc4air2hya3" data-title="Docker安装配置（ubuntu服务器上）" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Docker%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%EF%BC%89/" data-id="ckqlzg1q9002cwkc4h6fdexco" data-title="Docker安装配置（ubuntu服务器上）" class="article-share-link">Share</a>
       
       
       
@@ -569,7 +587,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>测试系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30319209">https://www.jianshu.com/nb/30319209</a></p>
+        <meta name="referrer" content="no-referrer" />
+
+<p>测试系列文章：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/30319209">https://www.jianshu.com/nb/30319209</a></p>
 <h2 id="gtest-clion"><a href="#gtest-clion" class="headerlink" title="gtest+clion"></a>gtest+clion</h2><p>gtest是Google的C++单元测试框架，在clion中使用的方式可以看JetBrains官方文档<a target="_blank" rel="noopener" href="https://www.jetbrains.com/help/clion/creating-google-test-run-debug-configuration-for-test.html%EF%BC%8C%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%9A">https://www.jetbrains.com/help/clion/creating-google-test-run-debug-configuration-for-test.html，如下所示：</a></p>
 <ul>
 <li>下载Google Test</li>
@@ -586,7 +606,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://fengh16.github.io/1970/01/01/Google-test/" data-id="ckqkkayyt003dbcc43cau0hu4" data-title="Google-test" class="article-share-link">Share</a>
+      <a data-url="https://fengh16.github.io/1970/01/01/Google-test/" data-id="ckqlzg1qk003dwkc40xj34g7u" data-title="Google-test" class="article-share-link">Share</a>
       
       
       
